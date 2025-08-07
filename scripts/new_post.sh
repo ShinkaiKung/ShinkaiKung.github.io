@@ -1,0 +1,1 @@
+pnpm exec node scripts/createPost.mjs
