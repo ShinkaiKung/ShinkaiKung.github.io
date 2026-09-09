@@ -1,0 +1,66 @@
+{
+  "site": {
+    "title": "Shinkai Kung · 知识档案",
+    "baseUrl": "https://shinkaikung.github.io"
+  },
+  "collections": ["research", "others", "notes"],
+  "research": [
+    {
+      "year": 1998,
+      "authors": "Holmström & Roberts",
+      "title": "The Boundaries of the Firm Revisited",
+      "tags": ["firm boundaries", "organization economics"],
+      "zh": "/research/papers/holmstrom-roberts-1998/holmstrom_roberts_1998_boundaries_firm_zh.html",
+      "en": "/research/papers/holmstrom-roberts-1998/holmstrom_roberts_1998_boundaries_firm_en.html"
+    },
+    {
+      "year": 2002,
+      "authors": "Baker, Gibbons & Murphy",
+      "title": "Relational Contracts and the Theory of the Firm",
+      "tags": ["relational contracts", "theory of the firm"],
+      "zh": "/research/papers/baker-gibbons-murphy-2002/baker_gibbons_murphy_2002_relational_contracts_zh.html",
+      "en": "/research/papers/baker-gibbons-murphy-2002/baker_gibbons_murphy_2002_relational_contracts_en.html"
+    },
+    {
+      "year": 2003,
+      "authors": "Rauch & Watson",
+      "title": "Starting Small in an Unfamiliar Environment",
+      "tags": ["international trade", "relationships"],
+      "zh": "/research/papers/rauch-watson-2003/rauch_watson_2003_starting_small_zh.html",
+      "en": "/research/papers/rauch-watson-2003/rauch_watson_2003_starting_small_en.html"
+    },
+    {
+      "year": 2007,
+      "authors": "Lafontaine & Slade",
+      "title": "Vertical Integration and Firm Boundaries",
+      "tags": ["vertical integration", "firm boundaries"],
+      "zh": "/research/papers/lafontaine-slade-2007/lafontaine_slade_2007_vertical_integration_zh.html",
+      "en": "/research/papers/lafontaine-slade-2007/lafontaine_slade_2007_vertical_integration_en.html"
+    },
+    {
+      "year": 2008,
+      "authors": "Baker, Gibbons & Murphy",
+      "title": "Strategic Alliances: Bridges Between Islands of Conscious Power",
+      "tags": ["strategic alliances", "organization economics"],
+      "zh": "/research/papers/baker-gibbons-murphy-2008/baker_gibbons_murphy_2008_strategic_alliances_zh.html",
+      "en": "/research/papers/baker-gibbons-murphy-2008/baker_gibbons_murphy_2008_strategic_alliances_en.html"
+    },
+    {
+      "year": 2017,
+      "authors": "Hellmann & Thiele",
+      "title": "Partner Uncertainty and the Dynamic Boundary of the Firm",
+      "tags": ["partner uncertainty", "firm boundaries"],
+      "zh": "/research/papers/hellmann-thiele-2017/hellmann_thiele_2017_partner_uncertainty_zh_final.html",
+      "en": "/research/papers/hellmann-thiele-2017/hellmann_thiele_2017_partner_uncertainty_en_final.html"
+    }
+  ],
+  "others": [
+    {
+      "type": "museum-guide",
+      "location": "Paris",
+      "title": "Paris Art Atlas — Louvre × Orsay × Orangerie",
+      "tags": ["art history", "Louvre", "Orsay", "Orangerie"],
+      "url": "/others/museums/paris-three-museums/paris_three_museums_art_history_v3.html"
+    }
+  ]
+}

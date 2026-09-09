@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Rauch and Watson (2003) Starting Small in an Unfamiliar Environment 中文交互式研究笔记">
+<title>Rauch & Watson (2003) — Starting Small in an Unfamiliar Environment · 中文伴随版</title>
+<style>
+:root{--bg:#f7f6f2;--surface:#fff;--surface2:#f0f2f3;--text:#20262d;--muted:#68727d;--line:#d9dde1;--accent:#405d78;--green:#4c755e;--amber:#9a7440;--accent-soft:#eaf0f5;--green-soft:#edf5ef;--sidebar:286px;--r:11px}
+html[data-theme="dark"]{--bg:#161b20;--surface:#1e252c;--surface2:#252e36;--text:#ecf0f2;--muted:#aab4bd;--line:#36414b;--accent:#91abc2;--green:#8fb49c;--amber:#d3ae72;--accent-soft:#263747;--green-soft:#263a30}
+*{box-sizing:border-box}html{scroll-behavior:smooth;max-width:100%}body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,"IBM Plex Sans","Source Sans 3",system-ui,sans-serif;line-height:1.72;max-width:100%}body.zh{font-family:Inter,"Noto Sans SC","PingFang SC","Microsoft YaHei",system-ui,sans-serif}
+a{color:var(--accent);text-decoration:none}.progress{position:fixed;top:0;left:0;width:100%;height:3px;z-index:120}.progress span{display:block;height:100%;width:0;background:var(--accent)}
+.layout{display:grid;grid-template-columns:var(--sidebar) minmax(0,1fr);min-height:100vh}.side{position:sticky;top:0;height:100vh;padding:27px 18px;background:var(--surface);border-right:1px solid var(--line);overflow:auto;z-index:40}.brand{font-size:12px;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);font-weight:800}.paper{font-size:14px;font-weight:700;line-height:1.4;margin:7px 0 15px}.side nav{display:flex;flex-direction:column}.side nav a{padding:6px 8px;border-radius:7px;color:var(--muted);font-size:12.5px;line-height:1.3}.side nav a[data-l="2"]{padding-left:20px;font-size:12px}.side nav a.active{background:var(--surface2);color:var(--text);font-weight:700}.side nav a.parent-active{color:var(--text);font-weight:700}.tools{margin:12px 0 16px}.btn,.menubtn,.qbtn,.rate button{border:1px solid var(--line);background:var(--surface2);color:var(--text);border-radius:7px;padding:7px 10px;cursor:pointer}.menubtn{display:none;position:fixed;top:12px;left:12px;z-index:100;background:var(--surface)}
+main{min-width:0;padding:0 32px 90px}.article{max-width:940px;margin:auto;min-width:0}.hero{padding:58px 0 34px;border-bottom:1px solid var(--line);margin-bottom:28px}.eyebrow{font-size:12px;text-transform:uppercase;letter-spacing:.09em;color:var(--accent);font-weight:800}.hero h1{font-family:Georgia,serif;font-size:clamp(32px,5vw,45px);line-height:1.12;margin:10px 0 12px}.sub{font-size:17px;color:var(--muted);max-width:780px}.meta{margin-top:16px;display:flex;flex-wrap:wrap;gap:7px 16px;color:var(--muted);font-size:12.5px}
+section{min-width:0;scroll-margin-top:20px}.major{padding-top:32px;margin-top:10px}h2{font-family:Georgia,serif;font-size:29px;line-height:1.2;margin:0 0 17px;padding-bottom:9px;border-bottom:1px solid var(--line)}h3{font-size:21px;margin:32px 0 11px}h4{font-size:16.5px;margin:23px 0 8px}.lead{font-size:17.5px;max-width:760px}.muted,.source{color:var(--muted)}.source{font-size:12px;margin-top:8px}.source:before{content:"↳ ";color:var(--accent)}
+.badge{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:3px 8px;font-size:10.5px;font-weight:800;text-transform:uppercase;letter-spacing:.04em;color:var(--muted)}.author{color:var(--accent)}.synth{color:var(--green)}.extend{color:var(--amber)}
+.dashboard{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:11px;margin:18px 0 26px}.card,.plain,.eq,.prop,.quiz{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);min-width:0}.card{padding:15px;border-top:3px solid var(--accent)}.card .lab{font-size:10.5px;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);font-weight:800}.card .val{font-size:14.5px;line-height:1.45;margin-top:5px;font-weight:650}.plain{padding:15px}.plain h4{margin-top:0}.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.callout{border-left:4px solid var(--accent);background:var(--surface);padding:13px 15px;margin:17px 0;border-radius:0 8px 8px 0}.callout.green{border-left-color:var(--green)}.callout.amber{border-left-color:var(--amber)}
+.chain{display:flex;gap:8px;align-items:stretch;overflow-x:auto;margin:17px 0;padding-bottom:5px}.node{flex:1;min-width:145px;background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:11px;font-size:13px}.arr{display:flex;align-items:center;color:var(--muted);font-size:19px}
+.wrap{max-width:100%;overflow-x:auto;overflow-y:hidden;margin:15px 0}.wrap table{width:100%;min-width:760px;border-collapse:collapse;background:var(--surface)}th,td{padding:9px 11px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top;font-size:12.8px}th{background:var(--surface2);font-size:10.8px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted)}tr:last-child td{border-bottom:0}.fp td:first-child,.fp th:first-child{width:205px}
+.eq{padding:16px;margin:16px 0}.eqtitle{font-weight:800}.math{font-family:"Times New Roman",Georgia,serif;font-size:18px;white-space:nowrap;min-width:max-content}.display{text-align:center;font-size:20px;padding:10px}.explain{display:grid;grid-template-columns:1fr 1fr;gap:12px}.explain>div{background:var(--surface2);border-radius:7px;padding:10px;font-size:13px}.kick{font-size:10.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);font-weight:800}
+.prop{margin:16px 0;overflow:hidden}.prophead{display:flex;justify-content:space-between;gap:10px;align-items:center;background:var(--surface2);border-bottom:1px solid var(--line);padding:12px 15px}.prophead strong{font-family:Georgia,serif;font-size:17px}.propbody{padding:15px}.propgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+details{border:1px solid var(--line);border-radius:8px;background:var(--surface);margin:11px 0}summary{cursor:pointer;padding:10px 13px;font-weight:700}details>div{padding:0 13px 13px}
+.timeline .step{display:grid;grid-template-columns:38px minmax(0,1fr);gap:9px;margin:10px 0}.num{width:30px;height:30px;border-radius:50%;border:1px solid var(--line);background:var(--surface);display:flex;align-items:center;justify-content:center;font-weight:800}
+.diagram{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:12px;min-width:700px}.diagram svg{width:100%;height:auto;display:block}.legend{font-size:11.5px;color:var(--muted);margin-top:7px}
+.quiz{padding:15px;margin:15px 0}.q{font-weight:750;font-size:15.5px;margin:8px 0 11px}.qactions,.rate{display:flex;gap:7px;flex-wrap:wrap}.reveal{display:none;background:var(--surface2);padding:11px;border-radius:7px;margin-top:10px}.reveal.show{display:block}.rate{margin-top:10px}.rate button.selected{outline:2px solid var(--accent)}
+.check{list-style:none;padding:0}.check li{position:relative;padding-left:22px;margin:6px 0}.check li:before{content:"✓";position:absolute;left:0;color:var(--green);font-weight:800}.term{font-weight:800;color:var(--accent)}.footer{margin-top:65px;padding-top:22px;border-top:1px solid var(--line);color:var(--muted);font-size:12px}
+@media(max-width:1100px){:root{--sidebar:242px}.dashboard{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:820px){.layout{display:block}.side{position:fixed;width:min(86vw,310px);left:0;top:0;bottom:0;transform:translateX(-105%);transition:.2s}.side.open{transform:translateX(0)}.menubtn{display:block}main{padding:0 17px 70px}.hero{padding-top:72px}.grid2,.grid3,.propgrid,.explain{grid-template-columns:1fr}}
+@media(max-width:540px){.dashboard{grid-template-columns:1fr}.hero h1{font-size:31px}.chain{flex-direction:column}.arr{transform:rotate(90deg);align-self:center}}
+
+
+/* final component aliases / parity-safe additions */
+.table-wrap,.equation-wrap,.wrap{max-width:100%;overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch}
+.equation-wrap{margin:12px 0}.equation-wrap .math{min-width:max-content}
+.diagram{display:block;width:100%;height:auto;max-width:100%;color:var(--text)}
+.diagram .svgbox{fill:var(--surface2);stroke:var(--line);stroke-width:1.3}
+.diagram text{fill:var(--text);font-family:Inter,"IBM Plex Sans","Source Sans 3",system-ui,sans-serif;font-size:15px}
+.caption{font-size:12px;color:var(--muted);margin-top:7px}
+.tag,.skill,.status{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:3px 8px;font-size:10.5px;font-weight:800;letter-spacing:.035em;vertical-align:middle}
+.equation-card,.proposition{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px;margin:16px 0;min-width:0}.eq-title{font-weight:800}
+.tag,.skill{color:var(--accent);background:var(--accent-soft)}
+.status{color:var(--green);background:var(--green-soft)}
+.quiz-card{border:1px solid var(--line);border-radius:var(--r);padding:18px;margin:16px 0;background:var(--surface)}
+.quiz-head{display:flex;gap:10px;align-items:flex-start}.quiz-head h3{margin:0;font-size:17px;flex:1}
+.quiz-actions,.rating{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.quiz-actions button,.rating button{border:1px solid var(--line);background:var(--surface2);color:var(--text);padding:7px 10px;border-radius:8px;cursor:pointer}
+.quiz-actions button:hover,.rating button:hover{border-color:var(--accent)}
+.quiz-hidden{display:none;border-left:3px solid var(--line);padding:10px 12px;margin-top:10px;background:var(--surface2);border-radius:0 8px 8px 0}
+.quiz-hidden.show{display:block}.rating button.selected{outline:2px solid var(--accent);border-color:var(--accent)}
+.review{font-size:12px;color:var(--muted);margin-top:11px}.review a{color:var(--accent)}
+.remember{border-left:4px solid var(--accent);padding:5px 0 5px 17px;margin:14px 0 24px}
+.mastery li{margin:10px 0}
+.extension{border-left-color:var(--green)}
+footer{margin-top:65px;padding-top:22px;border-top:1px solid var(--line);color:var(--muted);font-size:12px}
+.svgbox{fill:var(--surface2);stroke:var(--line)}
+@media(max-width:540px){.quiz-head{display:block}.quiz-head .skill{margin-bottom:8px}}
+
+html[lang="zh-CN"] body{font-family:Inter,"Noto Sans SC","PingFang SC","Microsoft YaHei","Source Sans 3",system-ui,sans-serif}
+html[lang="zh-CN"] .diagram text{font-family:Inter,"Noto Sans SC","PingFang SC","Microsoft YaHei",system-ui,sans-serif}
+</style>
+<script>window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']],tags:'ams'},svg:{fontCache:'global'}};</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+<div class="progress" aria-hidden="true"><span></span></div>
+
+<div class="layout"><aside class="side" id="side">
+<div class="brand">Research Reading Notebook</div><div class="paper">Rauch & Watson (2003)<br><em>Starting Small in an Unfamiliar Environment</em></div>
+<div class="tools"><button class="btn" id="theme">◐ 明暗模式</button></div>
+<nav>
+<a href="#dashboard">Dashboard · 论文仪表盘</a><a href="#glance">Paper at a Glance · 一页总览</a><a href="#puzzle">研究问题与文献定位</a><a href="#literature-position" data-l="2">Literature Position</a>
+<a href="#empirical-motivation">Empirical Motivation · 事实动机</a><a href="#start-small-evidence" data-l="2">Starting-Small Evidence</a><a href="#three-differences" data-l="2">三项 DC–LDC 差异</a><a href="#networks-persistence" data-l="2">Networks & Persistence</a>
+<a href="#model">Model · 模型</a><a href="#environment" data-l="2">Environment & Information</a><a href="#timing" data-l="2">Timing</a><a href="#actions" data-l="2">Big / Learn / Out</a><a href="#core-equations" data-l="2">Core Equations</a><a href="#cutoffs" data-l="2">Cutoffs & Switching</a>
+<a href="#results">Results · 结果</a><a href="#starting-small-results" data-l="2">Starting Small: Props. 2–5</a><a href="#persistence-results" data-l="2">Persistence: Props. 6–9</a><a href="#cost-structure" data-l="2">Supplier Cost Structure</a>
+<a href="#proof-architecture">Proof Architecture · 证明结构</a><a href="#export-interpretation">出口与发展含义</a><a href="#knowledge-map">Literature Knowledge Map</a>
+<a href="#critical">Critical Reading · 批判阅读</a><a href="#extensions">Research Implications</a><a href="#quiz">Understanding Check</a><a href="#mastery">Mastery Test</a><a href="#memory">What Should I Remember?</a><a href="#coverage">Coverage & Sources</a>
+</nav></aside>
+<button class="menubtn" id="menu">☰</button><main><article class="article">
+<header class="hero"><div class="eyebrow">Theoretical IO · Search · Buyer–Supplier Relationships</div>
+<h1>Starting Small in an Unfamiliar Environment</h1>
+<div class="sub">Rauch & Watson (2003) 的低损失学习型重构：为什么买方会先用小订单试探、search frictions 与 uncertainty 如何塑造 supplier choice，以及 relationship persistence 为什么与关系最初如何启动紧密相连。</div>
+<div class="meta"><span>International Journal of Industrial Organization 21 (2003), 1021–1042</span><span>JEL L24 · D83</span><span>Paper type: Theory + empirical motivation</span></div></header>
+
+<section id="dashboard" class="major"><h2>Paper Dashboard · 论文仪表盘</h2>
+<div class="dashboard">
+<div class="card"><div class="lab">Research Question</div><div class="val">在陌生、搜索成本高的供应环境里，DC buyer 何时应当对 LDC supplier 直接下大单（Big）、先小单学习（Learn），或退出并继续搜索（Out）？</div></div>
+<div class="card"><div class="lab">Core Friction</div><div class="val">买方立刻观察 supplier cost \(c\)，但不知道投入不可逆的 training \(I\) 后供应商能否成功完成大订单。</div></div>
+<div class="card"><div class="lab">Core Choice</div><div class="val"><strong>Big / Learn / Out</strong>；成功关系建立后，还要在 incumbent 与免费获知的新 candidate supplier 之间进行 stay / switch。</div></div>
+<div class="card"><div class="lab">Main Comparative Static</div><div class="val">search cost \(g\uparrow\) 或 success probability \(p\downarrow\) 时，Learn 区域扩大（在论文给定条件下）。</div></div>
+<div class="card"><div class="lab">Persistence Result</div><div class="val">更熟悉的新供应商环境——\(p\uparrow\) 或 \(I\downarrow\)——会抬高 switching cutoff \(c^*(c)\)，使 incumbent 更容易被替代。</div></div>
+<div class="card"><div class="lab">Contribution</div><div class="val">把 costly search、endogenous relationship building 与 supplier switching 放进同一模型，从而连接“起步规模”和“关系持续时间”。</div></div>
+</div></section>
+
+<section id="glance"><h2>Paper at a Glance · Paper Fingerprint</h2>
+<div class="table-wrap"><table>
+<thead><tr><th>Dimension</th><th>Content</th></tr></thead>
+<tbody>
+<tr><td>Research Question</td><td>为什么 DC buyers 面对 LDC suppliers 时会先从小订单开始？这种起步方式如何与后续 relationship persistence 和 switching 联系？</td></tr>
+<tr><td>Economic Friction</td><td>Costly search + heterogeneous supplier costs + uncertainty about large-order capability + irreversible training investment.</td></tr>
+<tr><td>Agents</td><td>一个 developed-country (DC) buyer；一个无限大的 less-developed-country (LDC) supplier pool。</td></tr>
+<tr><td>Key Choice</td><td>Big / Learn / Out；成功关系建立后的 stay / switch。</td></tr>
+<tr><td>State / Environment</td><td>supplier cost \(c\sim\mu\)、pool value \(w\)、incumbent relationship value \(v(c)\)，以及 network arrival \(q\)。</td></tr>
+<tr><td>Core Mechanism</td><td>small order 在支付 \(I\) 前揭示 training 是否会成功，因此提供 information value；是否值得延迟取决于 supplier cost 与 outside search option。</td></tr>
+<tr><td>Contracting / Market Problem</td><td>letter of credit 可保护交货付款，但不能消除失败 training investment 的损失；陌生市场还存在更高 non-performance risk 与 search cost。</td></tr>
+<tr><td>Method</td><td>Infinite-horizon discrete-time dynamic search / relationship model；cutoff rules + comparative statics + fixed-point proof。</td></tr>
+<tr><td>Data</td><td>N/A as a formal empirical estimation paper. Section 2 使用既有 case studies / descriptive evidence 作为 empirical motivation。</td></tr>
+<tr><td>Identification</td><td>N/A for this paper type；没有估计 causal parameter。</td></tr>
+<tr><td>Main Result</td><td>较高 \(g\) 与较低 \(p\) 促进 starting small；较高 \(p\) 或较低 \(I\) 降低 incumbent persistence；Big 与低 \(c\) 的 selection 导出 Propositions 7–9。</td></tr>
+<tr><td>Contribution</td><td>把 experimentation、search/matching 与 switching 结合，从同一个 cost-selection structure 推导初始订单规模与关系寿命的联合预测。</td></tr>
+<tr><td>Limitation</td><td>supplier side 很 reduced-form；learning technology 固定；若 \(q\) 不够小，一些 comparative statics 不成立或论文没有证明。</td></tr>
+<tr><td>Open Question</td><td>交易层面数据能否把 productive-capability learning 与 trust / strategic cooperation 等其他 starting-small 机制区分开？</td></tr>
+</tbody></table></div>
+<p class="source">Source: Abstract; Sections 1–5; Appendix.</p>
+</section>
+
+<section id="puzzle">
+<h2>1 · Research Puzzle & Literature Position</h2>
+<p class="lead">作者要解释的是一个看似简单、但仅靠标准支付合同并不能解释的事实：为什么成熟市场的买方在与发展中国家供应商建立关系时，会刻意“从小做起”，而不是一旦发现低成本 supplier 就直接放大交易？</p>
+
+<div class="callout"><span class="tag">AUTHOR'S ARGUMENT</span>
+<p>Small-scale project 的作用不是单纯减少当期采购支出，而是在大量资源被 commit 之前学习对方。买方还必须考虑未来 terminate relationship 的机会价值：如果 alternative matches 很容易找到，今天维持关系的价值就会下降。</p>
+<p class="source">Source: Section 1, pp. 1021–1022.</p></div>
+
+<section id="literature-position">
+<h3>1.1 What the Paper Combines</h3>
+<p>Rauch & Watson 明确说，模型的创新来自把此前分别研究的三个要素组合起来，而不是声称这些要素本身都是新的。</p>
+<div class="grid3">
+<div><h4>(a) Costly search in a heterogeneous pool</h4><p>Matching literature 研究 heterogeneous agents 在 search frictions 下的配对，例如 Smith (1997) 与 Smith & Shimer (2000) 的 assortative matching。</p></div>
+<div><h4>(b) Different ways to build a relationship</h4><p>Optimal experimentation 与 irreversible investment 文献研究先试验再 commit：Moscarini & Smith (1998)；Dixit & Pindyck (1994)；Horstmann & Markusen (1996)。</p></div>
+<div><h4>(c) Stay or switch after success</h4><p>Jovanovic (1979) 的 job matching 允许随着时间学习 match quality 并移动，但没有这里“可直接 Big，也可先 Learn”的选择。</p></div>
+</div>
+<details><summary>Substantively discussed precursor literatures</summary><div>
+<ul>
+<li><strong>Optimal experimentation：</strong>Moscarini & Smith (1998) 讨论 experimentation scale；脚注 1 还列出 Aghion et al. (1991)、Keller & Rady (1999)、Bergemann & Välimäki (2000)、Bolton & Harris (1999)。</li>
+<li><strong>Irreversible investment：</strong>Dixit & Pindyck (1994)；Horstmann & Markusen (1996) 用 foreign-market entry 中 local sales agency versus direct investment 展示先获取信息再进行更大 commitment。</li>
+<li><strong>Incomplete information and cooperation：</strong>Ghosh & Ray (1996) 与 Watson (1996, 1999, 2002) 让 gradual escalation 来自对 partner cooperation incentives / types 的 incomplete information；Datta (1996)、Kranton (1996) 讨论 disciplining role，Carmichael & MacLeod (1997) 说明关系开始时的 gift convention 可以支持 cooperation。</li>
+<li><strong>Matching and turnover：</strong>Smith (1997)、Smith & Shimer (2000)、Jovanovic (1979)。</li>
+</ul>
+<p>本文与这些 starting-small cooperation mechanisms 不同：其 focal uncertainty 是 supplier 的 productive capability，以及 training 是否成功。真正新增的是让 search、relationship-building mode 与 switching 在同一个模型里相互作用，因此能研究 starting-big 与 persistence 的关系。</p>
+<p class="source">Source: Section 1, pp. 1022–1024; footnotes 1–2.</p></div></details>
+<p class="source">Source: Section 1, pp. 1022–1024; footnotes 1–2.</p>
+</section>
+</section>
+
+<section id="empirical-motivation">
+<h2>2 · Empirical Motivation</h2>
+
+<section id="start-small-evidence">
+<h3>2.1 Evidence That Buyers Actually “Start Small”</h3>
+<div class="grid2">
+<div>
+<h4>Egan & Mody (1992)</h4>
+<p>他们调查在 LDCs 经营的美国 buyers，包括 manufacturers、retailers、importers、buyers' agents 与 joint-venture partners。一个反复出现的做法是：先给 small order，甚至先从 simple product 开始，再逐渐扩大关系。小订单用来观察 manager 与 workers 是否能满足 buyer 对 price、quality 与 delivery 的要求。</p>
+<p>作者特别强调 buyers 可能看重“人”而不是工厂当前技术水平：如果 factory management 有效率、workers 能吸收 training，那么新 machines 可以安装、production organization 也可以升级。</p>
+</div>
+<div>
+<h4>Tewari (1999)</h4>
+<p>从 Indian woolen-knitwear suppliers 的角度研究欧洲 buyers，得到同样的 gradual-building pattern。关键并非 volumes 不重要，而是先进行 focused small-scale learning，成功后再扩大 volume；如果 supplier 持续犯错，大型 buyer 可以转向别处。</p>
+</div>
+</div>
+<p class="source">Source: Section 2, p. 1024.</p>
+</section>
+
+<section id="three-differences">
+<h3>2.2 Why LDC Relationships Differ from DC Relationships</h3>
+<p>一个关键 puzzle 是：letter of credit 通常允许 DC buyer 在供应商没有满足 inspection、delivery date 等约定时拒绝付款。Taylor & Wiggins (1997) 表明，类似 domestic US contracting environment 可以支持与陌生 US suppliers 一开始就下大单。那为什么同样的基本付款保护下，面对 LDC suppliers 却要 starting small？作者给出三项差异。</p>
+
+<h4>Difference 1 — Large orders often require buyer-funded training</h4>
+<p>新 LDC supplier 往往需要 buyer 在 large order 前投入 substantial training。Egan & Mody 报告 buyer 会派 international experts 训练 local workers / supervisors，也可能安排 workers 到 developed-country plants 短期培训。Rhee et al. (1984) 对 Korean manufacturing exporters 的调查发现，即便韩国当时相对先进，仍“几乎一半”的 firms 表示直接从 foreign buyers 提供的 technical information 受益，包括 buyer engineers 来厂或本方 engineers 去 buyer 工厂。</p>
+<p>Schmitz & Knorringa (2000) 指出 training 可涉及如何组织 production 与 quality control；Pack & Page (1994) 更把这种 buyer assistance 解释成 tacit、甚至 proprietary technological know-how 的 transfer。于是，在 letter of credit 环境中，真正暴露于失败风险的核心不是订单付款本身，而是 buyer 已经 sunk 的 \(I\)。</p>
+<details><summary>Payment-method detail: why a letter of credit does not eliminate the model's risk</summary><div>
+<p>letter of credit 同时也比 open account 更保护 seller：只要规定条件满足，issuing bank 必须付款。这还可能帮助 LDC supplier 从 subcontractors 获得 working capital，因为后者更相信 supplier 最终能收到货款。但这些支付保障都不会补偿 buyer 已经投入、却因 supplier 无法履约而失去的 supplier-specific training investment。</p>
+<p class="source">Source: Section 2, pp. 1024–1026; footnote 3.</p></div></details>
+
+<h4>Difference 2 — Non-performance risk is higher</h4>
+<p>LDC supplier 可能缺乏足够 managerial capability，无法学会 international quality / delivery standards。small order 的价值就在于：在 buyer 为 large order 支付 training cost 之前，先发现 supplier 是否具备吸收 training、按规格及时交付的能力。</p>
+<p>作者用 ISO 9000 certification 作为管理能力环境的一个客观 proxy。</p>
+<div class="wrap"><table><tr><th>Empirical indicator</th><th>Europe</th><th>Latin America</th><th>Paper's interpretation</th></tr>
+<tr><td>ISO 9000 certificates per million industrial workers, 1998</td><td>1,908</td><td>130</td><td>Europe 接近 Latin America 的 15 倍；作者把它作为与更高 management / learning capability 一致的客观 indicator。</td></tr></table></div>
+<details><summary>Qualification: what exactly the small order learns, and what ISO does not establish</summary><div>
+<p>初始订单越像最终要大量采购的产品，它对 relevant capability 的信息通常越强；这可能要求 buyer 为 design specification 等付出更多。Rauch & Watson (1999) 允许 buyer 选择 starting-small intensity。</p>
+<p>Banerjee & Duflo (2000) 显示，Indian software firms 的 ISO 9000 status 并不影响它们获得 time-and-materials 而非 fixed-price contracts 的概率，因此 certification 不应简单解释成“不是 myopic shirker”的 signal。</p>
+<p class="source">Source: Section 2, pp. 1026–1027; footnotes 4–5.</p></div></details>
+<details><summary>How the paper constructs the ISO and telephone comparisons</summary><div>
+<p><strong>ISO 9000：</strong>1998 certificate counts 来自 International Organization for Standardization。industrial-worker denominator 把 1990 industrial employment shares 与 1998 economically active populations 结合。Europe 包含 Eastern Europe、排除 former Soviet Union countries；Latin America 则在 Central and South America 上加入 Mexico。部分国家因 labor-force-share data 缺失而被排除。</p>
+<p><strong>Telephones：</strong>作者使用 1990 是因为更晚年份缺失值很多；telephone counts 来自 Canning 的 infrastructure database，industrial-worker denominator 使用 1990 industrial employment shares。13 个 European countries 与 2 个 Latin American countries 缺 telephone observations，并沿用相同的 Europe / Latin America definitions。</p>
+<p class="source">Source: Section 2, footnotes 6–7, pp. 1026–1027.</p></div></details>
+
+<h4>Difference 3 — Search for alternatives is more costly</h4>
+<p>如果 buyer 可以廉价找到更好的 supplier，为什么要花时间培养一个中等吸引力的 candidate？作者的回答是 LDC environments 的 communication 与 transport infrastructure 较弱，search cost 更高。</p>
+<div class="wrap"><table><tr><th>Empirical indicator</th><th>Europe</th><th>Latin America</th><th>Paper's interpretation</th></tr>
+<tr><td>Telephones per thousand industrial workers, 1990</td><td>2,281</td><td>385</td><td>Europe 接近 Latin America 的 6 倍；作者将其作为 infrastructure proxy，与较低 search costs 一致。</td></tr></table></div>
+<p>因此论文所谓的 <strong>“unfamiliar environment”</strong> 实质上是两项状态共同出现：更高的 non-performance risk 与更高的 cost of locating alternatives。</p>
+<p class="source">Source: Section 2, pp. 1024–1027; footnotes 3–7.</p>
+</section>
+
+<section id="networks-persistence">
+<h3>2.3 Networks and Relationship Persistence</h3>
+<p>一旦 DC buyer 与 LDC supplier 建立成功关系，buyer 会进入一个由类似 partnerships 构成的信息 network。Egan & Mody 报告，buyers 几乎总是先在自己的 product-specific buyer–supplier network 中找信息。因此新的 candidate supplier 有时无需支付 search cost \(g\) 就会出现。</p>
+<p>但 incumbent 仍有两重优势：其 training cost 已经 sunk，而且关于 capability 的 uncertainty 已经 favorable resolution。因此，same-cost 的 newcomer 仍不如 incumbent；Egan & Mody 也观察到 US buyers 偏好继续与已经了解的 LDC suppliers 合作。</p>
+<h4>Nadvi (1999): Sialkot surgical instruments</h4>
+<p>1994 年 5 月，US FDA 因 Good Manufacturing Practices (GMP) 问题限制 Pakistan-made surgical instruments 的 imports。到 1997 年末，Sialkot 大约 300 家 manufacturers 中有 133 家获得 FDA GMP certification，而行动之前是 0。Nadvi 报告：certification 对一些 buyers 来说意味着可以回到更 arm's-length 的 contracts；他们能够松动 longstanding local ties，寻找更便宜替代 supplier。</p>
+<p>这成为本文 persistence comparative statics 的现实动机：当 buyer 对新 supplier 的 non-performance probability 降低时，incumbent 的 informational advantage 缩小，relationship persistence 反而会下降。</p>
+<p class="source">Source: Section 2, pp. 1027–1028.</p>
+</section>
+</section>
+
+<section id="model">
+<h2>3 · Model · 模型</h2>
+
+<section id="environment">
+<h3>3.1 Economic Environment & Information</h3>
+<p>时间是 discrete。一个 DC buyer 在一个很大的（形式上 infinite）LDC supplier pool 中搜索。不同 suppliers 的唯一永久异质性是完成 large order 的 per-period production cost \(c\)，其分布为 \(\mu\)，support 为 \([\underline c,\bar c]\)。buyer 每次主动从 pool 中找一个 supplier 要支付 search cost \(g\)。一旦找到 candidate，\(c\) 立即可观察；但 candidate 是否有能力按照 buyer 要求成功完成 large orders，在关系一开始并不知道。</p>
+<ul>
+<li>若 supplier 最终是 <strong>successful</strong>，large order 每期为 buyer 带来 gross sales \(z\)，supplier 的 per-period cost 为 \(c\)，因此成功关系的当期 joint operating margin 对 buyer 表现为 \(z-c\)。</li>
+<li>若 supplier 是 <strong>unsuccessful</strong>，large-order gross sales 为 0。</li>
+<li>新 supplier ex ante 成功的概率为 \(p\)。</li>
+<li>在 large-order trade 发生前，buyer 必须支付 training investment \(I\)。training 完成后会揭示 supplier 属于 successful 还是 unsuccessful；也就是说，training “可能成功，也可能失败”。</li>
+<li>buyer 也可以先下 small order。基准模型中 small order 本身不产生 profit，但在 \(k\) periods 之后揭示未来 large orders 在 training 后是否会成功。</li>
+</ul>
+<p>成功关系还有一个 network benefit：每一时期末，以概率 \(q\) buyer 会免费认识一个新的 supplier，并观察其 cost \(c'\)。下一期 buyer 可以留下 incumbent，或者切换到 newcomer；若切换，就必须重新在 Big 与 Learn 之间做选择。buyer 的 discount factor 为 \(\delta\)。</p>
+<div class="callout"><span class="tag">IMPORTANT DISTINCTION</span>
+<p><strong>\(c\) is observed; capability is not.</strong> 模型并不是让 buyer 同时不知道“成本”和“能力”。这一区分产生了清晰的 sorting：cost 决定 candidate 有多吸引人，unknown capability 决定是否值得用 Learn 来避免冒险投入 \(I\)。</p></div>
+<div class="callout amber"><span class="tag">AUTHOR'S QUALIFICATION</span><p>基准模型令 small order 除 information 外没有其他 yield。脚注 8 指出，即使允许 small order 以 less-than-one-for-one 的方式降低之后 large order 所需的 training investment，主要 qualitative results 也不会改变。</p></div>
+<p class="source">Source: Section 3.1, pp. 1028–1030; footnote 8.</p>
+</section>
+
+<section id="timing">
+<h3>3.2 Timing</h3>
+<div class="wrap">
+<svg class="diagram" viewBox="0 0 1060 270" role="img" aria-label="Rauch and Watson model timing diagram">
+<defs><marker id="arrowzh" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="currentColor"/></marker></defs>
+<g fill="none" stroke="currentColor" stroke-width="1.6" marker-end="url(#arrowzh)">
+<path d="M180 92 H265"/><path d="M445 92 H530"/><path d="M710 92 H795"/>
+<path d="M620 132 V202 H405"/><path d="M885 132 V202 H930"/>
+</g>
+<g>
+<rect x="20" y="52" width="160" height="80" rx="10" class="svgbox"/><text x="100" y="80" text-anchor="middle">Search / candidate</text><text x="100" y="105" text-anchor="middle">pay g; observe c</text>
+<rect x="265" y="52" width="180" height="80" rx="10" class="svgbox"/><text x="355" y="80" text-anchor="middle">Choose</text><text x="355" y="105" text-anchor="middle">Big / Learn / Out</text>
+<rect x="530" y="52" width="180" height="80" rx="10" class="svgbox"/><text x="620" y="77" text-anchor="middle">Information / training</text><text x="620" y="102" text-anchor="middle">success revealed</text>
+<rect x="795" y="52" width="180" height="80" rx="10" class="svgbox"/><text x="885" y="78" text-anchor="middle">Successful match</text><text x="885" y="103" text-anchor="middle">earn z − c</text>
+<rect x="285" y="190" width="240" height="62" rx="10" class="svgbox"/><text x="405" y="217" text-anchor="middle">Failure → return to pool</text><text x="405" y="239" text-anchor="middle">next period</text>
+<rect x="815" y="190" width="210" height="62" rx="10" class="svgbox"/><text x="920" y="216" text-anchor="middle">With probability q:</text><text x="920" y="239" text-anchor="middle">free new candidate c′</text>
+</g>
+</svg>
+</div>
+<p class="caption">这张图只重排论文的 timing：主动 search 后先观察 \(c\)，再决定 Big / Learn / Out；只有成功关系会进入带 \(q\) 的 network-arrival 状态。</p>
+</section>
+
+<section id="actions">
+<h3>3.3 Big / Learn / Out</h3>
+<div class="grid3">
+<div class="callout"><h4>Big</h4><p>立即支付 \(I\)。若 supplier successful，就进入 large-order relationship；若 unsuccessful，则下期回到 supplier pool。Big 的优势是<strong>不等待</strong>，代价是可能白白损失 \(I\)。</p></div>
+<div class="callout"><h4>Learn</h4><p>先下 small order；等待 \(k\) periods 后得知 training 是否会使 large orders 成功。只有 favorable signal 才投入 \(I\)。Learn 的优势是<strong>保护 training investment</strong>，代价是 delay。</p></div>
+<div class="callout"><h4>Out</h4><p>拒绝当前 supplier，下期回到 pool。Out 的吸引力由 continuation value \(w\) 决定，而 \(w\) 受到 search cost \(g\) 的直接影响。</p></div>
+</div>
+<p class="source">Source: Section 3.1, pp. 1028–1029.</p>
+</section>
+
+<section id="core-equations">
+<h3>3.4 Core Equations</h3>
+
+<div class="equation-card">
+<div class="eq-title">Big value — Equation (1)</div>
+<div class="equation-wrap"><div class="math">\[
+u^B(c)=p\,v(c)+(1-p)\delta w-I.
+\tag{1}
+\]</div></div>
+<p><strong>What it says：</strong>以概率 \(p\) 直接获得 successful relationship value；失败时下期回到 pool；training cost \(I\) 无论成功与否都已支付。</p>
+</div>
+
+<div class="equation-card">
+<div class="eq-title">Learn value — Equation (2)</div>
+<div class="equation-wrap"><div class="math">\[
+u^L(c)=
+\delta^k\left[p\bigl(v(c)-I\bigr)+(1-p)\delta w\right].
+\tag{2}
+\]</div></div>
+<p><strong>What it says：</strong>small order 把真正 commitment 推迟 \(k\) periods。若 signal 表明 success，就在那时支付 \(I\) 并得到 \(v(c)\)；否则再返回 pool。因此 Learn 避免了 failed training 上的 \(I\)，但承担 delay。</p>
+</div>
+
+<div class="equation-card">
+<div class="eq-title">Out value — Equation (3)</div>
+<div class="equation-wrap"><div class="math">\[
+u^O(c)=\delta w.
+\tag{3}
+\]</div></div>
+<p>拒绝 candidate，不获得当前 payoff；下期重新拥有 pool value。</p>
+</div>
+
+<div class="equation-card">
+<div class="eq-title">Candidate value — Equation (4)</div>
+<div class="equation-wrap"><div class="math">\[
+u(c)=\max\left\{u^B(c),u^L(c),u^O(c)\right\}.
+\tag{4}
+\]</div></div>
+<p>candidate supplier 的价值是三种 relationship-building modes 的 envelope。</p>
+</div>
+
+<div class="equation-card">
+<div class="eq-title">Search value — Equation (5)</div>
+<div class="equation-wrap"><div class="math">\[
+w=
+\begin{cases}
+\mathbb E_{\mu}[u(c)]-g,
+& \text{if }\mathbb E_{\mu}[u(c)]>g,\\
+0,
+& \text{otherwise (no search).}
+\end{cases}
+\tag{5}
+\]</div></div>
+<p><strong>Economic role：</strong>\(w\) 把整个 outside search environment 压缩成一个 continuation value。提高 \(g\) 会降低回到 pool 的价值，因此同时影响 Out 和 Big 的失败分支。</p>
+</div>
+
+<div class="equation-card">
+<div class="eq-title">Successful incumbent value — Equation (6)</div>
+<div class="equation-wrap"><div class="math">\[
+v(c)
+=
+z-c
++(1-q)\delta v(c)
++q\delta
+\mathbb E_{c'\sim\mu}
+\left[
+\max\{v(c),u(c')\}
+\right].
+\tag{6}
+\]</div></div>
+<p><strong>What it says：</strong>incumbent 每期先获得 \(z-c\)。以概率 \(1-q\) 没有新 candidate，关系继续；以概率 \(q\) 通过 network 免费发现 \(c'\)，下一期在 incumbent \(v(c)\) 与新 supplier \(u(c')\) 中择优。</p>
+<p>若 \(q=0\)，没有 network introductions，式 (6) 简化为 \(v(c)=(z-c)/(1-\delta)\)。</p>
+</div>
+
+<details><summary>Alternative form of the irreversible risk — footnote 9</summary><div>
+<p>作者指出，也可以去掉显式 training-reveals-success 结构，改成 buyer 直接下 large order，失败时承受 loss \(L\) 并返回 pool。该环境得到同样类型的结果，只是用 \(L\) 替代 \(I\)。这说明核心不是“training”这个标签本身，而是 <strong>Big 暴露于可通过 prior learning 避免的 irreversible loss</strong>。</p>
+<p class="source">Source: Section 3.1, footnote 9, p. 1029.</p></div></details>
+
+<h4>Assumption (A)</h4>
+<p>\(\mu\) 是 support \([\underline c,\bar c]\) 上的 continuous distribution，并且：</p>
+<div class="equation-wrap"><div class="math">\[
+\bar c>z-(1-\delta)I,
+\qquad
+\underline c<
+z-
+\frac{(1-\delta)I(1-\delta^k p)}
+{p(1-\delta^k)}.
+\tag{A}
+\]</div></div>
+<p>这组 support restrictions 的作用不是行为解释本身，而是帮助 Proposition 2 证明 Big、Learn、Out 都能在 supplier pool 中占据 positive-probability region。</p>
+<p class="source">Source: Section 3.1, equations (1)–(6), Assumption (A), pp. 1029–1030; footnote 9.</p>
+</section>
+
+<section id="cutoffs">
+<h3>3.5 Cutoffs, Figure 1, and the Switching Rule</h3>
+<p>三个 value functions 对 \(c\) 的斜率满足：</p>
+<div class="equation-wrap"><div class="math">\[
+\frac{\partial u^O(c)}{\partial c}=0
+>
+\frac{\partial u^L(c)}{\partial c}
+>
+\frac{\partial u^B(c)}{\partial c}.
+\]</div></div>
+<p>因此 Big 随 supplier cost 下降得最快，Learn 较缓，而 Out 是 horizontal。定义 \(c^B\) 为 Big 与 Learn 的交点，\(c^L\) 为 Learn 与 Out 的交点，则：</p>
+<div class="equation-wrap"><div class="math">\[
+\begin{array}{lll}
+\text{Big} & \text{if} & c\in[\underline c,c^B),\\
+\text{Learn} & \text{if} & c\in[c^B,c^L),\\
+\text{Out} & \text{if} & c\in[c^L,\bar c].
+\end{array}
+\tag{7}
+\]</div></div>
+<div class="callout amber"><strong>Qualification：</strong>在一般参数下，\(c^B\) 或 \(c^L\) 可能落在 support \([\underline c,\bar c]\) 之外，此时 supplier pool 中可能有一种或多种 Big / Learn / Out choice 不会实际出现。Proposition 2 提供的是确保三者都出现的一组 sufficient conditions。</div>
+
+<div class="wrap">
+<svg class="diagram" viewBox="0 0 900 410" role="img" aria-label="Reconstruction of Figure 1 value functions">
+<defs><marker id="axiszh" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><path d="M0,0 L0,6 L7,3 z" fill="currentColor"/></marker></defs>
+<g fill="none" stroke="currentColor" stroke-width="1.5">
+<path d="M115 325 V55" marker-end="url(#axiszh)"/><path d="M115 325 H805" marker-end="url(#axiszh)"/>
+<path d="M155 70 L610 345" stroke-width="2.2"/>
+<path d="M155 145 L750 345" stroke-width="2.2"/>
+<path d="M145 270 H760" stroke-width="2.2"/>
+<path d="M355 315 V188" stroke-dasharray="5 5"/><path d="M575 315 V270" stroke-dasharray="5 5"/>
+</g>
+<g><text x="625" y="347">uᴮ</text><text x="751" y="346">uᴸ</text><text x="765" y="274">uᴼ</text><text x="340" y="350">cᴮ</text><text x="562" y="350">cᴸ</text><text x="814" y="331">c</text></g>
+</svg></div>
+<p class="caption">Figure 1 的学习型重绘：low-cost suppliers → Big；intermediate cost → Learn；high cost → Out。原论文注明图中 \(u^B,u^L\) 画成 constant slope 只是便于表示。</p>
+
+<h4>Switching cutoff</h4>
+<p>当 buyer 已经拥有 successful incumbent supplier，定义 \(c^*(c)\) 使得：</p>
+<div class="equation-wrap"><div class="math">\[
+v(c)=u\!\left(c^*(c)\right).
+\tag{8}
+\]</div></div>
+<p>若 network 中出现的新 supplier 满足 \(c'&lt;c^*(c)\)，buyer 才会 switch。关键是 \(c^*(c)&lt;c\)：即使 newcomer 与 incumbent 有相同 per-period cost，incumbent 仍严格更好，因为其 training 已经 sunk，capability uncertainty 也已经 favorable resolution。</p>
+<p class="muted">论文还指出，\(c^*(c)\) 可能低于 \(\underline c\)。如果发生这种情况，support 中不存在足够低成本的新 supplier 来触发 switch，因此该 successful relationship 永远不会被 buyer 主动终止。</p>
+
+<div class="proposition"><span class="tag">PROPOSITION 1</span>
+<p>模型存在唯一 solution。保持其他参数不变时，存在一个正的 search-cost threshold：\(g\) 高于该 threshold 时 \(w=0\)、buyer 不搜索；\(g\) 低于 threshold 时 \(w&gt;0\)、buyer 搜索。</p>
+<p class="source">Source: Section 3.2, Proposition 1, p. 1031.</p></div>
+</section>
+</section>
+
+<section id="results">
+<h2>4 · Results · 主要结果</h2>
+
+<section id="starting-small-results">
+<h3>4.1 Starting Small — Propositions 2–5</h3>
+
+<div class="proposition"><span class="tag">PROPOSITION 2</span>
+<p>若 \(q\) sufficiently close to zero 且 \(g\) sufficiently close to search threshold，则：</p>
+<div class="equation-wrap"><div class="math">\[
+\underline c<c^B<c^L<\bar c.
+\]</div></div>
+<p><strong>Meaning：</strong>Big、Learn、Out 都在 supplier-cost distribution 中占有 positive-probability region。更重要的是，Learn 的存在把 buyer 愿意最终投资 training 的 supplier set 向更高 \(c\) 扩展。因此 starting small 在这个意义上 <strong>facilitates technology transfer</strong>：它让一些原本会被直接 Out 的 LDC suppliers 有机会经过 learning 后得到 \(I\)。</p>
+<p class="source">Source: Section 4.1, Proposition 2, pp. 1031–1032.</p>
+</div>
+
+<div class="proposition"><span class="tag">PROPOSITION 3</span>
+<p>若 \(q\) sufficiently small，\(g\uparrow\) 会导致 \(c^B\downarrow\)、\(c^L\uparrow\)。</p>
+<p><strong>Intuition：</strong>search 更贵会降低 \(w\)。这使 Out 相对 Learn 更差，所以 upper cutoff 上升；但它也使 Big 的 failure branch 更糟，因为失败会立刻把 buyer 送回 pool，而 Learn 把这种回归推迟并避免在失败型 supplier 上损失 \(I\)。因此 Big 也向 Learn 让出一部分低成本区域。</p>
+<p class="source">Source: Section 4.1, Proposition 3, p. 1032.</p></div>
+
+<div class="proposition"><span class="tag">PROPOSITION 4</span>
+<p>若 \(q\) sufficiently small 且 \(g\) sufficiently close to search threshold，\(p\downarrow\) 会导致 \(c^B\downarrow\)、\(c^L\uparrow\)。</p>
+<p><strong>Intuition：</strong>较低 \(p\) 增加 Big 白白损失 \(I\) 的概率，而避免这项风险正是 Learn 的价值。因此 buyer 对 new supplier 更 pessimistic 时，更倾向 starting small，且更少直接 Big。</p>
+<details><summary>Technical intuition from footnote 12</summary><div><p>当 \(q=0\) 时，\(v(c)\) 不依赖 \(p\)。\(p\downarrow\) 的 direct effect 对 Big 的打击比 Learn 更大，同时会降低 \(w\)。由于 Learn 把随机 return-to-pool 推迟，这个 indirect effect 也使 Learn 相对 Big 更有利。靠近 no-search threshold 时，在 Learn/Out cutoff 上 Learn 的 value 比 Out 下降得更慢，因此 \(c^L\uparrow\)。</p><p class="source">Source: Section 4.1, footnote 12, p. 1033.</p></div></details>
+<p class="source">Source: Section 4.1, Proposition 4, pp. 1032–1033.</p></div>
+
+<div class="proposition"><span class="tag">PROPOSITION 5</span>
+<p>\(I\uparrow\) 会导致 \(c^B\downarrow\)。</p>
+<p><strong>Crucial qualification：</strong>论文<strong>没有</strong>证明 \(c^L\) 必然上升，因此不能一般性地说更高 \(I\) 必然提高 Learn 的总体概率。虽然 \(I=0\) 时 Learn 从不被选择，而且较高 \(I\) 在直觉上增加 prior learning 的价值，但更高 \(I\) 也可能使 pool 中 prospective suppliers 整体更不吸引人，从而让 Out 相对 Learn 上升。最终 Learn 的 mass 还取决于 \(\mu\)。</p>
+<p class="source">Source: Section 4.1, Proposition 5 and discussion, p. 1033.</p></div>
+</section>
+
+<section id="persistence-results">
+<h3>4.2 Persistence of Relationships — Propositions 6–9</h3>
+
+<div class="proposition"><span class="tag">PROPOSITION 6</span>
+<p>若 \(q\) small，则 \(p\uparrow\) 或 \(I\downarrow\) 会使所有 incumbent costs \(c\) 下的 \(c^*(c)\) weakly rise。</p>
+<p><strong>Meaning：</strong>新 supplier 的 uncertainty 或 training burden 越小，它为了击败 incumbent 所需要的 cost advantage 越小。因此 successful buyer–supplier relationships 的 expected duration 会下降。</p>
+<p>这正是 Section 2 中 Nadvi GMP episode 所支持的 comparative static：capability certification 使 buyer 更敢于与替代 suppliers 保持 arm's-length search。</p>
+<p class="source">Source: Section 4.2, Proposition 6, p. 1034.</p>
+</div>
+
+<div class="proposition"><span class="tag">PROPOSITION 7</span>
+<p>以 large order（Big）开始的 DC–LDC relationships 比 starting small 的 relationships 更 persistent。</p>
+<p><strong>Mechanism：</strong>不是“Big 本身造成忠诚”，而是 selection：Big 在较低 \(c\) 时选择，而低-cost incumbent 更难被另一个 \(c'\) 击败。</p>
+<p class="source">Source: Section 4.2, Proposition 7, p. 1034.</p></div>
+
+<div class="proposition"><span class="tag">PROPOSITION 8</span>
+<p>比较两组 relationships：unmatched buyer 通过 search 新建的关系，以及 buyer 从一个 existing successful supplier 切换后建立的关系。后一组中一开始就 Big 的 fraction 更高。</p>
+<p><strong>Mechanism：</strong>switching 要求 \(c'&lt;c^*(c)&lt;c\)，所以 replacement suppliers 来自 \(\mu\) 的更低-cost truncation；而 lower \(c\) 正是 Big 的区域。</p>
+<p class="source">Source: Section 4.2, Proposition 8, pp. 1034–1035.</p></div>
+
+<div class="proposition"><span class="tag">PROPOSITION 9</span>
+<p>旧 relationship 的 duration 与 buyer 对新的 replacement LDC supplier 一开始选择 Big 的 likelihood 正相关。</p>
+<p><strong>Mechanism：</strong>old relationship 越长，平均而言 incumbent \(c\) 越低；要替换更低-cost incumbent，就需要更低-cost newcomer，而这种 newcomer 又更容易进入 Big region。</p>
+<p class="source">Source: Section 4.2, Proposition 9, p. 1035.</p></div>
+
+<div class="callout"><span class="tag">EVIDENCE STATUS</span>
+<p>作者说 Section 2 中已有 evidence 与 Propositions 3–6 相符；对于本 subsection 剩下的新 predictions（尤其 7–9），作者当时不知道有同类 evidence 支持或反驳，但认为用合适的 DC buyer–LDC supplier survey 可以直接测试。</p>
+<p class="source">Source: Section 4.2, p. 1034.</p></div>
+</section>
+
+<section id="cost-structure">
+<h3>4.3 Results with More Structure on Per-Period Costs</h3>
+<p>到这里为止，模型并没有规定不同 LDC suppliers 的 \(c\) 为什么不同。Section 4.3 说明：一旦对 cost heterogeneity 的来源加结构，模型还能生成新的 observable predictions，但这些 predictions 的符号会依赖于你对 \(c\) 的经济解释。</p>
+<div class="grid2">
+<div><h4>If cost differences mainly reflect management quality</h4><p>假设 suppliers 来自同一 country、factor prices 大致统一，那么 \(c\) 的差异最自然地来自 management quality。如果 management 是 Hicks-neutral productivity shifter，则更低 \(c\) 意味着给定 output 所需 input demand 更低。因为 Big 选择低 \(c\)，以 Big 开始的 relationships 应该呈现更低的 inputs per unit of output。</p></div>
+<div><h4>If cost differences mainly reflect factor prices</h4><p>如果 \(c\) 的差异主要来自 factor prices，前述 input-demand prediction 会<strong>反转</strong>。因此“Big → lower input intensity”并不是 baseline model 无条件的结论。</p></div>
+</div>
+<p>跨 country 也不能简单推出“factor prices 越低 → Big 越多”。较低 factor prices 确实会把 cost distribution 左移，从而 ceteris paribus 增加 Big；但较低 factor-price countries 同时往往有更高 search cost \(g\) 与更低 success probability \(p\)，这两项都推动 starting small。作者明确把这作为一个 competing comparative-static force。</p>
+<p class="source">Source: Section 4.3, p. 1035.</p>
+</section>
+</section>
+
+<section id="proof-architecture">
+  <h2>5 · Appendix Proof Architecture · 附录证明结构</h2>
+  <p class="lead">附录不只是补 algebra；它揭示了 comparative statics 真正依赖哪些 restriction。反复出现的核心做法，是把 successful incumbent 的 value \(v\) 与 drawing / trying a new supplier 的 value \(u\) 和 \(w\) 区分开。</p>
+
+  <section id="proof-proposition-1">
+    <h3>5.1 Proposition 1 — Fixed Point and Search Threshold</h3>
+    <div class="proposition"><span class="tag">APPENDIX</span>
+      <p>定义 \(f(y,x,c')\)：给定 candidate continuation-value function \(y\) 与 pool value \(x\) 时，Big / Learn / Out 三种 continuation choices 的最大值。再定义 operator \(F=(F_1,F_2)\)：其中 \(F_1\) 重现 successful-relationship Bellman equation，\(F_2\) 重现 search-value equation。</p>
+      <div class="equation-wrap"><div class="math">\[
+      \|F(y,x)-F(y',x')\|
+      \le [p+(1-p)\delta]\,
+      \|(y,x)-(y',x')\|.
+      \]</div></div>
+      <p>因为 \(p+(1-p)\delta&lt;1\)，在 sup norm 下 \(F\) 是 contraction，因此 fixed point 唯一。第二个 component 随 \(g\) 下降，而两个 components 都随 \(x\) 上升，于是得到一个 critical search cost，把 \(w&gt;0\) 与 \(w=0\) 分开。</p>
+      <p class="source">Source: Appendix, Proof of Proposition 1, pp. 1037–1038.</p>
+    </div>
+  </section>
+
+  <section id="proof-proposition-2">
+    <h3>5.2 Proposition 2 — Why an Interior Big/Learn/Out Region Exists</h3>
+    <p>证明先取最透明的 limiting case：\(q=0\)，并令 \(g\) 等于 search threshold，于是 \(w=0\)、\(v(c)=(z-c)/(1-\delta)\)。两个 cutoffs 可显式写成：</p>
+    <div class="equation-wrap"><div class="math">\[
+      c^{B}
+      =
+      z-\frac{I(1-\delta^k p)(1-\delta)}
+      {p(1-\delta^k)},
+      \qquad
+      c^{L}=z-I(1-\delta).
+    \]</div></div>
+    <p>Assumption (A) 使两个 cutoffs 严格落在 support 内，并保证 \(c^B&lt;c^L\)。再利用 continuity，就得到当 \(q\) sufficiently close to zero 且 \(g\) sufficiently close to threshold 时的 Proposition 2。</p>
+    <p class="source">Source: Appendix, Proof of Proposition 2, p. 1038.</p>
+  </section>
+
+  <section id="proof-propositions-3-6">
+    <h3>5.3 Propositions 3–6 — Direct vs. Indirect Effects</h3>
+    <div class="grid2">
+      <div>
+        <h4>Proposition 3</h4>
+        <p>附录再定义 contraction operator \(G\)，把 \(v\) 写成给定 \(w\) 的 fixed point。当 \(q\to0\) 时，\(g\) 通过 \(w\) 对 \(v\) 的影响可以相对于 \(w\) 本身的变化任意小。因此 higher \(g\) 主要降低 return-to-pool 的吸引力，从而拓宽 Learn region。</p>
+      </div>
+      <div>
+        <h4>Proposition 4</h4>
+        <p>作者分别在 \(c^B\) 与 \(c^L\) 处比较 derivatives。在靠近 no-search boundary 时，\(p\downarrow\) 在第一个 cutoff 上对 Big 的伤害大于 Learn；在第二个 cutoff 上，Learn 的下降比 Out 更慢。</p>
+      </div>
+      <div>
+        <h4>Proposition 5</h4>
+        <p>在 \(c^B\) 处，\(I\uparrow\) 相对 Learn 更强地压低 Big，因此 \(c^B\downarrow\)。附录没有得到 \(c^L\) 的单调结果，这正对应正文对“Learn 总体概率”保持谨慎。</p>
+      </div>
+      <div>
+        <h4>Proposition 6</h4>
+        <p>\(p\uparrow\) 或 \(I\downarrow\) 都会提高 \(u\) 与 \(v\)，但 \(q\) small 时，对 prospective supplier 的 \(u\) 的 direct effect 大于对 incumbent \(v\) 的 indirect effect。由于 \(u\) 随 cost 下降，式 (8) 的 equality 需要更高 \(c^*(c)\)。</p>
+      </div>
+    </div>
+    <p class="source">Source: Appendix, Proofs of Propositions 3–6, pp. 1038–1040.</p>
+  </section>
+
+  <section id="proof-propositions-7-9">
+    <h3>5.4 Propositions 7–9 — Truncated Cost Distributions</h3>
+    <p>最后三个证明利用 selection。unmatched search 形成的 relationships，其 supplier cost 来自条件 \(c&lt;c^L\) 下的 truncated \(\mu\)。从 incumbent switching 而来的新关系只接受 \(c'&lt;c^*(c)\)，而 \(c^*(c)&lt;c^L\)。所以 switched-to suppliers 来自更低-cost 的 truncation，提高 Big 的 conditional probability。又因为 relationship longevity 与 incumbent cost 负相关，越长寿的 incumbent 对 replacement 设定越低的 cutoff，于是产生 Proposition 9。Proposition 7 则来自 switching probability 随 current supplier cost 上升。</p>
+    <p class="source">Source: Appendix, Proof of Propositions 7–9, p. 1040.</p>
+  </section>
+</section>
+
+<section id="export-interpretation">
+  <h2>6 · Exporting, Trade Costs, and Development Interpretation · 出口与发展含义</h2>
+  <section id="export-selection">
+    <h3>6.1 Buyer–Supplier Formation as Export Selection</h3>
+    <p>一个成功的 DC–LDC supplier relationship 通常意味着 LDC 向 DC 出口。因此 Rauch & Watson 把模型连接到 firm-level exporter evidence。Aw, Chung, and Roberts (2000) 以及 Clerides, Lach, and Tybout (1998) 等研究发现，更高效率 firms 更可能成为 exporters。本文模型与这种 selection pattern 一致：buyer 会拒绝 sufficiently high-cost suppliers，而较低-cost suppliers 则通过 Big 或 Learn 被接受。</p>
+    <p class="source">Source: Section 5, pp. 1036–1037.</p>
+  </section>
+
+  <section id="trade-liberalization">
+    <h3>6.2 Lower Search Costs as an Analogue of Trade Liberalization</h3>
+    <p>论文把 \(g\downarrow\) 类比为 trade barriers 下降。根据 Proposition 3，lower \(g\) 会缩窄 Learn region：面对吸引力不足的 candidate，buyer 更愿意重新 search；面对 low-cost candidate，则更可能直接给 large order。Rauch & Watson 把这种 sorting effect 与 Muendler (2002) 和 Pavcnik (2000) 的“rationalization” findings 联系起来：trade liberalization 会加快更高效率 firms 的扩张以及较低效率 firms 的退出。</p>
+    <p class="source">Source: Section 5, p. 1036.</p>
+  </section>
+
+  <section id="future-export-test">
+    <h3>6.3 A Testable Export-Dynamics Implication</h3>
+    <div class="callout">
+      <span class="tag">AUTHOR'S SUGGESTION</span>
+      <p>论文建议检验：那些虽然进入 export markets、但效率较低的 firms，是否比高效率 entrants 呈现更渐进的 export-volume expansion。这个 prediction 正是 export-market 版本的 Learn versus Big。</p>
+    </div>
+    <p>结尾脚注还把这些 relationships 放进 global production 背景。Gereffi (1995) 区分四种参与形式：export-processing (or in-bond) assembly、component-supply subcontracting、original equipment manufacturing、original brand-name manufacturing。Rauch & Watson 指出，只有最后一种不一定需要 DC firms 参与。脚注还报告 developing-country manufactured goods 占 developed market economies manufactured imports 的比例从 1970 年 4.8% 上升到 1991 年 14.5%。</p>
+    <p class="source">Source: Section 5 and footnote 15, pp. 1036–1037.</p>
+  </section>
+</section>
+
+<section id="knowledge-map">
+  <h2>7 · Mechanism & Literature Knowledge Map · 机制与文献知识图</h2>
+  <section id="mechanism-map">
+    <h3>7.1 Mechanism Map</h3>
+    <div class="wrap">
+      <svg class="diagram" viewBox="0 0 1020 450" role="img" aria-label="Mechanism map for starting small">
+        <defs><marker id="arrowkmzh" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="currentColor"/></marker></defs>
+        <g fill="none" stroke="currentColor" stroke-width="1.5" marker-end="url(#arrowkmzh)">
+          <path d="M180 78 H390"/><path d="M180 180 H390"/><path d="M180 282 H390"/>
+          <path d="M570 135 H760"/><path d="M570 230 H760"/><path d="M850 164 V255"/>
+        </g>
+        <g>
+          <rect x="25" y="40" width="155" height="76" rx="10" class="svgbox"/><text x="102" y="70" text-anchor="middle">High search cost g</text><text x="102" y="94" text-anchor="middle">Outside option 弱</text>
+          <rect x="25" y="142" width="155" height="76" rx="10" class="svgbox"/><text x="102" y="171" text-anchor="middle">Low success p</text><text x="102" y="195" text-anchor="middle">Training risk 高</text>
+          <rect x="25" y="244" width="155" height="76" rx="10" class="svgbox"/><text x="102" y="274" text-anchor="middle">Training cost I</text><text x="102" y="298" text-anchor="middle">Irreversible exposure</text>
+          <rect x="390" y="93" width="180" height="88" rx="10" class="svgbox"/><text x="480" y="126" text-anchor="middle">Value of information</text><text x="480" y="151" text-anchor="middle">from small order</text>
+          <rect x="390" y="195" width="180" height="88" rx="10" class="svgbox"/><text x="480" y="228" text-anchor="middle">Selection by cost c</text><text x="480" y="253" text-anchor="middle">Big / Learn / Out</text>
+          <rect x="760" y="100" width="200" height="88" rx="10" class="svgbox"/><text x="860" y="133" text-anchor="middle">Technology transfer</text><text x="860" y="158" text-anchor="middle">to more suppliers</text>
+          <rect x="760" y="255" width="200" height="95" rx="10" class="svgbox"/><text x="860" y="286" text-anchor="middle">Persistence & switching</text><text x="860" y="311" text-anchor="middle">c*(c) & selection</text><text x="860" y="334" text-anchor="middle">Props. 6–9</text>
+        </g>
+      </svg>
+    </div>
+    <p class="caption">ANALYTICAL SYNTHESIS：箭头是对论文 formal comparative statics 的重组，不额外添加新的 causal channels。</p>
+  </section>
+
+  <section id="literature-map">
+    <h3>7.2 Where the Paper Sits in the Literature</h3>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Branch</th><th>对本文提供什么</th><th>Rauch & Watson 讨论的例子</th><th>本文新增什么</th></tr></thead>
+      <tbody>
+        <tr><td>Optimal experimentation</td><td>在 irreversible action 前用可变规模 experiment 学习</td><td>Moscarini & Smith (1998); Aghion et al. (1991); Keller & Rady (1999); Bergemann & Välimäki (2000); Bolton & Harris (1999)</td><td>把 experimentation 嵌入 supplier search 与后续 switching。</td></tr>
+        <tr><td>Irreversible investment under uncertainty</td><td>在 commitment 前学习的 option value</td><td>Dixit & Pindyck (1994); Horstmann & Markusen (1996)</td><td>training 是 relationship-specific，并直接嵌入 supply relationship。</td></tr>
+        <tr><td>Incomplete information / cooperation</td><td>starting small 可用于 discipline 或 reveal partner type</td><td>Ghosh & Ray (1996); Watson (1996, 1999, 2002); Datta (1996); Kranton (1996); Carmichael & MacLeod (1997)</td><td>本文核心 uncertainty 是 productive capability 与 training success，而不只是 cooperative incentives。</td></tr>
+        <tr><td>Search & matching</td><td>heterogeneous pool 中的 frictional matching</td><td>Smith (1997); Smith & Shimer (2000)</td><td>把 search 与 endogenous relationship-building mode 结合。</td></tr>
+        <tr><td>Match learning / turnover</td><td>学习 match quality 并 switching</td><td>Jovanovic (1979)</td><td>允许 buyer 在 immediate large commitment 与 prior learning 之间选择。</td></tr>
+        <tr><td>Exporter selection / trade liberalization</td><td>exporting 的 efficiency selection 与 industry rationalization</td><td>Aw et al. (2000); Clerides et al. (1998); Muendler (2002); Pavcnik (2000)</td><td>给 gradual versus immediate export expansion 一个 buyer-side relationship mechanism。</td></tr>
+      </tbody>
+    </table></div>
+    <p class="source">Source: Sections 1 and 5, pp. 1022–1023 and 1036–1037; footnotes 1–2.</p>
+  </section>
+</section>
+
+<section id="critical">
+  <h2>8 · Critical Reading · 批判性阅读</h2>
+
+  <section id="key-assumptions">
+    <h3>8.1 Key Assumptions</h3>
+    <ul>
+      <li>supplier 的 large-order cost \(c\) 立即可观察，但 training 后能否成功完成 large order 一开始未知。</li>
+      <li>success probability \(p\) 在 ex ante 上是共同的；supplier heterogeneity 通过 \(c\) 进入，而不是 supplier-specific \(p\)。</li>
+      <li>small order 不产生 direct profit，并且恰好在 \(k\) periods 后解决 relevant uncertainty。</li>
+      <li>large-order training expenditure \(I\) 是 irreversible；training failure 时会损失。</li>
+      <li>free candidate arrival 只在 successful relationship 存续时发生，每期概率为 \(q\)。</li>
+      <li>多个 propositions 要求 \(q\) sufficiently small；Proposition 4 还要求 \(g\) 接近 no-search threshold。</li>
+    </ul>
+    <p class="source">Source: Sections 3.1–4.2 and Assumption (A), pp. 1028–1034.</p>
+  </section>
+
+  <section id="what-drives-results">
+    <h3>8.2 What Actually Drives the Results?</h3>
+    <div class="grid2">
+      <div class="callout"><strong>Learn 存在，因为信息可在支付 \(I\) 前获得。</strong><p>如果 small order 不能揭示 training 是否会 work，它用来保护 sunk training 的核心 insurance value 就消失。</p></div>
+      <div class="callout"><strong>Big 对低 \(c\) supplier 选择。</strong><p>supplier 足够有吸引力时，delay 的代价大到让 buyer 愿意承担损失 \(I\) 的风险。</p></div>
+      <div class="callout"><strong>Out 由 return-to-pool value \(w\) 决定。</strong><p>所以 search cost 不只影响 reject / accept margin，也影响 Big 与 Learn 的边界。</p></div>
+      <div class="callout"><strong>Persistence results 本质上是 selection results。</strong><p>低-cost supplier 同时更容易触发 Big，也更难被 replacement，于是 initiation mode 与 duration 被机械地连接。</p></div>
+    </div>
+  </section>
+
+  <section id="authors-limitations">
+    <h3>8.3 Authors' Qualifications and Limitations</h3>
+    <ul>
+      <li>论文明确说 \(I\) 对 Learn probability 的作用 ambiguous：Proposition 5 只证明 \(c^B\downarrow\)。</li>
+      <li>input demand prediction 取决于 cost heterogeneity 的来源；management productivity 与 factor-price heterogeneity 给出相反符号。</li>
+      <li>low-factor-price country 未必更多 Big，因为它也可能同时拥有更高 \(g\) 与更低 \(p\)。</li>
+      <li>作者报告 Propositions 3–6 有 supportive evidence，但对于 Propositions 7–9，当时没有已知的同类型 supporting / contradicting evidence。</li>
+    </ul>
+    <p class="source">Source: Sections 4.1–4.3, pp. 1033–1035.</p>
+  </section>
+
+  <section id="analytical-limitations">
+    <h3>8.4 Analytical Limitations <span class="tag">ANALYTICAL SYNTHESIS</span></h3>
+    <p>以下来自模型结构本身，而不是作者额外声称的 limitation。</p>
+    <ul>
+      <li><strong>One-dimensional observed heterogeneity：</strong>所有 immediately observed sorting-relevant supplier heterogeneity 被压缩为 \(c\)；capability uncertainty 由共同 \(p\) 总结。</li>
+      <li><strong>Exogenous learning technology：</strong>buyer 只在 Big 与固定 small experiment 之间选，并不选择 learning 的 scale、content 或 intensity。Footnote 4 指向 Rauch & Watson (1999)，后者允许 intensity choice。</li>
+      <li><strong>No strategic supplier investment or bargaining：</strong>supplier 不选择 effort、co-investment、prices 或 relationship-specific adaptation。</li>
+      <li><strong>Network arrival is reduced form：</strong>\(q\) 并非来自 endogenous network formation 或 two-sided matching market。</li>
+      <li><strong>Duration 只通过 replacement opportunities endogenized：</strong>模型没有 exogenous match destruction，也没有 changing supplier productivity。</li>
+    </ul>
+  </section>
+
+  <section id="external-validity">
+    <h3>8.5 External Validity</h3>
+    <p>institutional evidence 集中在 developed-country buyers 向 developing-country suppliers 采购，案例包括 apparel / knitwear、manufacturing、Korean exporters、Pakistani surgical instruments 等 buyer-driven production settings。机制最自然适用于：buyer 必须做 substantial sunk training / adaptation investment，并且可以先运行 informative low-stakes trial 的关系。若 capability 在 ex ante 已完全 certified、production 高度 standardized，或 small project 对 scale-up performance 几乎没有信息，则适用性更弱。</p>
+    <p class="source">Source basis: Section 2, pp. 1024–1028; applicability statement is analytical synthesis.</p>
+  </section>
+
+  <section id="alternative-mechanisms">
+    <h3>8.6 Alternative Mechanisms</h3>
+    <p>Rauch & Watson 明确把自己的 mechanism 与先前 starting-small theories 区分。在 Ghosh–Ray 与 Watson 的 incomplete-information work 中，gradual escalation 可以来自对 cooperative incentives 或 types 的 uncertainty；本文 focal uncertainty 则是 training 能否让 supplier 成功履行 large order。因此，同样的 observed pattern——先小交易、后大交易——在别的 setting 里也可能来自 productive learning、trust / discipline、financing constraints 或 demand learning。要实证区分，需要观察到底学到了什么、哪项 investment 被推迟，以及 relationship transitions 对 search conditions 与 capability certification 如何反应。</p>
+    <p class="source">Source basis: Section 1, pp. 1022–1023; final distinguishing-tests sentence is analytical synthesis.</p>
+  </section>
+
+  <section id="open-questions">
+    <h3>8.7 Open Questions</h3>
+    <ul>
+      <li>micro data 能否同时观察 initial order size 与 buyer-provided training，从而直接识别 Learn mechanism？</li>
+      <li>capability certifications 或 standardized production technologies 是否像 Proposition 6 预测的那样提高 \(c^*(c)\)、缩短 relationships？</li>
+      <li>控制 proxy supplier cost 的 observables 后，starting Big 的 relationships 是否仍 empirically more persistent？</li>
+      <li>若加入 endogenous supplier investment、bargaining 或 relationship-specific technology accumulation，cutoff logic 会如何改变？</li>
+      <li>buyer-network data 能否把 \(q\) 从 reduced-form parameter 变成可测量对象？</li>
+    </ul>
+    <p class="note">前三项接近论文自身 predictions 的 empirical implementation；后两项是 research-oriented analytical extensions。</p>
+  </section>
+</section>
+
+<section id="extensions">
+  <h2>9 · Research Implications / Extensions · 研究延伸</h2>
+  <div class="callout extension"><span class="tag">RESEARCH EXTENSION</span>
+    <h3>9.1 Endogenize Relationship Depth</h3>
+    <p>把 binary Big/Learn 变成 continuous relationship-depth 或 order-size choice。training intensity、customization、co-development 或 control rights 都可以在 learning 后继续演化。这样，论文的 cutoff logic 会从一次性的 experimentation choice 变成 dynamic governance path。</p>
+  </div>
+  <div class="callout extension"><span class="tag">RESEARCH EXTENSION</span>
+    <h3>9.2 Two-Sided Search, Bargaining, and Switching</h3>
+    <p>让 suppliers 也成为 strategic agents：它们可以 search for buyers、做 relationship-specific investments，并对 surplus bargaining。这样，sunk training 带来的 incumbent advantage 会与双方 outside options 同时互动。</p>
+  </div>
+  <div class="callout extension"><span class="tag">RESEARCH EXTENSION</span>
+    <h3>9.3 Empirical Transition Matrix</h3>
+    <p>若有 buyer–supplier transaction data，可以按 initial order scale 分类关系，再观察 subsequent expansion、persistence 与 replacement。模型给出一组 linked restrictions：initial Big 应选择 lower-cost suppliers；Big relationships 应更长；而从 long relationship 切换后的 replacements 尤其更可能 starting Big。</p>
+  </div>
+  <div class="callout extension"><span class="tag">RESEARCH EXTENSION</span>
+    <h3>9.4 Certification as a Shock to Uncertainty</h3>
+    <p>Nadvi 的 GMP episode 暗示一种 empirical design：可信 capability certification 可以理解为降低 success uncertainty。模型预测 buyer 更少需要依赖 incumbent relationship 来保护 sunk training，因此 switching 更容易。现代的 staggered certification 或 regulation setting 可以检验这个 comparative static。</p>
+  </div>
+</section>
+
+<section id="quiz">
+  <h2>10 · Understanding Check · 理解测试</h2>
+  <p class="lead">这些问题测试你是否能重构 model 和 mechanism，而不是机械记忆事实。答案默认隐藏。</p>
+
+  <article class="quiz-card" id="quiz-q1" data-q="q1">
+    <div class="quiz-head"><span class="skill">CORE</span><h3>Q1. 为什么 buyer 会选择 starting small，而不是直接 Big 或直接 Out？</h3></div>
+    <div class="quiz-actions"><button data-toggle="hint-q1">显示提示</button><button data-toggle="answer-q1">显示答案</button></div>
+    <div id="hint-q1" class="quiz-hidden"><strong>Hint：</strong>比较 irreversible training expenditure \(I\) 之前能学到什么。</div>
+    <div id="answer-q1" class="quiz-hidden"><strong>Suggested Answer：</strong>small order 在支付 \(I\) 之前揭示 training 是否会带来 successful large-order fulfillment。它尤其适合 intermediate-cost suppliers：这些 suppliers 足够好，因此不值得直接 reject；但又没有好到值得立刻冒损失 \(I\) 的风险并放弃 information value。
+      <p><strong>Common Mistake：</strong>把 small order 理解成主要为了省采购成本。baseline model 中 small order 的 direct profit 是 0；其 payoff 是 information。</p>
+      <p><strong>Why This Matters：</strong>这是论文最核心的 economic mechanism。</p>
+    </div>
+    <p class="review">Review: <a href="#actions">3.3 Big / Learn / Out</a> · <a href="#core-equations">Equations (1)–(4)</a></p>
+    <div class="rating"><button data-rate="got">✅ 掌握</button><button data-rate="unsure">🤔 不确定</button><button data-rate="review">❌ 需要复习</button></div>
+  </article>
+
+  <article class="quiz-card" id="quiz-q2" data-q="q2">
+    <div class="quiz-head"><span class="skill">FORMAL MODEL</span><h3>Q2. 不看网页重构 \(c^B&lt;c^L\) 的 cutoff ordering。三个区域分别代表什么？</h3></div>
+    <div class="quiz-actions"><button data-toggle="hint-q2">显示提示</button><button data-toggle="answer-q2">显示答案</button></div>
+    <div id="hint-q2" class="quiz-hidden"><strong>Hint：</strong>利用 \(u^B,u^L,u^O\) 对 \(c\) 的 slope ordering。</div>
+    <div id="answer-q2" class="quiz-hidden"><strong>Suggested Answer：</strong>Big 的 value 随 supplier cost 下降最快，Learn 较缓，Out 不随 \(c\) 变化。因此 sufficiently low-cost suppliers 选择 Big；intermediate-cost suppliers 选择 Learn；high-cost suppliers 被 reject：\(c&lt;c^B\) 为 Big，\(c^B\le c&lt;c^L\) 为 Learn，\(c\ge c^L\) 为 Out。
+      <p><strong>Common Mistake：</strong>把 \(c\) 当作 capability。\(c\) 是关系开始前就观察到的 per-period production cost。</p>
+      <p><strong>Why This Matters：</strong>几乎所有 comparative statics 都是通过移动这两个 cutoffs 来表达。</p>
+    </div>
+    <p class="review">Review: <a href="#cutoffs">3.5 Cutoff Structure</a> · Equation (7)</p>
+    <div class="rating"><button data-rate="got">✅ 掌握</button><button data-rate="unsure">🤔 不确定</button><button data-rate="review">❌ 需要复习</button></div>
+  </article>
+
+  <article class="quiz-card" id="quiz-q3" data-q="q3">
+    <div class="quiz-head"><span class="skill">MECHANISM</span><h3>Q3. 为什么更高 search cost \(g\) 会从上下两个 margin 同时扩大 Learn region？</h3></div>
+    <div class="quiz-actions"><button data-toggle="hint-q3">显示提示</button><button data-toggle="answer-q3">显示答案</button></div>
+    <div id="hint-q3" class="quiz-hidden"><strong>Hint：</strong>Big 失败后也会把 buyer 送回 supplier pool。</div>
+    <div id="answer-q3" class="quiz-hidden"><strong>Suggested Answer：</strong>\(g\uparrow\) 会降低 return-to-search value \(w\)。于是 Out 相对 Learn 更差，所以 \(c^L\uparrow\)。同时 Big 也相对 Learn 变差，因为 Big 让 buyer 暴露于立即 failure、随后回到价值更低的 pool；Learn 则推迟这一返回并避免对失败型 supplier 损失 \(I\)，所以 \(c^B\downarrow\)。
+      <p><strong>Common Mistake：</strong>只说“search 贵，所以 buyer 会留住 supplier”。这只能解释 upper margin，不能解释为什么 Big 也缩小。</p>
+      <p><strong>Why This Matters：</strong>Proposition 3 是一个很有辨识度的 two-margin comparative static。</p>
+    </div>
+    <p class="review">Review: <a href="#starting-small-results">4.1 Propositions 2–5</a></p>
+    <div class="rating"><button data-rate="got">✅ 掌握</button><button data-rate="unsure">🤔 不确定</button><button data-rate="review">❌ 需要复习</button></div>
+  </article>
+
+  <article class="quiz-card" id="quiz-q4" data-q="q4">
+    <div class="quiz-head"><span class="skill">MECHANISM</span><h3>Q4. 为什么更高 training investment \(I\) 对 Learn 总体概率的影响是 ambiguous？</h3></div>
+    <div class="quiz-actions"><button data-toggle="hint-q4">显示提示</button><button data-toggle="answer-q4">显示答案</button></div>
+    <div id="hint-q4" class="quiz-hidden"><strong>Hint：</strong>Proposition 5 只给 \(c^B\) 的结果，并没有给两个 cutoffs 的结果。</div>
+    <div id="answer-q4" class="quiz-hidden"><strong>Suggested Answer：</strong>\(I\uparrow\) 明确提高 immediate Big 的风险，因此 \(c^B\downarrow\)。但 \(I\) 也降低 pool 中 prospective suppliers 的 value，并可能使 Out 相对 Learn 更有吸引力。论文因此不能一般性确定 \(c^L\) 如何移动；Learn 的总 probability 还取决于 supplier-cost distribution。
+      <p><strong>Common Mistake：</strong>直接推断“sunk cost 越高 → experimentation 越多”。lower cutoff 的确按这个方向移动，但 upper cutoff 不一定。</p>
+      <p><strong>Why This Matters：</strong>这是对直觉叙事非常重要的 qualification。</p>
+    </div>
+    <p class="review">Review: <a href="#starting-small-results">Proposition 5</a></p>
+    <div class="rating"><button data-rate="got">✅ 掌握</button><button data-rate="unsure">🤔 不确定</button><button data-rate="review">❌ 需要复习</button></div>
+  </article>
+
+  <article class="quiz-card" id="quiz-q5" data-q="q5">
+    <div class="quiz-head"><span class="skill">FORMAL MODEL</span><h3>Q5. switching cutoff \(c^*(c)\) 的含义是什么？为什么必须有 \(c^*(c)&lt;c\)？</h3></div>
+    <div class="quiz-actions"><button data-toggle="hint-q5">显示提示</button><button data-toggle="answer-q5">显示答案</button></div>
+    <div id="hint-q5" class="quiz-hidden"><strong>Hint：</strong>比较一个 training 已成功的 incumbent 与一个同样 cost 的 new supplier。</div>
+    <div id="answer-q5" class="quiz-hidden"><strong>Suggested Answer：</strong>\(c^*(c)\) 是让 buyer 在 incumbent 与新 candidate 之间无差异的最大 new-supplier cost：\(v(c)=u(c^*(c))\)。同成本 new supplier 更差，因为其 capability 未解决，而且 buyer 还要再次面对 training cost \(I\)。所以 replacement 必须严格更便宜，即 \(c^*(c)&lt;c\)。
+      <p><strong>Common Mistake：</strong>把 switching 简化成 \(c'&lt;c\) 的纯成本比较。incumbent 还拥有 resolved information 与 sunk-training advantage。</p>
+      <p><strong>Why This Matters：</strong>这个 cutoff 把 starting-small model 与 relationship persistence 连接起来。</p>
+    </div>
+    <p class="review">Review: <a href="#cutoffs">Equation (8)</a></p>
+    <div class="rating"><button data-rate="got">✅ 掌握</button><button data-rate="unsure">🤔 不确定</button><button data-rate="review">❌ 需要复习</button></div>
+  </article>
+
+  <article class="quiz-card" id="quiz-q6" data-q="q6">
+    <div class="quiz-head"><span class="skill">EVIDENCE</span><h3>Q6. Sialkot 的 GMP episode 如何映射到 Proposition 6？</h3></div>
+    <div class="quiz-actions"><button data-toggle="hint-q6">显示提示</button><button data-toggle="answer-q6">显示答案</button></div>
+    <div id="hint-q6" class="quiz-hidden"><strong>Hint：</strong>certification 改变 buyer 对 new suppliers 哪一种 uncertainty？</div>
+    <div id="answer-q6" class="quiz-hidden"><strong>Suggested Answer：</strong>GMP certification 让 Pakistani surgical-instrument suppliers 在 quality assurance 上更可信，可以理解为 perceived success probability \(p\uparrow\)。Proposition 6 说 \(p\uparrow\) 会抬高 \(c^*(c)\)，因此 newcomer 不需要像以前那样拥有很大的 cost advantage 才能替换 incumbent。Nadvi 观察到 certification 后一些 buyers 松动 longstanding ties 并回到 arm's-length search。
+      <p><strong>Common Mistake：</strong>把这个 episode 说成 formal causal test。论文只把它作为 supportive empirical motivation，并没有估计 identified causal effect。</p>
+      <p><strong>Why This Matters：</strong>它展示了 institutional change 如何映射到 model parameter 和 persistence prediction。</p>
+    </div>
+    <p class="review">Review: <a href="#networks-persistence">2.3 Networks and Persistence</a> · <a href="#persistence-results">Proposition 6</a></p>
+    <div class="rating"><button data-rate="got">✅ 掌握</button><button data-rate="unsure">🤔 不确定</button><button data-rate="review">❌ 需要复习</button></div>
+  </article>
+
+  <article class="quiz-card" id="quiz-q7" data-q="q7">
+    <div class="quiz-head"><span class="skill">MECHANISM</span><h3>Q7. 为什么 starting Big 的 relationships 预期比 starting small 更持久？</h3></div>
+    <div class="quiz-actions"><button data-toggle="hint-q7">显示提示</button><button data-toggle="answer-q7">显示答案</button></div>
+    <div id="hint-q7" class="quiz-hidden"><strong>Hint：</strong>Big 并不是随机分配给 suppliers。</div>
+    <div id="answer-q7" class="quiz-hidden"><strong>Suggested Answer：</strong>Big 对 lower-cost suppliers 选择。incumbent cost 越低，新 supplier 越难达到 switching threshold，因此 replacement probability 更低。所以 duration result 来自 selection on \(c\)，而不是“大首单”本身对 persistence 的 direct causal effect。
+      <p><strong>Common Mistake：</strong>认为 Big 本身创造 durability。Proposition 7 是因为 Big 和 persistence 都与 low \(c\) 相关。</p>
+      <p><strong>Why This Matters：</strong>这避免了对论文最可检验 predictions 之一的 causal misreading。</p>
+    </div>
+    <p class="review">Review: <a href="#persistence-results">Proposition 7</a> · <a href="#proof-propositions-7-9">Appendix proof</a></p>
+    <div class="rating"><button data-rate="got">✅ 掌握</button><button data-rate="unsure">🤔 不确定</button><button data-rate="review">❌ 需要复习</button></div>
+  </article>
+
+  <article class="quiz-card" id="quiz-q8" data-q="q8">
+    <div class="quiz-head"><span class="skill">CRITIQUE</span><h3>Q8. 哪种 observed “starting small” pattern 本身仍不足以识别 Rauch–Watson mechanism？</h3></div>
+    <div class="quiz-actions"><button data-toggle="hint-q8">显示提示</button><button data-toggle="answer-q8">显示答案</button></div>
+    <div id="hint-q8" class="quiz-hidden"><strong>Hint：</strong>Section 1 讨论了关系 gradual escalation 的其他原因。</div>
+    <div id="answer-q8" class="quiz-hidden"><strong>Suggested Answer：</strong>仅观察“先小交易、后大交易”不够。类似 dynamics 也可能来自对 cooperative behavior 的 uncertainty、trust building、demand experimentation 或其他 irreversible-investment problems。若要支持本文 mechanism，evidence 应把 initial scale 与 buyer-provided training、productive-capability learning、search costs，以及 capability uncertainty 改变后的 switching response 联系起来。
+      <p><strong>Common Mistake：</strong>把 stylized fact 当成 mechanism-specific evidence。</p>
+      <p><strong>Why This Matters：</strong>如果把 theory 带到数据，这是最重要的 empirical identification challenge。</p>
+    </div>
+    <p class="review">Review: <a href="#literature-position">1.1 Literature Position</a> · <a href="#alternative-mechanisms">8.6 Alternative Mechanisms</a></p>
+    <div class="rating"><button data-rate="got">✅ 掌握</button><button data-rate="unsure">🤔 不确定</button><button data-rate="review">❌ 需要复习</button></div>
+  </article>
+</section>
+
+<section id="mastery">
+  <h2>11 · Can You Explain the Paper Without Looking? · Mastery Test</h2>
+  <ol class="mastery">
+    <li>用 90 秒从 institutional puzzle 开始讲这篇论文，最后讲到 Propositions 7–9。</li>
+    <li>不看网页写出 equations (1)–(3)，并解释 \(I\)、\(p\)、\(k\)、\(w\) 为什么在三个 choices 中以不同方式进入。</li>
+    <li>凭记忆画出 Figure 1，标出 \(c^B\)、\(c^L\)，再解释 \(g\uparrow\) 如何改变两个 cutoffs。</li>
+    <li>解释为什么 supplier environment 变得更 familiar，反而可能让 incumbent relationships <em>less</em> persistent。</li>
+    <li>假设你在 seminar 中，提出一个 empirical design 来区分 productive-capability learning 与 trust-building 两种 starting-small 原因。</li>
+  </ol>
+</section>
+
+<section id="memory">
+  <h2>12 · What Should I Remember? · 最终记忆</h2>
+  <div class="remember">
+    <h3>Eight Things to Remember · 八件最该记住的事</h3>
+    <ol>
+      <li><strong>Puzzle：</strong>即使 contracts 能保护 buyer 不为 defective delivery 付款，buyer 仍可能 starting small，因为 buyer-funded training 仍然暴露于 sunk loss。</li>
+      <li><strong>Core friction：</strong>buyer 观察 supplier cost \(c\)，但不知道 training 是否会让 supplier 成功完成 large order。</li>
+      <li><strong>Three choices：</strong>Big 现在冒险投入 \(I\)；Learn 在 \(I\) 前买 information；Out 返回 search。</li>
+      <li><strong>Sorting：</strong>low \(c\) → Big；intermediate \(c\) → Learn；high \(c\) → Out。</li>
+      <li><strong>Search cost：</strong>\(g\uparrow\) 从两边扩大 Learn（\(c^B\downarrow,c^L\uparrow\)）。</li>
+      <li><strong>Uncertainty：</strong>在论文条件下 \(p\downarrow\) 也促进 Learn；\(I\uparrow\) 一定减少 Big，但不一定单调增加 Learn。</li>
+      <li><strong>Persistence：</strong>incumbent advantage 来自 resolved uncertainty 与 sunk training；\(p\uparrow\) 或 \(I\downarrow\) 使 switching 更容易。</li>
+      <li><strong>Selection：</strong>Big relationships 更长寿、switched-to suppliers 更常 starting Big，是因为 Big 选择 lower-cost suppliers。</li>
+    </ol>
+  </div>
+  <div class="grid2">
+    <div class="callout"><h4>One-Sentence Summary</h4><p>当 buyer 面对 costly supplier search，并且不知道 relationship-specific training 是否有效时，它可能用 small trial order 在 commitment 前获取信息；而同一套 selection-and-learning structure 同时决定哪些 relationships 会持续、哪些会被替换。</p></div>
+    <div class="callout"><h4>Core Mechanism</h4><p><strong>Uncertain capability + irreversible training + costly rematching → value of experimentation → Big/Learn/Out cost cutoffs → persistence and switching selection.</strong></p></div>
+    <div class="callout"><h4>Most Important Formal Object</h4><p>Equations (1)–(3) 的三个 value functions 以及它们在 (7) 中的 cutoffs；Equation (8) 再把同一逻辑带到 supplier replacement。</p></div>
+    <div class="callout"><h4>Biggest Contribution</h4><p>在一个 tractable model 中结合 search、endogenous relationship-building mode 与 supplier switching，从而生成关于 initial order size 与 relationship duration 的 linked predictions。</p></div>
+    <div class="callout"><h4>Biggest Limitation</h4><p>learning technology 与 supplier side 都非常 reduced-form；多个 comparative statics 依赖 \(q\) small，而 Proposition 4 还依赖 \(g\) 接近 search threshold。</p></div>
+    <div class="callout"><h4>Biggest Open Question</h4><p>transaction-level data 能否把 productive-capability learning 与其他 gradual relationship escalation 的原因单独识别出来？</p></div>
+  </div>
+</section>
+
+<section id="coverage">
+  <h2>13 · Source Coverage Audit · 来源覆盖审计</h2>
+  <p class="lead">这个 matrix 让全文重构可以被检查。“Covered”表示 substantive argument、evidence、result 或 proof logic 已进入 notebook；journal boilerplate 与 bibliography 本身不机械复制。</p>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Original location</th><th>Substantive content</th><th>Notebook location</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr><td>Abstract + §1, pp. 1021–1024</td><td>Puzzle、mechanism、三类 prior literature、contribution</td><td>§§1–2 前部</td><td><span class="status">Covered</span></td></tr>
+      <tr><td>§2, pp. 1024–1028</td><td>Egan–Mody、Tewari、payment environment、training、risk、search infrastructure、network、Nadvi GMP</td><td>§2</td><td><span class="status">Covered</span></td></tr>
+      <tr><td>§3.1, pp. 1028–1030</td><td>Environment、Big/Learn/Out、equations (1)–(6)、Assumption (A)</td><td>§3.1–3.4</td><td><span class="status">Covered</span></td></tr>
+      <tr><td>§3.2, pp. 1030–1031</td><td>Figure 1、cutoffs、equation (7)、switching cutoff (8)、Proposition 1</td><td>§3.5</td><td><span class="status">Covered</span></td></tr>
+      <tr><td>§4.1, pp. 1031–1033</td><td>Propositions 2–5 与 qualifications</td><td>§4.1</td><td><span class="status">Covered</span></td></tr>
+      <tr><td>§4.2, pp. 1033–1035</td><td>Propositions 6–9、persistence 与 switching predictions</td><td>§4.2</td><td><span class="status">Covered</span></td></tr>
+      <tr><td>§4.3, p. 1035</td><td>对 supplier costs 增加结构后的 predictions 与 sign-reversal caveat</td><td>§4.3</td><td><span class="status">Covered</span></td></tr>
+      <tr><td>§5, pp. 1035–1037</td><td>Conclusion、exporter selection、trade liberalization/rationalization、future test、footnote 15</td><td>§6</td><td><span class="status">Covered</span></td></tr>
+      <tr><td>Appendix, pp. 1037–1040</td><td>Proofs of Propositions 1–9</td><td>§5</td><td><span class="status">Covered</span></td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout"><strong>Last-third completeness check：</strong>Section 4.3、完整的 Conclusion / export interpretation，以及 Appendix proof architecture 都被单独保留，没有因为位于论文后部而被压缩掉。</div>
+</section>
+
+<footer>
+  <p>Rauch & Watson (2003), <em>Starting Small in an Unfamiliar Environment</em> 的 interactive study reconstruction。Source references 采用 journal pagination。</p>
+  <p class="muted">页面用 AUTHOR'S ARGUMENT / ANALYTICAL SYNTHESIS / RESEARCH EXTENSION 标签区分论文原论点、分析性整理与进一步研究延伸。</p>
+</footer>
+</article>
+</main>
+</div>
+
+<script>
+(()=>{
+const root=document.documentElement;
+const side=document.getElementById("side");
+const menu=document.getElementById("menu");
+const theme=document.getElementById("theme");
+const bar=document.querySelector(".progress span");
+const store={get:(k)=>{try{return localStorage.getItem(k)}catch(e){return null}},set:(k,v)=>{try{localStorage.setItem(k,v)}catch(e){}}};
+const saved=store.get("rw-theme");
+if(saved) root.dataset.theme=saved;
+theme?.addEventListener("click",()=>{
+  root.dataset.theme=root.dataset.theme==="dark"?"light":"dark";
+  store.set("rw-theme",root.dataset.theme);
+});
+menu?.addEventListener("click",()=>side?.classList.toggle("open"));
+document.querySelectorAll("#side a").forEach(a=>a.addEventListener("click",()=>side?.classList.remove("open")));
+const updateProgress=()=>{
+  const max=root.scrollHeight-root.clientHeight;
+  if(bar) bar.style.width=(max?100*root.scrollTop/max:0)+"%";
+};
+document.addEventListener("scroll",updateProgress,{passive:true}); updateProgress();
+
+const links=[...document.querySelectorAll("#side a")];
+const io=new IntersectionObserver(entries=>{
+  const hit=entries.filter(e=>e.isIntersecting).sort((a,b)=>a.boundingClientRect.top-b.boundingClientRect.top)[0];
+  if(!hit) return;
+  const id="#"+hit.target.id;
+  links.forEach(a=>{a.classList.toggle("active",a.getAttribute("href")===id);a.classList.remove("parent-active");});
+  const active=links.find(a=>a.getAttribute("href")===id);
+  if(active){
+    let level=active.dataset.l;
+    if(level){
+      let i=links.indexOf(active)-1;
+      while(i>=0 && links[i].dataset.l){i--}
+      if(i>=0) links[i].classList.add("parent-active");
+    }
+  }
+},{rootMargin:"-10% 0px -78% 0px",threshold:0});
+document.querySelectorAll("section[id]").forEach(s=>io.observe(s));
+
+document.querySelectorAll("[data-toggle]").forEach(btn=>{
+  btn.addEventListener("click",()=>{
+    const target=document.getElementById(btn.dataset.toggle);
+    if(target) target.classList.toggle("show");
+  });
+});
+document.querySelectorAll("[data-show]").forEach(btn=>{
+  btn.addEventListener("click",()=>{
+    const target=document.getElementById(btn.dataset.show);
+    if(target) target.classList.toggle("show");
+  });
+});
+document.querySelectorAll(".quiz-card").forEach(card=>{
+  const key="rw-rate-"+card.dataset.q;
+  const savedRate=store.get(key);
+  card.querySelectorAll(".rating button").forEach(btn=>{
+    if(btn.dataset.rate===savedRate) btn.classList.add("selected");
+    btn.addEventListener("click",()=>{
+      card.querySelectorAll(".rating button").forEach(b=>b.classList.remove("selected"));
+      btn.classList.add("selected");
+      store.set(key,btn.dataset.rate);
+    });
+  });
+});
+window.addEventListener("load",()=>{
+  if(document.documentElement.scrollWidth>document.documentElement.clientWidth+2){
+    console.warn("Page-level horizontal overflow",document.documentElement.scrollWidth,document.documentElement.clientWidth);
+  }
+});
+})();
+</script>
+</body>
+</html>

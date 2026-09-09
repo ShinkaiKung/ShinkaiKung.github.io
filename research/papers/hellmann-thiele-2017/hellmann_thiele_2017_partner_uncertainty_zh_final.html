@@ -1,0 +1,474 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light dark"><title>Hellmann & Thiele (2017) — Partner Uncertainty and the Dynamic Boundary of the Firm — 中文伴随版</title><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css"><script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script><style>
+:root{--bg:#f7f5ef;--panel:#fffdfa;--text:#25282c;--muted:#687077;--line:#d9d7d0;--accent:#38566f;--accent-soft:#e8eef2;--green:#456b58;--green-soft:#eaf1ec;--amber:#8a642f;--amber-soft:#f5edde;--red:#8a4b4b;--red-soft:#f5e7e7;--sidebar:286px;--topbar:56px}
+[data-theme=dark]{--bg:#171a1e;--panel:#1f2328;--text:#e7e4dd;--muted:#a6adb4;--line:#353b42;--accent:#91adc2;--accent-soft:#25323c;--green:#91b3a0;--green-soft:#26352e;--amber:#d0aa72;--amber-soft:#3b3123;--red:#d29a9a;--red-soft:#3b282a}
+*{box-sizing:border-box}html{scroll-behavior:smooth;max-width:100%}body{margin:0;max-width:100%;background:var(--bg);color:var(--text);font-family:Inter,"Noto Sans SC","PingFang SC","Microsoft YaHei","IBM Plex Sans","Source Sans 3",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.72;font-size:16px}
+button{font:inherit}.progress{position:fixed;top:0;left:0;height:3px;background:var(--accent);width:0;z-index:200}.topbar{position:sticky;top:0;z-index:120;height:var(--topbar);display:flex;align-items:center;gap:12px;padding:0 18px;border-bottom:1px solid var(--line);background:var(--bg)}.brand{font-weight:700}.spacer{flex:1}.topbar button,.topbar a{border:1px solid var(--line);background:var(--panel);color:var(--text);border-radius:8px;padding:7px 10px;text-decoration:none;cursor:pointer}.mobile-nav{display:none}
+.layout{display:grid;grid-template-columns:var(--sidebar) minmax(0,1fr);max-width:1500px;margin:0 auto}.layout aside{position:sticky;top:var(--topbar);height:calc(100vh - var(--topbar));overflow:auto;border-right:1px solid var(--line);padding:26px 18px 40px}.nav-title{font-size:12px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin:0 8px 12px}.nav a{display:block;text-decoration:none;color:var(--muted);border-left:2px solid transparent;padding:6px 8px;border-radius:0 7px 7px 0;font-size:14px;line-height:1.35}.nav a.l2{padding-left:20px;font-size:13px}.nav a.active{color:var(--accent);border-left-color:var(--accent);background:var(--accent-soft);font-weight:650}
+main{min-width:0;padding:42px clamp(22px,4.5vw,68px) 100px}.content{max-width:1060px;margin:0 auto;min-width:0}.hero{padding:10px 0 30px;border-bottom:1px solid var(--line);margin-bottom:36px}.eyebrow{font-size:12px;text-transform:uppercase;letter-spacing:.12em;color:var(--accent);font-weight:700}.hero h1{font-family:Georgia,"Times New Roman",serif;font-weight:600;line-height:1.15;font-size:clamp(32px,4vw,44px);margin:10px 0 12px}.meta{color:var(--muted);font-size:15px}.thesis{font-family:Georgia,"Times New Roman",serif;font-size:20px;line-height:1.55;margin-top:22px;max-width:850px}
+section[id],h2,h3,h4{scroll-margin-top:76px}h2{font-family:Georgia,"Times New Roman",serif;font-size:29px;font-weight:600;line-height:1.25;margin:68px 0 18px;padding-top:8px;border-top:1px solid var(--line)}h3{font-size:21px;line-height:1.35;margin:38px 0 14px}h4{font-size:17px;margin:27px 0 9px}.section-kicker{font-size:12px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);font-weight:700}p{margin:10px 0 14px}.term{font-weight:700;color:var(--accent)}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:18px 0 24px}.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px;min-width:0}.label{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:700}.big{font-size:18px;font-weight:700;line-height:1.35;margin-top:4px}.split{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.callout{border-left:4px solid var(--accent);background:var(--accent-soft);padding:14px 16px;border-radius:0 10px 10px 0;margin:18px 0}.callout.green{border-left-color:var(--green);background:var(--green-soft)}.callout.amber{border-left-color:var(--amber);background:var(--amber-soft)}.callout.red{border-left-color:var(--red);background:var(--red-soft)}.tag{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:2px 8px;font-size:11px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);margin-right:6px}.tag.author{color:var(--green)}.tag.synth{color:var(--accent)}.tag.extend{color:var(--amber)}.source{font-size:12px;color:var(--muted);margin-top:10px}.source::before{content:"↳ ";color:var(--accent)}
+.table-wrap,.diagram-wrap,.equation-wrap{max-width:100%;overflow-x:auto;overflow-y:hidden;margin:18px 0;border:1px solid var(--line);border-radius:10px;background:var(--panel)}table{border-collapse:collapse;width:100%;min-width:720px;font-size:14px}th,td{padding:11px 12px;border-bottom:1px solid var(--line);vertical-align:top;text-align:left}th{background:var(--accent-soft);font-size:12px;text-transform:uppercase;letter-spacing:.04em}tr:last-child td{border-bottom:0}.fingerprint td:first-child{font-weight:700;width:210px;color:var(--muted)}
+.equation{padding:18px 20px}.eqtitle{font-weight:700;margin-bottom:10px}.math-display{font-family:"STIX Two Text",Cambria,Georgia,serif;font-size:17px;white-space:pre-wrap;line-height:1.65}.math-inline{font-family:"STIX Two Text",Cambria,Georgia,serif}.eqnote{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px;font-size:14px}.eqnote>div{border-top:1px solid var(--line);padding-top:10px}
+.diagram-wrap{padding:16px}.diagram-wrap svg{display:block;width:100%;height:auto;max-width:100%;min-width:720px}.diagram-caption{font-size:12px;color:var(--muted);padding:0 16px 12px}.node{fill:var(--panel);stroke:var(--accent);stroke-width:1.5}.nodeText{fill:var(--text);font-family:Inter,system-ui,sans-serif;font-size:14px}.smallText{fill:var(--muted);font-family:Inter,system-ui,sans-serif;font-size:11px}.axis{stroke:var(--muted);stroke-width:1}.lineA{stroke:var(--accent);stroke-width:2.2;fill:none}.lineB{stroke:var(--green);stroke-width:2.2;fill:none}.lineC{stroke:var(--amber);stroke-width:2.2;fill:none}.dash{stroke-dasharray:6 5}
+details{border:1px solid var(--line);border-radius:10px;background:var(--panel);margin:12px 0;overflow:hidden}summary{cursor:pointer;padding:13px 15px;font-weight:700;list-style:none}summary::-webkit-details-marker{display:none}summary::after{content:"＋";float:right;color:var(--muted)}details[open] summary::after{content:"−"}.detail-body{padding:0 15px 15px;border-top:1px solid var(--line)}
+.pillrow{display:flex;flex-wrap:wrap;gap:7px;margin:10px 0}.pill{border:1px solid var(--line);border-radius:999px;padding:4px 9px;font-size:12px;background:var(--panel)}
+.tabs{margin:18px 0}.tab-buttons{display:flex;gap:8px;flex-wrap:wrap}.tab-buttons button{border:1px solid var(--line);background:var(--panel);color:var(--text);padding:7px 11px;border-radius:8px;cursor:pointer}.tab-buttons button.active{background:var(--accent-soft);color:var(--accent);border-color:var(--accent)}.tab-panel{display:none;padding:14px 0}.tab-panel.active{display:block}
+.quiz-card{border:1px solid var(--line);background:var(--panel);border-radius:12px;padding:17px;margin:15px 0}.quiz-q{font-size:17px;font-weight:700}.quiz-actions,.rating{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}.quiz-actions button,.rating button{border:1px solid var(--line);background:var(--bg);color:var(--text);border-radius:8px;padding:6px 10px;cursor:pointer}.reveal{display:none;border-top:1px solid var(--line);padding-top:12px;margin-top:10px}.reveal.show{display:block}.rating button.selected{background:var(--accent-soft);border-color:var(--accent)}
+.steps{counter-reset:step;list-style:none;padding:0}.steps li{counter-increment:step;margin:12px 0;padding-left:42px;position:relative}.steps li::before{content:counter(step);position:absolute;left:0;top:0;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;background:var(--accent-soft);color:var(--accent);font-weight:700;font-size:13px}.remember{font-family:Georgia,"Times New Roman",serif;font-size:18px}.checklist{list-style:none;padding:0}.checklist li::before{content:"✓";color:var(--green);font-weight:800;margin-right:9px}.footer{margin-top:80px;padding-top:24px;border-top:1px solid var(--line);color:var(--muted);font-size:13px}
+@media(max-width:1080px){:root{--sidebar:244px}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.eqnote{grid-template-columns:1fr}}
+@media(max-width:820px){.mobile-nav{display:inline-flex}.layout{display:block}.layout aside{position:fixed;top:var(--topbar);left:0;bottom:0;width:min(84vw,320px);height:calc(100vh - var(--topbar));z-index:130;transform:translateX(-105%);transition:transform .2s ease;background:var(--bg);box-shadow:8px 0 30px rgba(0,0,0,.18)}.layout aside.open{transform:translateX(0)}main{padding:28px 18px 80px}.grid,.split{grid-template-columns:1fr}.diagram-wrap svg{min-width:660px}table{min-width:680px}}
+@media(max-width:520px){body{font-size:15.5px}.topbar{padding:0 10px}.topbar a{display:none}.hero h1{font-size:32px}.diagram-wrap svg{min-width:620px}.table-wrap table{min-width:640px}}
+</style></head><body><div id="progress" class="progress"></div><header class="topbar"><button class="mobile-nav" id="navBtn">☰</button><div class="brand">Research Reading Notebook</div><div class="spacer"></div><a href="hellmann_thiele_2017_partner_uncertainty_en_final.html">English</a><button id="themeBtn">☾</button></header><div class="layout"><aside><div class="nav-title">Contents</div><nav class="nav"><a class="l1" href="#overview">概览</a><a class="l2" href="#paper-fingerprint">Paper Fingerprint</a><a class="l2" href="#paper-at-a-glance">Paper at a Glance</a><a class="l1" href="#literature">1. Literature Position</a><a class="l2" href="#ghm-departures">GHM 的五个偏离</a><a class="l2" href="#literature-branches">相关文献分支</a><a class="l1" href="#base-model">2. Base Model</a><a class="l2" href="#environment">Environment 与 agents</a><a class="l2" href="#timing">Timing</a><a class="l2" href="#production">Team production</a><a class="l2" href="#ownership-contracting">Ownership 与 bargaining</a><a class="l1" href="#asset-ownership">3. Asset Ownership 与 Dynamics</a><a class="l2" href="#symmetric-options">Symmetric outside options</a><a class="l2" href="#individual-ownership">Individual ownership</a><a class="l2" href="#joint-ownership">Joint ownership</a><a class="l2" href="#optimal-ownership">Optimal ownership</a><a class="l1" href="#investments-wealth">4. Investments 与 Wealth</a><a class="l2" href="#investment-incentives">Investment incentives</a><a class="l2" href="#expected-utility">Expected utility 与 ownership</a><a class="l2" href="#transfer-capacity">Transfer capacity</a><a class="l1" href="#asymmetry">5. Asymmetric Partners</a><a class="l2" href="#asymmetric-wealth">Asymmetric wealth</a><a class="l2" href="#asymmetric-prospects">Asymmetric prospects</a><a class="l1" href="#empirical">6. Empirical Predictions</a><a class="l2" href="#prediction-1">Asset specificity</a><a class="l2" href="#prediction-2">Alternative partners</a><a class="l2" href="#prediction-3">Specific investment</a><a class="l2" href="#prediction-4">Partner stability</a><a class="l1" href="#critical">7. 批判性阅读（Critical Reading）</a><a class="l2" href="#drivers">结果由什么驱动？</a><a class="l2" href="#limitations">Limitations</a><a class="l2" href="#extensions">Research extensions</a><a class="l1" href="#learning">8. Understanding Check</a><a class="l2" href="#mastery">Mastery Test</a><a class="l1" href="#remember">9. What Should I Remember?</a><a class="l2" href="#source-map">Source & Coverage Map</a></nav></aside><main><article class="content">
+<section class="hero" id="overview">
+<div class="eyebrow">理论论文 · Dynamic Theory of the Firm · Full-Coverage Reconstruction</div>
+<h1>Partner Uncertainty and the Dynamic Boundary of the Firm</h1>
+<div class="meta">Thomas Hellmann &amp; Veikko Thiele · <em>American Economic Journal: Microeconomics</em> 9(4), 2017, pp. 277–302</div>
+<p class="thesis"><strong>核心思想。</strong> 当一段关系建立之后，双方仍可能发现更好的交易对象时，<span class="term">ownership</span> 就不只是静态的资产配置，而成为一种在 <strong>commitment</strong> 与 <strong>flexibility</strong> 之间取舍的制度。<span class="term">individual asset ownership</span> 保留单方面更换伙伴的自由，但可能产生 <span class="term">displacement externality</span>；<span class="term">joint asset ownership</span> 保护既有关系，却可能产生 <span class="term">retention externality</span>。最优的 firm boundary 正是在两类动态错误之间权衡。</p>
+<div class="pillrow"><span class="pill">Property Rights</span><span class="pill">Partner Uncertainty</span><span class="pill">Joint Asset Ownership</span><span class="pill">Specific Investment</span><span class="pill">Wealth Constraints</span><span class="pill">Dynamic Firm Boundaries</span></div>
+<div class="source">Source: Abstract &amp; Introduction · pp. 277–278</div>
+</section>
+
+<section id="paper-fingerprint"><div class="section-kicker">Paper Dashboard</div><h2>Paper Fingerprint</h2>
+<div class="grid">
+<div class="card"><div class="label">Research Question</div><div class="big">当“谁是最佳交易伙伴”本身存在不确定性时，productive assets 应如何配置 ownership？</div></div>
+<div class="card"><div class="label">Economic Friction</div><div class="big">Partner-match uncertainty + binding wealth constraints + team moral hazard。</div></div>
+<div class="card"><div class="label">Key Choice</div><div class="big">Date 0 在 individual asset ownership 与 joint asset ownership 之间选择。</div></div>
+<div class="card"><div class="label">Core Mechanism</div><div class="big">Ownership 决定谁能离开、离开是否需要 consent，以及 outside option 如何扭曲 ex post matching。</div></div>
+<div class="card"><div class="label">Main Result</div><div class="big">越有价值的当前匹配越支持 integration；越有吸引力的未来匹配越支持 non-integration。</div></div>
+<div class="card"><div class="label">Dynamic Prediction</div><div class="big">Integration 提高 relation-specific investment，并提高 partner stability。</div></div>
+</div>
+<div class="table-wrap"><table class="fingerprint"><tbody>
+<tr><td>Research Question</td><td>未来 partner quality 的不确定性如何改变 control rights 的配置，以及 firm boundaries 随后的演化？</td></tr>
+<tr><td>Economic Friction</td><td>Ex post 更换伙伴可能对某一方私下有利、却降低 joint surplus；而 wealth constraints 使 side payments 无法总是消除这种低效率。</td></tr>
+<tr><td>Agents</td><td>初始伙伴 Alice (A) 与 Bob (B)；可能出现的替代伙伴 Charles (C) 与 Dora (D)。</td></tr>
+<tr><td>Key Choice</td><td>Date 0：继续各自控制 complementary assets，还是通过 joint ownership 分享两项资产的 control rights。</td></tr>
+<tr><td>State / Environment</td><td>Inside prospect <span class="math-inline">\(\pi\in\{\pi_L,\pi_H\}\)</span>，outside prospect <span class="math-inline">\(\sigma\)</span>，alternative-partner arrival probability <span class="math-inline">\(q\)</span>，wealth <span class="math-inline">\(w\)</span>。</td></tr>
+<tr><td>Core Mechanism</td><td>Non-integration 允许 unilateral exit，因此可能 displacement；integration 要求 consent，因此可能 retention。</td></tr>
+<tr><td>Contracting / Market Problem</td><td>Prices 可 contract，但 interim inside prospect 对双方可观察、对外不可验证；specific investments 不可 contract。</td></tr>
+<tr><td>Method</td><td>一个五阶段的 incomplete-contracting / bargaining model，结合 moral hazard in teams 与 NTU bargaining。</td></tr>
+<tr><td>Data / Identification</td><td>N/A for this paper type（纯理论论文）。</td></tr>
+<tr><td>Main Result</td><td>初始匹配越有价值、外部潜在匹配越不吸引人，越倾向 integration；joint ownership 也会增强 specific-investment incentives。</td></tr>
+<tr><td>Contribution</td><td>建立一个 partner switching 在 equilibrium 中真实发生的 dynamic theory of firm boundaries，从而得到 GHM 中不存在的 displacement–retention trade-off。</td></tr>
+<tr><td>Limitation</td><td>Alternative partner arrival 是 exogenous；每个伙伴最多只有一次 switching opportunity；baseline 大量依赖 symmetry。</td></tr>
+<tr><td>Open Question</td><td>Endogenize partner search，并把 ownership problem 推广到 infinite horizon。</td></tr>
+</tbody></table></div></section>
+
+<section id="paper-at-a-glance"><h2>Paper at a Glance</h2>
+<div class="callout green"><span class="tag author">Author's Argument</span><strong>新的取舍不是静态的“make versus buy”。</strong>真正的问题是：在 future partner quality 不确定时，是对当前 match 作出 <em>commitment</em>，还是保留 <em>rematching flexibility</em>。</div>
+<div class="diagram-wrap"><svg viewBox="0 0 960 245" role="img" aria-label="Core mechanism map">
+<rect class="node" x="30" y="80" rx="10" width="190" height="72"/><text class="nodeText" x="125" y="107" text-anchor="middle">Partner uncertainty</text><text class="smallText" x="125" y="129" text-anchor="middle">future match may dominate</text>
+<path class="lineA" d="M220 116 H310"/><rect class="node" x="310" y="45" rx="10" width="220" height="58"/><text class="nodeText" x="420" y="72" text-anchor="middle">Individual ownership</text><text class="smallText" x="420" y="90" text-anchor="middle">unilateral exit</text>
+<rect class="node" x="310" y="142" rx="10" width="220" height="58"/><text class="nodeText" x="420" y="169" text-anchor="middle">Joint ownership</text><text class="smallText" x="420" y="187" text-anchor="middle">mutual consent to leave</text>
+<path class="lineA" d="M530 74 H625"/><rect class="node" x="625" y="45" rx="10" width="290" height="58"/><text class="nodeText" x="770" y="70" text-anchor="middle">Displacement externality</text><text class="smallText" x="770" y="89" text-anchor="middle">too much switching / distorted stay</text>
+<path class="lineA" d="M530 171 H625"/><rect class="node" x="625" y="142" rx="10" width="290" height="58"/><text class="nodeText" x="770" y="167" text-anchor="middle">Retention externality</text><text class="smallText" x="770" y="186" text-anchor="middle">too much staying / costly buyout</text>
+</svg><div class="diagram-caption">Mechanism map reconstructed from the Introduction and Sections III–IV.</div>
+<div class="split"><div class="card"><h3>Commitment value</h3><p>如果 inside match 很可能很好，joint control 能阻止某一方仅因自己从 switching 中获利，就破坏一段整体价值更高的既有关系。</p></div><div class="card"><h3>Flexibility value</h3><p>如果 outside matching opportunities 很有吸引力，individual control 能阻止留守一方否决一个整体上更有效率的 rematch。</p></div></div>
+<div class="source">Source: Introduction · pp. 277–278; Section III.D · pp. 289–290</div></section>
+
+<section id="literature"><div class="section-kicker">Section I</div><h2>1. Literature Position</h2>
+<p>论文刻意把自己的机制与标准 <span class="term">Grossman–Hart–Moore (GHM) Property Rights Theory</span> 区分开来；随后再把它连接到 Transaction Cost Economics、adaptation-based theories、wealth constraints、exclusive contracts、entrepreneurship / team formation、marriage/divorce，以及 partnership dissolution 文献。</p>
+
+<section id="ghm-departures"><h3>1.1 相对于 GHM 的五个关键偏离</h3>
+<div class="table-wrap"><table><thead><tr><th>Dimension</th><th>GHM benchmark</th><th>Hellmann–Thiele</th><th>为什么重要</th></tr></thead><tbody>
+<tr><td>Specific investment</td><td>Ownership trade-off 的核心来源。</td><td>Base model 一开始故意关闭 specific investment。</td><td>说明仅仅 partner uncertainty 就足以影响 ownership。</td></tr>
+<tr><td>Ex post efficiency</td><td>Renegotiation 导向 ex post efficient outcome。</td><td>Binding wealth constraints 可留下 ex post inefficiency。</td><td>Ownership 会改变实际 partner arrangement，而不只是 ex ante incentives。</td></tr>
+<tr><td>Outside partners</td><td>Outside option 只是 bargaining threat，equilibrium 中不真正执行。</td><td>Partner switching 与 buyout 会在 equilibrium 中发生。</td><td>Firm boundaries 因而真正具有 dynamic 性质。</td></tr>
+<tr><td>Prices</td><td>Price non-contractibility 是关键。</td><td>Prices 可以 contract；真正不可验证的是 interim match information。</td><td>Contractual incompleteness 被放在 match information / control，而不是价格本身。</td></tr>
+<tr><td>Integration form</td><td>一方拥有两项资产；joint ownership 从不最优。</td><td>Integration 是双方共同控制两项资产。</td><td>Joint control 的价值在于阻止 unilateral dissolution of a good match。</td></tr>
+</tbody></table></div>
+<div class="callout amber"><strong>概念警告。</strong> 本文中的 “integration” 不是 GHM 标准意义上把 authority 集中给单一 owner，而是 <span class="term">joint asset ownership</span>：任何一方想把资产用于其他关系，都需要初始伙伴共同 consent。</div>
+<div class="source">Source: Section I · pp. 279–280</div></section>
+
+<section id="literature-branches"><h3>1.2 Related literature branches</h3>
+<details open><summary>Joint ownership 与 repeated relationships</summary><div class="detail-body"><p><strong>Cai (2003)</strong> 在 specific 与 general investments 为 substitutes 时得到 joint ownership 最优。<strong>Halonen (2002)</strong> 以及 <strong>Blonski &amp; Spagnolo (2003)</strong> 在 repeated-game 环境中得到 joint ownership。Hellmann–Thiele 提供另一条完全不同的理由：joint control 可以防止一段有效率 partnership 被解散。</p></div></details>
+<details><summary>Transaction Cost Economics 与 asset specificity</summary><div class="detail-body"><p><strong>Williamson (1975, 1985)</strong> 认为更高的 asset specificity 应提高 integration。Formal property-rights models 往往反对 Williamson 基于 ex post haggling 的解释，因为理性主体应当能通过 renegotiation 达到效率。Hellmann–Thiele 借助 partner uncertainty + binding wealth constraints 重新得到 Williamson 的预测：当前关系的 quasi-rents 越高，displacement 的损失越大。他们还增加了动态比较——当前 quasi-rents 必须与未来潜在关系的 quasi-rents 一起权衡。</p><p>论文同时提到 costly ex post adjustment 模型，如 Bajari &amp; Tadelis (2001)、Tadelis (2002)、Matouschek (2004)、Casas-Arce &amp; Kittsteiner (2011)，并用 Lafontaine &amp; Slade (2007) 概括 empirical evidence。</p></div></details>
+<details><summary>Adaptation-based theories 与 ex post inefficiency</summary><div class="detail-body"><p><strong>Grossman &amp; Hart (1987)</strong> 是一个较早的、存在 ex post inefficiency 且没有 specific investment 的模型。<strong>Hart (2009)</strong> 与 <strong>Hart &amp; Holmström (2010)</strong> 用 reference points 使主体能够坚持低效率地 withholding cooperation；<strong>Aghion et al. (2012)</strong> 则让 ex post asymmetric information 阻碍 renegotiation。本文的来源不同：ex post inefficiency 来自 team moral hazard 与 binding wealth constraints 的组合。</p></div></details>
+<details><summary>Wealth constraints</summary><div class="detail-body"><p><strong>Aghion &amp; Bolton (1992)</strong> 也使用 wealth constraints，但研究的是单资产、liquidation 的 financial contracting。Hellmann–Thiele 研究两项 complementary assets、integration 与 partner uncertainty。</p></div></details>
+<details><summary>Exclusive contracts 与 vertical foreclosure</summary><div class="detail-body"><p>Joint ownership 也可理解为一组 mutually exclusive contracts。论文联系 <strong>Aghion &amp; Bolton (1987)</strong>、<strong>Bolton &amp; Whinston (1993)</strong>、<strong>Segal &amp; Whinston (2000)</strong>、<strong>de Fontenay, Gans &amp; Groves (2010)</strong>。与其中一些经典结果不同，即使允许 renegotiation，exclusivity 在这里仍然重要，因为 wealth constraints 可能让 renegotiation 无法达到 efficient allocation。</p></div></details>
+<details><summary>Entrepreneurship、teams 与 founder commitment</summary><div class="detail-body"><p><strong>Prat (2002)</strong> 研究 team heterogeneity；<strong>Franco Mitchell, Mitchell &amp; Vereshchagina (2011)</strong> 研究 moral hazard 下的 assortative matching；<strong>Hellmann &amp; Perotti (2011)</strong> 研究 idea generators 与 developers 的匹配；<strong>Hellmann &amp; Thiele (2015)</strong> 问 founders 何时愿意 commit to a team。这些论文主要研究 initial team formation；2017 年本文的重点是之后的 rematching 与 ownership。</p></div></details>
+<details><summary>Marriage/divorce 与 partnership dissolution</summary><div class="detail-body"><p>Marriage literature 为 matching、rematching、wealth 与 relationship-specific investment 提供直觉，但作者强调：本文中的 “divorce cost” 是内生于 ownership 的，wealth 的作用也完全不同。论文引用 Brien, Lillard &amp; Stern (2006)、Matouschek &amp; Rasul (2008)、Peters &amp; Siow (2002)、Peters (2007)、Wickelgren (2009)、Peters (1986)、Friedberg (1998)、Wolfers (2006)。</p><p>另一支 partnership-dissolution literature——Cramton, Gibbons &amp; Klemperer (1987)、McAfee (1992)、de Frutos &amp; Kittsteiner (2008)——从既定 joint ownership 出发，研究 information asymmetry 和 dissolution auction mechanisms；它们不同于本文对 ex ante firm boundary choice 的研究。</p></div></details>
+<div class="source">Source: Section I · pp. 279–281</div></section></section>
+
+<section id="base-model"><div class="section-kicker">Section II</div><h2>2. Base Model</h2>
+
+<section id="environment"><h3>2.1 Economic environment 与 agents</h3>
+<ul>
+<li><strong>Alice (A)</strong> 与 <strong>Bob (B)</strong> 是 risk-neutral 的初始伙伴。作者给出的直觉性例子是：一方为 downstream owner，另一方为 upstream owner。</li>
+<li>每人最初拥有一项 <span class="term">co-specialized asset</span>，同时拥有人身不可转让的 human capital。两人的 initial outside options 归一化为 0。</li>
+<li>两位初始伙伴拥有相同 wealth：<span class="math-inline">\(w_A=w_B=w\ge0\)</span>。替代伙伴 <strong>Charles (C)</strong> 与 <strong>Dora (D)</strong> 的 wealth 与 outside options 都为 0。</li>
+<li>两项资产是 complementary：joint production 必须同时使用相应的两项资产，而且依赖双方的 private effort。</li>
+</ul>
+<h4>Inside prospect</h4>
+<p>Production 成功时得到可验证利润 <span class="math-inline">\(y\)</span>，其分布为 <span class="math-inline">\(\Omega_{in}(y)\)</span>。期望值 <span class="math-inline">\(\pi=\int y\,d\Omega_{in}(y)\)</span> 被作者称为 <span class="term">inside prospect</span>。Alice 与 Bob 都能观察到 <span class="math-inline">\(\pi\)</span>，但它不能被外部第三方验证。</p>
+<h4>Relation-specific investment</h4>
+<p>Date 1 时，双方可以分别选择不可 contract 的 investment <span class="math-inline">\(r_i\)</span>。Inside prospect 只可能为 <span class="math-inline">\(\pi\in\{\pi_L,\pi_H\}\)</span>，其中 <span class="math-inline">\(\pi_H&gt;\pi_L&gt;0\)</span>。High state 的概率是 <span class="math-inline">\(p(r_A,r_B)\)</span>，它随 investment 增加且为 concave；每人的 investment cost <span class="math-inline">\(\psi(r_i)\)</span> 为 convex。作者加入确保 interior solution 的技术条件，并要求 cross-partial 不能过度为负；weak strategic complementarity 是一个充分条件。Section III 暂时把 <span class="math-inline">\(p\)</span> 固定，以先把 partner uncertainty 的机制与 investment incentive 分离。</p>
+<h4>Outside prospect</h4>
+<p>Date 2 时，Alice 以概率 <span class="math-inline">\(q\)</span> 遇到 C；Bob 独立地以同样概率遇到 D。替代 partnership 的成功利润期望为 <span class="math-inline">\(\sigma=\int y\,d\Omega_{out}(y)\)</span>，即 <span class="term">outside prospect</span>。由于两类资产的 complementarity，A 不能与 D 匹配，B 也不能与 C 匹配。</p>
+<div class="source">Source: Section II · pp. 281–283</div></section>
+
+<section id="timing"><h3>2.2 Timing</h3>
+<div class="diagram-wrap"><svg viewBox="0 0 1000 250" aria-label="Five-date timing diagram">
+<line class="axis" x1="80" y1="96" x2="920" y2="96"/><polygon points="920,96 908,90 908,102" fill="var(--muted)"/>
+<g><circle cx="100" cy="96" r="5" fill="var(--accent)"/><text class="nodeText" x="100" y="52" text-anchor="middle">Date 0</text><text class="smallText" x="100" y="125" text-anchor="middle">Ownership structure</text><text class="smallText" x="100" y="142" text-anchor="middle">individual vs joint</text></g>
+<g><circle cx="300" cy="96" r="5" fill="var(--accent)"/><text class="nodeText" x="300" y="52" text-anchor="middle">Date 1</text><text class="smallText" x="300" y="125" text-anchor="middle">Relation-specific</text><text class="smallText" x="300" y="142" text-anchor="middle">investments</text></g>
+<g><circle cx="500" cy="96" r="5" fill="var(--accent)"/><text class="nodeText" x="500" y="52" text-anchor="middle">Date 2</text><text class="smallText" x="500" y="123" text-anchor="middle">Learn inside prospect</text><text class="smallText" x="500" y="140" text-anchor="middle">find alternatives / stay / split</text><text class="smallText" x="500" y="157" text-anchor="middle">renegotiate surplus</text></g>
+<g><circle cx="700" cy="96" r="5" fill="var(--accent)"/><text class="nodeText" x="700" y="52" text-anchor="middle">Date 3</text><text class="smallText" x="700" y="125" text-anchor="middle">Private efforts</text></g>
+<g><circle cx="900" cy="96" r="5" fill="var(--accent)"/><text class="nodeText" x="900" y="52" text-anchor="middle">Date 4</text><text class="smallText" x="900" y="125" text-anchor="middle">Returns realized</text></g>
+</svg><div class="diagram-caption">Faithful reconstruction of Figure 1 (p. 282).</div>
+<div class="source">Source: Figure 1 · p. 282</div></section>
+
+<section id="production"><h3>2.3 Team production 与 utility frontier</h3>
+<div class="equation-wrap"><div class="equation"><div class="eqtitle">Equation (1)：A–B match 中的 private effort choices</div>
+<div class="math-display">\max_{e_A}\;U_A(\alpha;\pi)=\alpha\mu(e_Ae_B)\pi-c(e_A),\qquad
+\max_{e_B}\;U_B(\beta;\pi)=\beta\mu(e_Ae_B)\pi-c(e_B),\quad \alpha+\beta=1. \tag{1}</div>
+<div class="eqnote"><div><strong>Technology.</strong> Success probability <span class="math-inline">\(\mu(e_i e_j)\)</span> 随 effort product 增加且为 concave；双方 effort 都必须严格为正。</div><div><strong>Economic role.</strong> Profit share 会改变 effort，因此若通过未来利润份额来做 transfer / buyout，会扭曲 production incentives。</div></div></div></div>
+<p>由于 efforts 是 complementary，utility-possibility frontier 会向后弯曲。对于 symmetric partners，joint surplus 在 <span class="math-inline">\(\alpha=\beta=1/2\)</span> 的 equal split 最大；但每一方单独都希望自己的 share 高于 1/2。正是这种冲突，使 renegotiation 后的不均等 shares 或以 equity 实施的 buyout 会降低总 surplus。</p>
+<div class="diagram-wrap"><svg viewBox="0 0 820 380" aria-label="Utility possibility frontier">
+<line class="axis" x1="90" y1="310" x2="745" y2="310"/><line class="axis" x1="90" y1="310" x2="90" y2="50"/><text class="smallText" x="750" y="330">U_A</text><text class="smallText" x="62" y="45">U_B</text>
+<path class="lineC" d="M90 310 C130 100,260 55,410 118 C565 182,690 142,720 310"/><line class="lineA dash" x1="90" y1="310" x2="530" y2="70"/><circle cx="405" cy="119" r="5" fill="var(--accent)"/><text class="smallText" x="420" y="108">α = β = 1/2</text><circle cx="255" cy="78" r="4" fill="var(--amber)"/><text class="smallText" x="220" y="63">β max</text><circle cx="640" cy="158" r="4" fill="var(--amber)"/><text class="smallText" x="650" y="150">α max</text>
+</svg><div class="diagram-caption">Schematic reconstruction of Figure 2 (p. 285).</div>
+<div class="source">Source: Section III.A · Equation (1) · Figure 2 · pp. 284–285</div></section>
+
+<section id="ownership-contracting"><h3>2.4 Ownership、control rights 与 bargaining</h3>
+<div class="split"><div class="card"><h4>Individual asset ownership</h4><p>每个人保留自己最初资产的 control。拥有更好 outside option 的伙伴，可以不经对方 consent 就带着自己的资产离开。如果 A 与 B 继续合作，则 Date 2 再通过 transfer price / profit shares 谈判分配。</p></div><div class="card"><h4>Joint asset ownership</h4><p>双方共同控制两项资产，并在 Date 0 约定 ownership shares。之后任何一方想离开，都需要另一位 initial partner 的 consent，因此新的 partner 实际上必须与两位初始伙伴一起谈判。</p></div></div>
+<p>由于 wealth constraint 可能 binding，作者采用 <span class="term">Hart–Mas-Colell (1996) bargaining protocol</span>，它产生 Maschler–Owen consistent NTU value；在 bilateral bargaining 下退化为 Nash bargaining。只有拥有相关 control rights、能够影响决策的人进入 bargaining table。</p>
+<details><summary>论文明确讨论的 technical qualifications</summary><div class="detail-body"><ul>
+<li>Prices 是 contractible；contractual incompleteness 来自 non-verifiable interim match information 与 non-contractible specific investment。</li>
+<li>如果 interim information 可验证，那么最优 ownership 可以写成 state-contingent contract。Displacement–retention 的底层逻辑仍存在，但 ex ante trade-off 会明显减弱，因为 regime 可随 state 调整。</li>
+<li>Online Appendix 论证：在本文环境中，long-term contracts 相比 joint asset ownership 不能进一步改善 ex ante efficiency。</li>
+<li>Alternative bargaining protocols 可能改变 utility level，却不改变基本 ownership logic。</li>
+<li>理论上 profit shares 可依赖 realized output；作者聚焦 constant shares，因为 Date-2 problem 真正相关的是 expected share。</li>
+</ul></div></details>
+<div class="source">Source: Section II · pp. 283–284; footnotes 9, 12–14</div></section>
+</section>
+
+<section id="asset-ownership"><div class="section-kicker">Section III</div><h2>3. Asset Ownership 与 Partner Dynamics</h2>
+
+<section id="symmetric-options"><h3>3.1 Benchmark：symmetric outside options</h3>
+<p>如果两人都没有遇到替代伙伴，原始组合继续合作并 equal split。如果两人都遇到了替代伙伴，决策同样是 jointly efficient：当 <span class="math-inline">\(\pi\ge\sigma\)</span> 时两人继续合作；当 <span class="math-inline">\(\sigma&gt;\pi\)</span> 时两人都离开。此时 ownership 无关，因为双方 switching incentives 完全一致。</p>
+<div class="callout"><strong>Ownership 只有在 outside options 不对称时才真正重要。</strong> 最关键的事件是：恰好一位 initial partner 找到新 match，其概率为 <span class="math-inline">\(2q(1-q)\)</span>。</div>
+<div class="source">Source: Section III.B · pp. 285–286</div></section>
+
+<section id="individual-ownership"><h3>3.2 Individual ownership：displacement 与 distorted staying</h3>
+<p>假设只有 Alice 遇到 Charles。在 individual ownership 下，她可以 unilateral leave。如果她离开，Bob 的 utility 降到 0。Alice 比较是否离开时只考虑自己从 C 得到的 private gain，而不会内部化 Bob 的损失，因此即使 Alice 的 gain 小于 Bob 的 loss，她仍可能离开。这就是 <span class="term">displacement externality</span>。</p>
+<p>即使 Alice 最后没有离开，也存在第二类 inefficiency。可信的 switching option 改善了她与 Bob bargaining 时的地位，使其 profit share 超过 1/2；但 team production 的 joint surplus 在 equal split 时最大，因此这种 renegotiated stay 也会降低总 surplus。</p>
+<div class="equation-wrap"><div class="equation"><div class="eqtitle">Lemma 1：individual ownership 下的 switching threshold</div>
+<div class="math-display">\text{Leave if }\pi&lt;\widehat\pi_I(\sigma,w);\qquad
+\text{stay and renegotiate if }\pi\ge\widehat\pi_I(\sigma,w).</div>
+<div class="eqnote"><div><strong>Zero wealth.</strong> Online Appendix 给出 <span class="math-inline">\(\widehat\pi_I(\sigma)=\sigma\)</span>。</div><div><strong>Wealth effect.</strong> 在 wealth 真正能改变 bargaining outcome 的区间内，<span class="math-inline">\(\widehat\pi_I(\sigma,w)\)</span> 随 <span class="math-inline">\(w\)</span> 下降：没有 outside option 的一方更有能力补偿潜在离开者，让其留下。</div></div></div></div>
+<p>论文定义了一个 lower wealth threshold 与一个 upper wealth threshold。低于 lower bound 时，额外 wealth 太少，无法改变 renegotiation outcome；高于 upper bound 时，transfer 足以完全消除 ex post inefficiency，并恢复 efficient equal sharing。</p>
+<div class="source">Source: Section III.C, “Individual Asset Ownership” · Lemma 1 · pp. 286–287</div></section>
+
+<section id="joint-ownership"><h3>3.3 Joint ownership：retention 与 inefficient buyouts</h3>
+<p>在 joint ownership 下，Alice 不能直接把自己的资产带去 C；Bob 必须 consent。在没有 cash wealth 时，Alice 只能通过给 Bob 一部分未来 A–C partnership 的收益权来补偿他。这样 Bob 即使不提供任何 productive effort，也持有 future profits 的 share，从而稀释真正生产者 Alice 与 Charles 的 effort incentives。</p>
+<p>如果 Alice 能给出的 share 仍不足以买到 Bob 的 consent，那么即使 A–C match 能提高 joint surplus，Alice 也必须留下。这就是 <span class="term">retention externality</span>：没有 outside option 的 incumbent 可以把本来应该去更好 match 的 partner 留在原关系中。</p>
+<div class="equation-wrap"><div class="equation"><div class="eqtitle">Lemma 2：joint ownership 下的 switching threshold</div>
+<div class="math-display">\text{Leave with consent if }\pi&lt;\widehat\pi_J(\sigma,w);\qquad
+\text{stay with }\alpha^*=\beta^*=1/2\text{ if }\pi\ge\widehat\pi_J(\sigma,w).</div>
+<div class="eqnote"><div><strong>Retention region.</strong> Wealth 很低时，即使 outside option 很好，Alice 也可能无法有效率地 buy out Bob。</div><div><strong>Wealth effect.</strong> 在 active range 内，<span class="math-inline">\(\widehat\pi_J(\sigma,w)\)</span> 随 <span class="math-inline">\(w\)</span> 上升：cash 让 buyout 更容易，于是更多 inside prospects 下都会发生 leaving。</div></div></div></div>
+<div class="source">Source: Section III.C, “Joint Asset Ownership” · Lemma 2 · pp. 287–289</div></section>
+
+<section id="optimal-ownership"><h3>3.4 Proposition 1：optimal asset ownership</h3>
+<p>定义 <span class="math-inline">\(\widehat\pi_V(\sigma)\)</span> 为 joint-efficiency threshold：当 inside prospect 跨过它时，从 joint-surplus 角度看，最优动作从 split 转为 equal-share stay。在 binding wealth constraints 下：</p>
+<div class="callout green"><span class="tag author">Proposition 1</span><ol>
+<li>如果 <span class="math-inline">\(\pi_L,\pi_H&lt;\widehat\pi_V(\sigma)\)</span>，选择 <strong>individual ownership</strong>。</li>
+<li>如果 <span class="math-inline">\(\pi_L,\pi_H\ge\widehat\pi_V(\sigma)\)</span>，选择 <strong>joint ownership</strong>。</li>
+<li>如果 <span class="math-inline">\(\pi_L&lt;\widehat\pi_V(\sigma)&lt;\pi_H\)</span>，存在 <span class="math-inline">\(\widehat p\in(0,1)\)</span>：当 high inside prospect 足够可能，即 <span class="math-inline">\(p\ge\widehat p\)</span> 时选择 joint ownership，否则选择 individual ownership。</li>
+</ol><p>并且 <span class="math-inline">\(\widehat\pi_J&lt;\widehat\pi_V&lt;\widehat\pi_I\)</span>，而 <span class="math-inline">\(\widehat\pi_V\)</span> 随 outside prospect <span class="math-inline">\(\sigma\)</span> 上升。</p></div>
+
+<div class="diagram-wrap"><svg viewBox="0 0 860 520" aria-label="Schematic Figure 3">
+<line class="axis" x1="95" y1="450" x2="780" y2="450"/><line class="axis" x1="95" y1="450" x2="95" y2="55"/><text class="smallText" x="786" y="471">outside prospect σ</text><text class="smallText" x="72" y="48">inside prospect π</text>
+<line class="lineA dash" x1="95" y1="450" x2="665" y2="70"/><line class="lineC" x1="95" y1="450" x2="665" y2="165"/><line class="lineB dash" x1="95" y1="450" x2="665" y2="285"/>
+<text class="smallText" x="675" y="74">π̂_I</text><text class="smallText" x="675" y="169">π̂_V</text><text class="smallText" x="675" y="289">π̂_J</text>
+<text class="nodeText" x="260" y="160">Joint ownership</text><text class="nodeText" x="500" y="205">Joint ownership</text><text class="nodeText" x="395" y="338">Individual ownership</text><text class="nodeText" x="590" y="388">Individual ownership</text>
+<text class="smallText" x="470" y="105">(I)</text><text class="smallText" x="590" y="190">(II)</text><text class="smallText" x="590" y="280">(III)</text><text class="smallText" x="680" y="375">(IV)</text>
+</svg><div class="diagram-caption">Schematic reconstruction of Figure 3 (p. 290): the middle locus is the joint-efficiency threshold; individual and joint ownership generate different ex post errors around it.</div>
+
+<h4>如何阅读 Figure 3 的四个区域</h4>
+<div class="table-wrap"><table><thead><tr><th>Region</th><th>Jointly efficient action</th><th>Individual ownership 的问题</th><th>Joint ownership 的问题</th></tr></thead><tbody>
+<tr><td>I</td><td>Stay together</td><td>Alice 留下，但利用 outside option renegotiate 出不均等 share，降低 team efficiency。</td><td>Efficient equal-share stay。</td></tr>
+<tr><td>II</td><td>Stay together</td><td>Alice 可能直接离开：displacement externality。</td><td>Efficient equal-share stay。</td></tr>
+<tr><td>III</td><td>Split</td><td>Efficient flexibility。</td><td>Alice 可能被强行留下：retention externality。</td></tr>
+<tr><td>IV</td><td>Split</td><td>Efficient flexibility。</td><td>可以 split，但通过 future profit shares 实施 buyout，会扭曲新 match 的 effort。</td></tr>
+</tbody></table></div>
+<p>在 mixed case <span class="math-inline">\(\pi_L&lt;\widehat\pi_V&lt;\pi_H\)</span> 中，任何 Date-0 ownership choice 都必须接受某种可能的 ex post mistake。Joint ownership 保护 high state，却可能在 low state 产生 retention；individual ownership 保护 low state 的 flexibility，却可能在 high state 产生 displacement。</p>
+<div class="callout amber"><strong>为什么 non-verifiability 至关重要。</strong> 如果 <span class="math-inline">\(\pi\)</span> 是 contractible，双方可以在 Date 0 就写明：low state 使用 individual ownership，high state 使用 joint ownership。因而本文真正有内容的 commitment–flexibility trade-off，依赖 relationship-specific match information 的 non-verifiability。</div>
+<div class="source">Source: Section III.D · Proposition 1 · Figure 3 · pp. 289–290</div></section>
+</section>
+
+<section id="investments-wealth"><div class="section-kicker">Section IV</div><h2>4. Relation-Specific Investments 与 Wealth</h2>
+
+<section id="investment-incentives"><h3>4.1 Proposition 2：ownership 如何改变 investment incentives</h3>
+<p>现在把 Date 1 的 relation-specific investments 放回模型。记 <span class="math-inline">\(r_I^*(w)\)</span> 与 <span class="math-inline">\(r_J^*(w)\)</span> 分别为 individual 与 joint ownership 下的 equilibrium investment。</p>
+<div class="callout green"><span class="tag author">Proposition 2</span><p>在 transfer constraints 仍然 binding 时，<span class="math-inline">\(r_J^*(w)&gt;r_I^*(w)\)</span>。当 wealth 已经足以开始缓解 ex post inefficiency、但还不足以完全消除它时，<span class="math-inline">\(r_J^*(w)\)</span> 随 wealth 下降，而 <span class="math-inline">\(r_I^*(w)\)</span> 随 wealth 上升。当 wealth 足以完全消除 asymmetric-outside-option 状态下的所有 ex post inefficiencies 后，两种 ownership 的 investment level 相同。</p></div>
+<div data-tab-group class="tabs"><div class="tab-buttons"><button class="active" data-target="inv-intuition">Intuition</button><button data-target="inv-formal">Formal logic</button></div>
+<div id="inv-intuition" class="tab-panel active"><p><strong>Joint ownership 把自己的 inefficiency 放在 bad relationship state。</strong> Inside match 好时，joint control 能有效率地保留它；inside match 差时，才可能发生 retention。于是 high 与 low state 的 payoff gap 被拉大，提高了通过 investment 增加 high state 概率的回报。</p><p><strong>Individual ownership 则把自己的 inefficiency 放在 good relationship state。</strong> Match 差时 flexibility 很有价值；match 好时 displacement 或 renegotiation 会侵蚀 surplus。于是 high–low payoff gap 被压缩，investment incentive 变弱。</p></div>
+<div id="inv-formal" class="tab-panel"><p><span class="math-inline">\(r_i\)</span> 的 marginal return，本质上与 investment 对 <span class="math-inline">\(p(r_A,r_B)\)</span> 的边际影响乘以 continuation utility 在 <span class="math-inline">\(\pi_H\)</span> 和 <span class="math-inline">\(\pi_L\)</span> 之间的差有关。Ownership 正是通过改变这个 state-contingent utility gap 来改变 investment incentive。</p></div></div>
+<div class="diagram-wrap"><svg viewBox="0 0 940 390" aria-label="Wealth and specific investment schematic">
+<text class="nodeText" x="220" y="32">Panel A: lower bounds at zero</text><line class="axis" x1="70" y1="320" x2="440" y2="320"/><line class="axis" x1="70" y1="320" x2="70" y2="65"/><path class="lineA" d="M70 95 C160 125,245 205,370 235 L430 235"/><path class="lineB" d="M70 285 C165 265,245 225,370 235 L430 235"/><text class="smallText" x="340" y="150">r*_J(w)</text><text class="smallText" x="340" y="270">r*_I(w)</text>
+<text class="nodeText" x="690" y="32">Panel B: positive lower bounds</text><line class="axis" x1="530" y1="320" x2="900" y2="320"/><line class="axis" x1="530" y1="320" x2="530" y2="65"/><path class="lineA" d="M530 120 L610 120 C690 150,760 210,820 235 L900 235"/><path class="lineB" d="M530 275 L610 275 C690 255,760 235,820 235 L900 235"/><text class="smallText" x="760" y="155">r*_J(w)</text><text class="smallText" x="760" y="270">r*_I(w)</text>
+</svg><div class="diagram-caption">Schematic reconstruction of Figure 4 (p. 292). Wealth narrows the investment gap from opposite directions until ownership becomes irrelevant for investment.</div>
+<div class="source">Source: Section IV.A · Proposition 2 · Figure 4 · pp. 291–292</div></section>
+
+<section id="expected-utility"><h3>4.2 Lemmas 3–4 与 Proposition 3：wealth、utility 与 ownership</h3>
+<h4>Lemma 3 — individual ownership</h4>
+<p>Individual ownership 下的 expected productive utility 随 wealth 呈三段式：wealth 小到无法影响 renegotiation 时为 flat；进入 intermediate range 后，wealth 开始缓解 displacement 或 unequal-sharing inefficiency，expected utility 上升；wealth 足以消除相关 ex post inefficiency 后再次变平。这里 wealth 的 <em>ex post efficiency effect</em> 与 <em>ex ante investment effect</em> 方向相同。</p>
+<h4>Lemma 4 — joint ownership</h4>
+<p>Joint ownership 下，wealth effect 一般不是 monotone。Wealth 在 <em>ex post</em> 能缓解 bad-state 的 retention / buyout problem，但因为 bad state 被“保险”得更好，<em>ex ante</em> 做 relation-specific investment 的动力会下降。论文定义 <span class="math-inline">\(w_J^*\)</span> 为 joint ownership 下使 expected productive utility 最大的 wealth level，并定义阈值 <span class="math-inline">\(\widehat\pi_H\)</span> 来决定 incentive effect 何时占主导。</p>
+<div class="diagram-wrap"><svg viewBox="0 0 960 405" aria-label="Expected utilities and wealth schematic">
+<text class="nodeText" x="235" y="28">Panel A: π_H ≥ π̂_H</text><line class="axis" x1="80" y1="330" x2="445" y2="330"/><line class="axis" x1="80" y1="330" x2="80" y2="70"/><path class="lineA" d="M80 105 C170 155,260 230,360 245 L440 245"/><path class="lineB" d="M80 245 C190 245,310 245,440 245"/><text class="smallText" x="240" y="155">EU_J(w)</text><text class="smallText" x="250" y="275">EU_I(w)</text>
+<text class="nodeText" x="710" y="28">Panel B: π_H &lt; π̂_H</text><line class="axis" x1="540" y1="330" x2="905" y2="330"/><line class="axis" x1="540" y1="330" x2="540" y2="70"/><path class="lineA" d="M540 300 C610 190,690 130,760 160 C820 185,855 225,905 245"/><path class="lineB" d="M540 305 C650 285,740 250,825 245 L905 245"/><text class="smallText" x="690" y="120">EU_J(w)</text><text class="smallText" x="700" y="285">EU_I(w)</text>
+</svg><div class="diagram-caption">Schematic reconstruction of Figure 5 (p. 294): when relation-specific investment is very important, joint ownership is most valuable with tight transfer capacity; when it is less important, joint ownership may peak at an interior wealth level.</div>
+<div class="callout green"><span class="tag author">Proposition 3</span><p>存在 critical wealth level <span class="math-inline">\(w_0\in[0,w_J^*]\)</span>，使得对所有 <span class="math-inline">\(w\in(w_0,\bar w)\)</span>，双方严格偏好 joint ownership；其中 <span class="math-inline">\(\bar w\)</span> 是足以完全消除 ex post inefficiencies 的 wealth 水平。当 wealth 足够高时 ownership 无关。Individual ownership 只有在 wealth 很低、且 relation-specific investment 的重要性不足时才可能最优。</p></div>
+<div class="source">Source: Section IV.B · Lemmas 3–4 · Proposition 3 · Figure 5 · pp. 292–294</div></section>
+
+<section id="transfer-capacity"><h3>4.3 改变可用于 transfers 的金额</h3>
+<h4>Optimal transfer capacity</h4>
+<p>跨所有 wealth levels 比较，最大的 expected productive utility 总是在 joint ownership 且可用 transfer amount 等于 <span class="math-inline">\(w_J^*\)</span> 时达到。如果双方能 ex ante 自由选择一个 ex post transfer cap <span class="math-inline">\(t\)</span>，他们会选择 <span class="math-inline">\(t^*=w_J^*\)</span>，而不一定选择最大 possible transfer capacity。原因是过多 transfer capacity 会改善 bad state，从而削弱 specific-investment incentives。</p>
+<h4>为什么 outside financing 不能替代 wealth</h4>
+<p>如果双方自身太穷，在本文模型中从 outside investor 融资也不会提高 expected utility。Investor 必须从 future profit 获得回报，所以即使它不提供任何 productive effort，也必须拿到 stake。在 joint ownership 下，这等于用一个 nonproductive investor claim 替换原来的 nonproductive incumbent claim；在 individual ownership 下，investor stake 同样稀释 productive partners 的 incentives。因此真正 binding 的是 <span class="term">wealth constraint</span>，而不仅仅是 financing constraint。</p>
+<h4>为什么富有的 partners 也难以可信地承诺“不使用 wealth”</h4>
+<p>当 partners 拥有的 wealth 超过 ex ante 最优水平时，他们希望限制未来 transfers。但对 transfer 设置 contractual penalty 并不 renegotiation-proof：如果 penalty 付给另一位 partner，双方之后可以直接 waive；即使付给 third party，只要第三方原本几乎不可能真正收到 penalty，它也可能接受一个较小 settlement 后同意 renegotiate。作者因此认为，对 ex post transfer capacity 做可信 commitment 是困难的。</p>
+<div class="source">Source: Section IV.C · pp. 294–296</div></section>
+</section>
+
+<section id="asymmetry"><div class="section-kicker">Section V</div><h2>5. Asymmetric Partners</h2>
+<section id="asymmetric-wealth"><h3>5.1 Asymmetric wealth</h3>
+<p>即使只有一位 initial partner 受 wealth constraint，displacement–retention trade-off 仍然存在。假设 Alice 没有 wealth，而 Bob 很富有。在 individual ownership 下，当 Alice 获得 outside option 时，Bob 可以付钱让 Alice 留下；但镜像情形中，Alice 无法付钱让获得 outside option 的 Bob 留下。在 joint ownership 下，当 Bob 获得 outside option 时，他可以 buy out Alice；但 Alice 获得 outside option 时，她没有足够 wealth 买回自己的退出自由。</p>
+<div class="callout"><strong>Robustness result.</strong> 两类 inefficiencies 仍会发生，只是频率下降。核心机制只要求至少有一位 partner 无法融资所有必要的 transfers，并不要求两人的 wealth 完全相等。</div>
+<div class="source">Source: Section V · p. 296</div></section>
+
+<section id="asymmetric-prospects"><h3>5.2 找到 outside partners 的概率不对称</h3>
+<p>在一个去掉 specific investment 的简化版本中，Alice 与 Bob 留在一起时各得到 <span class="math-inline">\(\pi/2\)</span>；去各自的 alternative match 时各得到 <span class="math-inline">\(\sigma/2\)</span>。Alice 以概率 <span class="math-inline">\(q_A\)</span> 找到 C，而 Bob 以 <span class="math-inline">\(q_B\ne q_A\)</span> 找到 D。</p>
+<div class="equation-wrap"><div class="equation"><div class="eqtitle">Equation (2)：Alice 偏好 joint ownership 的阈值</div>
+<div class="math-display">q_A&lt;\widehat q_A=\left[\left(\frac{1-q_B}{q_B}\right)\left(\frac{\sigma-\pi}{\pi}\right)+1\right]^{-1}. \tag{2}</div>
+<div class="eqnote"><div><strong>Interpretation.</strong> 当 Alice 自己不太可能成为获得 outside option 的那个人时，她更重视 joint control 对 Bob 可能退出所提供的保护。</div><div><strong>Strategic interdependence.</strong> Alice 的 threshold 会随 Bob 的 outside-match probability 上升；Bob 有完全对称的条件。</div></div></div></div>
+<div class="table-wrap"><table><thead><tr><th>Case</th><th>Jointly efficient default</th><th>Equilibrium implication</th></tr></thead><tbody>
+<tr><td><span class="math-inline">\(\pi&lt;\sigma/2\)</span></td><td>从 joint perspective 看，leaving 足够有吸引力。</td><td>Alice 与 Bob 不会同时偏好 joint ownership；对所有 <span class="math-inline">\(q_A,q_B\in(0,1)\)</span>，equilibrium 都是 individual ownership。</td></tr>
+<tr><td><span class="math-inline">\(\pi&gt;\sigma/2\)</span></td><td>Staying together 最大化 joint surplus。</td><td>存在一块双方都偏好 joint ownership 的区域；两人的 outside prospects 不能差得太大。</td></tr>
+</tbody></table></div>
+<div class="source">Source: Section V · Equation (2) · Figure 6 · pp. 296–297</div></section>
+</section>
+
+<section id="empirical"><div class="section-kicker">Section VI</div><h2>6. Empirical Predictions</h2>
+<p>论文把可检验含义组织成一条链条：exogenous match conditions → ownership structure → specific investment → dynamic partner stability。作者给出四个主要 predictions，并逐一讨论 measurement、已有 evidence 与未来如何 test。</p>
+
+<section id="prediction-1"><h3>6.1 Prediction 1 — Higher asset specificity increases integration</h3>
+<p>更高的 inside quasi-rents 会提高 inefficient displacement 的损失，同时降低 retention 相对重要性，因此更支持 integration。这重新得到 Williamson 的经典预测，但 formal mechanism 不同。实证中可用 geographic proximity、vertical trading relationship strength 等 proxy asset specificity；ownership outcomes 可以是 vertical integration、cross-holdings、joint ventures、strategic investments、make-versus-buy，或者 long-term vs short-term contracts。</p>
+<p>作者把 <strong>Joskow (1985)</strong> 作为早期代表，并引用 <strong>Lafontaine &amp; Slade (2007, 2013)</strong> 与 <strong>Joskow (2010)</strong> 作为更广泛的 evidence reviews。</p>
+<div class="source">Source: Section VI · pp. 297–298</div></section>
+
+<section id="prediction-2"><h3>6.2 Prediction 2 — Greater alternative-partner potential decreases integration</h3>
+<p>这是本文最独特的 dynamic comparative static。更高的 outside prospect <span class="math-inline">\(\sigma\)</span>，或更高的 superior partner arrival chance <span class="math-inline">\(q\)</span>，都会提高 flexibility 的价值，从而使 upfront integration 更不吸引人。</p>
+<div class="callout amber"><strong>这与常见的“uncertainty → integration”直觉方向相反。</strong> Williamson 常把更高 uncertainty 与更多 integration 联系起来。Hellmann–Thiele 区分的是 <em>partner-match uncertainty</em>：如果 uncertainty 意味着未来更可能出现价值更高的 asset constellation，那么 integration 反而可能妨碍 adaptation。</div>
+<p>Measurement 很困难。作者建议把市场放在从 entrepreneurial 到 mature business opportunities 的谱系上：在 entrepreneurial setting，business model 与 asset combinations 尚不稳定，更容易找到 alternative constellations；在成熟行业中，最优组合更清楚。Technology / business-model maturity 是理想指标，firm age 与 industry age 是较粗的 proxies。作者引用 <strong>Frésard, Hoberg &amp; Phillips (2015)</strong> 作为间接证据：基于 text-based vertical-relationship measure，older firms 更 vertically integrated。</p>
+<div class="source">Source: Section VI · pp. 298–299</div></section>
+
+<section id="prediction-3"><h3>6.3 Prediction 3 — Integration encourages specific investment</h3>
+<p>模型给出明确 prediction：joint ownership 增加 relation-specific investment。可能的 empirical measures 包括 codependent technology adoption、interrelated R&amp;D expenditure。作者用 automobile industry 的 <strong>Monteverde &amp; Teece (1982)</strong> 与 franchising 的 <strong>Brickley, Misra &amp; Van Horn (2006)</strong> 作为支持性 evidence。</p>
+<div class="source">Source: Section VI · p. 299</div></section>
+
+<section id="prediction-4"><h3>6.4 Prediction 4 — Integration increases partner stability</h3>
+<p>这一 prediction 必须使用 dynamic data，而不能只看一个 cross-section。直接检验应问：integration 是否降低 partner switching 与 boundary change 的发生率？相关 outcomes 包括 mergers and acquisitions、divestments、spin-outs、supplier switching，以及 successive strategic alliances 中 partner identity 的改变。</p>
+<p>作者认为 <strong>Atalay, Hortaçsu &amp; Syverson (2014)</strong> 已开始研究 ownership changes 后的 dynamic responses，但更直接的 test 应显式观察 stability 与 switching。</p>
+<div class="source">Source: Section VI · p. 299</div></section>
+
+<div class="table-wrap"><table><thead><tr><th>Primitive / state</th><th>Ownership prediction</th><th>Behavioral implication</th><th>Measurement challenge</th></tr></thead><tbody>
+<tr><td>更高 current asset specificity / inside quasi-rents</td><td>More integration</td><td>保护高价值 incumbent match</td><td>Specificity proxies 可能 endogenous</td></tr>
+<tr><td>更高 potential outside-match value / arrival</td><td>Less integration</td><td>保留 rematching flexibility</td><td>Potential matches 是 latent</td></tr>
+<tr><td>Integration</td><td>—</td><td>更多 relation-specific investment</td><td>Specific investment 经常难以直接观察</td></tr>
+<tr><td>Integration</td><td>—</td><td>更高 partner stability</td><td>需要 longitudinal relationship data</td></tr>
+</tbody></table></div>
+</section>
+
+<section id="critical">
+<div class="section-kicker">7 · Critical Reading</div>
+<h2>Critical Reading：这个理论究竟靠什么成立？</h2>
+
+<section id="drivers">
+<h3>7.1 Key Assumptions 与真正驱动结果的 Frictions</h3>
+<p>这篇论文并不是简单地说“有 uncertainty 所以要 integration”。真正的结果来自 <span class="term">partner uncertainty</span>、由 ownership 决定的 consent rights、team moral hazard 与有限 transfer capacity 的组合。下面区分哪些假设创造了核心 trade-off，哪些主要用于保持模型可处理。</p>
+<div class="table-wrap"><table>
+<thead><tr><th>Assumption / feature</th><th>在 mechanism 中的作用</th><th>如果没有它会怎样？</th></tr></thead>
+<tbody>
+<tr><td>Initial ownership choice 之后，partners 可能发现 alternative matches。</td><td>制造一个真实的 dynamic rematching problem，而不是只把 outside option 当作反事实 bargaining threat。</td><td>如果实际不会 partner switching，displacement–retention trade-off 就不会出现。</td></tr>
+<tr><td>Individual ownership 允许 unilateral exit；joint ownership 要求 mutual consent。</td><td>把 ownership 变成 commitment-versus-flexibility device。</td><td>两种 regime 就不会系统性地产生不同 switching behavior。</td></tr>
+<tr><td>Wealth 可能不足以实施 side payments。</td><td>阻止 renegotiation 在任何状态下都恢复 jointly efficient partner allocation。</td><td>Wealth 足够高时，ex post inefficiencies 全部消失，ownership 最终变得无关。</td></tr>
+<tr><td>Production 依赖 complementary private efforts。</td><td>使 unequal profit shares 具有真实成本：它们扭曲 effort，并产生 concave / backward-bending utility possibility frontier。</td><td>如果未来利润份额只是无成本 transfer，ex post inefficiency 的关键来源会大幅削弱。</td></tr>
+<tr><td>Inside prospect <span class="math-inline">\(\pi\)</span> 对 partners 可观察、但 non-verifiable。</td><td>阻止双方 Date 0 就根据未来 internal match 是好还是坏，直接写 state-contingent ownership。</td><td>若 signal 可验证，可以 bad state 用 individual ownership、good state 用 joint ownership。</td></tr>
+<tr><td>Alternative-match arrival 是 exogenous。</td><td>让模型集中研究机会到来之后 ownership 的作用。</td><td>Endogenous search 会增加新的 incentive margin：governance 可能改变寻找替代伙伴的 effort。</td></tr>
+</tbody></table></div>
+<div class="source">Sources: Sections II–IV, especially pp. 281–295; verifiability qualification on p. 290; conclusion on pp. 299–300</div>
+</section>
+
+<section id="limitations">
+<h3>7.2 Authors' Limitations 与 Analytical Limitations</h3>
+<div class="split">
+<div class="callout amber"><span class="tag author">Author's argument</span><h4>作者明确提出的限制与 extensions</h4>
+<ul>
+<li><strong>Ex post inefficiency 的来源。</strong> 本文使用 team incentives + wealth constraints；作者指出 asymmetric information 也可能产生其他 ex post inefficiencies。</li>
+<li><strong>Exogenous partner discovery。</strong> Superior alternatives 的 arrival 被当作给定；自然扩展是让 firms 自己选择多积极地寻找 alternative partners。</li>
+<li><strong>One switching opportunity。</strong> Dynamic environment 被刻意做得很简单。作者明确提出 infinite-horizon extension，用来研究 partner changes 的 timing 与 frequency。</li>
+<li><strong>Empirical measurement。</strong> Potential alternative matches 与 relation-specific investments 都很难直接观察，因此新的 predictions 在实证上并不容易检验。</li>
+</ul>
+<div class="source">Source: Sections VI–VII · pp. 297–300</div></div>
+
+<div class="callout"><span class="tag synth">Analytical synthesis</span><h4>批判性阅读可以进一步追问的问题</h4>
+<ul>
+<li><strong>Joint ownership 作为 “integration”。</strong> 本文有意不同于 canonical GHM 的“一方拥有两项资产”。因此实际数据中的 vertical integration measure 与模型中的 joint control 并非天然一一对应。</li>
+<li><strong>Bargaining protocol。</strong> Hart–Mas-Colell 提供严谨的 NTU solution，作者也论证 alternative protocols 不改变基本逻辑；但具体 threshold 的 quantitative location 仍可能依赖 bargaining details。</li>
+<li><strong>Symmetry 与 binary match quality。</strong> Baseline 使用 symmetric parties 与 two-point inside prospect。Section V 证明核心 trade-off 对部分 asymmetry 有 robustness，但更丰富的 heterogeneity 可能改变 ownership frontier。</li>
+<li><strong>Empirical endogeneity。</strong> Observed integration、specific investment 与 partner stability 很可能共同 endogenous。本文给出 predictions，但没有提供把这些关系解释为 causal effects 的 empirical identification design。</li>
+</ul></div>
+</div>
+</section>
+
+<section id="extensions">
+<h3>7.3 Research Implications / Extensions</h3>
+<div class="callout amber"><span class="tag extend">Research extension</span>
+<p>以下是从本文机制出发的学习型扩展，不是作者已经完成或证明的结果。</p>
+<ul>
+<li><strong>Endogenous search and matching。</strong> 让 ownership 影响寻找 alternative suppliers / buyers 的 search intensity。Joint ownership 也许不仅减少 switching，还会减少发现 alternatives 的 incentive。</li>
+<li><strong>Infinite-horizon governance transitions。</strong> 允许关系在 independent、jointly controlled、acquired、dissolved 等状态间反复转换，把一次性的 commitment–flexibility trade-off 变成 dynamic governance policy。</li>
+<li><strong>Heterogeneous asset specificity。</strong> 区分 incumbent match 的 quasi-rents 与潜在 alternative match 的 asset specificity，并允许双方对 governance 有不对称偏好。</li>
+<li><strong>Network environment。</strong> 用 production network 替代“一边只有一个 alternative partner”的结构。Flexibility 的价值将可能依赖 market thickness、concentration 与 feasible substitutes 的 network topology。</li>
+<li><strong>Empirical relationship histories。</strong> 构建 supplier–buyer links、strategic equity stakes、acquisitions、divestitures、R&amp;D collaboration 的 panel，联合检验 tighter control 是否同时预测更多 specific investment 与更少 switching。</li>
+</ul></div>
+</section>
+</section>
+
+<section id="learning">
+<div class="section-kicker">8 · Active Recall</div>
+<h2>Understanding Check</h2>
+<p>答案默认隐藏。只有无法自己重构 mechanism 时再看 Hint，然后给自己的掌握程度打分。评分保存在浏览器本地的 <code>localStorage</code> 中。</p>
+
+<div class="quiz-card" id="quiz-q1" data-q="q1"><div class="quiz-q"><span class="tag">CORE</span><strong>Q1. Individual asset ownership 与 joint asset ownership 之间最根本的 trade-off 是什么？</strong></div>
+<div class="quiz-actions"><button data-reveal="hint">显示提示</button><button data-reveal="answer">显示答案</button></div>
+<div class="reveal hint"><strong>Hint.</strong> 想一想：当只有一位 incumbent 获得 outside opportunity 时，两种 ownership 各允许哪一种错误？</div>
+<div class="reveal answer"><strong>Suggested Answer.</strong> Individual asset ownership 保留 unilateral exit，因此有 flexibility，但可能产生 <strong>displacement externality</strong>：拥有 outside option 的 partner 离开，即使其离开的收益小于给被替代 incumbent 造成的损失。Joint asset ownership 要求 mutual consent，因此保护高价值既有关系，但可能产生 <strong>retention externality</strong>：没有 outside option 的一方阻止一个 jointly valuable switch。因此 ownership 是 flexibility 与 commitment 的取舍。<div class="mistake"><strong>Common Mistake.</strong> 认为 integration 因为能阻止 opportunistic exit 所以一定 efficient；它也可能把低效率 match 强行保留下来。</div><div class="why"><strong>Why This Matters.</strong> 后面所有 propositions 都围绕这个机制展开。</div><div class="review"><a href="#asset-ownership">Review: Section 3 · Asset Ownership</a></div></div>
+<div class="rating"><button data-rate="got">✅ 掌握</button><button data-rate="unsure">🤔 不确定</button><button data-rate="review">❌ 需要复习</button></div></div>
+
+<div class="quiz-card" id="quiz-q2" data-q="q2"><div class="quiz-q"><span class="tag">FORMAL MODEL</span><strong>Q2. 为什么 Equation (1) 中 unequal profit split 会降低 total surplus？</strong></div>
+<div class="quiz-actions"><button data-reveal="hint">显示提示</button><button data-reveal="answer">显示答案</button></div>
+<div class="reveal hint"><strong>Hint.</strong> 双方 private efforts 都是 productive complements，而每个人只根据自己的 profit share 选择 effort。</div>
+<div class="reveal answer"><strong>Suggested Answer.</strong> 提高一方的 share 会强化他的 effort incentive，却削弱另一方的 effort。由于 success probability 依赖双方 effort 的乘积，把 surplus 过度集中给一人会让另一人的 complementary effort 下降。对于 symmetric partners，total surplus 在 <span class="math-inline">\(\alpha=\beta=1/2\)</span> 的 equal split 最大，尽管每个人私下都希望 share 高于 1/2。<div class="mistake"><strong>Common Mistake.</strong> 把 profit division 当成纯粹的 transfer；本文中它会改变 effort，因此有 allocative consequence。</div><div class="why"><strong>Why This Matters.</strong> 正是 share distortion 让 limited wealth 真正具有经济后果。</div><div class="review"><a href="#production">Review: 2.3 · Joint Production and Equation (1)</a></div></div>
+<div class="rating"><button data-rate="got">✅ 掌握</button><button data-rate="unsure">🤔 不确定</button><button data-rate="review">❌ 需要复习</button></div></div>
+
+<div class="quiz-card" id="quiz-q3" data-q="q3"><div class="quiz-q"><span class="tag">MECHANISM</span><strong>Q3. 为什么 wealth 会让 individual ownership 与 joint ownership 的 leaving threshold 朝相反方向移动？</strong></div>
+<div class="quiz-actions"><button data-reveal="hint">显示提示</button><button data-reveal="answer">显示答案</button></div>
+<div class="reveal hint"><strong>Hint.</strong> Individual ownership 下是谁付钱让对方留下？Joint ownership 下又是谁付钱买到离开的 consent？</div>
+<div class="reveal answer"><strong>Suggested Answer.</strong> Individual ownership 下，wealth 让没有 outside option 的一方更有能力补偿 mobile partner 让其留下，因此 incumbent relationship 在更宽的 inside-prospect 区间存续，所以 <span class="math-inline">\(\widehat\pi_I(\sigma,w)\)</span> 在 active range 随 wealth 下降。Joint ownership 下，wealth 让 mobile partner 更容易买到离开 consent，同时在新 partnership 中保留更多 equity，因此 switching 对更宽范围的 inside prospects 都变得有吸引力，所以 <span class="math-inline">\(\widehat\pi_J(\sigma,w)\)</span> 随 wealth 上升。<div class="why"><strong>Why This Matters.</strong> Liquidity 并没有一般性的“稳定关系”作用；它的方向取决于 control rights。</div><div class="review"><a href="#individual-ownership">Review: Lemma 1</a> · <a href="#joint-ownership">Lemma 2</a></div></div>
+<div class="rating"><button data-rate="got">✅ 掌握</button><button data-rate="unsure">🤔 不确定</button><button data-rate="review">❌ 需要复习</button></div></div>
+
+<div class="quiz-card" id="quiz-q4" data-q="q4"><div class="quiz-q"><span class="tag">MECHANISM</span><strong>Q4. 在 Proposition 1 的 mixed case 中，为什么 good internal match 的概率更高会支持 joint ownership？</strong></div>
+<div class="quiz-actions"><button data-reveal="hint">显示提示</button><button data-reveal="answer">显示答案</button></div>
+<div class="reveal hint"><strong>Hint.</strong> 哪种 ownership 的 characteristic mistake 发生在 high-inside-prospect state？</div>
+<div class="reveal answer"><strong>Suggested Answer.</strong> 当 <span class="math-inline">\(\pi_L&lt;\widehat\pi_V(\sigma)&lt;\pi_H\)</span> 时，joint ownership 在 high state 的价值是防止一段高价值 incumbent partnership 被 displacement；它在 low state 的成本则是可能 retention。随着 high state 概率 <span class="math-inline">\(p\)</span> 上升，commitment benefit 的权重提高，于是存在 cutoff <span class="math-inline">\(\widehat p\)</span>，高于它时 joint ownership 最优。<div class="mistake"><strong>Common Mistake.</strong> 把 <span class="math-inline">\(p\)</span> 当成发现 outside partner 的概率。它实际上是 relation-specific investments 导致 high inside prospect 的概率。</div><div class="review"><a href="#optimal-ownership">Review: Proposition 1</a></div></div>
+<div class="rating"><button data-rate="got">✅ 掌握</button><button data-rate="unsure">🤔 不确定</button><button data-rate="review">❌ 需要复习</button></div></div>
+
+<div class="quiz-card" id="quiz-q5" data-q="q5"><div class="quiz-q"><span class="tag">FORMAL MODEL</span><strong>Q5. 为什么 Proposition 2 预测 joint ownership 下 relation-specific investment 更高？</strong></div>
+<div class="quiz-actions"><button data-reveal="hint">显示提示</button><button data-reveal="answer">显示答案</button></div>
+<div class="reveal hint"><strong>Hint.</strong> 比较两种 governance regime 把自己的 inefficiency 放在 good state 还是 bad state。</div>
+<div class="reveal answer"><strong>Suggested Answer.</strong> Specific investment 的价值在于提高 high inside prospect 的概率。Joint ownership 在 good state 有效率，却可能在 bad state retention，因此扩大 high–low payoff difference，提高 investment 的 marginal return。Individual ownership 相反：它的 displacement / renegotiation inefficiency 集中在 good state，压缩 high–low payoff gap，从而削弱 investment incentives。<div class="why"><strong>Why This Matters.</strong> 本文之所以得到明确的 investment prediction，就是因为不同 governance 的 inefficiency 落在不同 states。</div><div class="review"><a href="#investment-incentives">Review: Proposition 2</a></div></div>
+<div class="rating"><button data-rate="got">✅ 掌握</button><button data-rate="unsure">🤔 不确定</button><button data-rate="review">❌ 需要复习</button></div></div>
+
+<div class="quiz-card" id="quiz-q6" data-q="q6"><div class="quiz-q"><span class="tag">CORE</span><strong>Q6. 为什么 wealth 可以提高 ex post efficiency，却降低 ex ante investment incentives？</strong></div>
+<div class="quiz-actions"><button data-reveal="hint">显示提示</button><button data-reveal="answer">显示答案</button></div>
+<div class="reveal hint"><strong>Hint.</strong> 把 wealth 想成一种对差的 ex post governance outcome 的保险。</div>
+<div class="reveal answer"><strong>Suggested Answer.</strong> Wealth 使双方能在 outside opportunities 已经明确之后做 side payments，从而纠正 inefficient partner allocation。但在 joint ownership 下，这些 transfers 主要改善 low-inside-prospect state，使“没有把关系建设好”变得没那么痛，于是 <span class="math-inline">\(\pi_L\)</span> 与 <span class="math-inline">\(\pi_H\)</span> 的 payoff gap 缩小，relation-specific investment 的 ex ante return 下降。这也是为什么最优可用 transfer amount 可能低于 total wealth。<div class="mistake"><strong>Common Mistake.</strong> 认为更多 wealth 扩大 feasible transfer set，所以一定提高 welfare；ex ante incentive response 不能忽略。</div><div class="review"><a href="#expected-utility">Review: 4.2–4.3 · Wealth and Ownership</a></div></div>
+<div class="rating"><button data-rate="got">✅ 掌握</button><button data-rate="unsure">🤔 不确定</button><button data-rate="review">❌ 需要复习</button></div></div>
+
+<div class="quiz-card" id="quiz-q7" data-q="q7"><div class="quiz-q"><span class="tag">LITERATURE</span><strong>Q7. 为了理解 dynamic firm boundaries，本文相对于 GHM 最重要的改变是什么？</strong></div>
+<div class="quiz-actions"><button data-reveal="hint">显示提示</button><button data-reveal="answer">显示答案</button></div>
+<div class="reveal hint"><strong>Hint.</strong> GHM 中 outside partner 在 equilibrium 里真的会替代当前 partner 吗？</div>
+<div class="reveal answer"><strong>Suggested Answer.</strong> GHM 主要把 outside option 当作 bargaining threat，并假定当前 partner match 是最优的，因此 equilibrium 中通常不会真正 switching。Hellmann–Thiele 让 best partner identity 本身存在 uncertainty，而且 actual rematching 在 equilibrium 中发生。于是 ownership 从单纯的 ex ante incentive-allocation device，变成 dynamic commitment / flexibility device，并产生 displacement 与 retention externalities。<div class="mistake"><strong>Common Mistake.</strong> 只说本文“给 GHM 加入 uncertainty”。关键并非一般 uncertainty，而是 partner-quality uncertainty + equilibrium switching + ex post inefficiency。</div><div class="review"><a href="#ghm-departures">Review: 1.1 · Comparison with GHM</a></div></div>
+<div class="rating"><button data-rate="got">✅ 掌握</button><button data-rate="unsure">🤔 不确定</button><button data-rate="review">❌ 需要复习</button></div></div>
+
+<div class="quiz-card" id="quiz-q8" data-q="q8"><div class="quiz-q"><span class="tag">EVIDENCE</span><strong>Q8. 哪一个 empirical prediction 最具有 dynamic 特征？要直接检验它需要什么数据？</strong></div>
+<div class="quiz-actions"><button data-reveal="hint">显示提示</button><button data-reveal="answer">显示答案</button></div>
+<div class="reveal hint"><strong>Hint.</strong> 这个 prediction 不可能只用 ownership choice 的单期 cross-section 直接检验。</div>
+<div class="reveal answer"><strong>Suggested Answer.</strong> 最具 dynamic 特征的是 integration 提高 <strong>partner stability</strong>。直接检验需要 longitudinal relationship data，同时观察 governance / ownership 与 partner identities 随时间的变化，例如 supplier switching、successive strategic alliances、M&amp;A 后的 divestitures / spin-outs，从而比较不同 governance regimes 下的 switching hazard。<div class="why"><strong>Why This Matters.</strong> 它最直接把论文“dynamic boundary of the firm”的理论主张变成可观测 empirical object。</div><div class="review"><a href="#prediction-4">Review: Empirical Prediction 4</a></div></div>
+<div class="rating"><button data-rate="got">✅ 掌握</button><button data-rate="unsure">🤔 不确定</button><button data-rate="review">❌ 需要复习</button></div></div>
+</section>
+
+<section id="mastery">
+<h2>Can You Explain the Paper Without Looking?</h2>
+<ol class="mastery">
+<li>用 90 秒从 partner uncertainty 讲到 ownership choice；不能用“因为 integration 更好”或“因为 flexibility 有好处”这种空泛表述。</li>
+<li>不看网页重构 Figure 3：随着 inside prospect 相对 outside prospect 上升，displacement、retention、inefficient buyout、efficient staying / splitting 分别出现在哪些区间？</li>
+<li>解释 Equation (1)，再用它说明：为什么把 future output 的一部分给一个 passive third party 会造成真实成本？</li>
+<li>比较 Hellmann–Thiele、GHM 与 Williamson：本文在哪个 primitive、mechanism 与 empirical prediction 上真正新增了内容？</li>
+<li>为 partner-stability prediction 设计一个 panel-data test。最大的 endogeneity concern 是什么？你最希望找到什么 identifying variation？</li>
+</ol>
+</section>
+
+<section id="remember">
+<div class="section-kicker">9 · Synthesis</div>
+<h2>What Should I Remember?</h2>
+<div class="grid">
+<div class="card"><div class="label">One-Sentence Summary</div><div class="big">Partner uncertainty 使 ownership 成为 rematching flexibility 与保护当前高价值关系的 commitment 之间的选择。</div></div>
+<div class="card"><div class="label">Core Mechanism</div><div class="big">Individual ownership 风险是 displacement；joint ownership 风险是 retention。</div></div>
+<div class="card"><div class="label">Most Important Result</div><div class="big">更高 incumbent asset specificity 支持 joint ownership；更高 alternative-match potential 支持 individual ownership。</div></div>
+<div class="card"><div class="label">Investment Result</div><div class="big">在 binding wealth constraints 下，joint ownership 带来更多 relation-specific investment。</div></div>
+<div class="card"><div class="label">Wealth Result</div><div class="big">Transfers 能改善 ex post matching，却可能削弱 ex ante investment incentives。</div></div>
+<div class="card"><div class="label">Dynamic Prediction</div><div class="big">Integration 应与更高 partner stability 相联系。</div></div>
+</div>
+
+<h3>9.1 Eight Things to Remember</h3>
+<ol>
+<li><strong>Partner uncertainty 指的是 match quality 的不确定性，而不是一般 environment uncertainty。</strong> 潜在 superior partners 在 initial ownership choice 之后出现。</li>
+<li><strong>Joint asset ownership 意味着 mutual control。</strong> 离开需要另一位 incumbent 的 consent；这不是 canonical GHM 的 one-owner integration。</li>
+<li><strong>Asymmetric-outside-option state 才是 ownership 真正影响结果的地方。</strong> 如果两人都没有、或两人都有 alternatives，partner allocation 都是 jointly efficient。</li>
+<li><strong>Displacement 与 retention 是镜像 externalities。</strong> 一个来自 exit 太容易，另一个来自 exit 太困难。</li>
+<li><strong>Current 与 future quasi-rents 对 governance 推动方向相反。</strong> 更强 incumbent match 支持 integration；更有吸引力的 future alternative 支持 flexibility。</li>
+<li><strong>Specific investment incentive 取决于 governance 的错误落在哪个 state。</strong> Joint ownership 把 inefficiency 放在 bad state，从而扩大 good–bad payoff gap。</li>
+<li><strong>Wealth 是 double-edged sword。</strong> 它 ex post 能修复低效率 partner arrangement，却也可能为失败的关系提供“保险”，降低 ex ante 建设关系的动力。</li>
+<li><strong>最具动态性的 empirical implication 是 partner stability。</strong> 检验它需要 relationship histories，而不是只看 make-or-buy 的 cross-section。</li>
+</ol>
+
+<div class="split">
+<div class="callout green"><strong>Biggest contribution.</strong> 建立一个 firm boundary 会真实决定“能否切换 partner”的 formal dynamic theory，从而得到新的 commitment–flexibility trade-off，并提出 alternative partner potential 会降低 integration 的新预测。</div>
+<div class="callout amber"><strong>Biggest limitation.</strong> Dynamics 被刻意做得很稀疏：partner discovery 是 exogenous，而且最多只有一次 switching opportunity，因此模型还不能描述 repeated search、rematching 与 governance transitions。</div>
+</div>
+<div class="callout"><strong>Biggest open question.</strong> 如果 firms 在一个较厚的 potential-partner network 中 endogenous search，并且可以在 infinite horizon 中反复改变 partner 与 governance，最优 dynamic boundary 会是什么样？</div>
+<div class="source">Source for authors' stated future directions: Section VII · pp. 299–300; “biggest” contribution / limitation / open question 的排序属于 analytical synthesis。</div>
+</section>
+
+<section id="source-map">
+<h2>Source &amp; Coverage Map</h2>
+<p>下面把 published article 的每个 substantive section 映射到本 notebook。Page reference 使用所提供 PDF 中可见的 journal pagination。</p>
+<div class="table-wrap"><table>
+<thead><tr><th>Original paper location</th><th>Substantive content</th><th>Notebook location</th><th>Status</th></tr></thead>
+<tbody>
+<tr><td>Abstract &amp; Introduction, pp. 277–279</td><td>Partner uncertainty；displacement vs retention；asset specificity；investment、wealth、stability predictions</td><td><a href="#overview">Overview</a> · <a href="#paper-at-a-glance">Paper at a Glance</a></td><td>Covered</td></tr>
+<tr><td>I. Related Literature, pp. 279–281</td><td>GHM departures；transaction costs；ex post inefficiency；wealth；exclusivity；entrepreneurship；marriage/divorce；dissolution</td><td><a href="#literature">Literature Position</a></td><td>Covered</td></tr>
+<tr><td>II. Base Model, pp. 281–284</td><td>Agents、five dates、inside/outside prospects、investments、effort、ownership、bargaining</td><td><a href="#base-model">Base Model</a></td><td>Covered</td></tr>
+<tr><td>III.A Joint Production, pp. 284–285</td><td>Equation (1)；effort complementarity；utility frontier</td><td><a href="#production">Joint Production</a></td><td>Covered</td></tr>
+<tr><td>III.B Symmetric Outside Options, pp. 285–286</td><td>No alternative / both alternatives；ownership irrelevance</td><td><a href="#symmetric-options">Symmetric Outside Options</a></td><td>Covered</td></tr>
+<tr><td>III.C Asymmetric Outside Options, pp. 286–289</td><td>Individual ownership、displacement、Lemma 1；joint ownership、retention/buyout、Lemma 2</td><td><a href="#individual-ownership">Individual</a> · <a href="#joint-ownership">Joint</a></td><td>Covered</td></tr>
+<tr><td>III.D Optimal Asset Ownership, pp. 289–290</td><td>Proposition 1；Figure 3；threshold logic；non-verifiable signal</td><td><a href="#optimal-ownership">Optimal Ownership</a></td><td>Covered</td></tr>
+<tr><td>IV.A Optimal Investments, pp. 291–292</td><td>Proposition 2；Figure 4；wealth 与 specific investment</td><td><a href="#investment-incentives">Investment Incentives</a></td><td>Covered</td></tr>
+<tr><td>IV.B Optimal Asset Ownership, pp. 292–294</td><td>Lemmas 3–4；Proposition 3；Figure 5</td><td><a href="#expected-utility">Wealth &amp; Ownership</a></td><td>Covered</td></tr>
+<tr><td>IV.C Changing Available Transfer Amounts, pp. 294–296</td><td>Optimal transfer capacity；outside finance；renegotiation-proof commitment problem</td><td><a href="#transfer-capacity">Transfer Capacity</a></td><td>Covered</td></tr>
+<tr><td>V. Asymmetric Partners, pp. 296–297</td><td>Asymmetric wealth；asymmetric alternative-match probabilities；Equation (2)；Figure 6 logic</td><td><a href="#asymmetry">Asymmetric Partners</a></td><td>Covered</td></tr>
+<tr><td>VI. Empirical Predictions, pp. 297–299</td><td>Four predictions、measurement、existing evidence、future testing</td><td><a href="#empirical">Empirical Predictions</a></td><td>Covered</td></tr>
+<tr><td>VII. Conclusion, pp. 299–300</td><td>Summary；other inefficiencies；endogenous search；infinite horizon</td><td><a href="#critical">Critical Reading</a> · <a href="#remember">Synthesis</a></td><td>Covered</td></tr>
+</tbody></table></div>
+<div class="callout amber"><strong>Appendix boundary.</strong> Published article 多次把完整 derivations 与 proofs 放到 <em>online Appendix</em>。用户提供的 26 页 PDF 不包含该 Appendix。因此，本 notebook 忠实保留正文中报告的 propositions、lemmas、threshold directions 与 intuitions，但不会虚构 source 中没有提供的 proof steps 或 closed-form expressions。</div>
+</section>
+</article></main></div><script>
+(function(){
+const safeGet=k=>{try{return window.localStorage?window.localStorage.getItem(k):null}catch(e){return null}};
+const safeSet=(k,v)=>{try{if(window.localStorage)window.localStorage.setItem(k,v)}catch(e){}};
+const root=document.documentElement,saved=safeGet("ht-theme");if(saved)root.dataset.theme=saved;
+const theme=document.getElementById("themeBtn");function tl(){theme.textContent=root.dataset.theme==="dark"?"☀︎":"☾"}tl();theme.onclick=()=>{root.dataset.theme=root.dataset.theme==="dark"?"light":"dark";safeSet("ht-theme",root.dataset.theme);tl()};
+const pr=document.getElementById("progress");function up(){const d=document.documentElement,m=d.scrollHeight-d.clientHeight;pr.style.width=(m?100*d.scrollTop/m:0)+"%"}document.addEventListener("scroll",up,{passive:true});up();
+const aside=document.querySelector("aside");document.getElementById("navBtn").onclick=()=>aside.classList.toggle("open");
+const links=[...document.querySelectorAll(".nav a")],targets=links.map(a=>document.querySelector(a.getAttribute("href"))).filter(Boolean);links.forEach(a=>a.onclick=()=>aside.classList.remove("open"));
+if(targets.length){const obs=new IntersectionObserver(es=>{const e=es.filter(x=>x.isIntersecting).sort((a,b)=>a.boundingClientRect.top-b.boundingClientRect.top)[0];if(e)links.forEach(a=>a.classList.toggle("active",a.getAttribute("href")==="#"+e.target.id))},{rootMargin:"-15% 0px -76% 0px",threshold:[0,1]});targets.forEach(t=>obs.observe(t));}
+document.querySelectorAll("[data-tab-group]").forEach(g=>{const bs=g.querySelectorAll(".tab-buttons button"),ps=g.querySelectorAll(".tab-panel");bs.forEach(b=>b.onclick=()=>{bs.forEach(x=>x.classList.remove("active"));ps.forEach(x=>x.classList.remove("active"));b.classList.add("active");const panel=g.querySelector("#"+b.dataset.target);if(panel)panel.classList.add("active")})});
+document.querySelectorAll(".quiz-card").forEach((q,i)=>{const key="ht-quiz-"+document.documentElement.lang+"-"+(q.dataset.q||i);q.querySelectorAll("[data-reveal]").forEach(b=>b.onclick=()=>{const target=q.querySelector("."+b.dataset.reveal);if(target)target.classList.toggle("show")});q.querySelectorAll(".rating button").forEach(b=>{if(safeGet(key)===b.dataset.rate)b.classList.add("selected");b.onclick=()=>{q.querySelectorAll(".rating button").forEach(x=>x.classList.remove("selected"));b.classList.add("selected");safeSet(key,b.dataset.rate)}})});
+function rm(){if(!window.katex)return;document.querySelectorAll(".math-inline,.math-display").forEach(el=>{try{katex.render(el.textContent,el,{displayMode:el.classList.contains("math-display"),throwOnError:false})}catch(e){}})}if(window.katex)rm();else window.addEventListener("load",rm);
+})();
+</script></body></html>

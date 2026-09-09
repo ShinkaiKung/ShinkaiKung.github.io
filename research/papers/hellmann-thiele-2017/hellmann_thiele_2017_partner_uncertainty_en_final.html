@@ -1,0 +1,466 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light dark"><title>Hellmann & Thiele (2017) — Partner Uncertainty and the Dynamic Boundary of the Firm</title><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css"><script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script><style>
+:root{--bg:#f7f5ef;--panel:#fffdfa;--text:#25282c;--muted:#687077;--line:#d9d7d0;--accent:#38566f;--accent-soft:#e8eef2;--green:#456b58;--green-soft:#eaf1ec;--amber:#8a642f;--amber-soft:#f5edde;--red:#8a4b4b;--red-soft:#f5e7e7;--sidebar:286px;--topbar:56px}
+[data-theme=dark]{--bg:#171a1e;--panel:#1f2328;--text:#e7e4dd;--muted:#a6adb4;--line:#353b42;--accent:#91adc2;--accent-soft:#25323c;--green:#91b3a0;--green-soft:#26352e;--amber:#d0aa72;--amber-soft:#3b3123;--red:#d29a9a;--red-soft:#3b282a}
+*{box-sizing:border-box}html{scroll-behavior:smooth;max-width:100%}body{margin:0;max-width:100%;background:var(--bg);color:var(--text);font-family:Inter,"IBM Plex Sans","Source Sans 3",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.72;font-size:16px}
+button{font:inherit}.progress{position:fixed;top:0;left:0;height:3px;background:var(--accent);width:0;z-index:200}.topbar{position:sticky;top:0;z-index:120;height:var(--topbar);display:flex;align-items:center;gap:12px;padding:0 18px;border-bottom:1px solid var(--line);background:var(--bg)}.brand{font-weight:700}.spacer{flex:1}.topbar button,.topbar a{border:1px solid var(--line);background:var(--panel);color:var(--text);border-radius:8px;padding:7px 10px;text-decoration:none;cursor:pointer}.mobile-nav{display:none}
+.layout{display:grid;grid-template-columns:var(--sidebar) minmax(0,1fr);max-width:1500px;margin:0 auto}.layout aside{position:sticky;top:var(--topbar);height:calc(100vh - var(--topbar));overflow:auto;border-right:1px solid var(--line);padding:26px 18px 40px}.nav-title{font-size:12px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin:0 8px 12px}.nav a{display:block;text-decoration:none;color:var(--muted);border-left:2px solid transparent;padding:6px 8px;border-radius:0 7px 7px 0;font-size:14px;line-height:1.35}.nav a.l2{padding-left:20px;font-size:13px}.nav a.active{color:var(--accent);border-left-color:var(--accent);background:var(--accent-soft);font-weight:650}
+main{min-width:0;padding:42px clamp(22px,4.5vw,68px) 100px}.content{max-width:1060px;margin:0 auto;min-width:0}.hero{padding:10px 0 30px;border-bottom:1px solid var(--line);margin-bottom:36px}.eyebrow{font-size:12px;text-transform:uppercase;letter-spacing:.12em;color:var(--accent);font-weight:700}.hero h1{font-family:Georgia,"Times New Roman",serif;font-weight:600;line-height:1.15;font-size:clamp(32px,4vw,44px);margin:10px 0 12px}.meta{color:var(--muted);font-size:15px}.thesis{font-family:Georgia,"Times New Roman",serif;font-size:20px;line-height:1.55;margin-top:22px;max-width:850px}
+section[id],h2,h3,h4{scroll-margin-top:76px}h2{font-family:Georgia,"Times New Roman",serif;font-size:29px;font-weight:600;line-height:1.25;margin:68px 0 18px;padding-top:8px;border-top:1px solid var(--line)}h3{font-size:21px;line-height:1.35;margin:38px 0 14px}h4{font-size:17px;margin:27px 0 9px}.section-kicker{font-size:12px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);font-weight:700}p{margin:10px 0 14px}.term{font-weight:700;color:var(--accent)}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:18px 0 24px}.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px;min-width:0}.label{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:700}.big{font-size:18px;font-weight:700;line-height:1.35;margin-top:4px}.split{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.callout{border-left:4px solid var(--accent);background:var(--accent-soft);padding:14px 16px;border-radius:0 10px 10px 0;margin:18px 0}.callout.green{border-left-color:var(--green);background:var(--green-soft)}.callout.amber{border-left-color:var(--amber);background:var(--amber-soft)}.callout.red{border-left-color:var(--red);background:var(--red-soft)}.tag{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:2px 8px;font-size:11px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);margin-right:6px}.tag.author{color:var(--green)}.tag.synth{color:var(--accent)}.tag.extend{color:var(--amber)}.source{font-size:12px;color:var(--muted);margin-top:10px}.source::before{content:"↳ ";color:var(--accent)}
+.table-wrap,.diagram-wrap,.equation-wrap{max-width:100%;overflow-x:auto;overflow-y:hidden;margin:18px 0;border:1px solid var(--line);border-radius:10px;background:var(--panel)}table{border-collapse:collapse;width:100%;min-width:720px;font-size:14px}th,td{padding:11px 12px;border-bottom:1px solid var(--line);vertical-align:top;text-align:left}th{background:var(--accent-soft);font-size:12px;text-transform:uppercase;letter-spacing:.04em}tr:last-child td{border-bottom:0}.fingerprint td:first-child{font-weight:700;width:210px;color:var(--muted)}
+.equation{padding:18px 20px}.eqtitle{font-weight:700;margin-bottom:10px}.math-display{font-family:"STIX Two Text",Cambria,Georgia,serif;font-size:17px;white-space:pre-wrap;line-height:1.65}.math-inline{font-family:"STIX Two Text",Cambria,Georgia,serif}.eqnote{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px;font-size:14px}.eqnote>div{border-top:1px solid var(--line);padding-top:10px}
+.diagram-wrap{padding:16px}.diagram-wrap svg{display:block;width:100%;height:auto;max-width:100%;min-width:720px}.diagram-caption{font-size:12px;color:var(--muted);padding:0 16px 12px}.node{fill:var(--panel);stroke:var(--accent);stroke-width:1.5}.nodeText{fill:var(--text);font-family:Inter,system-ui,sans-serif;font-size:14px}.smallText{fill:var(--muted);font-family:Inter,system-ui,sans-serif;font-size:11px}.axis{stroke:var(--muted);stroke-width:1}.lineA{stroke:var(--accent);stroke-width:2.2;fill:none}.lineB{stroke:var(--green);stroke-width:2.2;fill:none}.lineC{stroke:var(--amber);stroke-width:2.2;fill:none}.dash{stroke-dasharray:6 5}
+details{border:1px solid var(--line);border-radius:10px;background:var(--panel);margin:12px 0;overflow:hidden}summary{cursor:pointer;padding:13px 15px;font-weight:700;list-style:none}summary::-webkit-details-marker{display:none}summary::after{content:"＋";float:right;color:var(--muted)}details[open] summary::after{content:"−"}.detail-body{padding:0 15px 15px;border-top:1px solid var(--line)}
+.pillrow{display:flex;flex-wrap:wrap;gap:7px;margin:10px 0}.pill{border:1px solid var(--line);border-radius:999px;padding:4px 9px;font-size:12px;background:var(--panel)}
+.tabs{margin:18px 0}.tab-buttons{display:flex;gap:8px;flex-wrap:wrap}.tab-buttons button{border:1px solid var(--line);background:var(--panel);color:var(--text);padding:7px 11px;border-radius:8px;cursor:pointer}.tab-buttons button.active{background:var(--accent-soft);color:var(--accent);border-color:var(--accent)}.tab-panel{display:none;padding:14px 0}.tab-panel.active{display:block}
+.quiz-card{border:1px solid var(--line);background:var(--panel);border-radius:12px;padding:17px;margin:15px 0}.quiz-q{font-size:17px;font-weight:700}.quiz-actions,.rating{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}.quiz-actions button,.rating button{border:1px solid var(--line);background:var(--bg);color:var(--text);border-radius:8px;padding:6px 10px;cursor:pointer}.reveal{display:none;border-top:1px solid var(--line);padding-top:12px;margin-top:10px}.reveal.show{display:block}.rating button.selected{background:var(--accent-soft);border-color:var(--accent)}
+.steps{counter-reset:step;list-style:none;padding:0}.steps li{counter-increment:step;margin:12px 0;padding-left:42px;position:relative}.steps li::before{content:counter(step);position:absolute;left:0;top:0;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;background:var(--accent-soft);color:var(--accent);font-weight:700;font-size:13px}.remember{font-family:Georgia,"Times New Roman",serif;font-size:18px}.checklist{list-style:none;padding:0}.checklist li::before{content:"✓";color:var(--green);font-weight:800;margin-right:9px}.footer{margin-top:80px;padding-top:24px;border-top:1px solid var(--line);color:var(--muted);font-size:13px}
+@media(max-width:1080px){:root{--sidebar:244px}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.eqnote{grid-template-columns:1fr}}
+@media(max-width:820px){.mobile-nav{display:inline-flex}.layout{display:block}.layout aside{position:fixed;top:var(--topbar);left:0;bottom:0;width:min(84vw,320px);height:calc(100vh - var(--topbar));z-index:130;transform:translateX(-105%);transition:transform .2s ease;background:var(--bg);box-shadow:8px 0 30px rgba(0,0,0,.18)}.layout aside.open{transform:translateX(0)}main{padding:28px 18px 80px}.grid,.split{grid-template-columns:1fr}.diagram-wrap svg{min-width:660px}table{min-width:680px}}
+@media(max-width:520px){body{font-size:15.5px}.topbar{padding:0 10px}.topbar a{display:none}.hero h1{font-size:32px}.diagram-wrap svg{min-width:620px}.table-wrap table{min-width:640px}}
+</style></head><body><div id="progress" class="progress"></div><header class="topbar"><button class="mobile-nav" id="navBtn">☰</button><div class="brand">Research Reading Notebook</div><div class="spacer"></div><a href="hellmann_thiele_2017_partner_uncertainty_zh_final.html">中文</a><button id="themeBtn">☾</button></header><div class="layout"><aside><div class="nav-title">Contents</div><nav class="nav"><a class="l1" href="#overview">Overview</a><a class="l2" href="#paper-fingerprint">Paper Fingerprint</a><a class="l2" href="#paper-at-a-glance">Paper at a Glance</a><a class="l1" href="#literature">1. Literature Position</a><a class="l2" href="#ghm-departures">GHM departures</a><a class="l2" href="#literature-branches">Related branches</a><a class="l1" href="#base-model">2. Base Model</a><a class="l2" href="#environment">Environment & agents</a><a class="l2" href="#timing">Timing</a><a class="l2" href="#production">Team production</a><a class="l2" href="#ownership-contracting">Ownership & bargaining</a><a class="l1" href="#asset-ownership">3. Asset Ownership & Partner Dynamics</a><a class="l2" href="#symmetric-options">Symmetric outside options</a><a class="l2" href="#individual-ownership">Individual ownership</a><a class="l2" href="#joint-ownership">Joint ownership</a><a class="l2" href="#optimal-ownership">Optimal ownership</a><a class="l1" href="#investments-wealth">4. Investments & Wealth</a><a class="l2" href="#investment-incentives">Investment incentives</a><a class="l2" href="#expected-utility">Expected utility & ownership</a><a class="l2" href="#transfer-capacity">Transfer capacity</a><a class="l1" href="#asymmetry">5. Asymmetric Partners</a><a class="l2" href="#asymmetric-wealth">Asymmetric wealth</a><a class="l2" href="#asymmetric-prospects">Asymmetric prospects</a><a class="l1" href="#empirical">6. Empirical Predictions</a><a class="l2" href="#prediction-1">Asset specificity</a><a class="l2" href="#prediction-2">Alternative partners</a><a class="l2" href="#prediction-3">Specific investment</a><a class="l2" href="#prediction-4">Partner stability</a><a class="l1" href="#critical">7. Critical Reading</a><a class="l2" href="#drivers">What drives results?</a><a class="l2" href="#limitations">Limitations</a><a class="l2" href="#extensions">Research extensions</a><a class="l1" href="#learning">8. Understanding Check</a><a class="l2" href="#mastery">Mastery Test</a><a class="l1" href="#remember">9. What Should I Remember?</a><a class="l2" href="#source-map">Source & Coverage Map</a></nav></aside><main><article class="content">
+<section class="hero" id="overview">
+<div class="eyebrow">Theoretical Paper · Dynamic Theory of the Firm · Full-Coverage Reconstruction</div>
+<h1>Partner Uncertainty and the Dynamic Boundary of the Firm</h1>
+<div class="meta">Thomas Hellmann & Veikko Thiele · <em>American Economic Journal: Microeconomics</em> 9(4), 2017, pp. 277–302</div>
+<p class="thesis"><strong>Core idea.</strong> When partners may discover better matches after an initial relationship is formed, ownership becomes a commitment–flexibility device. <span class="term">Individual asset ownership</span> preserves freedom to switch but can create a <span class="term">displacement externality</span>; <span class="term">joint asset ownership</span> protects the relationship but can create a <span class="term">retention externality</span>. The optimal boundary of the firm balances these two dynamic mistakes.</p>
+<div class="pillrow"><span class="pill">Property Rights</span><span class="pill">Partner Uncertainty</span><span class="pill">Joint Asset Ownership</span><span class="pill">Specific Investment</span><span class="pill">Wealth Constraints</span><span class="pill">Dynamic Firm Boundaries</span></div>
+<div class="source">Source: Abstract & Introduction · pp. 277–278</div>
+</section>
+
+<section id="paper-fingerprint"><div class="section-kicker">Paper Dashboard</div><h2>Paper Fingerprint</h2>
+<div class="grid">
+<div class="card"><div class="label">Research Question</div><div class="big">How should productive assets be owned when the identity of the best trading partner is uncertain?</div></div>
+<div class="card"><div class="label">Economic Friction</div><div class="big">Partner-match uncertainty + binding wealth constraints + team moral hazard.</div></div>
+<div class="card"><div class="label">Key Choice</div><div class="big">Individual asset ownership versus joint asset ownership at date 0.</div></div>
+<div class="card"><div class="label">Core Mechanism</div><div class="big">Ownership changes who can leave, who must consent, and how outside options distort ex post matching.</div></div>
+<div class="card"><div class="label">Main Result</div><div class="big">More valuable current matches favor integration; more attractive future matches favor non-integration.</div></div>
+<div class="card"><div class="label">Dynamic Prediction</div><div class="big">Integration raises relation-specific investment and partner stability.</div></div>
+</div>
+<div class="table-wrap"><table class="fingerprint"><tbody>
+<tr><td>Research Question</td><td>How does uncertainty about future partner quality affect the allocation of control rights and the evolution of firm boundaries?</td></tr>
+<tr><td>Economic Friction</td><td>Ex post partner changes can be privately attractive yet jointly inefficient; wealth constraints prevent frictionless side payments.</td></tr>
+<tr><td>Agents</td><td>Initial partners Alice (A) and Bob (B); possible alternative partners Charles (C) and Dora (D).</td></tr>
+<tr><td>Key Choice</td><td>At date 0, retain separate control of complementary assets or share control through joint ownership.</td></tr>
+<tr><td>State / Environment</td><td>Inside prospect <span class="math-inline">\pi\in\{\pi_L,\pi_H\}</span>, outside prospect <span class="math-inline">\sigma</span>, partner-arrival probability <span class="math-inline">q</span>, wealth <span class="math-inline">w</span>.</td></tr>
+<tr><td>Core Mechanism</td><td>Non-integration permits unilateral exit and therefore displacement; integration requires consent and therefore can produce retention.</td></tr>
+<tr><td>Contracting / Market Problem</td><td>Prices are contractible, but the interim inside prospect is observable to partners and non-verifiable; specific investments are non-contractible.</td></tr>
+<tr><td>Method</td><td>Five-date incomplete-contracting / bargaining model with moral hazard in teams and NTU bargaining.</td></tr>
+<tr><td>Data / Identification</td><td>N/A for this paper type (pure theory).</td></tr>
+<tr><td>Main Result</td><td>Integration is favored when the original match is valuable and outside matches are less attractive; it also strengthens specific-investment incentives.</td></tr>
+<tr><td>Contribution</td><td>A dynamic theory of firm boundaries where partner switching occurs in equilibrium, creating displacement–retention trade-offs absent from GHM.</td></tr>
+<tr><td>Limitation</td><td>Alternative partner arrival is exogenous and partners can switch at most once; the analysis is largely symmetric.</td></tr>
+<tr><td>Open Question</td><td>Endogenize partner search and extend the ownership problem to an infinite horizon.</td></tr>
+</tbody></table></div></section>
+
+<section id="paper-at-a-glance"><h2>Paper at a Glance</h2>
+<div class="callout green"><span class="tag author">Author's Argument</span><strong>The new trade-off is not static “make versus buy.”</strong> It is the choice between <em>commitment to the current match</em> and <em>flexibility to rematch</em> when future partner quality is uncertain.</div>
+<div class="diagram-wrap"><svg viewBox="0 0 960 245" role="img" aria-label="Core mechanism map">
+<rect class="node" x="30" y="80" rx="10" width="190" height="72"/><text class="nodeText" x="125" y="107" text-anchor="middle">Partner uncertainty</text><text class="smallText" x="125" y="129" text-anchor="middle">future match may dominate</text>
+<path class="lineA" d="M220 116 H310"/><rect class="node" x="310" y="45" rx="10" width="220" height="58"/><text class="nodeText" x="420" y="72" text-anchor="middle">Individual ownership</text><text class="smallText" x="420" y="90" text-anchor="middle">unilateral exit</text>
+<rect class="node" x="310" y="142" rx="10" width="220" height="58"/><text class="nodeText" x="420" y="169" text-anchor="middle">Joint ownership</text><text class="smallText" x="420" y="187" text-anchor="middle">mutual consent to leave</text>
+<path class="lineA" d="M530 74 H625"/><rect class="node" x="625" y="45" rx="10" width="290" height="58"/><text class="nodeText" x="770" y="70" text-anchor="middle">Displacement externality</text><text class="smallText" x="770" y="89" text-anchor="middle">too much switching / distorted stay</text>
+<path class="lineA" d="M530 171 H625"/><rect class="node" x="625" y="142" rx="10" width="290" height="58"/><text class="nodeText" x="770" y="167" text-anchor="middle">Retention externality</text><text class="smallText" x="770" y="186" text-anchor="middle">too much staying / costly buyout</text>
+</svg><div class="diagram-caption">Mechanism map reconstructed from the Introduction and Sections III–IV.</div></div>
+<div class="split"><div class="card"><h3>Commitment value</h3><p>If the inside match is likely to be good, joint control prevents a partner from destroying a valuable relationship merely because that partner privately benefits from switching.</p></div><div class="card"><h3>Flexibility value</h3><p>If outside matching opportunities are attractive, individual control prevents the incumbent partner from blocking an efficient rematch.</p></div></div>
+<div class="source">Source: Introduction · pp. 277–278; Section III.D · pp. 289–290</div></section>
+
+<section id="literature"><div class="section-kicker">Section I</div><h2>1. Literature Position</h2>
+<p>The paper deliberately separates its mechanism from the standard <span class="term">Grossman–Hart–Moore (GHM) Property Rights Theory</span>. It then connects the new mechanism to Transaction Cost Economics, adaptation-based theories, wealth constraints, exclusive contracts, entrepreneurship/team formation, marriage/divorce models, and partnership-dissolution mechanisms.</p>
+
+<section id="ghm-departures"><h3>1.1 Five departures from GHM</h3>
+<div class="table-wrap"><table><thead><tr><th>Dimension</th><th>GHM benchmark</th><th>Hellmann–Thiele</th><th>Why it matters</th></tr></thead><tbody>
+<tr><td>Specific investment</td><td>Central source of ownership trade-offs.</td><td>Base model initially shuts it down.</td><td>Shows that partner uncertainty alone can determine ownership.</td></tr>
+<tr><td>Ex post efficiency</td><td>Renegotiation leads to efficient ex post outcomes.</td><td>Binding wealth constraints can leave ex post inefficiency.</td><td>Makes ownership affect actual partner arrangements, not only ex ante incentives.</td></tr>
+<tr><td>Outside partners</td><td>Outside option is a threat that is not exercised in equilibrium.</td><td>Partner switching and buyouts occur in equilibrium.</td><td>Firm boundaries become genuinely dynamic.</td></tr>
+<tr><td>Prices</td><td>Price non-contractibility is essential.</td><td>Prices can be contractible; interim match information remains non-verifiable.</td><td>Incompleteness is located in match information/control rather than price itself.</td></tr>
+<tr><td>Integration form</td><td>One party owns both assets; joint ownership is not optimal.</td><td>Integration is joint control of both assets.</td><td>Joint control is valuable because it prevents unilateral dissolution of a good match.</td></tr>
+</tbody></table></div>
+<div class="callout amber"><strong>Conceptual warning.</strong> “Integration” in this paper is not the standard GHM allocation of authority to one owner. It is <span class="term">joint asset ownership</span>, so deploying either asset elsewhere requires both initial partners’ consent.</div>
+<div class="source">Source: Section I · pp. 279–280</div></section>
+
+<section id="literature-branches"><h3>1.2 Related literature branches</h3>
+<details open><summary>Joint ownership and repeated relationships</summary><div class="detail-body"><p><strong>Cai (2003)</strong> makes joint ownership optimal when specific and general investments are substitutes. <strong>Halonen (2002)</strong>, with <strong>Blonski & Spagnolo (2003)</strong>, obtains joint ownership in repeated-game settings. Hellmann–Thiele add a distinct reason: joint control can prevent dissolution of an efficient partnership.</p></div></details>
+<details><summary>Transaction Cost Economics and asset specificity</summary><div class="detail-body"><p><strong>Williamson (1975, 1985)</strong> predicts that higher asset specificity favors integration. Formal property-rights models often reject Williamson’s ex post haggling logic because rational parties should renegotiate efficiently. Hellmann–Thiele recover Williamson’s prediction through partner uncertainty and binding wealth constraints: current relationship quasi-rents raise the cost of displacement. They also add a dynamic comparison between current quasi-rents and potential future quasi-rents.</p><p>The paper also notes costly-adjustment models including Bajari & Tadelis (2001), Tadelis (2002), Matouschek (2004), and Casas-Arce & Kittsteiner (2011), and points to Lafontaine & Slade (2007) for empirical evidence.</p></div></details>
+<details><summary>Adaptation-based theories and ex post inefficiency</summary><div class="detail-body"><p><strong>Grossman & Hart (1987)</strong> is an early model with ex post inefficiency and no specific investment. <strong>Hart (2009)</strong> and <strong>Hart & Holmström (2010)</strong> use reference points that sustain inefficient withholding of cooperation. <strong>Aghion et al. (2012)</strong> generate renegotiation failures from ex post asymmetric information. Here, the source is instead the interaction between team moral hazard and binding wealth constraints.</p></div></details>
+<details><summary>Wealth constraints</summary><div class="detail-body"><p><strong>Aghion & Bolton (1992)</strong> also use wealth constraints, but in financial contracting with a single asset and liquidation. Hellmann–Thiele instead study two complementary assets, integration, and partner uncertainty.</p></div></details>
+<details><summary>Exclusive contracts and vertical foreclosure</summary><div class="detail-body"><p>Joint ownership can be interpreted as mutually exclusive contracts. The paper relates to <strong>Aghion & Bolton (1987)</strong>, <strong>Bolton & Whinston (1993)</strong>, <strong>Segal & Whinston (2000)</strong>, and <strong>de Fontenay, Gans & Groves (2010)</strong>. Exclusivity still matters here even with renegotiation, because wealth constraints can stop renegotiation from reaching the efficient allocation.</p></div></details>
+<details><summary>Entrepreneurship, teams, and founder commitment</summary><div class="detail-body"><p><strong>Prat (2002)</strong> studies heterogeneity in teams; <strong>Franco Mitchell, Mitchell & Vereshchagina (2011)</strong> analyze assortative matching with moral hazard; <strong>Hellmann & Perotti (2011)</strong> study matching between idea generators and developers; <strong>Hellmann & Thiele (2015)</strong> ask when founders commit to a team. Those papers focus mainly on initial team formation; the 2017 paper focuses on later rematching and ownership.</p></div></details>
+<details><summary>Marriage/divorce and partnership dissolution</summary><div class="detail-body"><p>The marriage literature supplies intuition for matching, rematching, wealth, and relationship-specific investment, but the paper stresses that “divorce costs” are endogenous here and wealth plays a different role. It cites Brien, Lillard & Stern (2006), Matouschek & Rasul (2008), Peters & Siow (2002), Peters (2007), Wickelgren (2009), Peters (1986), Friedberg (1998), and Wolfers (2006).</p><p>A separate partnership-dissolution literature—Cramton, Gibbons & Klemperer (1987), McAfee (1992), and de Frutos & Kittsteiner (2008)—starts from prior joint ownership and focuses on information and auction mechanisms for dissolution, rather than the ex ante boundary choice here.</p></div></details>
+<div class="source">Source: Section I · pp. 279–281</div></section></section>
+
+<section id="base-model"><div class="section-kicker">Section II</div><h2>2. Base Model</h2>
+
+<section id="environment"><h3>2.1 Economic environment and agents</h3>
+<ul>
+<li><strong>Alice (A)</strong> and <strong>Bob (B)</strong> are risk-neutral initial partners. The motivating interpretation is a downstream owner and an upstream owner.</li>
+<li>Each initially owns one <span class="term">co-specialized asset</span> and possesses inalienable human capital. Initial outside options are normalized to zero.</li>
+<li>Each initial partner has wealth <span class="math-inline">w_A=w_B=w\ge0</span>. Alternative partners <strong>Charles (C)</strong> and <strong>Dora (D)</strong> have zero wealth and zero outside options.</li>
+<li>The two assets are complementary: joint production requires the relevant pair of assets and both partners’ private effort.</li>
+</ul>
+<h4>Inside prospect</h4><p>Successful production yields verifiable profit <span class="math-inline">y</span> distributed according to <span class="math-inline">\Omega_{in}(y)</span>. Its expectation <span class="math-inline">\pi=\int y\,d\Omega_{in}(y)</span> is the <span class="term">inside prospect</span>. The partners observe <span class="math-inline">\pi</span>, but it is non-verifiable to outsiders.</p>
+<h4>Relation-specific investment</h4><p>At date 1 each partner can choose non-contractible investment <span class="math-inline">r_i</span>. The inside prospect is <span class="math-inline">\pi\in\{\pi_L,\pi_H\}</span>, with <span class="math-inline">\pi_H>\pi_L>0</span>. The high state occurs with probability <span class="math-inline">p(r_A,r_B)</span>, increasing and concave in investments; each investment has convex private cost <span class="math-inline">\psi(r_i)</span>. The model assumes interior solutions and a not-too-negative cross-partial; weak strategic complementarity is a sufficient condition. Section III temporarily fixes <span class="math-inline">p</span> to isolate partner uncertainty from investment incentives.</p>
+<h4>Outside prospect</h4><p>At date 2 Alice finds C with probability <span class="math-inline">q</span>; Bob independently finds D with the same probability. A successful alternative partnership has expected value <span class="math-inline">\sigma=\int y\,d\Omega_{out}(y)</span>, the <span class="term">outside prospect</span>. A cannot partner with D and B cannot partner with C because the assets are complementary in types.</p>
+<div class="source">Source: Section II · pp. 281–283</div></section>
+
+<section id="timing"><h3>2.2 Timing</h3>
+<div class="diagram-wrap"><svg viewBox="0 0 1000 250" aria-label="Five-date timing diagram">
+<line class="axis" x1="80" y1="96" x2="920" y2="96"/><polygon points="920,96 908,90 908,102" fill="var(--muted)"/>
+<g><circle cx="100" cy="96" r="5" fill="var(--accent)"/><text class="nodeText" x="100" y="52" text-anchor="middle">Date 0</text><text class="smallText" x="100" y="125" text-anchor="middle">Ownership structure</text><text class="smallText" x="100" y="142" text-anchor="middle">individual vs joint</text></g>
+<g><circle cx="300" cy="96" r="5" fill="var(--accent)"/><text class="nodeText" x="300" y="52" text-anchor="middle">Date 1</text><text class="smallText" x="300" y="125" text-anchor="middle">Relation-specific</text><text class="smallText" x="300" y="142" text-anchor="middle">investments</text></g>
+<g><circle cx="500" cy="96" r="5" fill="var(--accent)"/><text class="nodeText" x="500" y="52" text-anchor="middle">Date 2</text><text class="smallText" x="500" y="123" text-anchor="middle">Learn inside prospect</text><text class="smallText" x="500" y="140" text-anchor="middle">find alternatives / stay / split</text><text class="smallText" x="500" y="157" text-anchor="middle">renegotiate surplus</text></g>
+<g><circle cx="700" cy="96" r="5" fill="var(--accent)"/><text class="nodeText" x="700" y="52" text-anchor="middle">Date 3</text><text class="smallText" x="700" y="125" text-anchor="middle">Private efforts</text></g>
+<g><circle cx="900" cy="96" r="5" fill="var(--accent)"/><text class="nodeText" x="900" y="52" text-anchor="middle">Date 4</text><text class="smallText" x="900" y="125" text-anchor="middle">Returns realized</text></g>
+</svg><div class="diagram-caption">Faithful reconstruction of Figure 1 (p. 282).</div></div>
+<div class="source">Source: Figure 1 · p. 282</div></section>
+
+<section id="production"><h3>2.3 Team production and the utility frontier</h3>
+<div class="equation-wrap"><div class="equation"><div class="eqtitle">Equation (1): private effort choices in the A–B match</div>
+<div class="math-display">\max_{e_A}\;U_A(\alpha;\pi)=\alpha\mu(e_Ae_B)\pi-c(e_A),\qquad
+\max_{e_B}\;U_B(\beta;\pi)=\beta\mu(e_Ae_B)\pi-c(e_B),\quad \alpha+\beta=1. \tag{1}</div>
+<div class="eqnote"><div><strong>Technology.</strong> Success probability <span class="math-inline">\mu(e_i e_j)</span> is increasing and concave in the product of efforts; both efforts must be positive.</div><div><strong>Economic role.</strong> The profit share affects effort, so transfers implemented as claims on future profit can distort production incentives.</div></div></div></div>
+<p>Because efforts are complementary, the utility-possibility frontier is backward-bending. With symmetric partners, total surplus is maximized at an equal split <span class="math-inline">\alpha=\beta=1/2</span>. Yet each partner privately prefers a share above one-half. This conflict is why unequal renegotiated shares and equity-based buyouts can reduce joint surplus.</p>
+<div class="diagram-wrap"><svg viewBox="0 0 820 380" aria-label="Utility possibility frontier">
+<line class="axis" x1="90" y1="310" x2="745" y2="310"/><line class="axis" x1="90" y1="310" x2="90" y2="50"/><text class="smallText" x="750" y="330">U_A</text><text class="smallText" x="62" y="45">U_B</text>
+<path class="lineC" d="M90 310 C130 100,260 55,410 118 C565 182,690 142,720 310"/><line class="lineA dash" x1="90" y1="310" x2="530" y2="70"/><circle cx="405" cy="119" r="5" fill="var(--accent)"/><text class="smallText" x="420" y="108">α = β = 1/2</text><circle cx="255" cy="78" r="4" fill="var(--amber)"/><text class="smallText" x="220" y="63">β max</text><circle cx="640" cy="158" r="4" fill="var(--amber)"/><text class="smallText" x="650" y="150">α max</text>
+</svg><div class="diagram-caption">Schematic reconstruction of Figure 2 (p. 285).</div></div>
+<div class="source">Source: Section III.A · Equation (1) · Figure 2 · pp. 284–285</div></section>
+
+<section id="ownership-contracting"><h3>2.4 Ownership, control rights, and bargaining</h3>
+<div class="split"><div class="card"><h4>Individual asset ownership</h4><p>Each partner keeps control of the asset initially owned. A partner with a superior outside option may take that asset and leave without the other’s consent. If A and B stay together, they negotiate a transfer price / profit shares at date 2.</p></div><div class="card"><h4>Joint asset ownership</h4><p>Both partners share control over both assets. They choose ownership shares at date 0. A later exit requires the other initial partner’s consent, so a new partner effectively bargains with both initial partners.</p></div></div>
+<p>Because wealth may bind, bargaining is modeled using the <span class="term">Hart–Mas-Colell (1996) bargaining protocol</span>, which generates the Maschler–Owen consistent NTU value. In bilateral bargaining it reduces to Nash bargaining. Only parties with relevant control rights sit at the bargaining table.</p>
+<details><summary>Technical qualifications explicitly discussed by the paper</summary><div class="detail-body"><ul>
+<li>Prices are contractible; incompleteness comes from non-verifiable interim match information and non-contractible specific investment.</li>
+<li>If interim information were verifiable, optimal ownership could be made state-contingent. The displacement–retention logic remains, but the ex ante trade-off is weakened because the regime can adapt to the state.</li>
+<li>The online appendix argues that long-term contracts cannot improve ex ante efficiency relative to joint asset ownership in this environment.</li>
+<li>Alternative bargaining protocols can change utility levels but do not overturn the basic ownership logic.</li>
+<li>Profit shares may in principle depend on realized output; the paper focuses on constant shares because only expected shares matter for the date-2 problem.</li>
+</ul></div></details>
+<div class="source">Source: Section II · pp. 283–284; footnotes 9, 12–14</div></section>
+</section>
+
+<section id="asset-ownership"><div class="section-kicker">Section III</div><h2>3. Asset Ownership and Partner Dynamics</h2>
+
+<section id="symmetric-options"><h3>3.1 Benchmark: symmetric outside options</h3>
+<p>If neither partner finds an alternative, the original pair stays and splits profits equally. If both find alternatives, the decision is also jointly efficient: they stay if <span class="math-inline">\pi\ge\sigma</span> and both leave if <span class="math-inline">\sigma>\pi</span>. Ownership does not matter because both partners’ switching incentives are aligned.</p>
+<div class="callout"><strong>Ownership matters only when outside options are asymmetric.</strong> The interesting event is exactly one initial partner finding a new match, which occurs with probability <span class="math-inline">2q(1-q)</span>.</div>
+<div class="source">Source: Section III.B · pp. 285–286</div></section>
+
+<section id="individual-ownership"><h3>3.2 Individual ownership: displacement and distorted staying</h3>
+<p>Suppose only Alice finds Charles. With individual ownership she can leave unilaterally. If she leaves, Bob’s utility falls to zero. Alice ignores that loss when comparing her private gain from C with her own payoff with B, so she may leave even when her gain is smaller than Bob’s loss. This is the <span class="term">displacement externality</span>.</p>
+<p>There is a second inefficiency even when Alice stays. Her credible option to switch improves her bargaining position with Bob, raising her share above one-half. Since team production is jointly most efficient at equal shares, this renegotiated stay reduces total surplus.</p>
+<div class="equation-wrap"><div class="equation"><div class="eqtitle">Lemma 1: switching threshold under individual ownership</div>
+<div class="math-display">\text{Leave if }\pi<\widehat\pi_I(\sigma,w);\qquad
+\text{stay and renegotiate if }\pi\ge\widehat\pi_I(\sigma,w).</div>
+<div class="eqnote"><div><strong>Zero wealth.</strong> The appendix gives <span class="math-inline">\widehat\pi_I(\sigma)=\sigma</span>.</div><div><strong>Wealth effect.</strong> Over the active wealth range, <span class="math-inline">\widehat\pi_I(\sigma,w)</span> decreases with <span class="math-inline">w</span>, because the partner without the outside option can compensate the potential leaver more effectively for staying.</div></div></div></div>
+<p>The paper defines lower and upper wealth thresholds. Below the lower bound, more wealth is too small to change the outcome; above the upper bound, transfers can eliminate the ex post inefficiency completely and restore efficient equal sharing.</p>
+<div class="source">Source: Section III.C, “Individual Asset Ownership” · Lemma 1 · pp. 286–287</div></section>
+
+<section id="joint-ownership"><h3>3.3 Joint ownership: retention and inefficient buyouts</h3>
+<p>Under joint ownership, Alice cannot simply take her asset to C; Bob must consent. With zero cash wealth, Alice can compensate Bob only by giving him a claim on the future A–C partnership. Bob then receives a share even though he supplies no productive effort. This dilutes the productive partners’ incentives.</p>
+<p>If the offered share is insufficient to secure Bob’s consent, Alice must remain with Bob even when an A–C match would raise joint surplus. This is the <span class="term">retention externality</span>: the incumbent without the outside option can hold the better-matched partner inside the relationship.</p>
+<div class="equation-wrap"><div class="equation"><div class="eqtitle">Lemma 2: switching threshold under joint ownership</div>
+<div class="math-display">\text{Leave with consent if }\pi<\widehat\pi_J(\sigma,w);\qquad
+\text{stay with }\alpha^*=\beta^*=1/2\text{ if }\pi\ge\widehat\pi_J(\sigma,w).</div>
+<div class="eqnote"><div><strong>Retention region.</strong> At low wealth, a good outside option can be blocked because Alice cannot buy Bob out efficiently.</div><div><strong>Wealth effect.</strong> Over the active range, <span class="math-inline">\widehat\pi_J(\sigma,w)</span> increases with <span class="math-inline">w</span>: cash makes a buyout easier, so leaving occurs for more inside prospects.</div></div></div></div>
+<div class="source">Source: Section III.C, “Joint Asset Ownership” · Lemma 2 · pp. 287–289</div></section>
+
+<section id="optimal-ownership"><h3>3.4 Proposition 1: optimal asset ownership</h3>
+<p>Define <span class="math-inline">\widehat\pi_V(\sigma)</span> as the inside-prospect threshold at which staying with equal sharing switches from jointly inferior to jointly superior. With binding wealth constraints, the paper shows:</p>
+<div class="callout green"><span class="tag author">Proposition 1</span><ol>
+<li>If <span class="math-inline">\pi_L,\pi_H<\widehat\pi_V(\sigma)</span>, choose <strong>individual ownership</strong>.</li>
+<li>If <span class="math-inline">\pi_L,\pi_H\ge\widehat\pi_V(\sigma)</span>, choose <strong>joint ownership</strong>.</li>
+<li>If <span class="math-inline">\pi_L<\widehat\pi_V(\sigma)<\pi_H</span>, there exists <span class="math-inline">\widehat p\in(0,1)</span>: choose joint ownership when the high inside prospect is sufficiently likely, <span class="math-inline">p\ge\widehat p</span>, and individual ownership otherwise.</li>
+</ol><p>Moreover, <span class="math-inline">\widehat\pi_J<\widehat\pi_V<\widehat\pi_I</span>, and <span class="math-inline">\widehat\pi_V</span> rises with the outside prospect <span class="math-inline">\sigma</span>.</p></div>
+
+<div class="diagram-wrap"><svg viewBox="0 0 860 520" aria-label="Schematic Figure 3">
+<line class="axis" x1="95" y1="450" x2="780" y2="450"/><line class="axis" x1="95" y1="450" x2="95" y2="55"/><text class="smallText" x="786" y="471">outside prospect σ</text><text class="smallText" x="72" y="48">inside prospect π</text>
+<line class="lineA dash" x1="95" y1="450" x2="665" y2="70"/><line class="lineC" x1="95" y1="450" x2="665" y2="165"/><line class="lineB dash" x1="95" y1="450" x2="665" y2="285"/>
+<text class="smallText" x="675" y="74">π̂_I</text><text class="smallText" x="675" y="169">π̂_V</text><text class="smallText" x="675" y="289">π̂_J</text>
+<text class="nodeText" x="260" y="160">Joint ownership</text><text class="nodeText" x="500" y="205">Joint ownership</text><text class="nodeText" x="395" y="338">Individual ownership</text><text class="nodeText" x="590" y="388">Individual ownership</text>
+<text class="smallText" x="470" y="105">(I)</text><text class="smallText" x="590" y="190">(II)</text><text class="smallText" x="590" y="280">(III)</text><text class="smallText" x="680" y="375">(IV)</text>
+</svg><div class="diagram-caption">Schematic reconstruction of Figure 3 (p. 290): the middle locus is the joint-efficiency threshold; individual and joint ownership generate different ex post errors around it.</div></div>
+
+<h4>How to read the four regions</h4>
+<div class="table-wrap"><table><thead><tr><th>Region</th><th>Jointly efficient action</th><th>Problem under individual ownership</th><th>Problem under joint ownership</th></tr></thead><tbody>
+<tr><td>I</td><td>Stay together</td><td>Alice stays but renegotiates an unequal share, reducing team efficiency.</td><td>Efficient equal-share stay.</td></tr>
+<tr><td>II</td><td>Stay together</td><td>Alice may leave: displacement externality.</td><td>Efficient equal-share stay.</td></tr>
+<tr><td>III</td><td>Split</td><td>Efficient flexibility.</td><td>Alice may be retained: retention externality.</td></tr>
+<tr><td>IV</td><td>Split</td><td>Efficient flexibility.</td><td>Split can occur, but buyout through future profit shares distorts effort.</td></tr>
+</tbody></table></div>
+<p>In the mixed case <span class="math-inline">\pi_L<\widehat\pi_V<\pi_H</span>, any ex ante ownership choice accepts a possible ex post mistake. Joint ownership protects the high state but risks retention in the low state; individual ownership protects flexibility in the low state but risks displacement in the high state.</p>
+<div class="callout amber"><strong>Why non-verifiability is crucial.</strong> If <span class="math-inline">\pi</span> were contractible, the parties could pre-specify individual ownership in the low state and joint ownership in the high state. The interesting commitment–flexibility trade-off therefore relies on relationship-specific match information being non-verifiable.</div>
+<div class="source">Source: Section III.D · Proposition 1 · Figure 3 · pp. 289–290</div></section>
+</section>
+
+<section id="investments-wealth"><div class="section-kicker">Section IV</div><h2>4. Relation-Specific Investments and Wealth</h2>
+
+<section id="investment-incentives"><h3>4.1 Proposition 2: ownership changes investment incentives</h3>
+<p>Reintroduce relation-specific investments at date 1. Let <span class="math-inline">r_I^*(w)</span> and <span class="math-inline">r_J^*(w)</span> denote equilibrium investment under individual and joint ownership.</p>
+<div class="callout green"><span class="tag author">Proposition 2</span><p>For binding transfer constraints, <span class="math-inline">r_J^*(w)>r_I^*(w)</span>. In the wealth ranges where transfers begin to mitigate ex post inefficiency, <span class="math-inline">r_J^*(w)</span> decreases with wealth while <span class="math-inline">r_I^*(w)</span> increases. Once wealth is sufficient to eliminate all asymmetric-outside-option inefficiencies, the two ownership regimes yield the same investment level.</p></div>
+<div data-tab-group class="tabs"><div class="tab-buttons"><button class="active" data-target="inv-intuition">Intuition</button><button data-target="inv-formal">Formal logic</button></div>
+<div id="inv-intuition" class="tab-panel active"><p><strong>Joint ownership puts its inefficiency in the bad relationship state.</strong> If the inside match is good, joint control preserves it efficiently; if it is bad, retention can occur. This widens the payoff difference between a good and bad match, increasing the return to investment that raises the probability of the good state.</p><p><strong>Individual ownership puts its inefficiency in the good relationship state.</strong> When the match is bad, flexibility is useful; when it is good, displacement or renegotiation erodes surplus. The good–bad payoff gap is compressed, weakening investment incentives.</p></div>
+<div id="inv-formal" class="tab-panel"><p>The marginal return to <span class="math-inline">r_i</span> is proportional to how strongly investment shifts <span class="math-inline">p(r_A,r_B)</span> times the difference in continuation utility between <span class="math-inline">\pi_H</span> and <span class="math-inline">\pi_L</span>. Ownership changes exactly this state-contingent utility gap.</p></div></div>
+<div class="diagram-wrap"><svg viewBox="0 0 940 390" aria-label="Wealth and specific investment schematic">
+<text class="nodeText" x="220" y="32">Panel A: lower bounds at zero</text><line class="axis" x1="70" y1="320" x2="440" y2="320"/><line class="axis" x1="70" y1="320" x2="70" y2="65"/><path class="lineA" d="M70 95 C160 125,245 205,370 235 L430 235"/><path class="lineB" d="M70 285 C165 265,245 225,370 235 L430 235"/><text class="smallText" x="340" y="150">r*_J(w)</text><text class="smallText" x="340" y="270">r*_I(w)</text>
+<text class="nodeText" x="690" y="32">Panel B: positive lower bounds</text><line class="axis" x1="530" y1="320" x2="900" y2="320"/><line class="axis" x1="530" y1="320" x2="530" y2="65"/><path class="lineA" d="M530 120 L610 120 C690 150,760 210,820 235 L900 235"/><path class="lineB" d="M530 275 L610 275 C690 255,760 235,820 235 L900 235"/><text class="smallText" x="760" y="155">r*_J(w)</text><text class="smallText" x="760" y="270">r*_I(w)</text>
+</svg><div class="diagram-caption">Schematic reconstruction of Figure 4 (p. 292). Wealth narrows the investment gap from opposite directions until ownership becomes irrelevant for investment.</div></div>
+<div class="source">Source: Section IV.A · Proposition 2 · Figure 4 · pp. 291–292</div></section>
+
+<section id="expected-utility"><h3>4.2 Lemmas 3–4 and Proposition 3: wealth, utility, and ownership</h3>
+<h4>Lemma 3 — individual ownership</h4><p>Expected productive utility under individual ownership is flat when wealth is too small to affect renegotiation, rises over the intermediate range where wealth mitigates displacement or unequal-sharing inefficiency, and becomes flat again once all relevant ex post inefficiency has been eliminated. Here the ex post efficiency effect and the ex ante investment effect of wealth point in the same direction.</p>
+<h4>Lemma 4 — joint ownership</h4><p>Under joint ownership the wealth effect is not generally monotone. Wealth helps solve the bad-state retention/buyout problem <em>ex post</em>, but this smoothing of the bad state weakens the incentive to invest <em>ex ante</em>. The paper defines <span class="math-inline">w_J^*</span>, the wealth level maximizing expected productive utility under joint ownership, and a threshold <span class="math-inline">\widehat\pi_H</span> determining when the incentive effect dominates.</p>
+<div class="diagram-wrap"><svg viewBox="0 0 960 405" aria-label="Expected utilities and wealth schematic">
+<text class="nodeText" x="235" y="28">Panel A: π_H ≥ π̂_H</text><line class="axis" x1="80" y1="330" x2="445" y2="330"/><line class="axis" x1="80" y1="330" x2="80" y2="70"/><path class="lineA" d="M80 105 C170 155,260 230,360 245 L440 245"/><path class="lineB" d="M80 245 C190 245,310 245,440 245"/><text class="smallText" x="240" y="155">EU_J(w)</text><text class="smallText" x="250" y="275">EU_I(w)</text>
+<text class="nodeText" x="710" y="28">Panel B: π_H &lt; π̂_H</text><line class="axis" x1="540" y1="330" x2="905" y2="330"/><line class="axis" x1="540" y1="330" x2="540" y2="70"/><path class="lineA" d="M540 300 C610 190,690 130,760 160 C820 185,855 225,905 245"/><path class="lineB" d="M540 305 C650 285,740 250,825 245 L905 245"/><text class="smallText" x="690" y="120">EU_J(w)</text><text class="smallText" x="700" y="285">EU_I(w)</text>
+</svg><div class="diagram-caption">Schematic reconstruction of Figure 5 (p. 294): when relation-specific investment is very important, joint ownership is most valuable with tight transfer capacity; when it is less important, joint ownership may peak at an interior wealth level.</div></div>
+<div class="callout green"><span class="tag author">Proposition 3</span><p>There exists a critical wealth level <span class="math-inline">w_0\in[0,w_J^*]</span> such that for all <span class="math-inline">w\in(w_0,\bar w)</span>, the partners strictly prefer joint over individual ownership, where <span class="math-inline">\bar w</span> is the level beyond which ex post inefficiencies are fully eliminated. With sufficiently high wealth ownership is irrelevant. Individual ownership can be optimal only at low wealth when relation-specific investment is not sufficiently important.</p></div>
+<div class="source">Source: Section IV.B · Lemmas 3–4 · Proposition 3 · Figure 5 · pp. 292–294</div></section>
+
+<section id="transfer-capacity"><h3>4.3 Changing the amount available for transfers</h3>
+<h4>Optimal transfer capacity</h4><p>Across all wealth levels, maximum expected productive utility is achieved under joint ownership at <span class="math-inline">w_J^*</span>. If partners could freely choose an ex ante cap <span class="math-inline">t</span> on ex post transfers, they would choose <span class="math-inline">t^*=w_J^*</span>, not necessarily the largest possible transfer capacity. Excess transfer capacity smooths the bad state and can weaken specific-investment incentives.</p>
+<h4>Why outside financing is not a substitute for wealth</h4><p>If partners are too poor, raising money from an outside investor does not improve expected utility in the model. The investor must be repaid from future profit and therefore receives a stake despite contributing no productive effort. Under joint ownership this replaces a nonproductive incumbent claim with a nonproductive investor claim; under individual ownership it similarly dilutes productive incentives. The binding object is a true <span class="term">wealth constraint</span>, not merely a financing constraint.</p>
+<h4>Why rich partners cannot credibly commit not to use wealth</h4><p>When partners have more wealth than is ex ante desirable, they would like to limit future transfers. But a contractual penalty on transfers is not renegotiation-proof: if paid to the other partner it can be waived bilaterally; even a third-party penalty may be renegotiated if that third party otherwise expects to receive nothing. The authors conclude that credible commitment to restrict ex post transfers is problematic.</p>
+<div class="source">Source: Section IV.C · pp. 294–296</div></section>
+</section>
+
+<section id="asymmetry"><div class="section-kicker">Section V</div><h2>5. Asymmetric Partners</h2>
+<section id="asymmetric-wealth"><h3>5.1 Asymmetric wealth</h3>
+<p>The displacement–retention trade-off survives if only one initial partner is wealth constrained. Suppose Alice has no wealth while Bob is rich. Under individual ownership, Bob can compensate Alice when Alice receives the outside option, but Alice cannot compensate Bob in the mirror case. Under joint ownership, Bob can buy out Alice when Bob receives the outside option, but Alice cannot buy herself out when she receives it.</p>
+<div class="callout"><strong>Robustness result.</strong> The same inefficiencies remain, only less frequently. The mechanism requires at least one partner to be unable to finance all required transfers; it does not require equal wealth.</div>
+<div class="source">Source: Section V · p. 296</div></section>
+
+<section id="asymmetric-prospects"><h3>5.2 Asymmetric probabilities of finding outside partners</h3>
+<p>In a simplified version without specific investment, Alice and Bob receive <span class="math-inline">\pi/2</span> when staying together and <span class="math-inline">\sigma/2</span> in their alternative matches. Alice finds C with probability <span class="math-inline">q_A</span>, while Bob finds D with <span class="math-inline">q_B\ne q_A</span>.</p>
+<div class="equation-wrap"><div class="equation"><div class="eqtitle">Equation (2): Alice’s threshold for preferring joint ownership</div>
+<div class="math-display">q_A<\widehat q_A=\left[\left(\frac{1-q_B}{q_B}\right)\left(\frac{\sigma-\pi}{\pi}\right)+1\right]^{-1}. \tag{2}</div>
+<div class="eqnote"><div><strong>Interpretation.</strong> Alice wants joint control when she is sufficiently unlikely to be the one who discovers the outside option and therefore values protection from Bob’s possible exit.</div><div><strong>Strategic interdependence.</strong> Alice’s threshold rises with Bob’s outside-match probability; Bob has the symmetric condition.</div></div></div></div>
+<div class="table-wrap"><table><thead><tr><th>Case</th><th>Jointly efficient default</th><th>Equilibrium implication</th></tr></thead><tbody>
+<tr><td><span class="math-inline">\pi&lt;\sigma/2</span></td><td>Leaving is sufficiently attractive from the joint perspective.</td><td>Alice and Bob never both prefer joint ownership; individual ownership is the equilibrium for all <span class="math-inline">q_A,q_B\in(0,1)</span>.</td></tr>
+<tr><td><span class="math-inline">\pi&gt;\sigma/2</span></td><td>Staying together maximizes joint surplus.</td><td>There is a region in which both prefer joint ownership; their outside prospects cannot be too dissimilar.</td></tr>
+</tbody></table></div>
+<div class="source">Source: Section V · Equation (2) · Figure 6 · pp. 296–297</div></section>
+</section>
+
+<section id="empirical"><div class="section-kicker">Section VI</div><h2>6. Empirical Predictions</h2>
+<p>The paper organizes its testable implications as: exogenous match conditions → ownership structure → specific investment → dynamic partner stability. It gives four main predictions and discusses measurement and existing evidence for each.</p>
+
+<section id="prediction-1"><h3>6.1 Prediction 1 — Higher asset specificity increases integration</h3>
+<p>Higher inside quasi-rents raise the cost of inefficient displacement and reduce the relative importance of retention. This reproduces Williamson’s classical prediction through a different formal mechanism. Measures may include geographic proximity or strength of vertical trading relationships; ownership outcomes may include vertical integration, cross-holdings, joint ventures, strategic investments, make-versus-buy, or contract duration.</p>
+<p>The paper cites <strong>Joskow (1985)</strong> as an early example and <strong>Lafontaine & Slade (2007, 2013)</strong> and <strong>Joskow (2010)</strong> as broader reviews.</p>
+<div class="source">Source: Section VI · pp. 297–298</div></section>
+
+<section id="prediction-2"><h3>6.2 Prediction 2 — Greater alternative-partner potential decreases integration</h3>
+<p>This is the paper’s most distinctive dynamic comparative static. A higher outside prospect <span class="math-inline">\sigma</span> or greater chance <span class="math-inline">q</span> of finding a superior partner raises the value of flexibility, making upfront integration less attractive.</p>
+<div class="callout amber"><strong>This reverses a common uncertainty intuition.</strong> Williamson often associates greater uncertainty with more integration. Hellmann–Thiele distinguish <em>partner-match uncertainty</em>: if uncertainty means a greater chance that a better asset constellation will appear, integration can be harmful because it blocks adaptation.</div>
+<p>Measurement is difficult. The authors suggest a spectrum from entrepreneurial settings, where business models and asset combinations remain fluid, to mature settings, where optimal combinations are better understood. Technology/business-model maturity would be ideal; firm and industry age are cruder proxies. They cite <strong>Frésard, Hoberg & Phillips (2015)</strong> as indirect evidence: older firms are more vertically integrated in their text-based measure.</p>
+<div class="source">Source: Section VI · pp. 298–299</div></section>
+
+<section id="prediction-3"><h3>6.3 Prediction 3 — Integration encourages specific investment</h3>
+<p>The model generates an unambiguous prediction that joint ownership increases relation-specific investment. Potential measures include codependent technology adoption and interrelated R&D expenditure. The authors point to <strong>Monteverde & Teece (1982)</strong> in automobiles and <strong>Brickley, Misra & Van Horn (2006)</strong> in franchising as supportive evidence.</p>
+<div class="source">Source: Section VI · p. 299</div></section>
+
+<section id="prediction-4"><h3>6.4 Prediction 4 — Integration increases partner stability</h3>
+<p>This prediction requires dynamic data rather than a cross-section. A direct test asks whether integration lowers the incidence of partner switching and boundary change. Relevant outcomes include mergers and acquisitions, divestments, spin-outs, supplier switching, and changes in partners across repeated strategic alliances.</p>
+<p>The paper notes <strong>Atalay, Hortaçsu & Syverson (2014)</strong> as moving toward dynamic responses to ownership changes, while emphasizing that a more direct test would explicitly measure stability and switching.</p>
+<div class="source">Source: Section VI · p. 299</div></section>
+
+<div class="table-wrap"><table><thead><tr><th>Primitive / state</th><th>Ownership prediction</th><th>Behavioral implication</th><th>Measurement challenge</th></tr></thead><tbody>
+<tr><td>Higher current asset specificity / inside quasi-rents</td><td>More integration</td><td>Protect valuable incumbent match</td><td>Specificity proxies may be endogenous</td></tr>
+<tr><td>Higher potential outside match value / arrival</td><td>Less integration</td><td>Preserve rematching flexibility</td><td>Potential matches are latent</td></tr>
+<tr><td>Integration</td><td>—</td><td>More relation-specific investment</td><td>Specific investment is often hard to observe</td></tr>
+<tr><td>Integration</td><td>—</td><td>Greater partner stability</td><td>Requires longitudinal relationship data</td></tr>
+</tbody></table></div>
+</section>
+
+<section id="critical">
+<div class="section-kicker">7 · Critical Reading</div>
+<h2>Critical Reading: What Makes the Theory Work?</h2>
+
+<section id="drivers">
+<h3>7.1 Key Assumptions and Result-Driving Frictions</h3>
+<p>The paper is not simply a model in which “uncertainty causes integration.” Its results require a particular interaction among <span class="term">partner uncertainty</span>, ownership-based consent rights, team moral hazard, and limited transfer capacity. The following map separates assumptions that create the trade-off from assumptions that mainly make it tractable.</p>
+<div class="table-wrap"><table>
+<thead><tr><th>Assumption / feature</th><th>Role in the mechanism</th><th>What would change without it?</th></tr></thead>
+<tbody>
+<tr><td>Partners may discover alternative matches after the initial ownership choice.</td><td>Creates an actual dynamic rematching problem rather than a purely hypothetical outside option.</td><td>Without partner changes, the paper's displacement–retention trade-off disappears.</td></tr>
+<tr><td>Individual ownership permits unilateral exit; joint ownership requires mutual consent.</td><td>Turns ownership into a commitment-versus-flexibility device.</td><td>The two regimes would no longer generate systematically different switching behavior.</td></tr>
+<tr><td>Wealth can be insufficient for transfer payments.</td><td>Prevents renegotiation from always restoring the jointly efficient partner allocation.</td><td>With enough wealth, ex post inefficiencies disappear and ownership eventually becomes irrelevant.</td></tr>
+<tr><td>Production requires complementary private efforts.</td><td>Makes unequal profit shares costly: they distort effort and generate a concave utility possibility frontier.</td><td>Transfers via future profit shares would be less damaging, weakening the source of ex post inefficiency.</td></tr>
+<tr><td>The inside prospect <span class="math-inline">\(\pi\)</span> is observable to the partners but non-verifiable.</td><td>Prevents a date-0 contract from conditioning ownership directly on whether the eventual internal match is good or bad.</td><td>If the signal were verifiable, state-contingent ownership could implement individual ownership in the bad state and joint ownership in the good state.</td></tr>
+<tr><td>Alternative-match arrival is exogenous in the model.</td><td>Keeps the focus on ownership once opportunities arrive.</td><td>Endogenous search would add an incentive margin: governance could affect the effort to find replacements.</td></tr>
+</tbody></table></div>
+<div class="source">Sources: Sections II–IV, especially pp. 281–295; verifiability qualification on p. 290; conclusion on pp. 299–300</div>
+</section>
+
+<section id="limitations">
+<h3>7.2 Authors' Limitations and Analytical Limitations</h3>
+<div class="split">
+<div class="callout amber"><span class="tag author">Author's argument</span><h4>Limitations and extensions explicitly identified by the paper</h4>
+<ul>
+<li><strong>Source of ex post inefficiency.</strong> The model uses team incentives plus wealth constraints; the authors note that asymmetric information could generate other ex post inefficiencies.</li>
+<li><strong>Exogenous partner discovery.</strong> The arrival of superior alternatives is taken as given; a natural extension would make firms choose how actively to identify alternative partners.</li>
+<li><strong>One switching opportunity.</strong> The dynamic environment is deliberately minimal. The authors propose an infinite-horizon extension to study the timing and frequency of partner changes.</li>
+<li><strong>Empirical measurement.</strong> Potential alternative matches and relation-specific investments are difficult to observe directly, making the novel predictions challenging to test.</li>
+</ul>
+<div class="source">Source: Sections VI–VII · pp. 297–300</div></div>
+
+<div class="callout"><span class="tag synth">Analytical synthesis</span><h4>Additional questions a critical reader may raise</h4>
+<ul>
+<li><strong>Joint ownership as “integration.”</strong> This is deliberately different from the canonical GHM notion in which one party owns both assets. Empirical measures of vertical integration therefore need care when mapped to the model.</li>
+<li><strong>Bargaining protocol.</strong> Hart–Mas-Colell bargaining is a disciplined NTU solution, and the authors argue alternative protocols preserve the basic logic, but quantitative thresholds can still depend on bargaining details.</li>
+<li><strong>Symmetry and binary match quality.</strong> The baseline model uses symmetric parties and a two-point inside prospect. Section V shows the central trade-off survives some asymmetry, but richer heterogeneity could change the ownership frontier.</li>
+<li><strong>Endogeneity in empirical tests.</strong> Observed integration, specific investment, and partner stability can be jointly determined. The paper supplies predictions, not a causal empirical design for separating them.</li>
+</ul></div>
+</div>
+</section>
+
+<section id="extensions">
+<h3>7.3 Research Implications / Extensions</h3>
+<div class="callout amber"><span class="tag extend">Research extension</span>
+<p>These are learning-oriented extensions built from the model's logic, not claims made or solved by the authors.</p>
+<ul>
+<li><strong>Endogenous search and matching.</strong> Let ownership affect search intensity for alternative suppliers/buyers. Joint ownership may reduce not only switching but also the incentive to discover alternatives.</li>
+<li><strong>Infinite-horizon governance transitions.</strong> Allow relationships to move repeatedly between independent, jointly controlled, acquired, and dissolved states. This would turn the paper's one-shot commitment–flexibility trade-off into a dynamic governance policy.</li>
+<li><strong>Heterogeneous asset specificity across partners.</strong> Separate the incumbent match's quasi-rents from the specificity of assets in potential alternative matches and study asymmetric governance preferences.</li>
+<li><strong>Network environment.</strong> Replace one alternative partner on each side with a production network. The value of flexibility may then depend on market thickness, concentration, and the topology of feasible substitutes.</li>
+<li><strong>Empirical relationship histories.</strong> Construct panel data on supplier–buyer links, strategic equity stakes, acquisitions, divestitures, and R&amp;D collaboration to test jointly whether tighter control predicts more specific investment and lower switching.</li>
+</ul></div>
+</section>
+</section>
+
+<section id="learning">
+<div class="section-kicker">8 · Active Recall</div>
+<h2>Understanding Check</h2>
+<p>Answers are hidden by default. Use the hint only if you cannot reconstruct the logic, then rate your confidence. Ratings are stored locally in your browser.</p>
+
+<div class="quiz-card" id="quiz-q1" data-q="q1"><div class="quiz-q"><span class="tag">CORE</span><strong>Q1. What is the paper's fundamental trade-off between individual and joint asset ownership?</strong></div>
+<div class="quiz-actions"><button data-reveal="hint">Show Hint</button><button data-reveal="answer">Show Answer</button></div>
+<div class="reveal hint"><strong>Hint.</strong> Ask which mistake each ownership regime permits when only one incumbent partner receives an outside opportunity.</div>
+<div class="reveal answer"><strong>Suggested answer.</strong> Individual asset ownership preserves unilateral exit, which gives flexibility but can generate a <strong>displacement externality</strong>: the partner with an outside option leaves even when the gain from leaving is smaller than the loss imposed on the displaced incumbent. Joint asset ownership requires mutual consent, protecting valuable relationships but potentially generating a <strong>retention externality</strong>: the partner without an outside option can block a socially valuable switch. Ownership therefore trades flexibility against commitment.<div class="mistake"><strong>Common mistake.</strong> Saying that integration is always efficient because it prevents opportunistic exit. It can also retain an inefficient match.</div><div class="why"><strong>Why this matters.</strong> This is the organizing mechanism for every later proposition.</div><div class="review"><a href="#asset-ownership">Review: Section 3 · Asset Ownership</a></div></div>
+<div class="rating"><button data-rate="got">✅ Got it</button><button data-rate="unsure">🤔 Not sure</button><button data-rate="review">❌ Need to Review</button></div></div>
+
+<div class="quiz-card" id="quiz-q2" data-q="q2"><div class="quiz-q"><span class="tag">FORMAL MODEL</span><strong>Q2. Why does an unequal profit split reduce total surplus in Equation (1)?</strong></div>
+<div class="quiz-actions"><button data-reveal="hint">Show Hint</button><button data-reveal="answer">Show Answer</button></div>
+<div class="reveal hint"><strong>Hint.</strong> Both agents' private efforts are productive complements, and each chooses effort from only his or her own profit share.</div>
+<div class="reveal answer"><strong>Suggested answer.</strong> A larger share strengthens one partner's effort incentive but weakens the other's. Because success depends on the product of both efforts, concentrating surplus on one partner eventually lowers the complementary effort of the other. With symmetric partners, total surplus is maximized at the equal split <span class="math-inline">\(\alpha=\beta=1/2\)</span>, even though each partner privately prefers a share above one half.<div class="mistake"><strong>Common mistake.</strong> Treating the division of profit as a pure transfer. Here it changes effort, so it is allocatively consequential.</div><div class="why"><strong>Why this matters.</strong> The distortion from giving a nonproductive or advantaged party a larger profit share is what makes limited wealth economically important.</div><div class="review"><a href="#production">Review: 2.3 · Joint Production and Equation (1)</a></div></div>
+<div class="rating"><button data-rate="got">✅ Got it</button><button data-rate="unsure">🤔 Not sure</button><button data-rate="review">❌ Need to Review</button></div></div>
+
+<div class="quiz-card" id="quiz-q3" data-q="q3"><div class="quiz-q"><span class="tag">MECHANISM</span><strong>Q3. Why does more wealth move the leaving threshold in opposite directions under individual and joint ownership?</strong></div>
+<div class="quiz-actions"><button data-reveal="hint">Show Hint</button><button data-reveal="answer">Show Answer</button></div>
+<div class="reveal hint"><strong>Hint.</strong> Under individual ownership, who must pay whom to preserve the old match? Under joint ownership, who must pay whom to escape it?</div>
+<div class="reveal answer"><strong>Suggested answer.</strong> Under individual ownership, wealth lets the partner without an outside option compensate the mobile partner for staying, so the original relationship survives for a wider set of inside prospects; hence <span class="math-inline">\(\hat\pi_I(\sigma,w)\)</span> falls with wealth in the active range. Under joint ownership, wealth lets the mobile partner buy consent to leave while retaining more equity in the new partnership, so switching becomes attractive for a wider set; hence <span class="math-inline">\(\hat\pi_J(\sigma,w)\)</span> rises with wealth.<div class="why"><strong>Why this matters.</strong> It shows that liquidity does not have a generic “stabilizing” effect; its effect depends on control rights.</div><div class="review"><a href="#individual-ownership">Review: Lemma 1</a> · <a href="#joint-ownership">Lemma 2</a></div></div>
+<div class="rating"><button data-rate="got">✅ Got it</button><button data-rate="unsure">🤔 Not sure</button><button data-rate="review">❌ Need to Review</button></div></div>
+
+<div class="quiz-card" id="quiz-q4" data-q="q4"><div class="quiz-q"><span class="tag">MECHANISM</span><strong>Q4. In Proposition 1's mixed case, why does a higher probability of a good internal match favor joint ownership?</strong></div>
+<div class="quiz-actions"><button data-reveal="hint">Show Hint</button><button data-reveal="answer">Show Answer</button></div>
+<div class="reveal hint"><strong>Hint.</strong> Which ownership regime makes its characteristic mistake in the high-inside-prospect state?</div>
+<div class="reveal answer"><strong>Suggested answer.</strong> When <span class="math-inline">\(\pi_L&lt;\hat\pi_V(\sigma)&lt;\pi_H\)</span>, joint ownership is useful in the high state because it prevents displacement of a valuable incumbent partnership, while it is costly in the low state because it may retain an inefficient partnership. As the probability <span class="math-inline">\(p\)</span> of the high state rises, the commitment benefit receives more weight, producing a cutoff <span class="math-inline">\(\hat p\)</span> above which joint ownership is optimal.<div class="mistake"><strong>Common mistake.</strong> Interpreting <span class="math-inline">\(p\)</span> as the probability of finding an outside partner. It is the probability that relation-specific investment produces the high inside prospect.</div><div class="review"><a href="#optimal-ownership">Review: Proposition 1</a></div></div>
+<div class="rating"><button data-rate="got">✅ Got it</button><button data-rate="unsure">🤔 Not sure</button><button data-rate="review">❌ Need to Review</button></div></div>
+
+<div class="quiz-card" id="quiz-q5" data-q="q5"><div class="quiz-q"><span class="tag">FORMAL MODEL</span><strong>Q5. Why does Proposition 2 predict more relation-specific investment under joint ownership?</strong></div>
+<div class="quiz-actions"><button data-reveal="hint">Show Hint</button><button data-reveal="answer">Show Answer</button></div>
+<div class="reveal hint"><strong>Hint.</strong> Compare where each governance regime places its inefficiency: the good state or the bad state.</div>
+<div class="reveal answer"><strong>Suggested answer.</strong> Specific investment is valuable because it raises the probability of the high inside prospect. Joint ownership is efficient in the good state but may create retention in the bad state, which widens the payoff difference between high and low states and therefore raises the marginal return to investment. Individual ownership behaves in the opposite way: its displacement/renegotiation inefficiency is concentrated in the good state, compressing the good–bad payoff difference and weakening investment incentives.<div class="why"><strong>Why this matters.</strong> The paper obtains an unambiguous investment prediction through the location of governance inefficiency across states.</div><div class="review"><a href="#investment-incentives">Review: Proposition 2</a></div></div>
+<div class="rating"><button data-rate="got">✅ Got it</button><button data-rate="unsure">🤔 Not sure</button><button data-rate="review">❌ Need to Review</button></div></div>
+
+<div class="quiz-card" id="quiz-q6" data-q="q6"><div class="quiz-q"><span class="tag">CORE</span><strong>Q6. Why can wealth improve ex post efficiency but reduce ex ante investment incentives?</strong></div>
+<div class="quiz-actions"><button data-reveal="hint">Show Hint</button><button data-reveal="answer">Show Answer</button></div>
+<div class="reveal hint"><strong>Hint.</strong> Think of wealth as insurance against a poor ex post governance outcome.</div>
+<div class="reveal answer"><strong>Suggested answer.</strong> Wealth supplies side payments that can correct inefficient partner allocations after outside opportunities are known. But under joint ownership those payments particularly improve the low-inside-prospect state, making failure to build a strong relationship less costly. That compresses the payoff gain from moving from <span class="math-inline">\(\pi_L\)</span> to <span class="math-inline">\(\pi_H\)</span> and therefore lowers the ex ante return to relation-specific investment. This is why the optimal amount available for transfers can be below total wealth.<div class="mistake"><strong>Common mistake.</strong> Concluding that more wealth must always raise welfare because it expands the feasible transfer set; the ex ante incentive response matters.</div><div class="review"><a href="#expected-utility">Review: 4.3–4.4 · Wealth and Ownership</a></div></div>
+<div class="rating"><button data-rate="got">✅ Got it</button><button data-rate="unsure">🤔 Not sure</button><button data-rate="review">❌ Need to Review</button></div></div>
+
+<div class="quiz-card" id="quiz-q7" data-q="q7"><div class="quiz-q"><span class="tag">LITERATURE</span><strong>Q7. What is the paper's most important departure from GHM for understanding dynamic firm boundaries?</strong></div>
+<div class="quiz-actions"><button data-reveal="hint">Show Hint</button><button data-reveal="answer">Show Answer</button></div>
+<div class="reveal hint"><strong>Hint.</strong> In GHM, what happens to the outside partner in equilibrium?</div>
+<div class="reveal answer"><strong>Suggested answer.</strong> GHM uses outside options mainly as bargaining threats and normally assumes the optimal partner match, so switching does not actually occur in equilibrium. Hellmann and Thiele allow the identity of the best partner to be uncertain and let actual rematching occur. This converts ownership from only an incentive-allocation device into a dynamic commitment/flexibility device and creates displacement and retention externalities.<div class="mistake"><strong>Common mistake.</strong> Saying the paper simply “adds uncertainty” to GHM. The crucial change is uncertainty over partner quality together with equilibrium switching and ex post inefficiency.</div><div class="review"><a href="#ghm-departures">Review: 1.1 · Comparison with GHM</a></div></div>
+<div class="rating"><button data-rate="got">✅ Got it</button><button data-rate="unsure">🤔 Not sure</button><button data-rate="review">❌ Need to Review</button></div></div>
+
+<div class="quiz-card" id="quiz-q8" data-q="q8"><div class="quiz-q"><span class="tag">EVIDENCE</span><strong>Q8. Which empirical prediction is most distinctively dynamic, and what data would be needed to test it directly?</strong></div>
+<div class="quiz-actions"><button data-reveal="hint">Show Hint</button><button data-reveal="answer">Show Answer</button></div>
+<div class="reveal hint"><strong>Hint.</strong> It cannot be tested from a single cross-section of ownership choices.</div>
+<div class="reveal answer"><strong>Suggested answer.</strong> The most distinctively dynamic prediction is that integration produces greater <strong>partner stability</strong>. A direct test needs longitudinal relationship data that observe both governance/ownership and partner identities over time—for example supplier switching, repeated strategic alliances, M&amp;A followed by divestitures or spin-outs—so that switching hazards can be compared across governance regimes.<div class="why"><strong>Why this matters.</strong> It is the prediction that most directly operationalizes the paper's claim to be a theory of the <em>dynamic</em> boundary of the firm.</div><div class="review"><a href="#prediction-4">Review: Empirical Prediction 4</a></div></div>
+<div class="rating"><button data-rate="got">✅ Got it</button><button data-rate="unsure">🤔 Not sure</button><button data-rate="review">❌ Need to Review</button></div></div>
+</section>
+
+<section id="mastery">
+<h2>Can You Explain the Paper Without Looking?</h2>
+<ol class="mastery">
+<li>Give a 90-second explanation that starts with partner uncertainty and ends with the ownership choice—without using the phrases “because integration is better” or “because flexibility is good.”</li>
+<li>Reconstruct Figure 3 from memory: where do displacement, retention, inefficient buyout, and efficient staying/splitting occur as the inside prospect rises relative to the outside prospect?</li>
+<li>Explain Equation (1) and then use it to show why giving a passive third party a stake in future output is costly.</li>
+<li>Compare Hellmann–Thiele with GHM and Williamson: what primitive, mechanism, and empirical prediction is genuinely new?</li>
+<li>Design a panel-data test of the partner-stability prediction. What would be the main endogeneity concern, and what source of variation would you want?</li>
+</ol>
+</section>
+
+<section id="remember">
+<div class="section-kicker">9 · Synthesis</div>
+<h2>What Should I Remember?</h2>
+<div class="grid">
+<div class="card"><div class="label">One-Sentence Summary</div><div class="big">Partner uncertainty makes ownership a choice between flexibility to rematch and commitment to preserve a valuable relationship.</div></div>
+<div class="card"><div class="label">Core Mechanism</div><div class="big">Individual ownership risks displacement; joint ownership risks retention.</div></div>
+<div class="card"><div class="label">Most Important Result</div><div class="big">Greater incumbent asset specificity favors joint ownership, while better alternative-match potential favors individual ownership.</div></div>
+<div class="card"><div class="label">Investment Result</div><div class="big">With binding wealth constraints, joint ownership induces more relation-specific investment.</div></div>
+<div class="card"><div class="label">Wealth Result</div><div class="big">Transfers improve ex post matching but can weaken ex ante investment incentives.</div></div>
+<div class="card"><div class="label">Dynamic Prediction</div><div class="big">Integration should be associated with more stable partner relationships.</div></div>
+</div>
+
+<h3>9.1 Eight Things to Remember</h3>
+<ol>
+<li><strong>Partner uncertainty is about match quality, not merely generic environmental uncertainty.</strong> Potentially superior partners arrive after the ownership choice.</li>
+<li><strong>Joint asset ownership means mutual control.</strong> Leaving requires the other incumbent's consent; it is not the one-owner integration structure of canonical GHM.</li>
+<li><strong>The asymmetric-outside-option state is where ownership matters.</strong> If neither or both incumbents find alternatives, the allocation is jointly efficient regardless of ownership.</li>
+<li><strong>Displacement and retention are mirror-image externalities.</strong> One arises because exit is too easy; the other because exit is too hard.</li>
+<li><strong>Current and future quasi-rents push governance in opposite directions.</strong> A stronger incumbent match favors integration; a more attractive potential alternative match favors flexibility.</li>
+<li><strong>Specific investment interacts with the state in which governance fails.</strong> Joint ownership makes the bad state worse relative to the good state, strengthening investment incentives.</li>
+<li><strong>Wealth is a double-edged sword.</strong> It enables corrective transfers ex post but can insure partners against poor relationship outcomes and thereby reduce ex ante effort to build the relationship.</li>
+<li><strong>The most distinctively dynamic empirical implication is partner stability.</strong> Testing it requires relationship histories, not only a cross-section of make-or-buy choices.</li>
+</ol>
+
+<div class="split">
+<div class="callout green"><strong>Biggest contribution.</strong> A formal dynamic theory in which the boundary of the firm governs whether partners can actually switch, producing a new commitment–flexibility trade-off and a novel prediction that alternative partner potential discourages integration.</div>
+<div class="callout amber"><strong>Biggest limitation.</strong> The dynamics are intentionally sparse: partner discovery is exogenous and there is at most one opportunity to switch, so the model does not yet characterize repeated search, rematching, and governance transitions.</div>
+</div>
+<div class="callout"><strong>Biggest open question.</strong> What happens when firms endogenously search over a thick network of potential partners and can repeatedly change both partners and governance over an infinite horizon?</div>
+<div class="source">Source for authors' stated future directions: Section VII · pp. 299–300; wording of “biggest” contribution/limitation/open question is analytical synthesis.</div>
+</section>
+
+<section id="source-map">
+<h2>Source &amp; Coverage Map</h2>
+<p>This audit maps every substantive section of the published article to the notebook. Page references use the journal pagination visible in the supplied PDF.</p>
+<div class="table-wrap"><table>
+<thead><tr><th>Original paper location</th><th>Substantive content</th><th>Notebook location</th><th>Status</th></tr></thead>
+<tbody>
+<tr><td>Abstract &amp; Introduction, pp. 277–279</td><td>Partner uncertainty; displacement vs retention; asset specificity; investment, wealth, stability predictions</td><td><a href="#overview">Overview</a> · <a href="#paper-at-a-glance">Paper at a Glance</a></td><td>Covered</td></tr>
+<tr><td>I. Related Literature, pp. 279–281</td><td>GHM departures; transaction costs; ex post inefficiency; wealth; exclusivity; entrepreneurship; marriage/divorce; dissolution</td><td><a href="#literature">Literature Position</a></td><td>Covered</td></tr>
+<tr><td>II. Base Model, pp. 281–284</td><td>Agents, five dates, inside/outside prospects, investments, effort, ownership, bargaining</td><td><a href="#base-model">Base Model</a></td><td>Covered</td></tr>
+<tr><td>III.A Joint Production, pp. 284–285</td><td>Equation (1); effort complementarity; utility frontier</td><td><a href="#production">Joint Production</a></td><td>Covered</td></tr>
+<tr><td>III.B Symmetric Outside Options, pp. 285–286</td><td>No alternative / both alternatives; ownership irrelevance</td><td><a href="#symmetric-options">Symmetric Outside Options</a></td><td>Covered</td></tr>
+<tr><td>III.C Asymmetric Outside Options, pp. 286–289</td><td>Individual ownership, displacement, Lemma 1; joint ownership, retention/buyout, Lemma 2</td><td><a href="#individual-ownership">Individual</a> · <a href="#joint-ownership">Joint</a></td><td>Covered</td></tr>
+<tr><td>III.D Optimal Asset Ownership, pp. 289–290</td><td>Proposition 1; Figure 3; threshold logic; non-verifiable signal</td><td><a href="#optimal-ownership">Optimal Ownership</a></td><td>Covered</td></tr>
+<tr><td>IV.A Optimal Investments, pp. 291–292</td><td>Proposition 2; Figure 4; wealth and specific investment</td><td><a href="#investment-incentives">Investment Incentives</a></td><td>Covered</td></tr>
+<tr><td>IV.B Optimal Asset Ownership, pp. 292–294</td><td>Lemmas 3–4; Proposition 3; Figure 5</td><td><a href="#expected-utility">Wealth &amp; Ownership</a></td><td>Covered</td></tr>
+<tr><td>IV.C Changing Available Transfer Amounts, pp. 294–296</td><td>Optimal transfer capacity; outside finance; renegotiation-proof commitment problem</td><td><a href="#transfer-capacity">Transfer Capacity</a></td><td>Covered</td></tr>
+<tr><td>V. Asymmetric Partners, pp. 296–297</td><td>Asymmetric wealth; asymmetric alternative-match probabilities; Equation (2); Figure 6 logic</td><td><a href="#asymmetry">Asymmetric Partners</a></td><td>Covered</td></tr>
+<tr><td>VI. Empirical Predictions, pp. 297–299</td><td>Four predictions, measurement, existing evidence, future testing</td><td><a href="#empirical">Empirical Predictions</a></td><td>Covered</td></tr>
+<tr><td>VII. Conclusion, pp. 299–300</td><td>Summary; other inefficiencies; endogenous search; infinite horizon</td><td><a href="#critical">Critical Reading</a> · <a href="#remember">Synthesis</a></td><td>Covered</td></tr>
+</tbody></table></div>
+<div class="callout amber"><strong>Appendix boundary.</strong> The article repeatedly delegates complete derivations and proofs to an <em>online Appendix</em>. That appendix is not contained in the supplied 26-page PDF. This notebook therefore preserves the propositions, lemmas, threshold directions, and intuitions reported in the published article, but does not invent omitted proof steps or closed-form expressions that are not in the supplied source.</div>
+</section>
+</article></main></div><script>
+(function(){
+const safeGet=k=>{try{return window.localStorage?window.localStorage.getItem(k):null}catch(e){return null}};
+const safeSet=(k,v)=>{try{if(window.localStorage)window.localStorage.setItem(k,v)}catch(e){}};
+const root=document.documentElement,saved=safeGet("ht-theme");if(saved)root.dataset.theme=saved;
+const theme=document.getElementById("themeBtn");function tl(){theme.textContent=root.dataset.theme==="dark"?"☀︎":"☾"}tl();theme.onclick=()=>{root.dataset.theme=root.dataset.theme==="dark"?"light":"dark";safeSet("ht-theme",root.dataset.theme);tl()};
+const pr=document.getElementById("progress");function up(){const d=document.documentElement,m=d.scrollHeight-d.clientHeight;pr.style.width=(m?100*d.scrollTop/m:0)+"%"}document.addEventListener("scroll",up,{passive:true});up();
+const aside=document.querySelector("aside");document.getElementById("navBtn").onclick=()=>aside.classList.toggle("open");
+const links=[...document.querySelectorAll(".nav a")],targets=links.map(a=>document.querySelector(a.getAttribute("href"))).filter(Boolean);links.forEach(a=>a.onclick=()=>aside.classList.remove("open"));
+if(targets.length){const obs=new IntersectionObserver(es=>{const e=es.filter(x=>x.isIntersecting).sort((a,b)=>a.boundingClientRect.top-b.boundingClientRect.top)[0];if(e)links.forEach(a=>a.classList.toggle("active",a.getAttribute("href")==="#"+e.target.id))},{rootMargin:"-15% 0px -76% 0px",threshold:[0,1]});targets.forEach(t=>obs.observe(t));}
+document.querySelectorAll("[data-tab-group]").forEach(g=>{const bs=g.querySelectorAll(".tab-buttons button"),ps=g.querySelectorAll(".tab-panel");bs.forEach(b=>b.onclick=()=>{bs.forEach(x=>x.classList.remove("active"));ps.forEach(x=>x.classList.remove("active"));b.classList.add("active");const panel=g.querySelector("#"+b.dataset.target);if(panel)panel.classList.add("active")})});
+document.querySelectorAll(".quiz-card").forEach((q,i)=>{const key="ht-quiz-"+document.documentElement.lang+"-"+(q.dataset.q||i);q.querySelectorAll("[data-reveal]").forEach(b=>b.onclick=()=>{const target=q.querySelector("."+b.dataset.reveal);if(target)target.classList.toggle("show")});q.querySelectorAll(".rating button").forEach(b=>{if(safeGet(key)===b.dataset.rate)b.classList.add("selected");b.onclick=()=>{q.querySelectorAll(".rating button").forEach(x=>x.classList.remove("selected"));b.classList.add("selected");safeSet(key,b.dataset.rate)}})});
+function rm(){if(!window.katex)return;document.querySelectorAll(".math-inline,.math-display").forEach(el=>{try{katex.render(el.textContent,el,{displayMode:el.classList.contains("math-display"),throwOnError:false})}catch(e){}})}if(window.katex)rm();else window.addEventListener("load",rm);
+})();
+</script></body></html>

@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Interactive research notebook for Rauch and Watson (2003), Starting Small in an Unfamiliar Environment">
+<title>Rauch & Watson (2003) — Starting Small in an Unfamiliar Environment</title>
+<style>
+:root{--bg:#f7f6f2;--surface:#fff;--surface2:#f0f2f3;--text:#20262d;--muted:#68727d;--line:#d9dde1;--accent:#405d78;--green:#4c755e;--amber:#9a7440;--accent-soft:#eaf0f5;--green-soft:#edf5ef;--sidebar:286px;--r:11px}
+html[data-theme="dark"]{--bg:#161b20;--surface:#1e252c;--surface2:#252e36;--text:#ecf0f2;--muted:#aab4bd;--line:#36414b;--accent:#91abc2;--green:#8fb49c;--amber:#d3ae72;--accent-soft:#263747;--green-soft:#263a30}
+*{box-sizing:border-box}html{scroll-behavior:smooth;max-width:100%}body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,"IBM Plex Sans","Source Sans 3",system-ui,sans-serif;line-height:1.72;max-width:100%}body.zh{font-family:Inter,"Noto Sans SC","PingFang SC","Microsoft YaHei",system-ui,sans-serif}
+a{color:var(--accent);text-decoration:none}.progress{position:fixed;top:0;left:0;width:100%;height:3px;z-index:120}.progress span{display:block;height:100%;width:0;background:var(--accent)}
+.layout{display:grid;grid-template-columns:var(--sidebar) minmax(0,1fr);min-height:100vh}.side{position:sticky;top:0;height:100vh;padding:27px 18px;background:var(--surface);border-right:1px solid var(--line);overflow:auto;z-index:40}.brand{font-size:12px;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);font-weight:800}.paper{font-size:14px;font-weight:700;line-height:1.4;margin:7px 0 15px}.side nav{display:flex;flex-direction:column}.side nav a{padding:6px 8px;border-radius:7px;color:var(--muted);font-size:12.5px;line-height:1.3}.side nav a[data-l="2"]{padding-left:20px;font-size:12px}.side nav a.active{background:var(--surface2);color:var(--text);font-weight:700}.side nav a.parent-active{color:var(--text);font-weight:700}.tools{margin:12px 0 16px}.btn,.menubtn,.qbtn,.rate button{border:1px solid var(--line);background:var(--surface2);color:var(--text);border-radius:7px;padding:7px 10px;cursor:pointer}.menubtn{display:none;position:fixed;top:12px;left:12px;z-index:100;background:var(--surface)}
+main{min-width:0;padding:0 32px 90px}.article{max-width:940px;margin:auto;min-width:0}.hero{padding:58px 0 34px;border-bottom:1px solid var(--line);margin-bottom:28px}.eyebrow{font-size:12px;text-transform:uppercase;letter-spacing:.09em;color:var(--accent);font-weight:800}.hero h1{font-family:Georgia,serif;font-size:clamp(32px,5vw,45px);line-height:1.12;margin:10px 0 12px}.sub{font-size:17px;color:var(--muted);max-width:780px}.meta{margin-top:16px;display:flex;flex-wrap:wrap;gap:7px 16px;color:var(--muted);font-size:12.5px}
+section{min-width:0;scroll-margin-top:20px}.major{padding-top:32px;margin-top:10px}h2{font-family:Georgia,serif;font-size:29px;line-height:1.2;margin:0 0 17px;padding-bottom:9px;border-bottom:1px solid var(--line)}h3{font-size:21px;margin:32px 0 11px}h4{font-size:16.5px;margin:23px 0 8px}.lead{font-size:17.5px;max-width:760px}.muted,.source{color:var(--muted)}.source{font-size:12px;margin-top:8px}.source:before{content:"↳ ";color:var(--accent)}
+.badge{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:3px 8px;font-size:10.5px;font-weight:800;text-transform:uppercase;letter-spacing:.04em;color:var(--muted)}.author{color:var(--accent)}.synth{color:var(--green)}.extend{color:var(--amber)}
+.dashboard{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:11px;margin:18px 0 26px}.card,.plain,.eq,.prop,.quiz{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);min-width:0}.card{padding:15px;border-top:3px solid var(--accent)}.card .lab{font-size:10.5px;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);font-weight:800}.card .val{font-size:14.5px;line-height:1.45;margin-top:5px;font-weight:650}.plain{padding:15px}.plain h4{margin-top:0}.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.callout{border-left:4px solid var(--accent);background:var(--surface);padding:13px 15px;margin:17px 0;border-radius:0 8px 8px 0}.callout.green{border-left-color:var(--green)}.callout.amber{border-left-color:var(--amber)}
+.chain{display:flex;gap:8px;align-items:stretch;overflow-x:auto;margin:17px 0;padding-bottom:5px}.node{flex:1;min-width:145px;background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:11px;font-size:13px}.arr{display:flex;align-items:center;color:var(--muted);font-size:19px}
+.wrap{max-width:100%;overflow-x:auto;overflow-y:hidden;margin:15px 0}.wrap table{width:100%;min-width:760px;border-collapse:collapse;background:var(--surface)}th,td{padding:9px 11px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top;font-size:12.8px}th{background:var(--surface2);font-size:10.8px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted)}tr:last-child td{border-bottom:0}.fp td:first-child,.fp th:first-child{width:205px}
+.eq{padding:16px;margin:16px 0}.eqtitle{font-weight:800}.math{font-family:"Times New Roman",Georgia,serif;font-size:18px;white-space:nowrap;min-width:max-content}.display{text-align:center;font-size:20px;padding:10px}.explain{display:grid;grid-template-columns:1fr 1fr;gap:12px}.explain>div{background:var(--surface2);border-radius:7px;padding:10px;font-size:13px}.kick{font-size:10.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);font-weight:800}
+.prop{margin:16px 0;overflow:hidden}.prophead{display:flex;justify-content:space-between;gap:10px;align-items:center;background:var(--surface2);border-bottom:1px solid var(--line);padding:12px 15px}.prophead strong{font-family:Georgia,serif;font-size:17px}.propbody{padding:15px}.propgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+details{border:1px solid var(--line);border-radius:8px;background:var(--surface);margin:11px 0}summary{cursor:pointer;padding:10px 13px;font-weight:700}details>div{padding:0 13px 13px}
+.timeline .step{display:grid;grid-template-columns:38px minmax(0,1fr);gap:9px;margin:10px 0}.num{width:30px;height:30px;border-radius:50%;border:1px solid var(--line);background:var(--surface);display:flex;align-items:center;justify-content:center;font-weight:800}
+.diagram{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:12px;min-width:700px}.diagram svg{width:100%;height:auto;display:block}.legend{font-size:11.5px;color:var(--muted);margin-top:7px}
+.quiz{padding:15px;margin:15px 0}.q{font-weight:750;font-size:15.5px;margin:8px 0 11px}.qactions,.rate{display:flex;gap:7px;flex-wrap:wrap}.reveal{display:none;background:var(--surface2);padding:11px;border-radius:7px;margin-top:10px}.reveal.show{display:block}.rate{margin-top:10px}.rate button.selected{outline:2px solid var(--accent)}
+.check{list-style:none;padding:0}.check li{position:relative;padding-left:22px;margin:6px 0}.check li:before{content:"✓";position:absolute;left:0;color:var(--green);font-weight:800}.term{font-weight:800;color:var(--accent)}.footer{margin-top:65px;padding-top:22px;border-top:1px solid var(--line);color:var(--muted);font-size:12px}
+@media(max-width:1100px){:root{--sidebar:242px}.dashboard{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:820px){.layout{display:block}.side{position:fixed;width:min(86vw,310px);left:0;top:0;bottom:0;transform:translateX(-105%);transition:.2s}.side.open{transform:translateX(0)}.menubtn{display:block}main{padding:0 17px 70px}.hero{padding-top:72px}.grid2,.grid3,.propgrid,.explain{grid-template-columns:1fr}}
+@media(max-width:540px){.dashboard{grid-template-columns:1fr}.hero h1{font-size:31px}.chain{flex-direction:column}.arr{transform:rotate(90deg);align-self:center}}
+
+
+/* final component aliases / parity-safe additions */
+.table-wrap,.equation-wrap,.wrap{max-width:100%;overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch}
+.equation-wrap{margin:12px 0}.equation-wrap .math{min-width:max-content}
+.diagram{display:block;width:100%;height:auto;max-width:100%;color:var(--text)}
+.diagram .svgbox{fill:var(--surface2);stroke:var(--line);stroke-width:1.3}
+.diagram text{fill:var(--text);font-family:Inter,"IBM Plex Sans","Source Sans 3",system-ui,sans-serif;font-size:15px}
+.caption{font-size:12px;color:var(--muted);margin-top:7px}
+.tag,.skill,.status{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:3px 8px;font-size:10.5px;font-weight:800;letter-spacing:.035em;vertical-align:middle}
+.equation-card,.proposition{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px;margin:16px 0;min-width:0}.eq-title{font-weight:800}
+.tag,.skill{color:var(--accent);background:var(--accent-soft)}
+.status{color:var(--green);background:var(--green-soft)}
+.quiz-card{border:1px solid var(--line);border-radius:var(--r);padding:18px;margin:16px 0;background:var(--surface)}
+.quiz-head{display:flex;gap:10px;align-items:flex-start}.quiz-head h3{margin:0;font-size:17px;flex:1}
+.quiz-actions,.rating{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.quiz-actions button,.rating button{border:1px solid var(--line);background:var(--surface2);color:var(--text);padding:7px 10px;border-radius:8px;cursor:pointer}
+.quiz-actions button:hover,.rating button:hover{border-color:var(--accent)}
+.quiz-hidden{display:none;border-left:3px solid var(--line);padding:10px 12px;margin-top:10px;background:var(--surface2);border-radius:0 8px 8px 0}
+.quiz-hidden.show{display:block}.rating button.selected{outline:2px solid var(--accent);border-color:var(--accent)}
+.review{font-size:12px;color:var(--muted);margin-top:11px}.review a{color:var(--accent)}
+.remember{border-left:4px solid var(--accent);padding:5px 0 5px 17px;margin:14px 0 24px}
+.mastery li{margin:10px 0}
+.extension{border-left-color:var(--green)}
+footer{margin-top:65px;padding-top:22px;border-top:1px solid var(--line);color:var(--muted);font-size:12px}
+.svgbox{fill:var(--surface2);stroke:var(--line)}
+@media(max-width:540px){.quiz-head{display:block}.quiz-head .skill{margin-bottom:8px}}
+</style>
+<script>window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']],tags:'ams'},svg:{fontCache:'global'}};</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+<div class="progress" aria-hidden="true"><span></span></div>
+
+<div class="layout"><aside class="side" id="side">
+<div class="brand">Research Reading Notebook</div><div class="paper">Rauch & Watson (2003)<br><em>Starting Small in an Unfamiliar Environment</em></div>
+<div class="tools"><button class="btn" id="theme">◐ Theme</button></div>
+<nav>
+<a href="#dashboard">Dashboard</a><a href="#glance">Paper at a Glance</a><a href="#puzzle">Research Puzzle & Literature</a><a href="#literature-position" data-l="2">Literature Position</a>
+<a href="#empirical-motivation">Empirical Motivation</a><a href="#start-small-evidence" data-l="2">Starting-Small Evidence</a><a href="#three-differences" data-l="2">Three DC–LDC Differences</a><a href="#networks-persistence" data-l="2">Networks & Persistence</a>
+<a href="#model">Model</a><a href="#environment" data-l="2">Environment & Information</a><a href="#timing" data-l="2">Timing</a><a href="#actions" data-l="2">Big / Learn / Out</a><a href="#core-equations" data-l="2">Core Equations</a><a href="#cutoffs" data-l="2">Cutoffs & Switching</a>
+<a href="#results">Results</a><a href="#starting-small-results" data-l="2">Starting Small: Props. 2–5</a><a href="#persistence-results" data-l="2">Persistence: Props. 6–9</a><a href="#cost-structure" data-l="2">Structure on Supplier Costs</a>
+<a href="#proof-architecture">Proof Architecture</a><a href="#export-interpretation">Export & Development Interpretation</a><a href="#knowledge-map">Literature Knowledge Map</a>
+<a href="#critical">Critical Reading</a><a href="#extensions">Research Implications</a><a href="#quiz">Understanding Check</a><a href="#mastery">Mastery Test</a><a href="#memory">What Should I Remember?</a><a href="#coverage">Coverage & Sources</a>
+</nav></aside>
+<button class="menubtn" id="menu">☰</button><main><article class="article">
+<header class="hero"><div class="eyebrow">Theoretical IO · Search · Buyer–Supplier Relationships</div>
+<h1>Starting Small in an Unfamiliar Environment</h1>
+<div class="sub">A loss-minimized interactive reconstruction of James E. Rauch & Joel Watson (2003): why buyers use trial orders, how search frictions and uncertainty shape supplier choice, and why relationship persistence is tied to the way a match begins.</div>
+<div class="meta"><span>International Journal of Industrial Organization 21 (2003), 1021–1042</span><span>JEL L24 · D83</span><span>Paper type: Theory + empirical motivation</span></div></header>
+
+<section id="dashboard" class="major"><h2>Paper Dashboard</h2>
+<div class="dashboard">
+<div class="card"><div class="lab">Research Question</div><div class="val">When should a developed-country buyer begin a new LDC supplier relationship with a small trial order rather than a large order or renewed search?</div></div>
+<div class="card"><div class="lab">Core Friction</div><div class="val">Uncertain supplier capability + irreversible buyer-funded training + costly search for alternatives.</div></div>
+<div class="card"><div class="lab">Key Choice</div><div class="val"><strong>Big</strong> vs <strong>Learn</strong> vs <strong>Out</strong>, followed by stay/switch decisions once a successful match exists.</div></div>
+<div class="card"><div class="lab">Main Mechanism</div><div class="val">A small order delays scale but buys information before the buyer risks training investment <em>I</em>.</div></div>
+<div class="card"><div class="lab">Main Comparative Statics</div><div class="val">Higher search cost or lower success probability expands the set of suppliers for which <strong>Learn</strong> is optimal.</div></div>
+<div class="card"><div class="lab">Distinctive Contribution</div><div class="val">Combines experimentation, search, and supplier switching to link relationship formation, persistence, and technology transfer.</div></div>
+</div>
+<div class="callout green"><span class="badge author">Author's argument</span><br><strong>One-sentence answer:</strong> starting small is valuable because it reveals whether training will pay off before an irreversible investment is made; its use depends jointly on the value of waiting, the cost of searching again, and supplier quality.</div>
+<p class="source">Abstract; §1, pp. 1021–1024; §§3–4, pp. 1028–1035.</p></section>
+
+<section id="glance" class="major"><h2>Paper at a Glance</h2>
+<div class="wrap"><table class="fp">
+<tr><th>Dimension</th><th>Paper Fingerprint</th></tr>
+<tr><td>Research Question</td><td>How should a DC buyer structure the beginning of a relationship with an LDC supplier when capability is uncertain, training is costly, and alternatives are costly to find?</td></tr>
+<tr><td>Economic Friction</td><td><strong>Search frictions</strong>, uncertainty about large-order success, and an irreversible <strong>training investment</strong>.</td></tr>
+<tr><td>Agents</td><td>A developed-country (<strong>DC</strong>) buyer and a large pool of less-developed-country (<strong>LDC</strong>) suppliers heterogeneous in per-period cost <em>c</em>.</td></tr>
+<tr><td>Key Choice</td><td>After drawing a supplier: <strong>Big</strong>, <strong>Learn</strong>, or <strong>Out</strong>. In a successful match: stay or switch when a new supplier arrives through a network.</td></tr>
+<tr><td>State / Environment</td><td>Supplier cost <em>c</em>, relationship status, outside search value <em>w</em>, successful-match value <em>v(c)</em>, network arrival probability <em>q</em>.</td></tr>
+<tr><td>Core Mechanism</td><td><strong>Learn</strong> sacrifices current profit for information, allowing the buyer to avoid losing <em>I</em> on an incapable supplier.</td></tr>
+<tr><td>Contracting / Market Problem</td><td>The payment environment may protect buyers from paying for nonconforming output but cannot protect the sunk training investment needed before large orders.</td></tr>
+<tr><td>Method</td><td>Infinite-horizon discrete-time dynamic search model; cutoff characterization; comparative statics; contraction-mapping existence/uniqueness proof.</td></tr>
+<tr><td>Data</td><td>No original microdata estimation. Section 2 assembles surveys, case studies, ISO/GMP facts, and infrastructure comparisons as empirical motivation.</td></tr>
+<tr><td>Identification</td><td>N/A for this paper type. Empirical material is supportive/motivating rather than a causal test of the model.</td></tr>
+<tr><td>Main Result</td><td>Starting small is more prevalent when search is costlier and success less likely; lower uncertainty or lower training cost also reduces relationship persistence by making switching easier.</td></tr>
+<tr><td>Contribution</td><td>Links initial scale to later persistence and shows how trial orders can expand technology transfer to suppliers that otherwise would be rejected.</td></tr>
+<tr><td>Limitation</td><td>The paper has no dedicated limitations section; the model abstracts from endogenous supplier investment, bargaining, buyer competition, and formal empirical estimation.</td></tr>
+<tr><td>Open Question</td><td>Do less-efficient exporters that enter export markets expand more gradually than more-efficient exporters, as the starting-small mechanism predicts?</td></tr>
+</table></div></section>
+
+<section id="puzzle" class="major"><h2>1 · Research Puzzle & Literature Position</h2>
+<p class="lead">Partnerships often begin under uncertainty. The paper asks why DC buyers dealing with LDC suppliers so often start with a small order even when the formal payment environment can already protect the buyer against paying for defective delivery.</p>
+<div class="chain"><div class="node"><strong>Observed practice</strong><br>New LDC supplier relationships often begin with small orders.</div><div class="arr">→</div>
+<div class="node"><strong>Contracting puzzle</strong><br>Letters of credit can let buyers refuse payment when terms are not met.</div><div class="arr">→</div>
+<div class="node"><strong>Missing risk</strong><br>The buyer still risks an irreversible supplier-training investment.</div><div class="arr">→</div>
+<div class="node"><strong>Model question</strong><br>When is information from a small order worth the delay?</div></div>
+<p class="source">§1, pp. 1021–1024; §2, pp. 1024–1027.</p>
+
+<section id="literature-position"><h3>1.1 What the Paper Combines</h3>
+<p>The authors emphasize three ingredients that prior work had largely studied separately.</p>
+<div class="grid3">
+<div class="plain"><h4>(a) Costly search in a heterogeneous pool</h4><p>Related to frictional matching and assortative matching. Smith (1997) and Smith & Shimer (2000) study heterogeneous matching under search frictions.</p></div>
+<div class="plain"><h4>(b) Different ways to build a relationship</h4><p>Optimal experimentation and irreversible investment under uncertainty explain why an agent may first use a smaller experiment or contractual form before making a larger commitment.</p></div>
+<div class="plain"><h4>(c) Stay or switch after success</h4><p>Jovanovic (1979) has learning and turnover, but not the option to skip the learning phase and immediately make the large relationship-specific investment. Rauch & Watson add endogenous supplier switching.</p></div>
+</div>
+<details><summary>Substantively discussed precursor literatures</summary><div>
+<ul>
+<li><strong>Optimal experimentation:</strong> Moscarini & Smith (1998) show experimentation size can increase with optimism; in this sense a pessimistic decision maker starts small. Aghion et al. (1991), Keller & Rady (1999), Bergemann & Välimäki (2000), and Bolton & Harris (1999) are cited as related experimentation work.</li>
+<li><strong>Irreversible investment:</strong> Dixit & Pindyck (1994). Horstmann & Markusen (1996) study local sales agency versus direct investment in entering a foreign market; the agency contract generates information useful for a later direct-investment decision.</li>
+<li><strong>Incomplete information and cooperation:</strong> Ghosh & Ray (1996) and Watson (1996, 1999, 2002) obtain starting small because agents are uncertain about partners' incentives to cooperate. Watson studies gradual escalation of stakes; Ghosh & Ray include matching and myopic types. Datta (1996), Kranton (1996), and Carmichael & MacLeod (1997) are also cited for trust/discipline/cooperation roles.</li>
+<li><strong>Matching and turnover:</strong> Smith (1997), Smith & Shimer (2000), and Jovanovic (1979).</li>
+</ul><p class="source">§1, pp. 1022–1024, including footnotes 1–2.</p></div></details>
+<div class="callout"><span class="badge author">Author's argument</span><br>The novelty is the interaction of <strong>search + starting-scale choice + supplier switching</strong>, which generates predictions linking the beginning and duration of buyer–supplier relationships.</div>
+</section></section>
+
+<section id="empirical-motivation" class="major"><h2>2 · Empirical Motivation</h2>
+<section id="start-small-evidence"><h3>2.1 Evidence That Buyers Actually “Start Small”</h3>
+<div class="grid2">
+<div class="plain"><h4>Egan & Mody (1992)</h4><p>Surveyed U.S. buyers operating in LDCs. Buyers often begin with small orders and let the relationship build gradually. The trial reveals whether managers and workers can meet price, quality, and delivery requirements. The survey stresses managerial capability and capacity to absorb training, not just installed technology.</p><p class="source">§2, p. 1024.</p></div>
+<div class="plain"><h4>Tewari (1999)</h4><p>European buyers and Indian woolen-knitwear suppliers show a sequence of focused small-scale learning followed by volume expansion. Repeated mistakes can cause a bulk buyer to leave for another supplier.</p><p class="source">§2, p. 1024.</p></div>
+</div>
+<p>The paper treats these cases as evidence that the small order is an <strong>information-producing stage</strong> used before committing to large-scale production.</p></section>
+
+<section id="three-differences"><h3>2.2 Why LDC Relationships Differ from DC Relationships</h3>
+<p>A letter of credit protects the buyer against paying when quality, inspection, or delivery conditions are not satisfied. Taylor & Wiggins (1997) show that a similar domestic U.S. contracting environment can support large initial orders. Rauch & Watson therefore ask what is different in LDC sourcing.</p>
+<h4>Difference 1 — Large orders often require buyer-funded training</h4>
+<p>New LDC suppliers frequently need training in production organization, quality control, and use of new equipment. Egan & Mody report buyer-supplied experts and training in developed-country plants; Rhee, Ross-Larson & Pursell (1984) find that nearly half of surveyed Korean exporters directly benefited from technical information supplied by foreign buyers. Schmitz & Knorringa (2000) similarly document training in production and quality control.</p>
+<div class="callout green"><strong>Economic point:</strong> under the letter-of-credit payment method, the crucial exposure is not necessarily the purchase price. It is the sunk <strong>training investment</strong> the buyer cannot recover if training fails.</div>
+<p>Pack & Page (1994) connect such training to <strong>technology transfer</strong>: purchasers may transmit tacit and sometimes proprietary knowledge from other OECD suppliers, especially in older technologies such as clothing and footwear.</p>
+<details><summary>Payment-method detail: why a letter of credit does not eliminate the model's risk</summary><div><p>A letter of credit also protects the seller relative to open account because the issuing bank must pay if conditions are fulfilled; this can help the supplier obtain working capital from subcontractors. Yet none of this reimburses the buyer for supplier-specific training if the supplier proves unable to perform.</p><p class="source">§2, pp. 1024–1026, footnote 3.</p></div></details>
+
+<h4>Difference 2 — Non-performance risk is higher</h4>
+<p>The supplier may lack the managerial capability to learn international quality and delivery standards. A small order lets the buyer learn about capability and willingness to learn before paying for large-order training.</p>
+<div class="wrap"><table><tr><th>Empirical indicator</th><th>Europe</th><th>Latin America</th><th>Paper's interpretation</th></tr>
+<tr><td>ISO 9000 certificates per million industrial workers, 1998</td><td>1,908</td><td>130</td><td>Nearly 15× higher in Europe; used as an objective indicator consistent with greater management/learning capability.</td></tr></table></div>
+<details><summary>Qualification: what exactly the small order learns, and what ISO does not establish</summary><div>
+<p>The more closely the initial order resembles the eventual high-volume product, the more informative it should be, but such a trial may be more costly because it can require teaching design specifications. Rauch & Watson (1999) let the buyer choose the <em>intensity</em> of starting small; the published model fixes this dimension because the complication does not materially change the results.</p>
+<p>Banerjee & Duflo (2000) are cited to show ISO 9000 certification in Indian software firms did not predict time-and-materials versus fixed-price contracts; the authors use this against interpreting ISO simply as a signal that a firm is not a myopic shirker.</p>
+<p class="source">§2, pp. 1026–1027, footnotes 4–6.</p></div></details>
+<details><summary>How the paper constructs the ISO and telephone comparisons</summary><div>
+<p><strong>ISO 9000:</strong> the 1998 certificate counts come from the International Organization for Standardization. Industrial-worker denominators combine 1990 industrial employment shares with 1998 economically active populations. The Europe comparison includes Eastern Europe but excludes former Soviet Union countries; Mexico is added to Central and South America for the Latin America definition. Several countries are omitted because labor-force-share data are missing.</p>
+<p><strong>Telephones:</strong> the paper uses 1990 because later observations are missing for many countries. Telephone counts come from Canning's infrastructure database; industrial-worker denominators again use 1990 industrial employment shares. Thirteen European countries and two Latin American countries have missing telephone observations, and the same Europe/Latin America definitions are retained.</p>
+<p class="source">§2, footnotes 6–7, pp. 1026–1027.</p></div></details>
+
+<h4>Difference 3 — Search for alternatives is more costly</h4>
+<p>Starting small delays large-order profits. Why not reject a mediocre supplier and keep searching? The answer is weaker communication and transport infrastructure, which raises alternative-supplier search costs.</p>
+<div class="wrap"><table><tr><th>Empirical indicator</th><th>Europe</th><th>Latin America</th><th>Paper's interpretation</th></tr>
+<tr><td>Telephones per thousand industrial workers, 1990</td><td>2,281</td><td>385</td><td>Nearly 6× higher in Europe; used as an infrastructure proxy consistent with lower search costs.</td></tr></table></div>
+<div class="callout"><strong>Title logic:</strong> the “unfamiliar environment” is the joint presence of <strong>high search costs</strong> and <strong>high non-performance risk</strong>.</div>
+<p class="source">§2, pp. 1025–1027, footnote 7.</p></section>
+
+<section id="networks-persistence"><h3>2.3 Networks and Relationship Persistence</h3>
+<p>Once a buyer is in a successful LDC relationship, it gains access to a product-specific information network. New potential suppliers can then arrive without the same active search cost. The incumbent still has two advantages: training is sunk and capability uncertainty has been favorably resolved.</p>
+<div class="plain"><h4>Nadvi (1999): Sialkot surgical instruments</h4>
+<p>In May 1994, the U.S. FDA restricted imports of Pakistani surgical instruments that failed Good Manufacturing Practices. By late 1997, 133 of roughly 300 manufacturers in the Sialkot cluster were FDA-certified, up from zero before the action. Nadvi reports that certification let some buyers loosen longstanding ties and return to arm's-length search for cheaper suppliers.</p>
+<p><strong>What it shows:</strong> when perceived non-performance risk falls, the informational advantage of an incumbent shrinks, so relationship persistence can fall.</p><p class="source">§2, p. 1027.</p></div></section></section>
+
+<section id="model" class="major"><h2>3 · Model</h2>
+<section id="environment"><h3>3.1 Economic Environment & Information</h3>
+<ul class="check">
+<li>Time is discrete. A DC buyer searches over an infinite pool of LDC suppliers.</li>
+<li>Suppliers differ only in per-period production cost <span class="term">c</span>, distributed according to <span class="term">μ</span> on <span class="term">[c̲, c̄]</span>. The buyer observes <em>c</em> immediately after locating a supplier.</li>
+<li>Locating a random supplier by active search costs <span class="term">g</span>.</li>
+<li>A supplier can be successful or unsuccessful at fulfilling large orders to the buyer's specification. Ex ante success probability is <span class="term">p</span>.</li>
+<li>If successful, a large order gives gross sales <span class="term">z</span> and production cost <em>c</em>, so current profit is <span class="term">z−c</span>.</li>
+<li>Large-order trade requires buyer training investment <span class="term">I</span>. Training reveals whether the supplier will succeed.</li>
+<li>Instead of paying <em>I</em> immediately, the buyer can place a small order. It yields no profit in the baseline model, but after <span class="term">k</span> periods reveals whether large-order training will succeed.</li>
+<li>In a successful relationship, each period a network introduces a new supplier with probability <span class="term">q</span>, free of active search cost. The entrant's cost is observed and the buyer can stay or switch.</li>
+<li><span class="term">δ</span> is the discount factor.</li>
+</ul>
+<div class="callout amber"><span class="badge author">Author's qualification</span><br>The zero-yield small order is a simplification. Allowing a small order to reduce later training requirements by less than one-for-one would not qualitatively change the results.</div>
+<p class="source">§3.1, pp. 1028–1030, footnote 8.</p></section>
+
+<section id="timing"><h3>3.2 Timing</h3>
+<div class="timeline">
+<div class="step"><div class="num">1</div><div><strong>Search / draw:</strong> pay <em>g</em> when unmatched, draw a supplier from μ, observe <em>c</em> but not large-order capability.</div></div>
+<div class="step"><div class="num">2</div><div><strong>Choose entry mode:</strong> <em>Big</em>, <em>Learn</em>, or <em>Out</em>.</div></div>
+<div class="step"><div class="num">3</div><div><strong>Big:</strong> pay <em>I</em> now; capability is revealed. Success creates a large-order relationship; failure returns the buyer to search next period.</div></div>
+<div class="step"><div class="num">4</div><div><strong>Learn:</strong> wait <em>k</em> periods with a small order. If the signal is favorable, pay <em>I</em> and move to large orders; otherwise return to search.</div></div>
+<div class="step"><div class="num">5</div><div><strong>Successful match:</strong> earn <em>z−c</em>. With probability <em>q</em>, a network supplier arrives; next period choose stay versus switch.</div></div>
+</div>
+<div class="wrap"><div class="diagram"><svg viewBox="0 0 900 250" role="img" aria-label="Model timing and state transitions">
+<defs><marker id="ae" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10z" fill="currentColor"/></marker></defs>
+<g fill="none" stroke="currentColor" stroke-width="1.5" marker-end="url(#ae)"><path d="M160 55H300"/><path d="M420 55H560"/><path d="M420 55C470 55 470 140 560 140"/><path d="M420 55C470 55 470 215 560 215"/><path d="M690 55H820"/><path d="M690 140C760 140 770 100 820 100"/></g>
+<g fill="var(--surface2)" stroke="var(--line)"><rect x="20" y="28" width="140" height="54" rx="8"/><rect x="300" y="28" width="120" height="54" rx="8"/><rect x="560" y="28" width="130" height="54" rx="8"/><rect x="560" y="112" width="130" height="54" rx="8"/><rect x="560" y="188" width="130" height="54" rx="8"/><rect x="820" y="73" width="70" height="54" rx="8"/></g>
+<g fill="currentColor" font-size="14" text-anchor="middle"><text x="90" y="51">Draw supplier</text><text x="90" y="69">observe c</text><text x="360" y="60">Choose</text><text x="625" y="51">Big</text><text x="625" y="69">pay I now</text><text x="625" y="135">Learn</text><text x="625" y="153">wait k, then I</text><text x="625" y="212">Out</text><text x="625" y="230">search again</text><text x="855" y="95">Successful</text><text x="855" y="113">match</text></g>
+</svg></div></div></section>
+
+<section id="actions"><h3>3.3 Big / Learn / Out</h3>
+<div class="grid3">
+<div class="plain"><h4>Big</h4><p>Invest <em>I</em> immediately. With probability <em>p</em>, the supplier succeeds and generates <em>v(c)</em>. With probability <em>1−p</em>, training fails and the buyer returns to the pool next period.</p></div>
+<div class="plain"><h4>Learn</h4><p>Use a small order to learn first. After <em>k</em> periods, invest <em>I</em> only if capability is adequate. The price is delay.</p></div>
+<div class="plain"><h4>Out</h4><p>Reject the supplier and return to the search pool next period.</p></div>
+</div></section>
+
+<section id="core-equations"><h3>3.4 Core Equations</h3>
+<div class="eq"><div class="eqtitle">Values of Big, Learn, and Out — Eqs. (1)–(3)</div>
+<div class="wrap"><div class="math display">\[u^B(c)=p\,v(c)+(1-p)\delta w-I. \tag{1}\]</div></div>
+<div class="wrap"><div class="math display">\[u^L(c)=\delta^k[p(v(c)-I)+(1-p)\delta w]. \tag{2}\]</div></div>
+<div class="wrap"><div class="math display">\[u^O(c)=\delta w. \tag{3}\]</div></div>
+<div class="explain"><div><div class="kick">What it says</div><strong>Big</strong> exposes <em>I</em> immediately; <strong>Learn</strong> delays both upside and the training decision; <strong>Out</strong> preserves the discounted search value.</div>
+<div><div class="kick">Key economic wedge</div>Learning first avoids the chance of paying <em>I</em> and then failing to obtain <em>v(c)</em>. Its cost is the <em>k</em>-period delay.</div></div>
+<p class="source">§3.1, Eqs. (1)–(3), p. 1029.</p></div>
+
+<div class="eq"><div class="eqtitle">Optimal entry value — Eq. (4)</div><div class="wrap"><div class="math display">\[u(c)=\max\{u^B(c),u^L(c),u^O(c)\}. \tag{4}\]</div></div>
+<p>This maps a supplier with cost <em>c</em> into the best available entry mode.</p><p class="source">§3.1, Eq. (4), p. 1029.</p></div>
+
+<div class="eq"><div class="eqtitle">Value of random search — Eq. (5)</div><div class="wrap"><div class="math display">\[w=\begin{cases}\mathbb E_{c\sim\mu}[u(c)]-g,&\mathbb E_{c\sim\mu}[u(c)]>g,\\[4pt]0,&\text{otherwise (no search).}\end{cases}\tag{5}\]</div></div>
+<p>The outside option is endogenous: search is worthwhile only if the expected value of a draw exceeds its cost.</p><p class="source">§3.1, Eq. (5), p. 1029.</p></div>
+
+<div class="eq"><div class="eqtitle">Value of an established successful relationship — Eq. (6)</div><div class="wrap"><div class="math display">\[v(c)=z-c+(1-q)\delta v(c)+q\delta\,\mathbb E_{c'\sim\mu}\left[\max\{v(c),u(c')\}\right]. \tag{6}\]</div></div>
+<div class="explain"><div><div class="kick">Current payoff</div><em>z−c</em>.</div><div><div class="kick">Continuation</div>With probability <em>1−q</em> no alternative arrives; with <em>q</em> a new supplier arrives and the buyer compares the incumbent with the optimal re-entry value at <em>c′</em>.</div></div>
+<p>When <em>q=0</em>, \(v(c)=(z-c)/(1-\delta)\).</p><p class="source">§3.1, Eq. (6), p. 1029.</p></div>
+
+<details><summary>Alternative form of the irreversible risk — footnote 9</summary><div>
+<p>The same qualitative results arise if the buyer does not literally train but instead risks a direct loss <em>L</em> on an unsuccessful large order. Then Big includes \((1-p)(\delta w-L)\) and Learn delays the experiment. The comparative statics carry through with <em>L</em> in place of <em>I</em>.</p>
+<p class="source">§3.1, p. 1029, footnote 9.</p></div></details>
+
+<h4>Assumption (A)</h4>
+<div class="eq"><div class="eqtitle">Interior-solution assumption — Assumption (A)</div><div class="wrap"><div class="math display">\[\mu\text{ continuous on }[\underline c,\bar c],\quad \bar c>z-(1-\delta)I,\quad \underline c<z-\frac{(1-\delta)I(1-\delta^kp)}{p(1-\delta^k)}. \tag{A}\]</div></div>
+<p>Assumption (A) is used to ensure an interior configuration in which Big, Learn, and Out can each occur with positive probability under Proposition 2's sufficient conditions.</p><p class="source">§3.1, p. 1030.</p></div></section>
+
+<section id="cutoffs"><h3>3.5 Cutoffs, Figure 1, and the Switching Rule</h3>
+<p>The slope ordering is</p><div class="wrap"><div class="math display">\[\frac{\partial u^O}{\partial c}=0>\frac{\partial u^L}{\partial c}>\frac{\partial u^B}{\partial c}.\]</div></div>
+<p>Low-cost suppliers generate enough upside to justify risking training immediately; intermediate-cost suppliers are worth learning about but not worth immediate exposure to <em>I</em>; high-cost suppliers are rejected.</p>
+<div class="wrap"><div class="math display">\[\begin{aligned}&\text{Big: }c\in[\underline c,c^B),\\&\text{Learn: }c\in[c^B,c^L),\\&\text{Out: }c\in[c^L,\bar c].\end{aligned}\tag{7}\]</div></div>
+<div class="callout amber"><strong>Qualification:</strong> outside the interior configuration, one or both cutoffs can lie outside the support \([\underline c,\bar c]\). In that case one or more of Big, Learn, and Out may be absent from the equilibrium choices realized in the supplier pool.</div>
+<div class="wrap"><div class="diagram"><svg viewBox="0 0 900 400" role="img" aria-label="Reconstruction of Figure 1">
+<g stroke="currentColor" fill="none"><line x1="90" y1="330" x2="840" y2="330"/><line x1="90" y1="330" x2="90" y2="40"/><line x1="120" y1="70" x2="500" y2="340" stroke-width="2"/><line x1="120" y1="150" x2="760" y2="350" stroke-width="2"/><line x1="90" y1="270" x2="840" y2="270" stroke-width="2"/><line x1="315" y1="330" x2="315" y2="205" stroke-dasharray="5 5"/><line x1="630" y1="330" x2="630" y2="270" stroke-dasharray="5 5"/></g>
+<g fill="currentColor" font-size="18"><text x="435" y="215">uᴮ(c)</text><text x="650" y="295">uᴸ(c)</text><text x="760" y="258">uᴼ(c)</text><text x="303" y="355">cᴮ</text><text x="618" y="355">cᴸ</text><text x="845" y="350">c</text></g></svg>
+<div class="legend">Analytical reconstruction of Figure 1, p. 1030. The paper explicitly notes that uᴮ and uᴸ are drawn with constant slopes only for ease of representation.</div></div></div>
+
+<h4>Switching cutoff</h4>
+<p>Let <span class="term">c*(c)</span> be the largest entrant cost that induces a buyer currently matched with cost <em>c</em> to switch:</p>
+<div class="wrap"><div class="math display">\[v(c)=u(c^*(c)).\tag{8}\]</div></div>
+<p>The buyer switches iff \(c'<c^*(c)\). Because incumbent training is sunk and capability is known to be successful, \(c^*(c)<c\): a new supplier must be strictly more efficient than the incumbent.</p>
+<p class="muted">The paper also notes that \(c^*(c)\) can fall below \(\underline c\); then no supplier in the support is cheap enough to induce separation, so that incumbent relationship is never voluntarily severed.</p>
+
+<div class="prop"><div class="prophead"><strong>Proposition 1 · Existence, uniqueness, and search threshold</strong><span class="badge author">Formal result</span></div>
+<div class="propbody"><p><strong>Statement.</strong> The model has a unique solution. Holding all other parameters fixed, there is a positive search-cost threshold such that sufficiently high <em>g</em> implies <em>w=0</em> and no search, while sufficiently low <em>g</em> implies <em>w&gt;0</em> and active search.</p>
+<div class="propgrid"><div><div class="kick">Why it matters</div>It validates the value functions and makes the switching cutoff well-defined.</div>
+<div><div class="kick">Proof idea</div>The appendix casts <em>(v,w)</em> as a fixed point of operator <em>F</em> and proves a contraction with modulus \(p+(1-p)\delta<1\).</div></div>
+<p class="source">§3.2, p. 1031; Appendix, pp. 1037–1038.</p></div></div></section></section>
+
+<section id="results" class="major"><h2>4 · Results</h2>
+<section id="starting-small-results"><h3>4.1 Starting Small — Propositions 2–5</h3>
+<div class="prop"><div class="prophead"><strong>Proposition 2 · All three entry modes can coexist</strong><span class="badge author">Formal result</span></div><div class="propbody">
+<p>If <em>q</em> is sufficiently close to zero and <em>g</em> sufficiently close to the no-search threshold, then \(\underline c<c^B<c^L<\bar c\).</p>
+<div class="propgrid"><div><div class="kick">Economic intuition</div>With rare network arrivals, current supplier quality matters much more than future free alternatives. The support can contain low-cost Big, intermediate Learn, and high-cost Out regions.</div>
+<div><div class="kick">Technology transfer</div>Learn extends the set of suppliers not rejected immediately. Some later receive training <em>I</em>, so starting small can facilitate technology transfer.</div></div>
+<p class="source">§4.1, pp. 1031–1032.</p></div></div>
+
+<div class="prop"><div class="prophead"><strong>Proposition 3 · Higher search cost expands Learn</strong><span class="badge author">Comparative statics</span></div><div class="propbody">
+<p>If <em>q</em> is sufficiently small, an increase in <em>g</em> causes \(c^B\downarrow\) and \(c^L\uparrow\).</p>
+<div class="propgrid"><div><div class="kick">Why cᴸ rises</div>Returning to the pool is less attractive, so the buyer learns about higher-cost suppliers rather than rejecting them.</div>
+<div><div class="kick">Why cᴮ falls</div>Big also carries a failure branch that returns the buyer to costly search. Higher <em>g</em> therefore makes risky Big less attractive relative to delayed Learn.</div></div>
+<p class="source">§4.1, p. 1032; footnote 11.</p></div></div>
+
+<div class="prop"><div class="prophead"><strong>Proposition 4 · Lower success probability expands Learn</strong><span class="badge author">Comparative statics</span></div><div class="propbody">
+<p>If <em>q</em> is sufficiently small and <em>g</em> sufficiently close to the search threshold, a decrease in <em>p</em> causes \(c^B\downarrow\) and \(c^L\uparrow\).</p>
+<p><strong>Intuition:</strong> lower <em>p</em> raises the chance that immediate training <em>I</em> is wasted—the exact loss Learn is designed to avoid.</p>
+<details><summary>Technical intuition from footnote 12</summary><div><p>At <em>q=0</em>, <em>v(c)</em> is independent of <em>p</em>. Lower <em>p</em> directly harms Big more than Learn and also depresses <em>w</em>. Because Learn delays the random return to the pool, this indirect effect also favors Learn relative to Big. Near the no-search threshold, Learn falls more slowly than Out at the Learn/Out cutoff, so <em>c<sup>L</sup></em> rises.</p></div></details>
+<p class="source">§4.1, pp. 1032–1033, footnote 12.</p></div></div>
+
+<div class="prop"><div class="prophead"><strong>Proposition 5 · Higher training cost shrinks Big, but Learn is ambiguous</strong><span class="badge author">Comparative statics</span></div><div class="propbody">
+<p>An increase in <em>I</em> causes \(c^B\downarrow\).</p>
+<p>The paper deliberately does <strong>not</strong> claim that higher <em>I</em> always raises the probability of Learn. If <em>I=0</em>, Learn is never chosen, so training cost is essential to the motive for learning. Yet higher <em>I</em> also makes the whole supplier pool less attractive and can make Out more attractive relative to Learn, potentially lowering <em>c<sup>L</sup></em>.</p>
+<div class="callout amber"><strong>Qualification:</strong> “more at stake” does not mechanically imply “more experimentation.” The endogenous outside search value can move the Learn/Out boundary the other way.</div>
+<p class="source">§4.1, p. 1033, footnote 13.</p></div></div></section>
+
+<section id="persistence-results"><h3>4.2 Persistence of Relationships — Propositions 6–9</h3>
+<div class="prop"><div class="prophead"><strong>Proposition 6 · Less caution toward entrants shortens relationships</strong><span class="badge author">Formal result</span></div><div class="propbody">
+<p>If <em>q</em> is small, an increase in <em>p</em> or a decrease in <em>I</em> causes \(c^*(c)\) to rise weakly for all incumbent costs.</p>
+<p>A new supplier no longer needs to be as much cheaper to offset uncertainty and retraining. Switching becomes easier, reducing expected relationship duration.</p><p class="source">§4.2, p. 1034, footnote 14.</p></div></div>
+
+<div class="prop"><div class="prophead"><strong>Proposition 7 · Big-start relationships last longer</strong><span class="badge author">Testable prediction</span></div><div class="propbody">
+<p>Relationships initiated with a large order are more persistent than relationships that began small.</p><p><strong>Mechanism:</strong> Big is selected for lower-cost suppliers, which are harder for entrants to beat.</p><p class="source">§4.2, p. 1034.</p></div></div>
+
+<div class="prop"><div class="prophead"><strong>Proposition 8 · Switch-created matches are more likely to start Big</strong><span class="badge author">Testable prediction</span></div><div class="propbody">
+<p>The Big share is higher among relationships formed by switching from an existing supplier than among relationships formed by unmatched buyers' search.</p><p><strong>Mechanism:</strong> an incumbent is abandoned only for a sufficiently low-cost entrant; switch-created matches are selected toward low <em>c</em>, where Big is optimal.</p><p class="source">§4.2, pp. 1034–1035.</p></div></div>
+
+<div class="prop"><div class="prophead"><strong>Proposition 9 · Longer old relationships predict Big with the next supplier</strong><span class="badge author">Testable prediction</span></div><div class="propbody">
+<p>Relationship duration is positively correlated with the probability that, after switching, the buyer starts Big with the new supplier.</p><p><strong>Mechanism:</strong> a long-lived incumbent is likely low-cost, so an entrant that displaces it must be even lower-cost.</p><p class="source">§4.2, p. 1035.</p></div></div>
+
+<div class="callout"><span class="badge author">Evidence status</span><br>The paper says evidence in §2 is supportive of Propositions 3–6. For Propositions 7–9, the authors report no evidence of the cited type that supports or contradicts them; they are new survey-testable predictions.</div></section>
+
+<section id="cost-structure"><h3>4.3 Results with More Structure on Per-Period Costs</h3>
+<p>The baseline model does not specify <em>why</em> supplier costs differ. Additional empirical predictions depend on the source of heterogeneity.</p>
+<div class="grid2">
+<div class="plain"><h4>If cost differences mainly reflect management quality</h4><p>Within a country with roughly common factor prices, better management can be treated as a Hicks-neutral productivity shifter. Since Big is associated with lower <em>c</em>, input demand per unit of output should be <strong>lower</strong> in relationships that began Big.</p></div>
+<div class="plain"><h4>If cost differences mainly reflect factor prices</h4><p>The prediction reverses: low monetary cost can reflect cheaper inputs rather than greater physical productivity, so Big-start relationships may use <strong>more</strong> inputs per unit of output.</p></div>
+</div>
+<p>The authors also warn against inferring that lower-factor-price countries must have more Big. Lower factor prices can shift the cost distribution down, but such countries may simultaneously have <strong>higher search costs</strong> and <strong>lower success probabilities</strong>, both of which favor Learn.</p>
+<p class="source">§4.3, p. 1035.</p></section></section>
+
+<section id="proof-architecture">
+  <h2>5 · Appendix Proof Architecture</h2>
+  <p class="lead">The appendix does more than provide algebra: it shows which restrictions make the comparative statics work. The key recurring device is to separate the value of an incumbent successful match, \(v\), from the value of drawing or trying a new supplier, \(u\) and \(w\).</p>
+
+  <section id="proof-proposition-1">
+    <h3>5.1 Proposition 1 — Fixed Point and Search Threshold</h3>
+    <div class="proposition"><span class="tag">APPENDIX</span>
+      <p>Define \(f(y,x,c')\) as the maximum of the three continuation choices when a candidate continuation-value function is \(y\) and the pool value is \(x\). Then define an operator \(F=(F_1,F_2)\), where \(F_1\) reproduces the successful-relationship Bellman equation and \(F_2\) reproduces the search-value equation.</p>
+      <div class="equation-wrap"><div class="math">\[
+      \|F(y,x)-F(y',x')\|
+      \le [p+(1-p)\delta]\,
+      \|(y,x)-(y',x')\|.
+      \]</div></div>
+      <p>Because \(p+(1-p)\delta&lt;1\), \(F\) is a contraction under the sup norm. Hence the fixed point is unique. The second component falls with \(g\), while both components are increasing in \(x\), which yields a critical search cost separating \(w&gt;0\) from \(w=0\).</p>
+      <p class="source">Source: Appendix, Proof of Proposition 1, pp. 1037–1038.</p>
+    </div>
+  </section>
+
+  <section id="proof-proposition-2">
+    <h3>5.2 Proposition 2 — Why an Interior Big/Learn/Out Region Exists</h3>
+    <p>The proof takes the transparent limiting case \(q=0\) and sets \(g\) at the search threshold, so \(w=0\) and \(v(c)=(z-c)/(1-\delta)\). The two cutoffs become:</p>
+    <div class="equation-wrap"><div class="math">\[
+      c^{B}
+      =
+      z-\frac{I(1-\delta^k p)(1-\delta)}
+      {p(1-\delta^k)},
+      \qquad
+      c^{L}=z-I(1-\delta).
+    \]</div></div>
+    <p>Assumption (A) puts these cutoffs strictly inside the support and gives \(c^B&lt;c^L\). Continuity then supports the stated result for \(q\) sufficiently close to zero and \(g\) sufficiently close to the threshold.</p>
+    <p class="source">Source: Appendix, Proof of Proposition 2, p. 1038.</p>
+  </section>
+
+  <section id="proof-propositions-3-6">
+    <h3>5.3 Propositions 3–6 — Direct vs. Indirect Effects</h3>
+    <div class="grid2">
+      <div>
+        <h4>Proposition 3</h4>
+        <p>The appendix introduces another contraction operator \(G\) for \(v\), treating \(w\) as an argument. As \(q\to0\), changes in \(w\) induced by \(g\) have an arbitrarily small effect on \(v\). Thus a higher \(g\) mainly lowers the attractiveness of returning to the pool, which widens the Learn region.</p>
+      </div>
+      <div>
+        <h4>Proposition 4</h4>
+        <p>Derivative comparisons are evaluated at \(c^B\) and \(c^L\). Near the no-search boundary, a fall in \(p\) hurts Big more than Learn at the first cutoff and makes Learn decline more slowly than Out at the second cutoff.</p>
+      </div>
+      <div>
+        <h4>Proposition 5</h4>
+        <p>At \(c^B\), an increase in \(I\) reduces Big relative to Learn, so \(c^B\) falls. The appendix does not establish a corresponding monotone result for \(c^L\), matching the paper's caution about the overall propensity to Learn.</p>
+      </div>
+      <div>
+        <h4>Proposition 6</h4>
+        <p>An increase in \(p\) or decrease in \(I\) raises both \(u\) and \(v\), but when \(q\) is small the direct effect on a prospective supplier's \(u\) dominates the indirect effect on incumbent \(v\). Since \(u\) decreases in cost, equality in (8) requires a higher \(c^*(c)\).</p>
+      </div>
+    </div>
+    <p class="source">Source: Appendix, Proofs of Propositions 3–6, pp. 1038–1040.</p>
+  </section>
+
+  <section id="proof-propositions-7-9">
+    <h3>5.4 Propositions 7–9 — Truncated Cost Distributions</h3>
+    <p>The last three proofs exploit selection. Relationships formed through unmatched search draw costs conditional on \(c&lt;c^L\). A buyer switching from an incumbent accepts only \(c'&lt;c^*(c)\), and \(c^*(c)&lt;c^L\). Therefore switched-to suppliers are selected from a lower-cost truncation of \(\mu\), increasing the probability of Big. Because longevity is negatively associated with incumbent cost, a longer-lived incumbent also implies a more demanding cutoff for the replacement supplier, generating Proposition 9. Proposition 7 follows because switching probability rises with current supplier cost.</p>
+    <p class="source">Source: Appendix, Proof of Propositions 7–9, p. 1040.</p>
+  </section>
+</section>
+
+<section id="export-interpretation">
+  <h2>6 · Exporting, Trade Costs, and Development Interpretation</h2>
+  <section id="export-selection">
+    <h3>6.1 Buyer–Supplier Formation as Export Selection</h3>
+    <p>A successful DC–LDC supplier relationship generally produces exports from the LDC to the DC. This lets Rauch and Watson connect their model to firm-level exporter evidence. Studies such as Aw, Chung, and Roberts (2000) and Clerides, Lach, and Tybout (1998) find that more efficient firms are more likely to become exporters. The model is consistent with that selection pattern because the buyer rejects sufficiently high-cost suppliers and accepts lower-cost suppliers through Big or Learn.</p>
+    <p class="source">Source: Section 5, pp. 1036–1037.</p>
+  </section>
+
+  <section id="trade-liberalization">
+    <h3>6.2 Lower Search Costs as an Analogue of Trade Liberalization</h3>
+    <p>The paper interprets a reduction in \(g\) as analogous to lower trade barriers. In Proposition 3, lower \(g\) narrows the Learn region: the buyer is more willing to search again rather than nurture an unattractive candidate, while low-cost candidates are more likely to receive a large order immediately. Rauch and Watson connect this sorting effect to the “rationalization” findings of Muendler (2002) and Pavcnik (2000), in which trade liberalization accelerates expansion of more efficient firms and exit of less efficient firms.</p>
+    <p class="source">Source: Section 5, p. 1036.</p>
+  </section>
+
+  <section id="future-export-test">
+    <h3>6.3 A Testable Export-Dynamics Implication</h3>
+    <div class="callout">
+      <span class="tag">AUTHOR'S SUGGESTION</span>
+      <p>The paper proposes testing whether less efficient firms that nevertheless enter export markets display more gradual export-volume expansion than more efficient entrants. That prediction is the export-market counterpart of Learn versus Big.</p>
+    </div>
+    <p>The closing footnote also situates these relationships in global production: Gereffi (1995) distinguishes export-processing assembly, component-supply subcontracting, original equipment manufacturing, and original brand-name manufacturing. Rauch and Watson note that only the last need not involve DC firms and report that developing-country manufactured goods rose from 4.8% of developed-market-economy imports in 1970 to 14.5% in 1991.</p>
+    <p class="source">Source: Section 5 and footnote 15, pp. 1036–1037.</p>
+  </section>
+</section>
+
+<section id="knowledge-map">
+  <h2>7 · Mechanism & Literature Knowledge Map</h2>
+  <section id="mechanism-map">
+    <h3>7.1 Mechanism Map</h3>
+    <div class="wrap">
+      <svg class="diagram" viewBox="0 0 1020 450" role="img" aria-label="Mechanism map for starting small">
+        <defs><marker id="arrowkm" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="currentColor"/></marker></defs>
+        <g fill="none" stroke="currentColor" stroke-width="1.5" marker-end="url(#arrowkm)">
+          <path d="M180 78 H390"/><path d="M180 180 H390"/><path d="M180 282 H390"/>
+          <path d="M570 135 H760"/><path d="M570 230 H760"/><path d="M850 164 V255"/>
+        </g>
+        <g>
+          <rect x="25" y="40" width="155" height="76" rx="10" class="svgbox"/><text x="102" y="70" text-anchor="middle">High search cost g</text><text x="102" y="94" text-anchor="middle">Outside option weaker</text>
+          <rect x="25" y="142" width="155" height="76" rx="10" class="svgbox"/><text x="102" y="171" text-anchor="middle">Low success p</text><text x="102" y="195" text-anchor="middle">Training risk higher</text>
+          <rect x="25" y="244" width="155" height="76" rx="10" class="svgbox"/><text x="102" y="274" text-anchor="middle">Training cost I</text><text x="102" y="298" text-anchor="middle">Irreversible exposure</text>
+          <rect x="390" y="93" width="180" height="88" rx="10" class="svgbox"/><text x="480" y="126" text-anchor="middle">Value of information</text><text x="480" y="151" text-anchor="middle">from small order</text>
+          <rect x="390" y="195" width="180" height="88" rx="10" class="svgbox"/><text x="480" y="228" text-anchor="middle">Selection by cost c</text><text x="480" y="253" text-anchor="middle">Big / Learn / Out</text>
+          <rect x="760" y="100" width="200" height="88" rx="10" class="svgbox"/><text x="860" y="133" text-anchor="middle">Technology transfer</text><text x="860" y="158" text-anchor="middle">to more suppliers</text>
+          <rect x="760" y="255" width="200" height="95" rx="10" class="svgbox"/><text x="860" y="286" text-anchor="middle">Persistence & switching</text><text x="860" y="311" text-anchor="middle">c*(c) & selection</text><text x="860" y="334" text-anchor="middle">Props. 6–9</text>
+        </g>
+      </svg>
+    </div>
+    <p class="caption">Analytical synthesis of the paper's mechanisms; arrows summarize formal comparative statics rather than adding new causal channels.</p>
+  </section>
+
+  <section id="literature-map">
+    <h3>7.2 Where the Paper Sits in the Literature</h3>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Branch</th><th>What it contributes to this paper</th><th>Examples discussed by Rauch & Watson</th><th>What this paper adds</th></tr></thead>
+      <tbody>
+        <tr><td>Optimal experimentation</td><td>Variable-scale learning before irreversible action</td><td>Moscarini & Smith (1998); Aghion et al. (1991); Keller & Rady (1999); Bergemann & Välimäki (2000); Bolton & Harris (1999)</td><td>Embeds experimentation in supplier search and later switching.</td></tr>
+        <tr><td>Irreversible investment under uncertainty</td><td>Option value of learning before commitment</td><td>Dixit & Pindyck (1994); Horstmann & Markusen (1996)</td><td>Training is relationship-specific and linked to a supply relationship.</td></tr>
+        <tr><td>Incomplete information / cooperation</td><td>Starting small can discipline or reveal partner type</td><td>Ghosh & Ray (1996); Watson (1996, 1999, 2002); Datta (1996); Kranton (1996); Carmichael & MacLeod (1997)</td><td>Here the central uncertainty is productive capability and training success, not only cooperative incentives.</td></tr>
+        <tr><td>Search & matching</td><td>Frictional matching in heterogeneous pools</td><td>Smith (1997); Smith & Shimer (2000)</td><td>Combines search with endogenous relationship-building mode.</td></tr>
+        <tr><td>Match learning / turnover</td><td>Learning about match quality and switching</td><td>Jovanovic (1979)</td><td>Allows the buyer to choose between immediate large commitment and prior learning.</td></tr>
+        <tr><td>Exporter selection / trade liberalization</td><td>Efficiency selection into exporting and industry rationalization</td><td>Aw et al. (2000); Clerides et al. (1998); Muendler (2002); Pavcnik (2000)</td><td>Provides a buyer-side relationship mechanism for gradual versus immediate export expansion.</td></tr>
+      </tbody>
+    </table></div>
+    <p class="source">Source: Sections 1 and 5, pp. 1022–1023 and 1036–1037; footnotes 1–2.</p>
+  </section>
+</section>
+
+<section id="critical">
+  <h2>8 · Critical Reading</h2>
+
+  <section id="key-assumptions">
+    <h3>8.1 Key Assumptions</h3>
+    <ul>
+      <li>A supplier's large-order cost \(c\) is observed immediately, but its ability to succeed after training is initially unknown.</li>
+      <li>Success probability \(p\) is common ex ante; supplier heterogeneity enters through \(c\), not through supplier-specific \(p\).</li>
+      <li>The small order yields information but no direct profit, and it resolves the relevant uncertainty after exactly \(k\) periods.</li>
+      <li>The large-order training expenditure \(I\) is irreversible and is lost if training does not succeed.</li>
+      <li>Free candidate arrivals occur only while a successful relationship is active, with probability \(q\) each period.</li>
+      <li>Several propositions require \(q\) to be sufficiently small, and Proposition 4 also requires \(g\) near the no-search threshold.</li>
+    </ul>
+    <p class="source">Source: Sections 3.1–4.2 and Assumption (A), pp. 1028–1034.</p>
+  </section>
+
+  <section id="what-drives-results">
+    <h3>8.2 What Actually Drives the Results?</h3>
+    <div class="grid2">
+      <div class="callout"><strong>Learn exists because information can be acquired before \(I\).</strong><p>If the small order did not reveal whether training would work, its central insurance value would disappear.</p></div>
+      <div class="callout"><strong>Big is selected for low \(c\).</strong><p>A very attractive supplier makes delay costly enough that the buyer accepts the risk of losing \(I\).</p></div>
+      <div class="callout"><strong>Out is governed by the value \(w\) of returning to the pool.</strong><p>Search cost therefore moves both cutoffs, not just the reject/accept margin.</p></div>
+      <div class="callout"><strong>Persistence results are selection results.</strong><p>Low-cost suppliers both induce Big and make replacement harder, mechanically linking initiation mode and duration.</p></div>
+    </div>
+  </section>
+
+  <section id="authors-limitations">
+    <h3>8.3 Authors' Qualifications and Limitations</h3>
+    <ul>
+      <li>The paper explicitly notes that the effect of \(I\) on the probability of Learn is ambiguous: Proposition 5 establishes only that \(c^B\) falls.</li>
+      <li>Predictions about input demand depend on the source of cost heterogeneity; management productivity and factor-price heterogeneity imply opposite signs.</li>
+      <li>A low-factor-price country need not generate more Big because such countries may simultaneously have higher search costs and lower success probabilities.</li>
+      <li>The paper reports supportive evidence for Propositions 3–6 but says it knows of no evidence, of the type discussed in Section 2, that supports or contradicts Propositions 7–9.</li>
+    </ul>
+    <p class="source">Source: Sections 4.1–4.3, pp. 1033–1035.</p>
+  </section>
+
+  <section id="analytical-limitations">
+    <h3>8.4 Analytical Limitations <span class="tag">ANALYTICAL SYNTHESIS</span></h3>
+    <p>These are limitations visible from the model structure rather than additional claims by the authors.</p>
+    <ul>
+      <li><strong>One-dimensional observed heterogeneity:</strong> all supplier heterogeneity relevant to immediate sorting is compressed into \(c\). Capability uncertainty is summarized by a common \(p\).</li>
+      <li><strong>Exogenous learning technology:</strong> the buyer chooses Big versus a fixed small experiment, but not the scale, content, or intensity of learning in the published model. Footnote 4 points to Rauch and Watson (1999), where intensity is allowed.</li>
+      <li><strong>No strategic supplier investment or bargaining:</strong> the supplier does not choose effort, co-investment, prices, or relationship-specific adaptation in response to governance.</li>
+      <li><strong>Network arrival is reduced form:</strong> \(q\) does not arise from endogenous network formation or a two-sided matching market.</li>
+      <li><strong>Duration is endogenous only through replacement opportunities:</strong> there is no exogenous match destruction or changing supplier productivity.</li>
+    </ul>
+  </section>
+
+  <section id="external-validity">
+    <h3>8.5 External Validity</h3>
+    <p>The institutional evidence is concentrated in developed-country buyers sourcing from developing-country suppliers, with examples from apparel/knitwear, manufacturing, Korean exporters, Pakistani surgical instruments, and related buyer-driven production settings. The mechanism travels most naturally to relationships where a buyer must make a substantial sunk training/adaptation investment and can run an informative low-stakes trial first. It is less directly applicable where capability is certified ex ante, production is fully standardized, or the small project is uninformative about large-scale performance.</p>
+    <p class="source">Source basis: Section 2, pp. 1024–1028; applicability statement is analytical synthesis.</p>
+  </section>
+
+  <section id="alternative-mechanisms">
+    <h3>8.6 Alternative Mechanisms</h3>
+    <p>Rauch and Watson distinguish their mechanism from prior “starting small” theories. In Ghosh–Ray and Watson's incomplete-information work, gradual escalation can arise because partners are uncertain about cooperative incentives or types. Here the focal uncertainty is whether training will enable successful large-order fulfillment. The same observed pattern—small initial transactions followed by larger ones—could therefore reflect productive learning, trust/discipline, financing constraints, or demand learning in other settings. Distinguishing them empirically requires observing what is learned, what investment is postponed, and how relationship transitions respond to search conditions and capability certification.</p>
+    <p class="source">Source basis: Section 1, pp. 1022–1023; final distinguishing-tests sentence is analytical synthesis.</p>
+  </section>
+
+  <section id="open-questions">
+    <h3>8.7 Open Questions</h3>
+    <ul>
+      <li>Can micro data observe both initial order size and buyer-provided training well enough to directly identify the Learn mechanism?</li>
+      <li>Do capability certifications or standardized production technologies raise \(c^*(c)\) and shorten relationships as Proposition 6 predicts?</li>
+      <li>Are relationships that start Big empirically more persistent after conditioning for observables that proxy supplier cost?</li>
+      <li>How would endogenous supplier investment, bargaining, or relationship-specific technology accumulation alter the cutoff logic?</li>
+      <li>Can buyer-network data make \(q\) measurable rather than reduced-form?</li>
+    </ul>
+    <p class="note">The first three are close empirical implementations of the paper's predictions; the last two are research-oriented analytical extensions.</p>
+  </section>
+</section>
+
+<section id="extensions">
+  <h2>9 · Research Implications / Extensions</h2>
+  <div class="callout extension"><span class="tag">RESEARCH EXTENSION</span>
+    <h3>9.1 Endogenize Relationship Depth</h3>
+    <p>Replace the binary Big/Learn choice with a continuous relationship-depth or order-size decision. Training intensity, customization, co-development, or control rights could evolve after learning. This would turn the paper's threshold logic into a dynamic governance path rather than a one-time experimentation choice.</p>
+  </div>
+  <div class="callout extension"><span class="tag">RESEARCH EXTENSION</span>
+    <h3>9.2 Two-Sided Search, Bargaining, and Switching</h3>
+    <p>Make suppliers strategic: they can search for buyers, make relationship-specific investments, and bargain over surplus. Then the incumbent advantage generated by sunk training can interact with outside options on both sides.</p>
+  </div>
+  <div class="callout extension"><span class="tag">RESEARCH EXTENSION</span>
+    <h3>9.3 Empirical Transition Matrix</h3>
+    <p>With buyer–supplier transaction data, classify relationships by initial order scale and subsequent expansion, persistence, and replacement. The model gives a set of linked restrictions: initial Big should select lower-cost suppliers, Big relationships should last longer, and replacements after long relationships should be especially likely to start Big.</p>
+  </div>
+  <div class="callout extension"><span class="tag">RESEARCH EXTENSION</span>
+    <h3>9.4 Certification as a Shock to Uncertainty</h3>
+    <p>The Nadvi GMP episode suggests a research design: a credible capability certification can be interpreted as reducing uncertainty about success. The model predicts less need to protect sunk training through incumbent relationships and thus easier switching. A modern setting with staggered certification or regulation could test this comparative static.</p>
+  </div>
+</section>
+
+<section id="quiz">
+  <h2>10 · Understanding Check</h2>
+  <p class="lead">These questions test reconstruction of the model rather than factual recall. Answers are hidden by default.</p>
+
+  <article class="quiz-card" id="quiz-q1" data-q="q1">
+    <div class="quiz-head"><span class="skill">CORE</span><h3>Q1. Why does a buyer ever start small instead of either ordering big immediately or rejecting the supplier?</h3></div>
+    <div class="quiz-actions"><button data-toggle="hint-q1">Show Hint</button><button data-toggle="answer-q1">Show Answer</button></div>
+    <div id="hint-q1" class="quiz-hidden"><strong>Hint:</strong> Compare what is learned before the irreversible training expenditure \(I\).</div>
+    <div id="answer-q1" class="quiz-hidden"><strong>Suggested Answer:</strong> A small order postpones \(I\) while revealing whether training will lead to successful large-order fulfillment. It is valuable for intermediate-cost suppliers: they are attractive enough not to reject, but not attractive enough to justify immediately risking \(I\) and forgoing the value of information.
+      <p><strong>Common Mistake:</strong> Treating the small order mainly as a cheap production order. In the baseline model it yields zero profit; its payoff is information.</p>
+      <p><strong>Why This Matters:</strong> This is the paper's central economic mechanism.</p>
+    </div>
+    <p class="review">Review: <a href="#actions">3.3 Big / Learn / Out</a> · <a href="#core-equations">Equations (1)–(4)</a></p>
+    <div class="rating"><button data-rate="got">✅ Got it</button><button data-rate="unsure">🤔 Not sure</button><button data-rate="review">❌ Need to Review</button></div>
+  </article>
+
+  <article class="quiz-card" id="quiz-q2" data-q="q2">
+    <div class="quiz-head"><span class="skill">FORMAL MODEL</span><h3>Q2. Reconstruct the cutoff ordering \(c^B&lt;c^L\). What does each region mean?</h3></div>
+    <div class="quiz-actions"><button data-toggle="hint-q2">Show Hint</button><button data-toggle="answer-q2">Show Answer</button></div>
+    <div id="hint-q2" class="quiz-hidden"><strong>Hint:</strong> Use the slope ordering of \(u^B,u^L,u^O\) in \(c\).</div>
+    <div id="answer-q2" class="quiz-hidden"><strong>Suggested Answer:</strong> Big's value falls fastest with supplier cost, Learn falls more slowly, and Out is flat. Thus sufficiently low-cost suppliers justify Big; intermediate-cost suppliers justify Learn; high-cost suppliers are rejected: Big for \(c&lt;c^B\), Learn for \(c^B\le c&lt;c^L\), Out for \(c\ge c^L\).
+      <p><strong>Common Mistake:</strong> Reading \(c\) as capability. It is per-period production cost, observed before the relationship starts.</p>
+      <p><strong>Why This Matters:</strong> Almost every comparative static operates by moving these cutoffs.</p>
+    </div>
+    <p class="review">Review: <a href="#cutoffs">3.5 Cutoff Structure</a> · Equation (7)</p>
+    <div class="rating"><button data-rate="got">✅ Got it</button><button data-rate="unsure">🤔 Not sure</button><button data-rate="review">❌ Need to Review</button></div>
+  </article>
+
+  <article class="quiz-card" id="quiz-q3" data-q="q3">
+    <div class="quiz-head"><span class="skill">MECHANISM</span><h3>Q3. Why does a higher search cost \(g\) expand the Learn region at both margins?</h3></div>
+    <div class="quiz-actions"><button data-toggle="hint-q3">Show Hint</button><button data-toggle="answer-q3">Show Answer</button></div>
+    <div id="hint-q3" class="quiz-hidden"><strong>Hint:</strong> A failed Big order also sends the buyer back to the pool.</div>
+    <div id="answer-q3" class="quiz-hidden"><strong>Suggested Answer:</strong> Higher \(g\) lowers the value \(w\) of returning to search. That makes Out less attractive than Learn, raising \(c^L\). It also makes Big less attractive relative to Learn because Big exposes the buyer to immediate failure and a return to the now less valuable pool; Learn delays that return and avoids risking \(I\), so \(c^B\) falls.
+      <p><strong>Common Mistake:</strong> Saying only that “search is expensive, so buyers keep suppliers.” That explains the upper margin but not why Big also shrinks.</p>
+      <p><strong>Why This Matters:</strong> Proposition 3 is a distinctive two-margin comparative static.</p>
+    </div>
+    <p class="review">Review: <a href="#starting-small-results">4.1 Propositions 2–5</a></p>
+    <div class="rating"><button data-rate="got">✅ Got it</button><button data-rate="unsure">🤔 Not sure</button><button data-rate="review">❌ Need to Review</button></div>
+  </article>
+
+  <article class="quiz-card" id="quiz-q4" data-q="q4">
+    <div class="quiz-head"><span class="skill">MECHANISM</span><h3>Q4. Why is the effect of a larger training investment \(I\) on the overall probability of Learn ambiguous?</h3></div>
+    <div class="quiz-actions"><button data-toggle="hint-q4">Show Hint</button><button data-toggle="answer-q4">Show Answer</button></div>
+    <div id="hint-q4" class="quiz-hidden"><strong>Hint:</strong> Proposition 5 gives a result for \(c^B\), not for both cutoffs.</div>
+    <div id="answer-q4" class="quiz-hidden"><strong>Suggested Answer:</strong> Higher \(I\) clearly makes immediate Big more risky, so \(c^B\) falls. But \(I\) also lowers the value of prospective suppliers in the pool and can make Out relatively more attractive than Learn. The paper therefore cannot sign the movement of \(c^L\) in general; the total mass of Learn depends on the supplier-cost distribution.
+      <p><strong>Common Mistake:</strong> Inferring “more sunk cost always means more experimentation.” The lower cutoff moves as expected, but the upper cutoff need not.</p>
+      <p><strong>Why This Matters:</strong> It is an important qualification to the intuitive story.</p>
+    </div>
+    <p class="review">Review: <a href="#starting-small-results">Proposition 5</a></p>
+    <div class="rating"><button data-rate="got">✅ Got it</button><button data-rate="unsure">🤔 Not sure</button><button data-rate="review">❌ Need to Review</button></div>
+  </article>
+
+  <article class="quiz-card" id="quiz-q5" data-q="q5">
+    <div class="quiz-head"><span class="skill">FORMAL MODEL</span><h3>Q5. What does the switching cutoff \(c^*(c)\) mean, and why must \(c^*(c)&lt;c\)?</h3></div>
+    <div class="quiz-actions"><button data-toggle="hint-q5">Show Hint</button><button data-toggle="answer-q5">Show Answer</button></div>
+    <div id="hint-q5" class="quiz-hidden"><strong>Hint:</strong> Compare an incumbent whose training has succeeded with a new supplier of the same cost.</div>
+    <div id="answer-q5" class="quiz-hidden"><strong>Suggested Answer:</strong> \(c^*(c)\) is the highest new-supplier cost at which the buyer is indifferent between the incumbent and starting with the new candidate: \(v(c)=u(c^*(c))\). A new supplier with the same cost is worse because its capability is unresolved and the buyer must again face training cost \(I\); hence a replacement must be strictly cheaper, so \(c^*(c)&lt;c\).
+      <p><strong>Common Mistake:</strong> Treating switching as cost comparison \(c'&lt;c\) only. The incumbent has a relational information/sunk-training advantage.</p>
+      <p><strong>Why This Matters:</strong> This cutoff connects the starting-small model to relationship persistence.</p>
+    </div>
+    <p class="review">Review: <a href="#cutoffs">Equation (8)</a></p>
+    <div class="rating"><button data-rate="got">✅ Got it</button><button data-rate="unsure">🤔 Not sure</button><button data-rate="review">❌ Need to Review</button></div>
+  </article>
+
+  <article class="quiz-card" id="quiz-q6" data-q="q6">
+    <div class="quiz-head"><span class="skill">EVIDENCE</span><h3>Q6. How does the Sialkot GMP episode map into Proposition 6?</h3></div>
+    <div class="quiz-actions"><button data-toggle="hint-q6">Show Hint</button><button data-toggle="answer-q6">Show Answer</button></div>
+    <div id="hint-q6" class="quiz-hidden"><strong>Hint:</strong> Certification changes the buyer's uncertainty about new suppliers.</div>
+    <div id="answer-q6" class="quiz-hidden"><strong>Suggested Answer:</strong> GMP certification made new Pakistani surgical-instrument suppliers more credible on quality assurance, which can be read as increasing perceived success probability \(p\). Proposition 6 says a higher \(p\) raises \(c^*(c)\), so a new supplier needs a smaller cost advantage to displace an incumbent. Nadvi reports that certification let some buyers loosen longstanding ties and return to arm's-length search.
+      <p><strong>Common Mistake:</strong> Claiming the episode is a formal causal test. The paper presents it as supportive empirical motivation, not as an identified estimate.</p>
+      <p><strong>Why This Matters:</strong> It shows how an institutional change maps onto a model parameter and a persistence prediction.</p>
+    </div>
+    <p class="review">Review: <a href="#networks-persistence">2.3 Networks and Persistence</a> · <a href="#persistence-results">Proposition 6</a></p>
+    <div class="rating"><button data-rate="got">✅ Got it</button><button data-rate="unsure">🤔 Not sure</button><button data-rate="review">❌ Need to Review</button></div>
+  </article>
+
+  <article class="quiz-card" id="quiz-q7" data-q="q7">
+    <div class="quiz-head"><span class="skill">MECHANISM</span><h3>Q7. Why should relationships that start Big last longer than those that start small?</h3></div>
+    <div class="quiz-actions"><button data-toggle="hint-q7">Show Hint</button><button data-toggle="answer-q7">Show Answer</button></div>
+    <div id="hint-q7" class="quiz-hidden"><strong>Hint:</strong> Big is not randomly assigned across suppliers.</div>
+    <div id="answer-q7" class="quiz-hidden"><strong>Suggested Answer:</strong> Big is chosen for lower-cost suppliers. A lower incumbent cost makes it harder for a newly introduced supplier to clear the switching threshold, so replacement is less likely. The duration result is therefore generated by selection on \(c\), not by a direct causal effect of making a large first order.
+      <p><strong>Common Mistake:</strong> Saying that Big itself creates durability. Proposition 7 follows because both Big and persistence are associated with low \(c\).</p>
+      <p><strong>Why This Matters:</strong> It prevents a causal misreading of one of the paper's most testable predictions.</p>
+    </div>
+    <p class="review">Review: <a href="#persistence-results">Proposition 7</a> · <a href="#proof-propositions-7-9">Appendix proof</a></p>
+    <div class="rating"><button data-rate="got">✅ Got it</button><button data-rate="unsure">🤔 Not sure</button><button data-rate="review">❌ Need to Review</button></div>
+  </article>
+
+  <article class="quiz-card" id="quiz-q8" data-q="q8">
+    <div class="quiz-head"><span class="skill">CRITIQUE</span><h3>Q8. What observed “starting small” pattern would not, by itself, identify Rauch–Watson's mechanism?</h3></div>
+    <div class="quiz-actions"><button data-toggle="hint-q8">Show Hint</button><button data-toggle="answer-q8">Show Answer</button></div>
+    <div id="hint-q8" class="quiz-hidden"><strong>Hint:</strong> Section 1 discusses several other reasons relationships may escalate gradually.</div>
+    <div id="answer-q8" class="quiz-hidden"><strong>Suggested Answer:</strong> Simply observing small initial transactions followed by larger ones is not sufficient. Similar dynamics can arise from uncertainty about cooperative behavior, trust building, demand experimentation, or other irreversible-investment problems. Evidence for this paper's mechanism should connect initial scale to buyer-provided training, learning about productive capability, search costs, and switching responses to changes in capability uncertainty.
+      <p><strong>Common Mistake:</strong> Treating the stylized fact as mechanism-specific.</p>
+      <p><strong>Why This Matters:</strong> It is the key empirical identification challenge if the theory is taken to data.</p>
+    </div>
+    <p class="review">Review: <a href="#literature-position">1.1 Literature Position</a> · <a href="#alternative-mechanisms">8.6 Alternative Mechanisms</a></p>
+    <div class="rating"><button data-rate="got">✅ Got it</button><button data-rate="unsure">🤔 Not sure</button><button data-rate="review">❌ Need to Review</button></div>
+  </article>
+</section>
+
+<section id="mastery">
+  <h2>11 · Can You Explain the Paper Without Looking?</h2>
+  <ol class="mastery">
+    <li>Give a 90-second account of the paper beginning with the institutional puzzle and ending with Propositions 7–9.</li>
+    <li>Write down equations (1)–(3) from memory and explain exactly where \(I\), \(p\), \(k\), and \(w\) enter differently.</li>
+    <li>Draw Figure 1 from memory, label \(c^B\) and \(c^L\), and explain how a rise in \(g\) changes it.</li>
+    <li>Explain why a more familiar supplier environment can make incumbent relationships <em>less</em> persistent.</li>
+    <li>In a seminar, propose one empirical design that would distinguish productive-capability learning from trust-building as the reason for starting small.</li>
+  </ol>
+</section>
+
+<section id="memory">
+  <h2>12 · What Should I Remember?</h2>
+  <div class="remember">
+    <h3>Eight Things to Remember</h3>
+    <ol>
+      <li><strong>Puzzle:</strong> buyers may start with small orders even when contracts protect them from paying for defective deliveries because buyer-funded training is still at risk.</li>
+      <li><strong>Core friction:</strong> the buyer observes cost \(c\) but is uncertain whether training will make the supplier capable of fulfilling large orders.</li>
+      <li><strong>Three choices:</strong> Big risks \(I\) now, Learn buys information before \(I\), Out returns to search.</li>
+      <li><strong>Sorting:</strong> low \(c\) → Big; intermediate \(c\) → Learn; high \(c\) → Out.</li>
+      <li><strong>Search cost:</strong> higher \(g\) widens Learn from both sides (\(c^B\downarrow,c^L\uparrow\)).</li>
+      <li><strong>Uncertainty:</strong> lower \(p\) also favors Learn under the paper's stated conditions; higher \(I\) definitely reduces Big but does not monotonically increase Learn.</li>
+      <li><strong>Persistence:</strong> incumbent advantage comes from resolved uncertainty and sunk training; higher \(p\) or lower \(I\) makes switching easier.</li>
+      <li><strong>Selection:</strong> Big relationships last longer and switched-to suppliers more often start Big because Big selects lower-cost suppliers.</li>
+    </ol>
+  </div>
+  <div class="grid2">
+    <div class="callout"><h4>One-Sentence Summary</h4><p>A buyer facing costly supplier search and uncertainty about whether relationship-specific training will work may use a small trial order to acquire information before committing, and this same selection-and-learning structure determines which relationships persist or are replaced.</p></div>
+    <div class="callout"><h4>Core Mechanism</h4><p><strong>Uncertain capability + irreversible training + costly rematching → value of experimentation → Big/Learn/Out cost cutoffs → persistence and switching selection.</strong></p></div>
+    <div class="callout"><h4>Most Important Formal Object</h4><p>The three value functions (1)–(3) and their cutoff crossings in (7); equation (8) then carries the same logic into supplier replacement.</p></div>
+    <div class="callout"><h4>Biggest Contribution</h4><p>Combining search, endogenous relationship-building mode, and supplier switching in one tractable model that generates linked predictions about initial order size and relationship duration.</p></div>
+    <div class="callout"><h4>Biggest Limitation</h4><p>The learning technology and supplier side are highly reduced-form; several comparative statics rely on small \(q\) and, for Proposition 4, \(g\) near the search threshold.</p></div>
+    <div class="callout"><h4>Biggest Open Question</h4><p>Can transaction-level data separately identify learning about productive capability from other reasons for gradual relationship escalation?</p></div>
+  </div>
+</section>
+
+<section id="coverage">
+  <h2>13 · Source Coverage Audit</h2>
+  <p class="lead">This matrix makes the reconstruction auditable. “Covered” means the substantive argument, evidence, result, or proof logic appears in this notebook; boilerplate and the bibliography itself are not reproduced.</p>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Original location</th><th>Substantive content</th><th>Notebook location</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr><td>Abstract + §1, pp. 1021–1024</td><td>Puzzle, mechanism, three literature components, contribution</td><td>§1</td><td><span class="status">Covered</span></td></tr>
+      <tr><td>§2, pp. 1024–1028</td><td>Egan–Mody, Tewari, payment environment, training, risk, search infrastructure, network, Nadvi GMP</td><td>§2</td><td><span class="status">Covered</span></td></tr>
+      <tr><td>§3.1, pp. 1028–1030</td><td>Environment, Big/Learn/Out, equations (1)–(6), Assumption (A)</td><td>§3.1–3.4</td><td><span class="status">Covered</span></td></tr>
+      <tr><td>§3.2, pp. 1030–1031</td><td>Figure 1, cutoffs, equation (7), switching cutoff (8), Proposition 1</td><td>§3.5</td><td><span class="status">Covered</span></td></tr>
+      <tr><td>§4.1, pp. 1031–1033</td><td>Propositions 2–5 and qualifications</td><td>§4.1</td><td><span class="status">Covered</span></td></tr>
+      <tr><td>§4.2, pp. 1033–1035</td><td>Propositions 6–9, persistence and switching predictions</td><td>§4.2</td><td><span class="status">Covered</span></td></tr>
+      <tr><td>§4.3, p. 1035</td><td>Additional predictions under structure on costs; sign reversal caveat</td><td>§4.3</td><td><span class="status">Covered</span></td></tr>
+      <tr><td>§5, pp. 1035–1037</td><td>Conclusions, exporter selection, trade liberalization/rationalization, future test, footnote 15</td><td>§6</td><td><span class="status">Covered</span></td></tr>
+      <tr><td>Appendix, pp. 1037–1040</td><td>Proofs of Propositions 1–9</td><td>§5</td><td><span class="status">Covered</span></td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout"><strong>Last-third completeness check:</strong> Section 4.3, the full conclusion/export interpretation, and the appendix proof architecture are explicitly retained rather than compressed away.</div>
+</section>
+
+<footer>
+  <p>Interactive study reconstruction of Rauch & Watson (2003), <em>Starting Small in an Unfamiliar Environment</em>. Source references follow the journal pagination.</p>
+  <p class="muted">Notebook synthesis labels distinguish the authors' arguments from analytical or research extensions.</p>
+</footer>
+</article>
+</main>
+</div>
+
+<script>
+(()=>{
+const root=document.documentElement;
+const side=document.getElementById("side");
+const menu=document.getElementById("menu");
+const theme=document.getElementById("theme");
+const bar=document.querySelector(".progress span");
+const store={get:(k)=>{try{return localStorage.getItem(k)}catch(e){return null}},set:(k,v)=>{try{localStorage.setItem(k,v)}catch(e){}}};
+const saved=store.get("rw-theme");
+if(saved) root.dataset.theme=saved;
+theme?.addEventListener("click",()=>{
+  root.dataset.theme=root.dataset.theme==="dark"?"light":"dark";
+  store.set("rw-theme",root.dataset.theme);
+});
+menu?.addEventListener("click",()=>side?.classList.toggle("open"));
+document.querySelectorAll("#side a").forEach(a=>a.addEventListener("click",()=>side?.classList.remove("open")));
+const updateProgress=()=>{
+  const max=root.scrollHeight-root.clientHeight;
+  if(bar) bar.style.width=(max?100*root.scrollTop/max:0)+"%";
+};
+document.addEventListener("scroll",updateProgress,{passive:true}); updateProgress();
+
+const links=[...document.querySelectorAll("#side a")];
+const io=new IntersectionObserver(entries=>{
+  const hit=entries.filter(e=>e.isIntersecting).sort((a,b)=>a.boundingClientRect.top-b.boundingClientRect.top)[0];
+  if(!hit) return;
+  const id="#"+hit.target.id;
+  links.forEach(a=>{a.classList.toggle("active",a.getAttribute("href")===id);a.classList.remove("parent-active");});
+  const active=links.find(a=>a.getAttribute("href")===id);
+  if(active){
+    let level=active.dataset.l;
+    if(level){
+      let i=links.indexOf(active)-1;
+      while(i>=0 && links[i].dataset.l){i--}
+      if(i>=0) links[i].classList.add("parent-active");
+    }
+  }
+},{rootMargin:"-10% 0px -78% 0px",threshold:0});
+document.querySelectorAll("section[id]").forEach(s=>io.observe(s));
+
+document.querySelectorAll("[data-toggle]").forEach(btn=>{
+  btn.addEventListener("click",()=>{
+    const target=document.getElementById(btn.dataset.toggle);
+    if(target) target.classList.toggle("show");
+  });
+});
+document.querySelectorAll("[data-show]").forEach(btn=>{
+  btn.addEventListener("click",()=>{
+    const target=document.getElementById(btn.dataset.show);
+    if(target) target.classList.toggle("show");
+  });
+});
+document.querySelectorAll(".quiz-card").forEach(card=>{
+  const key="rw-rate-"+card.dataset.q;
+  const savedRate=store.get(key);
+  card.querySelectorAll(".rating button").forEach(btn=>{
+    if(btn.dataset.rate===savedRate) btn.classList.add("selected");
+    btn.addEventListener("click",()=>{
+      card.querySelectorAll(".rating button").forEach(b=>b.classList.remove("selected"));
+      btn.classList.add("selected");
+      store.set(key,btn.dataset.rate);
+    });
+  });
+});
+window.addEventListener("load",()=>{
+  if(document.documentElement.scrollWidth>document.documentElement.clientWidth+2){
+    console.warn("Page-level horizontal overflow",document.documentElement.scrollWidth,document.documentElement.clientWidth);
+  }
+});
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,1171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Relational Contracts and the Theory of the Firm — Interactive Research Notebook</title>
+<meta name="description" content="Interactive research notebook for Baker, Gibbons & Murphy (2002), Relational Contracts and the Theory of the Firm.">
+<style>
+:root{
+  --sidebar: 292px; --topbar: 56px;
+  --bg:#f5f4ef; --paper:#fffefb; --text:#23272c; --muted:#65707a;
+  --line:#d9dde1; --accent:#355a7a; --accent-soft:#e7eef4;
+  --green:#4d765c; --green-soft:#e8f0e9; --amber:#8a6a31; --amber-soft:#f4eddd;
+  --red:#8a4a4a; --red-soft:#f5e8e7; --code:#f1f2f2; --shadow:0 1px 2px rgba(0,0,0,.04);
+  --space-xs:6px; --space-sm:10px; --space-md:16px; --space-lg:24px; --space-xl:40px; --space-2xl:64px;
+}
+[data-theme="dark"]{
+  --bg:#15191d; --paper:#1d2227; --text:#e9ecef; --muted:#a7b0b8; --line:#343b42;
+  --accent:#8eb1cc; --accent-soft:#243747; --green:#9ac0a5; --green-soft:#26382b;
+  --amber:#d6b777; --amber-soft:#403621; --red:#d8a0a0; --red-soft:#452d2d; --code:#252b31;
+  --shadow:none;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;max-width:100%}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,"IBM Plex Sans","Source Sans 3",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.72;font-size:16px;max-width:100%}
+body.zh{font-family:Inter,"Noto Sans SC","PingFang SC","Microsoft YaHei",system-ui,sans-serif}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+button{font:inherit}
+#progress{position:fixed;z-index:1000;top:0;left:0;height:3px;width:0;background:var(--accent)}
+.topbar{position:fixed;z-index:900;top:0;left:0;right:0;height:var(--topbar);display:flex;align-items:center;gap:12px;padding:0 18px;background:color-mix(in srgb,var(--paper) 94%, transparent);backdrop-filter:blur(7px);border-bottom:1px solid var(--line)}
+.brand{font-weight:700;letter-spacing:.02em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.topbar .spacer{flex:1}
+.icon-btn,.small-btn{border:1px solid var(--line);background:var(--paper);color:var(--text);border-radius:8px;padding:7px 10px;cursor:pointer}
+.icon-btn:hover,.small-btn:hover{border-color:var(--accent)}
+.menu-btn{display:none}
+.layout{display:grid;grid-template-columns:var(--sidebar) minmax(0,1fr);gap:0;padding-top:var(--topbar);min-height:100vh}
+aside{position:sticky;top:var(--topbar);height:calc(100vh - var(--topbar));overflow:auto;border-right:1px solid var(--line);background:var(--paper);padding:18px 14px}
+.nav-title{font-size:12px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);margin:6px 8px 12px}
+nav a{display:block;color:var(--muted);padding:6px 8px;border-radius:6px;font-size:13.5px;line-height:1.35}
+nav a[data-level="2"]{padding-left:18px}
+nav a[data-level="3"]{padding-left:30px;font-size:12.8px}
+nav a.active{background:var(--accent-soft);color:var(--accent);font-weight:650}
+nav a.parent-active{color:var(--accent);font-weight:650}
+main{min-width:0;padding:48px clamp(22px,4vw,58px) 90px}
+article{max-width:980px;margin:0 auto;min-width:0}
+.hero{padding:6px 0 30px;border-bottom:1px solid var(--line)}
+.kicker{font-size:13px;color:var(--accent);font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+h1{font-size:clamp(32px,4.6vw,44px);line-height:1.12;letter-spacing:-.025em;margin:10px 0 12px}
+.subtitle{font-size:18px;color:var(--muted);max-width:780px}
+.meta{display:flex;flex-wrap:wrap;gap:10px 18px;color:var(--muted);font-size:14px;margin-top:18px}
+section{scroll-margin-top:76px;min-width:0}
+h2[id],h3[id],h4[id]{scroll-margin-top:76px}
+section.level1{padding-top:var(--space-2xl)}
+section.level2{padding-top:var(--space-xl)}
+section.level3{padding-top:var(--space-lg)}
+h2{font-size:28px;line-height:1.25;margin:0 0 18px;letter-spacing:-.015em}
+h3{font-size:21px;line-height:1.35;margin:0 0 14px}
+h4{font-size:17px;line-height:1.4;margin:0 0 10px}
+.prose{max-width:760px}
+.prose p{margin:0 0 14px}
+.lede{font-size:19px;line-height:1.65}
+.badges{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 18px}
+.badge{display:inline-flex;align-items:center;gap:5px;border:1px solid var(--line);border-radius:999px;padding:4px 8px;font-size:11px;font-weight:750;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);background:var(--paper)}
+.badge.author{color:var(--accent);background:var(--accent-soft);border-color:transparent}
+.badge.synth{color:var(--green);background:var(--green-soft);border-color:transparent}
+.badge.ext{color:var(--amber);background:var(--amber-soft);border-color:transparent}
+.dashboard{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:24px 0}
+.card{border:1px solid var(--line);background:var(--paper);border-radius:12px;padding:16px;box-shadow:var(--shadow);min-width:0}
+.card h4{margin-bottom:6px}
+.card .label{font-size:11px;text-transform:uppercase;letter-spacing:.09em;color:var(--muted);font-weight:700}
+.card .value{font-size:15px;margin-top:5px}
+.fingerprint{display:grid;grid-template-columns:190px minmax(0,1fr);border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--paper)}
+.fingerprint div{padding:10px 13px;border-bottom:1px solid var(--line)}
+.fingerprint div:nth-last-child(-n+2){border-bottom:0}
+.fingerprint .dim{font-weight:700;color:var(--muted);background:color-mix(in srgb,var(--paper) 90%,var(--accent-soft))}
+.callout{border-left:4px solid var(--accent);padding:14px 16px;background:var(--accent-soft);border-radius:0 9px 9px 0;margin:18px 0;max-width:800px}
+.callout.green{border-color:var(--green);background:var(--green-soft)}
+.callout.amber{border-color:var(--amber);background:var(--amber-soft)}
+.callout.red{border-color:var(--red);background:var(--red-soft)}
+.callout-title{font-size:12px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;margin-bottom:5px}
+.source{font-size:12.5px;color:var(--muted);margin-top:9px}
+.equation-card{border:1px solid var(--line);background:var(--paper);border-radius:12px;margin:20px 0;overflow:hidden;max-width:100%}
+.eq-head{display:flex;justify-content:space-between;gap:12px;padding:11px 14px;border-bottom:1px solid var(--line);font-size:13px;font-weight:700}
+.eq-body{padding:18px}
+.equation-wrap{max-width:100%;overflow-x:auto;overflow-y:hidden;font-size:1.06em;padding:4px 0}
+.eq-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:12px}
+.eq-note{font-size:14px;color:var(--muted)}
+.table-wrap,.diagram-wrap{max-width:100%;overflow-x:auto;overflow-y:hidden;margin:18px 0;border:1px solid var(--line);border-radius:12px;background:var(--paper)}
+table{border-collapse:collapse;width:100%;min-width:760px}
+th,td{text-align:left;vertical-align:top;padding:11px 12px;border-bottom:1px solid var(--line);font-size:14px}
+th{font-size:12px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);background:color-mix(in srgb,var(--paper) 90%,var(--accent-soft))}
+tr:last-child td{border-bottom:0}
+.matrix2{display:grid;grid-template-columns:150px 1fr 1fr;min-width:690px}
+.matrix2>div{padding:13px;border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+.matrix2>div:nth-child(3n){border-right:0}
+.matrix2 .head{font-weight:700;background:color-mix(in srgb,var(--paper) 90%,var(--accent-soft))}
+.matrix2 .form{font-weight:700}
+.flow{display:flex;align-items:stretch;gap:8px;min-width:840px;padding:16px}
+.flow .node{flex:1;border:1px solid var(--line);border-radius:10px;padding:12px;min-width:126px;background:var(--paper);font-size:14px}
+.flow .arrow{align-self:center;color:var(--muted);font-size:20px}
+.result{border-top:1px solid var(--line);padding:22px 0}
+.result:first-child{border-top:0}
+.result-head{display:flex;align-items:flex-start;gap:12px}
+.num{display:flex;align-items:center;justify-content:center;flex:0 0 34px;height:34px;border-radius:50%;background:var(--accent-soft);color:var(--accent);font-weight:800}
+.result h4{margin:3px 0 6px}
+.columns{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+details{border:1px solid var(--line);border-radius:10px;background:var(--paper);margin:10px 0;overflow:hidden}
+summary{cursor:pointer;padding:13px 15px;font-weight:700}
+details>div{padding:0 15px 15px}
+.quiz{border:1px solid var(--line);border-radius:12px;background:var(--paper);padding:16px;margin:14px 0}
+.quiz-q{font-weight:700;font-size:16px}
+.quiz-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.reveal{display:none;margin-top:12px;padding-top:12px;border-top:1px solid var(--line)}
+.reveal.show{display:block}
+.rating{display:flex;gap:7px;flex-wrap:wrap;margin-top:12px}
+.rate-btn{border:1px solid var(--line);background:var(--paper);color:var(--muted);border-radius:999px;padding:5px 9px;cursor:pointer;font-size:12px}
+.rate-btn.selected{border-color:var(--accent);background:var(--accent-soft);color:var(--accent);font-weight:700}
+.remember{counter-reset:item;list-style:none;padding:0;margin:0;max-width:800px}
+.remember li{counter-increment:item;padding:11px 0 11px 48px;border-bottom:1px solid var(--line);position:relative}
+.remember li:before{content:counter(item);position:absolute;left:0;top:10px;width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--accent-soft);color:var(--accent);font-weight:800}
+.fig-source{max-width:100%;height:auto;display:block;margin:auto;filter:contrast(.98)}
+.tabs{border:1px solid var(--line);border-radius:12px;background:var(--paper);overflow:hidden;margin:18px 0}
+.tab-buttons{display:flex;overflow-x:auto;border-bottom:1px solid var(--line)}
+.tab-buttons button{border:0;border-right:1px solid var(--line);background:transparent;color:var(--muted);padding:10px 14px;cursor:pointer;white-space:nowrap}
+.tab-buttons button.active{background:var(--accent-soft);color:var(--accent);font-weight:700}
+.tab-panel{display:none;padding:16px}
+.tab-panel.active{display:block}
+.glossary dt{font-weight:750;margin-top:13px}
+.glossary dd{margin:3px 0 0;color:var(--muted)}
+.footer-note{margin-top:65px;padding-top:20px;border-top:1px solid var(--line);color:var(--muted);font-size:13px}
+code{background:var(--code);padding:2px 5px;border-radius:5px}
+@media(max-width:1020px){
+  :root{--sidebar:250px}
+  .dashboard{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .three{grid-template-columns:1fr 1fr}
+}
+@media(max-width:780px){
+  .menu-btn{display:inline-block}
+  .layout{display:block}
+  aside{position:fixed;z-index:850;left:0;top:var(--topbar);width:min(84vw,320px);transform:translateX(-103%);transition:transform .18s ease;height:calc(100vh - var(--topbar));box-shadow:5px 0 20px rgba(0,0,0,.12)}
+  aside.open{transform:translateX(0)}
+  main{padding:34px 18px 70px}
+  .dashboard,.columns,.three,.eq-grid{grid-template-columns:1fr}
+  .fingerprint{grid-template-columns:1fr}
+  .fingerprint .dim{border-bottom:0;padding-bottom:3px}
+  .fingerprint div{border-bottom:1px solid var(--line)}
+  .fingerprint div:nth-last-child(-n+2){border-bottom:1px solid var(--line)}
+  .fingerprint div:last-child{border-bottom:0}
+  h2{font-size:25px}
+}
+@media(max-width:480px){
+  body{font-size:15.5px}
+  .topbar{padding:0 10px}.brand{font-size:13px}
+  .icon-btn{padding:6px 8px}
+}
+@media print{
+  .topbar,aside,#progress,.quiz-actions,.rating{display:none!important}
+  .layout{display:block;padding:0} main{padding:0} article{max-width:none}
+  details>div{display:block!important} details{break-inside:avoid}
+}
+</style>
+<script>
+window.MathJax = {
+  tex: {inlineMath: [['\\(','\\)']], displayMath: [['\\[','\\]']], tags: 'none'},
+  svg: {fontCache: 'global'}
+};
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body class="">
+
+<div id="progress"></div>
+<header class="topbar">
+  <button class="icon-btn menu-btn" id="menuBtn" aria-label="Open navigation">☰</button>
+  <div class="brand">Baker · Gibbons · Murphy (2002) — Relational Contracts</div>
+  <div class="spacer"></div>
+  <button class="icon-btn" id="themeBtn" aria-label="Toggle theme">◐</button>
+</header>
+<div class="layout">
+<aside>
+  <div class="nav-title">Research notebook</div>
+  <nav>
+    <a href="#overview" data-level="1">Overview</a>
+    <a href="#paper-fingerprint" data-level="2">Paper Fingerprint</a>
+    <a href="#argument-map" data-level="2">Argument Map</a>
+    <a href="#framing" data-level="1">1 · Framing & Literature</a>
+    <a href="#relational-contracts" data-level="2">Relational contracts</a>
+    <a href="#literature-position" data-level="2">Literature position</a>
+    <a href="#environment" data-level="1">2 · Economic Environment</a>
+    <a href="#agents-technology" data-level="2">Agents & technology</a>
+    <a href="#timing-information" data-level="2">Timing & information</a>
+    <a href="#first-best" data-level="2">First best</a>
+    <a href="#multitask-example" data-level="2">Multitask example</a>
+    <a href="#four-forms" data-level="1">3 · Four Governance Forms</a>
+    <a href="#spot-outsourcing" data-level="2">Spot outsourcing</a>
+    <a href="#spot-employment" data-level="2">Spot employment</a>
+    <a href="#relational-employment" data-level="2">Relational employment</a>
+    <a href="#relational-outsourcing" data-level="2">Relational outsourcing</a>
+    <a href="#main-proposition" data-level="2">Proposition & corollary</a>
+    <a href="#specialization" data-level="1">4 · Linear–Quadratic Specialization</a>
+    <a href="#lq-actions" data-level="2">Actions & bonus restriction</a>
+    <a href="#simplified-constraints" data-level="2">Simplified constraints</a>
+    <a href="#figure-two" data-level="2">Figure II phase map</a>
+    <a href="#results" data-level="1">5 · Five Comparative Results</a>
+    <a href="#result-1" data-level="2">Result 1 · Price variability</a>
+    <a href="#result-2" data-level="2">Result 2 · Incentive power</a>
+    <a href="#result-3" data-level="2">Result 3 · Discount rate</a>
+    <a href="#result-4" data-level="2">Result 4 · Payoff levels</a>
+    <a href="#result-5" data-level="2">Result 5 · Fallback blocks firms</a>
+    <a href="#appendices" data-level="1">6 · Appendices & Proof Logic</a>
+    <a href="#appendix-one" data-level="2">Appendix 1</a>
+    <a href="#appendix-two" data-level="2">Appendix 2</a>
+    <a href="#discussion" data-level="1">7 · Discussion & Applications</a>
+    <a href="#formal-informal" data-level="2">Formal × informal structure</a>
+    <a href="#other-forms" data-level="2">Other organizational forms</a>
+    <a href="#internal-processes" data-level="2">Internal processes</a>
+    <a href="#management" data-level="2">Management & firm nature</a>
+    <a href="#literature-map" data-level="1">8 · Literature Knowledge Map</a>
+    <a href="#critical-reading" data-level="1">9 · Critical Reading</a>
+    <a href="#external-validity" data-level="2">External validity</a>
+    <a href="#open-questions" data-level="2">Open questions</a>
+    <a href="#extensions" data-level="2">Research extensions</a>
+    <a href="#source-coverage" data-level="1">10 · Source & Coverage Map</a>
+    <a href="#understanding-check" data-level="1">11 · Understanding Check</a>
+    <a href="#mastery" data-level="1">12 · Mastery Questions</a>
+    <a href="#remember" data-level="1">13 · What Should I Remember?</a>
+    <a href="#glossary" data-level="1">14 · Glossary</a>
+  </nav>
+</aside>
+<main><article>
+<section class="hero" id="overview">
+  <div class="kicker">Interactive Research Notebook · Theoretical Organizational Economics</div>
+  <h1>Relational Contracts and the Theory of the Firm</h1>
+  <div class="subtitle">George Baker · Robert Gibbons · Kevin J. Murphy — a repeated-game theory of why the same informal promise can be sustainable inside a firm but not between firms, or vice versa.</div>
+  <div class="meta">
+    <span><strong>Journal:</strong> Quarterly Journal of Economics 117(1), 2002, 39–84</span>
+    <span><strong>Paper type:</strong> Theory · repeated games · theory of the firm</span>
+    <span><strong>Canonical lens:</strong> asset ownership × relational governance</span>
+  </div>
+</section>
+
+<section class="level1" id="paper-fingerprint">
+  <h2>Paper Dashboard</h2>
+  <div class="badges"><span class="badge author">Author's Argument</span><span class="badge synth">Analytical Synthesis</span></div>
+  <div class="dashboard">
+    <div class="card"><div class="label">Research question</div><div class="value">How does <strong>asset ownership</strong> change the set of <strong>relational contracts</strong> that can be self-enforced, and therefore the efficient boundary of the firm?</div></div>
+    <div class="card"><div class="label">Core friction</div><div class="value">Actions are unobservable; outcomes \(Q,P\) are observable to the parties but nonverifiable to courts. Informal bonuses must therefore be sustained by future surplus.</div></div>
+    <div class="card"><div class="label">Core mechanism</div><div class="value">Ownership changes the one-shot payoff from reneging. That changes the <strong>reneging temptation</strong>, which changes feasible bonuses, actions, surplus, and optimal integration.</div></div>
+    <div class="card"><div class="label">Main proposition</div><div class="value">A fixed relational contract induces the same actions under either ownership structure, but its maximum total temptation to renege differs across integration and nonintegration.</div></div>
+    <div class="card"><div class="label">Signature corollary</div><div class="value">An integrated firm cannot simply reproduce the spot-market incentive system: the required internal relational payments are not self-enforcing.</div></div>
+    <div class="card"><div class="label">What is new</div><div class="value">The paper joins Property Rights / asset ownership with Relational Contract Theory and makes ownership an instrument for sustaining an informal relationship.</div></div>
+  </div>
+
+  <h3>Paper Fingerprint</h3>
+  <div class="fingerprint">
+    <div class="dim">Research Question</div><div>When does integration facilitate a superior self-enforcing relational contract relative to nonintegration?</div>
+    <div class="dim">Economic Friction</div><div>Moral hazard + noncontractibility + finite relational capital.</div>
+    <div class="dim">Agents</div><div>One upstream party, one downstream party, and one productive asset.</div>
+    <div class="dim">Key Choice</div><div>Asset ownership (upstream = outsourcing; downstream = employment) and relational bonus schedule.</div>
+    <div class="dim">State / Environment</div><div>Infinitely repeated stationary environment; each period has downstream value \(Q\) and alternative-use value \(P\), each high/low.</div>
+    <div class="dim">Core Mechanism</div><div>Ownership changes fallback and bargaining recourse after reneging, altering self-enforcement constraints.</div>
+    <div class="dim">Contracting / Market Problem</div><div>\(Q,P\) are mutually observed but not court-verifiable; actions \(a\) are privately observed by upstream.</div>
+    <div class="dim">Method</div><div>Repeated-game relational contracting with trigger strategies; Nash bargaining in spot outsourcing; linear–quadratic specialization for comparative results.</div>
+    <div class="dim">Data</div><div>N/A for this paper type.</div>
+    <div class="dim">Identification</div><div>N/A for this paper type.</div>
+    <div class="dim">Main Result</div><div>Integration and nonintegration support different sets of relational contracts because their reneging temptations differ.</div>
+    <div class="dim">Contribution</div><div>Formal comparison of relational contracts <em>within</em> and <em>between</em> firms, yielding new comparative statics in price variability, incentives, patience, and payoff levels.</div>
+    <div class="dim">Limitation</div><div>Formal contracts are suppressed; baseline has two parties, stationary repetition, binary values, and a particular bargaining / punishment structure. Section IV uses special functional forms.</div>
+    <div class="dim">Open Question</div><div>How do richer formal structures—joint ownership, networks, governance processes, changing relational contracts—interact with informal self-enforcement?</div>
+  </div>
+  <div class="source">Source: Abstract; §§I–V · journal pp. 39–74.</div>
+</section>
+
+<section class="level2" id="argument-map">
+  <h3>Paper at a Glance — the full logic in one chain</h3>
+  <div class="diagram-wrap">
+    <div class="flow">
+      <div class="node"><strong>1 · Contracting gap</strong><br>Useful actions cannot be formally contracted on.</div><div class="arrow">→</div>
+      <div class="node"><strong>2 · Relational promise</strong><br>Bonus can depend on observed \(Q,P\).</div><div class="arrow">→</div>
+      <div class="node"><strong>3 · Ownership</strong><br>Who owns the asset determines the good and fallback rights.</div><div class="arrow">→</div>
+      <div class="node"><strong>4 · Reneging temptation</strong><br>Short-run gain from breaking the promise changes.</div><div class="arrow">→</div>
+      <div class="node"><strong>5 · Feasible contract</strong><br>Only promises covered by future relational surplus survive.</div><div class="arrow">→</div>
+      <div class="node"><strong>6 · Firm boundary</strong><br>Choose ownership that supports the higher-surplus relationship.</div>
+    </div>
+  </div>
+  <div class="callout green">
+    <div class="callout-title">One-sentence summary</div>
+    Integration matters not because it makes previously unverifiable outcomes verifiable, but because it changes what each party can gain by reneging on an informal promise.
+  </div>
+</section>
+
+<section class="level1" id="framing">
+  <h2>1 · Framing and Literature Position</h2>
+  <div class="prose lede"><p>The paper starts from a broad empirical premise: organizations run on both formal structure and informal understandings. The theoretical task is to explain how the formal choice of ownership changes the informal agreements that can actually be sustained.</p></div>
+</section>
+
+<section class="level2" id="relational-contracts">
+  <h3>1.1 What is a relational contract here?</h3>
+  <div class="prose">
+    <p>A <strong>relational contract</strong> is an informal agreement enforced by the value of future dealings rather than by a court. Inside firms, examples include unwritten understandings about assignments, promotion, termination, compensation, transfer pricing, auditing, and capital budgeting. Between firms, the paper points to long-run supplier relationships, horizontal networks, strategic alliances, joint ventures, and business groups.</p>
+    <p>The paper makes the horizontal-network examples concrete: it mentions networks of firms in the <strong>fashion industry</strong> and the <strong>diamond trade</strong>, alongside alliances, joint ventures, business groups, and “virtual” firms. These are substantive examples of relational governance outside a single legal firm, not merely decorative illustrations.</p>
+    <p class="small"><strong>Terminology note.</strong> The same family of arrangements is sometimes called <em>self-enforcing</em> or <em>implicit</em> contracting. The authors deliberately use <strong>relational contract</strong>, following the legal literature associated with Macneil, and caution that “implicit” can misleadingly sound vague even though such understandings may be very precise.</p>
+    <p>The advantage over a formal contract is flexibility: the parties may condition behavior on outcomes they can observe after the fact even if those outcomes are too costly to specify ex ante or cannot be verified to a third party. The corresponding disadvantage is self-enforcement: every promised payment must survive the temptation to exploit the current realization and abandon the relationship.</p>
+  </div>
+  <div class="columns">
+    <div class="callout"><div class="callout-title">Formal contract</div>Third-party enforceable; must be written in verifiable terms. It can survive even if a party would like to renege ex post.</div>
+    <div class="callout green"><div class="callout-title">Relational contract</div>Can use rich mutually observed information, but only if continuation value makes honoring the promise privately optimal.</div>
+  </div>
+  <div class="source">Source: §I · pp. 39–41.</div>
+</section>
+
+<section class="level2" id="literature-position">
+  <h3>1.2 The missing comparison in prior theories</h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Literature</th><th>What it gives the paper</th><th>What Baker–Gibbons–Murphy add</th></tr></thead>
+    <tbody>
+      <tr><td>Grossman & Hart (1986); Hart & Moore (1990)</td><td>Asset ownership and residual control rights as the meaning of integration.</td><td>Ownership also changes which <em>relational</em> payment schemes are credible, not only static marginal incentives.</td></tr>
+      <tr><td>Simon (1951); Bull (1987)</td><td>Employment / relational contracting within firms.</td><td>Compare the same relational logic to nonintegrated supply relationships.</td></tr>
+      <tr><td>Klein & Leffler (1981); Telser (1981); Klein</td><td>Self-enforcing relationships between firms and reneging under nonintegration.</td><td>Integration removes some outside-market reneging temptations but creates its own because an employee has less recourse.</td></tr>
+      <tr><td>Williamson (1975, 1985, 1996)</td><td>Markets, hierarchies, hybrids, limits of selective intervention.</td><td>Formalize the reneging constraints on both sides and show governance is naturally two-dimensional: ownership × spot/relational.</td></tr>
+      <tr><td>Holmström & Milgrom (1991); Holmström (1999)</td><td>Multitasking and organizational design.</td><td>Use a related multitask environment but with noncontractible outcomes and repeated-game relational incentives.</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="callout">
+    <div class="callout-title">Why Figure I matters conceptually</div>
+    “Market versus hierarchy” is not a single line. Ownership and governance are separate dimensions. A nonintegrated relationship can be highly relational, and an integrated relationship can be purely spot-like.
+  </div>
+
+  <div class="diagram-wrap">
+    <div class="matrix2">
+      <div class="head">Governance ↓ / Ownership →</div><div class="head">Nonintegrated · upstream owns asset</div><div class="head">Integrated · downstream owns asset</div>
+      <div class="head">Spot</div><div class="form">Spot Outsourcing</div><div class="form">Spot Employment</div>
+      <div class="head">Relational</div><div class="form">Relational Outsourcing</div><div class="form">Relational Employment</div>
+    </div>
+  </div>
+  <p class="prose">The paper's central comparison is the bottom row—<strong>Relational Outsourcing</strong> versus <strong>Relational Employment</strong>. This is exactly the comparison that standard repeated-game models often leave undefined because, without an ownership variable, the same model can be read as either an internal employment relation or an interfirm supply relation.</p>
+  <div class="source">Source: Figure I and surrounding discussion · §§II–III · pp. 46–48; footnotes 8–9.</div>
+</section>
+
+<section class="level1" id="environment">
+  <h2>2 · Economic Environment</h2>
+</section>
+
+<section class="level2" id="agents-technology">
+  <h3>2.1 Agents, asset, technology, and ownership</h3>
+  <div class="prose">
+    <p>There is one <strong>upstream party</strong>, one <strong>downstream party</strong>, and one long-lived asset. Both parties are risk neutral and use interest rate \(r\) per period. The upstream party can use the asset each period to produce one perishable good.</p>
+    <p>The good has two possible uses. Its value to downstream is \(Q\); its alternative-use value is \(P\). The maintained ordering is</p>
+  </div>
+  <div class="equation-card"><div class="eq-head"><span>Value ordering</span><span>Economic environment</span></div><div class="eq-body"><div class="equation-wrap">\[
+  P_L < P_H < Q_L < Q_H.
+  \]</div><div class="eq-note">Trade with downstream is always ex post efficient, even when upstream owns the asset.</div></div></div>
+  <div class="prose">
+    <p><strong>Ownership of the asset conveys ownership of the good.</strong> If downstream owns the asset, he can take the good without buying it. If upstream owns the asset, she can withhold the good and use it elsewhere, so downstream must bargain to acquire it. This formal right is the bridge from ownership to reneging incentives.</p>
+    <p>Why is downstream use always more valuable? The authors give two interpretations: there may be other similar downstream users but the asset is tailored to this particular downstream party; or upstream could try to become a downstream producer herself but lacks the expertise to do so efficiently.</p>
+    <p>The “asset” can be interpreted narrowly as legal title to the good. The paper also notes an equivalent contracting interpretation: downstream ownership can resemble a specific-performance obligation, while upstream ownership resembles the absence of such an obligation.</p>
+  </div>
+  <div class="source">Source: §II · pp. 43–45; footnote 6.</div>
+</section>
+
+<section class="level2" id="timing-information">
+  <h3>2.2 Timing, information, and contractibility</h3>
+  <div class="diagram-wrap">
+    <div class="flow">
+      <div class="node"><strong>Ownership regime</strong><br>asset is held upstream or downstream</div><div class="arrow">→</div>
+      <div class="node"><strong>Relational terms / salary</strong><br>if relational governance is used</div><div class="arrow">→</div>
+      <div class="node"><strong>Upstream chooses \(a\)</strong><br>privately observed costly actions</div><div class="arrow">→</div>
+      <div class="node"><strong>\(Q,P\) realize</strong><br>both parties observe them; court cannot verify them</div><div class="arrow">→</div>
+      <div class="node"><strong>Pay / bargain / use good</strong><br>depending on governance and ownership</div><div class="arrow">→</div>
+      <div class="node"><strong>Honor or renege</strong><br>reneging triggers spot governance forever; ownership can be renegotiated efficiently</div>
+    </div>
+  </div>
+  <div class="prose">
+    <p>Each period upstream chooses an \(n\)-vector of actions \(a=(a_1,\ldots,a_n)\) at cost \(c(a)\). Actions affect the probability that the downstream value is high and the probability that the alternative-use value is high:</p>
+  </div>
+  <div class="equation-card"><div class="eq-head"><span>Outcome technology</span><span>§II</span></div><div class="eq-body">
+    <div class="equation-wrap">\[
+    Q=\begin{cases}Q_H&\text{with probability }q(a)\\Q_L&\text{with probability }1-q(a)\end{cases},\qquad
+    P=\begin{cases}P_H&\text{with probability }p(a)\\P_L&\text{with probability }1-p(a)\end{cases}.
+    \]</div>
+    <div class="eq-note">Conditional on actions, \(Q\) and \(P\) are independent. The normalization is \(c(0)=q(0)=p(0)=0\). Define \(\Delta Q=Q_H-Q_L\) and \(\Delta P=P_H-P_L\).</div>
+  </div></div>
+  <div class="callout amber">
+    <div class="callout-title">Contracting friction</div>
+    Actions are unobservable, so they cannot be directly contracted on. \(Q\) and \(P\) are observable to both parties but nonverifiable to a third party, so court-enforced contracts cannot condition on them. A relational contract can condition on them only through self-enforcement.
+  </div>
+  <div class="prose">
+    <p><strong>Formal contracts are not claimed to be absent.</strong> The model interprets \(Q\) and \(P\) as the noncontractible elements of exchange and implicitly leaves contractible elements to formal contracts. As an illustration, the paper notes that even the roughly 1,700-page General Motors–UAW agreement had gaps covered by informal understandings. The simplification therefore omits potentially important interactions between formal and relational terms.</p>
+  </div>
+  <div class="source">Source: §II · pp. 44–45; footnote 7.</div>
+</section>
+
+<section class="level2" id="first-best">
+  <h3>2.3 First-best benchmark</h3>
+  <div class="prose"><p>Because \(Q>P\) in every realization, the socially efficient use is always downstream. The first-best action vector therefore maximizes expected downstream value minus action cost.</p></div>
+  <div class="equation-card">
+    <div class="eq-head"><span>Equation (1) · First-best surplus</span><span>Core benchmark</span></div>
+    <div class="eq-body">
+      <div class="equation-wrap">\[
+      a^* \in \arg\max_a\{Q_L+q(a)\Delta Q-c(a)\},\qquad
+      S^* = Q_L+q(a^*)\Delta Q-c(a^*).
+      \tag{1}
+      \]</div>
+      <div class="eq-grid"><div class="eq-note"><strong>What it says.</strong> Only the effect of actions on downstream value belongs in social surplus; raising \(P\) matters only through private bargaining incentives, not through efficient use.</div><div class="eq-note"><strong>Why it matters.</strong> Any effort devoted purely to raising the outside value \(P\) is socially wasteful in the baseline because the good still ends up downstream.</div></div>
+    </div>
+  </div>
+  <div class="source">Source: §II · equation (1) · p. 44.</div>
+</section>
+
+<section class="level2" id="multitask-example">
+  <h3>2.4 Linear multitask example and its nested cases</h3>
+  <div class="prose"><p>For intuition the authors introduce a two-action linear technology, later used in Section IV:</p></div>
+  <div class="equation-card"><div class="eq-head"><span>Two-dimensional technology</span><span>§II</span></div><div class="eq-body"><div class="equation-wrap">\[
+    q(a)=q_1a_1+q_2a_2,\qquad p(a)=p_1a_1+p_2a_2,\qquad q_i,p_i\ge0.
+  \]</div></div></div>
+  <div class="three">
+    <div class="card"><div class="label">Case 1</div><h4>One-dimensional effort</h4><p>\(q_2=p_2=0\). The same action affects both downstream and alternative-use outcomes. Outside-market incentives can partially align with productivity.</p></div>
+    <div class="card"><div class="label">Case 2</div><h4>Unproductive multitasking</h4><p>\(q_2=p_1=0\). Action \(a_1\) raises \(Q\); action \(a_2\) raises only \(P\). Effort on \(a_2\) is privately useful for bargaining but socially wasteful.</p></div>
+    <div class="card"><div class="label">Case 3</div><h4>Mixed task values</h4><p>For academics, for example, research may increase both internal and external value while administration may increase only internal value. General \(q_i,p_i\) capture such task-specific effects.</p></div>
+  </div>
+  <div class="source">Source: §II · pp. 45–46.</div>
+</section>
+
+<section class="level1" id="four-forms">
+  <h2>3 · Four Governance Forms</h2>
+  <p class="prose lede">Section III solves the four cells of Figure I. The key payoff comparison is not simply “market versus firm.” It is how ownership changes the fallback from a relational promise.</p>
+</section>
+
+<section class="level2" id="spot-outsourcing">
+  <h3>3.1 Spot Outsourcing</h3>
+  <div class="prose">
+    <p>Upstream owns the asset and there is no relational contract. After \(Q_i,P_j\) realize, the parties bargain over the good. With equal Nash bargaining power, downstream pays</p>
+  </div>
+  <div class="equation-card"><div class="eq-head"><span>Spot bargaining price</span><span>§III.A</span></div><div class="eq-body"><div class="equation-wrap">\[
+    \text{price}_{ij}=P_j+\frac12(Q_i-P_j)=\frac12(Q_i+P_j).
+  \]</div><div class="eq-note">Upstream captures the alternative-use value plus half of gains from trade.</div></div></div>
+  <div class="equation-card"><div class="eq-head"><span>Equation (2) · Upstream action choice</span><span>Spot Outsourcing</span></div><div class="eq-body"><div class="equation-wrap">\[
+    U^{SO}=\max_a\left\{\frac12[Q_L+q(a)\Delta Q]+\frac12[P_L+p(a)\Delta P]-c(a)\right\}.
+    \tag{2}
+  \]</div><div class="eq-note">Because upstream is rewarded for raising both \(Q\) and \(P\), she may underinvest in productive \(Q\)-enhancing actions, overinvest in \(P\)-enhancing bargaining actions, or both.</div></div></div>
+  <div class="equation-card"><div class="eq-head"><span>Equation (3) · Total surplus</span><span>Spot Outsourcing</span></div><div class="eq-body"><div class="equation-wrap">\[
+    S^{SO}=D^{SO}+U^{SO}=Q_L+q(a^{SO})\Delta Q-c(a^{SO}).
+    \tag{3}
+  \]</div></div></div>
+  <div class="callout green">
+    <div class="callout-title">Extreme example: \(\Delta Q=0\)</div>
+    If upstream effort cannot raise downstream value at all, the first-best effort is zero. Yet under Spot Outsourcing upstream can still spend costly effort to raise \(P\), because a higher alternative-use value improves the Nash-bargained sale price. This stark case isolates the bargaining-position distortion.
+  </div>
+  <div class="callout amber">
+    <div class="callout-title">Important distinction: specificity levels ≠ marginal incentives</div>
+    The asset can be highly specific in levels (e.g. \(Q_L-P_H\) is large) yet still induce overinvestment if \(\Delta P\) is large relative to \(\Delta Q\). Investment behavior is driven by margins, not by the level measure of asset specificity alone.
+  </div>
+  <div class="source">Source: §III.A · pp. 48–50; equations (2)–(3); footnote 10.</div>
+</section>
+
+<section class="level2" id="spot-employment">
+  <h3>3.2 Spot Employment</h3>
+  <div class="prose">
+    <p>Downstream owns the asset and there is no relational contract. Downstream can take the good without making a noncontractible performance payment. Anticipating this, upstream chooses no costly action. Thus \(a^{SE}=0\) and</p>
+  </div>
+  <div class="equation-card"><div class="eq-head"><span>Spot Employment surplus</span><span>§III.B</span></div><div class="eq-body"><div class="equation-wrap">\[
+      S^{SE}=Q_L.
+  \]</div><div class="eq-note">Spot employment can dominate spot outsourcing only when the actions induced by outside bargaining have negative net social value: \(q(a^{SO})\Delta Q-c(a^{SO})<0\).</div></div></div>
+  <div class="callout">
+    <div class="callout-title">Qualification</div>
+    The zero-effort result is deliberately stark because formal contracts are omitted. The authors note that adding formal contracts can generate positive but generally non-first-best effort under spot employment; they suppress that channel to isolate relational contracting.
+  </div>
+  <div class="source">Source: §III.B · pp. 49–50.</div>
+</section>
+
+<section class="level2" id="relational-employment">
+  <h3>3.3 Relational Employment</h3>
+  <div class="prose">
+    <p>Downstream owns the asset, but now the parties use a repeated informal compensation agreement \((s,\{b_{ij}\})\). Salary \(s\) is paid at the beginning of the period; after \(Q_i,P_j\) are observed, downstream is supposed to pay bonus \(b_{ij}\). These payments can create action incentives only if both parties prefer honoring them to reneging.</p>
+  </div>
+
+  <div class="equation-card"><div class="eq-head"><span>Equation (4) · Upstream action under promised bonuses</span><span>Relational Employment</span></div><div class="eq-body">
+  <div class="equation-wrap">\[
+  U^{RE}=\max_a \Big[
+  s+b_{LL}(1-q)(1-p)+b_{HL}q(1-p)+b_{LH}(1-q)p+b_{HH}qp-c(a)
+  \Big].
+  \tag{4}
+  \]</div><div class="eq-note">Here \(q=q(a)\) and \(p=p(a)\). Salary allocates surplus; differences across \(b_{ij}\) provide marginal incentives.</div></div></div>
+
+  <div class="equation-card"><div class="eq-head"><span>Equation (5) · Surplus</span><span>Relational Employment</span></div><div class="eq-body"><div class="equation-wrap">\[
+    S^{RE}=U^{RE}+D^{RE}=Q_L+q(a^{RE})\Delta Q-c(a^{RE}).
+    \tag{5}
+  \]</div></div></div>
+
+  <h4>Trigger strategy and fallback</h4>
+  <div class="prose">
+    <p>If either party reneges, the other refuses future relational contracting forever. The relationship then uses spot governance. Crucially, the parties may renegotiate <em>asset ownership</em> after reneging, so the fallback is whichever spot form yields higher total surplus: \(\max\{S^{SE},S^{SO}\}\). This endogenized fallback is central to the paper.</p>
+    <p>If spot employment is the efficient fallback, downstream honors a promised bonus when the current saving from refusing \(b_{ij}\) is no larger than the loss of future downstream relational surplus; upstream similarly honors a negative payment / accepts the promised payment when continuation is valuable enough.</p>
+  </div>
+
+  <div class="equation-card"><div class="eq-head"><span>Equations (6)–(10) · Self-enforcement</span><span>Relational Employment</span></div><div class="eq-body">
+    <div class="equation-wrap">\[
+      -b_{ij}+\frac1rD^{RE}\ge \frac1rD^{SE},\tag{6}
+    \]
+    \[
+      b_{ij}+\frac1rU^{RE}\ge \frac1rU^{SE}.\tag{7}
+    \]</div>
+    <div class="equation-wrap">\[
+      \max_{ij}b_{ij}-\min_{ij}b_{ij}\le \frac1r(S^{RE}-S^{SE}),\tag{8}
+    \]
+    \[
+      \max_{ij}b_{ij}-\min_{ij}b_{ij}\le \frac1r(S^{RE}-S^{SO}),\tag{9}
+    \]</div>
+    <div class="equation-wrap">\[
+      \max_{ij}b_{ij}-\min_{ij}b_{ij}
+      \le \frac1r\Big(S^{RE}-\max\{S^{SE},S^{SO}\}\Big).
+      \tag{10}
+    \]</div>
+    <div class="eq-grid">
+      <div class="eq-note"><strong>Left side.</strong> Maximum total current temptation to renege across realized states. Under employment, the employee has no property-right claim to the good, so the whole variation in promised bonuses matters.</div>
+      <div class="eq-note"><strong>Right side.</strong> Present value of <em>relational capital</em>: surplus from continuing the relationship minus the best spot fallback available after breakdown.</div>
+    </div>
+    <div class="eq-note" style="margin-top:10px">Equations (8) and (9) are the two fallback-specific versions: subtract \(S^{SE}\) if spot employment is the fallback and subtract \(S^{SO}\) if spot outsourcing is the fallback. Equation (10) combines them.</div>
+  </div></div>
+
+  <div class="callout green"><div class="callout-title">Feasibility vs optimality</div>The efficient relational-employment contract maximizes \(S^{RE}\) subject to (10). Depending on primitives, it may achieve first best, achieve only a second-best improvement, or fail to improve on spot employment at all.</div>
+  <div class="source">Source: §III.C · pp. 50–53 · equations (4)–(10); footnote 11 for generalization beyond binary \(Q,P\).</div>
+</section>
+
+<section class="level2" id="relational-outsourcing">
+  <h3>3.4 Relational Outsourcing</h3>
+  <div class="prose">
+    <p>Upstream owns the asset and the parties promise the same kind of relational payment schedule. For any fixed \((s,\{b_{ij}\})\), the action choice and total surplus are the same as under relational employment <em>if that contract is enforceable</em>. The difference is the current payoff after reneging.</p>
+    <p>If downstream refuses the promised payment, he still needs the good. The parties revert immediately to the spot bargaining price \(\frac12(Q_i+P_j)\). Likewise, upstream can renege by insisting on the spot price rather than the relational price. Therefore the relevant temptation is not the level of \(b_{ij}\), but its deviation from the spot price.</p>
+  </div>
+  <div class="equation-card"><div class="eq-head"><span>Equation (11) · Surplus</span><span>Relational Outsourcing</span></div><div class="eq-body"><div class="equation-wrap">\[
+    S^{RO}=U^{RO}+D^{RO}=Q_L+q(a^{RO})\Delta Q-c(a^{RO}).
+    \tag{11}
+  \]</div></div></div>
+
+  <div class="equation-card"><div class="eq-head"><span>Equations (12)–(16) · Self-enforcement</span><span>Relational Outsourcing</span></div><div class="eq-body">
+    <div class="equation-wrap">\[
+    b_{ij}-\frac12(Q_i+P_j)\le \frac1r(D^{RO}-D^{SO}), \tag{12}
+    \]
+    \[
+    b_{ij}-\frac12(Q_i+P_j)\ge \frac1r(U^{SO}-U^{RO}). \tag{13}
+    \]</div>
+    <div class="equation-wrap">\[
+    \max_{ij}\left[b_{ij}-\frac12(Q_i+P_j)\right]
+    -\min_{ij}\left[b_{ij}-\frac12(Q_i+P_j)\right]
+    \le \frac1r(S^{RO}-S^{SO}),\tag{14}
+    \]
+    \[
+    \max_{ij}\left[b_{ij}-\frac12(Q_i+P_j)\right]
+    -\min_{ij}\left[b_{ij}-\frac12(Q_i+P_j)\right]
+    \le \frac1r(S^{RO}-S^{SE}).\tag{15}
+    \]</div>
+    <div class="equation-wrap">\[
+    \max_{ij}\left[b_{ij}-\frac12(Q_i+P_j)\right]
+    -\min_{ij}\left[b_{ij}-\frac12(Q_i+P_j)\right]
+    \le \frac1r\Big(S^{RO}-\max\{S^{SO},S^{SE}\}\Big).
+    \tag{16}
+    \]</div>
+    <div class="eq-note">Equation (13) is the upstream counterpart to (12); equations (14) and (15) are the two fallback-specific combined constraints. Equation (16) is necessary and sufficient.</div>
+  </div></div>
+
+  <div class="columns">
+    <div class="callout green"><div class="callout-title">Recourse effect</div>If downstream refuses a promised bonus, an independent upstream supplier can still extract the spot value of the good through bargaining. This can make high promised payments more credible outside the firm.</div>
+    <div class="callout amber"><div class="callout-title">Bargaining-position effect</div>Ownership also motivates upstream to improve \(P\), because a higher alternative-use value raises the spot bargaining price. This can distort tasks and make nonintegration worse.</div>
+  </div>
+  <div class="source">Source: §III.D · pp. 53–56 · equations (11)–(16).</div>
+</section>
+
+<section class="level2" id="main-proposition">
+  <h3>3.5 Main Proposition and Selective-Intervention Corollary</h3>
+  <div class="callout">
+    <div class="callout-title">Main Proposition · author's argument</div>
+    A given relational contract \((s,\{b_{ij}\})\) produces the same actions and total surplus under either ownership structure, but the maximum total reneging temptation is
+    \(\max b_{ij}-\min b_{ij}\) under relational employment and
+    \(\max[b_{ij}-\frac12(Q_i+P_j)]-\min[b_{ij}-\frac12(Q_i+P_j)]\) under relational outsourcing.
+  </div>
+
+  <div class="table-wrap"><table>
+    <thead><tr><th>Object</th><th>Relational Employment</th><th>Relational Outsourcing</th></tr></thead>
+    <tbody>
+      <tr><td>Who owns asset / good?</td><td>Downstream</td><td>Upstream</td></tr>
+      <tr><td>Same promised bonus schedule induces</td><td colspan="2">Same action vector and same current total surplus</td></tr>
+      <tr><td>Current reneging benchmark</td><td>Zero transfer on owned good</td><td>Spot Nash bargaining price \(\frac12(Q_i+P_j)\)</td></tr>
+      <tr><td>Maximum total temptation</td><td>Range of \(b_{ij}\)</td><td>Range of \(b_{ij}-\frac12(Q_i+P_j)\)</td></tr>
+      <tr><td>Implication</td><td colspan="2">Ownership changes the feasible set of relational contracts, so ownership can be chosen to support a better relationship.</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="callout red">
+    <div class="callout-title">Corollary · firms cannot mimic the spot market</div>
+    To reproduce spot-outsourcing incentives inside an integrated firm, the relational bonus would need to be \(b_{ij}=\frac12(Q_i+P_j)\). But once the asset is integrated, this bonus varies across states and creates a positive reneging temptation, while continuing the replicated spot outcome offers no surplus advantage over the best spot fallback. Constraint (10) therefore fails.
+  </div>
+  <div class="prose">
+    <p>This gives a formal rationale for Williamson's claim that <strong>selective intervention</strong> is impossible. A firm cannot simply bring a market transaction inside, preserve all market incentives, and intervene only in states where the market would be inefficient. Ownership changes the credibility of the payments needed to reproduce the market.</p>
+    <p>The introduction explicitly frames this as a caution for attempts to “bring the market inside the firm” through <strong>empowerment</strong>, <strong>transfer pricing</strong>, or performance-measurement systems such as <strong>Economic Value Added (EVA)</strong>: changing ownership can make the market-like payment rule itself noncredible.</p>
+    <p>The paper also notes the reverse: nonintegration cannot generally mimic spot employment either. And Kreps's corporate-culture logic cannot be represented by a single ownership-free repeated game if the same “culture” is meant to govern both employees and outside suppliers; the reneging problem differs by ownership.</p>
+  </div>
+  <div class="source">Source: Proposition and Corollary · pp. 56–58; footnotes 12–13.</div>
+</section>
+
+<section class="level1" id="specialization">
+  <h2>4 · Linear–Quadratic Specialization</h2>
+  <p class="prose">Section IV specializes the general model to obtain clean comparative results and a phase diagram. These results are explicitly described by the authors as exploratory and suggestive: they depend on special functional forms and do not exhaust the implications of the main proposition.</p>
+</section>
+
+<section class="level2" id="lq-actions">
+  <h3>4.1 Functional forms, spot actions, and restricted bonuses</h3>
+  <div class="equation-card"><div class="eq-head"><span>Linear–quadratic environment</span><span>§IV.A</span></div><div class="eq-body"><div class="equation-wrap">\[
+  a=(a_1,a_2),\quad q(a)=q_1a_1+q_2a_2,\quad p(a)=p_1a_1+p_2a_2,\quad
+  c(a)=\frac12a_1^2+\frac12a_2^2,
+  \]
+  \[
+  q_i,p_i\ge0,\qquad q_1p_2\ne q_2p_1.
+  \]</div></div></div>
+  <div class="equation-card"><div class="eq-head"><span>First-best and Spot-Outsourcing actions</span><span>Equation (17)</span></div><div class="eq-body"><div class="equation-wrap">\[
+    a_i^{FB}=q_i\Delta Q,\qquad
+    a_i^{SO}=\frac12q_i\Delta Q+\frac12p_i\Delta P,\quad i=1,2.
+    \tag{17}
+  \]</div><div class="eq-note">Spot employment still gives \(a_i^{SE}=0\).</div></div></div>
+  <div class="prose">
+    <p>For tractability, relational bonuses are restricted to be additively separable across the two outcomes:
+    \(b_{ij}=b_i+\beta_j\). Define \(\Delta b=b_H-b_L\) and \(\Delta\beta=\beta_H-\beta_L\). Then relational incentives map one-to-one into actions:</p>
+  </div>
+  <div class="equation-card"><div class="eq-head"><span>Equation (18) · Relational action choice</span><span>Any relational ownership regime</span></div><div class="eq-body"><div class="equation-wrap">\[
+    a_1^R=q_1\Delta b+p_1\Delta\beta,\qquad
+    a_2^R=q_2\Delta b+p_2\Delta\beta.
+    \tag{18}
+  \]</div><div class="eq-note">The restriction plus \(q_1p_2\ne q_2p_1\) makes the mapping from the two bonus slopes to the two actions invertible.</div></div></div>
+  <div class="source">Source: §IV.A · pp. 61–62; equations (17)–(18); footnote 14.</div>
+</section>
+
+<section class="level2" id="simplified-constraints">
+  <h3>4.2 The two self-enforcement constraints become geometric distances</h3>
+  <div class="columns">
+    <div class="equation-card"><div class="eq-head"><span>Equation (10′)</span><span>Relational Employment</span></div><div class="eq-body"><div class="equation-wrap">\[
+      |\Delta b|+|\Delta\beta|
+      \le \frac1r\left(S^{RE}-\max\{S^{SO},S^{SE}\}\right).
+      \tag{10'}
+    \]</div><div class="eq-note">The employment reneging temptation is the \(L^1\) distance of the relational bonus slopes from zero.</div></div></div>
+    <div class="equation-card"><div class="eq-head"><span>Equation (16′)</span><span>Relational Outsourcing</span></div><div class="eq-body"><div class="equation-wrap">\[
+      \left|\Delta b-\frac12\Delta Q\right|
+      +\left|\Delta\beta-\frac12\Delta P\right|
+      \le \frac1r\left(S^{RO}-\max\{S^{SO},S^{SE}\}\right).
+      \tag{16'}
+    \]</div><div class="eq-note">The outsourcing temptation is distance from the spot-bargaining incentive vector \((\frac12\Delta Q,\frac12\Delta P)\).</div></div></div>
+  </div>
+  <div class="callout green"><div class="callout-title">The geometric intuition</div>
+    The same desired action vector corresponds to the same \((\Delta b,\Delta\beta)\), but “no temptation” is centered at a different point under each ownership regime: zero inside the firm versus the spot-bargaining slopes outside the firm.
+  </div>
+
+  <div class="prose"><p>First best requires \(\Delta b=\Delta Q\) and \(\Delta\beta=0\). Therefore:</p></div>
+  <div class="equation-card"><div class="eq-head"><span>Equations (19)–(20) · First-best feasibility</span><span>Ownership comparison</span></div><div class="eq-body">
+  <div class="equation-wrap">\[
+    \Delta Q \le \frac1r\Big(S^{FB}-\max\{S^{SO},S^{SE}\}\Big)
+    \qquad\text{(relational employment),}
+    \tag{19}
+  \]
+  \[
+    \frac12(\Delta Q+\Delta P) \le \frac1r\Big(S^{FB}-\max\{S^{SO},S^{SE}\}\Big)
+    \qquad\text{(relational outsourcing).}
+    \tag{20}
+  \]</div>
+  <div class="eq-note">At sufficiently low \(r\), both ownership regimes can support first best. If \(\Delta P>\Delta Q\), there is an intermediate range where employment can support first best but outsourcing cannot; if \(\Delta P<\Delta Q\), the reverse can occur.</div>
+  </div></div>
+  <div class="source">Source: §IV.A · pp. 62–63; equations (10′), (16′), (19), (20); Appendix 1.</div>
+</section>
+
+<section class="level2" id="figure-two">
+  <h3>4.3 Figure II — the Coase–Williamson “horse race” made explicit</h3>
+  <div class="card">
+    <img class="fig-source" src="data:image/jpeg;base64,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eY2E5LRlWT0sFTTPp54WSwvGHMeMtI8iFFtdmo7ND3NC2SKAfFiMjnMZ/BBPHyLUaSGLhqDjH9EH/wAkLpkRERERERERERERERERERERERERERF5XqP7b2mV+CPVpIY+nTOSrMFux7htcG4xjCq1x7skjgH4yq7DmOftw0eOeqtDtzmk5x7PkVXNe3YS4lpBGAeMq9oaI9vLT0GCrXAkg9Gjx8hwjxg8Y28cjlGsPByWnnk4wVZRUNyvV9noaCekgbDTsmc+aNzi7c4jHBH4P5VuG6J1C0cXO2g55/c7zn/aVTom+l+43S3D8Wef/UjtE39waPhO3Egk59GePLjG5UOir+etytuf/wBeT9pUOhr9z/RW3c/9mf8Atq9uh75kE3W3n2Gkef8A1qv1kX1jA1l2oCd27mlfx/tqw6Hv54N2tw91K/8AbT6xb7ua4XegGMZxSP8A21gu2lb1brbU1puVBI2BhkLBTPGceGd5UCMF0DHOBBdh3B4HCl6JJPaRXE/2tZ/vCvS0REREREREXxL9UH93bUP4t+jRLzZERERERERERERERERERERERfpGiIiHoub0tj4T1Bj+z3fyWrpERERERERERERERERERERERERERERF47UvqK/tIulVGXejekmmeR0AZGACf8rK3FTGx0TQ05LeCR5KFjBIe4dcdEZy8k7ePJZGw7tpA46//KkOYHswDkjIyo0j3N2g4255OOqrgbiAevHzKrW94MdcefVSu7BixkEt6BStFsLNYV+fGhix/GPXfYXH9orc261FsLZpPhGJojc7aHg5y0nyK01mv1TbLGyGBzGVNZcpYjBM4ltB6pd3frEZ5bx0HrcLKb5VUl7mrZn00dVJQQh4a4vj3mUtO39XT3qNJqu4XGkqpZn0xhbbZZHU7m+q97XEckHPQeC2f1217WySQRwbKWempzTbTvlbI1uXtOfDdwPJpUSl1xdBA6SrkocSsnMZEbgGGOfuxnk5yDnwUiz3mW86ktNRUbGzMFVC4MOAdpbgkZIXerV6lGdL3EecDvzLjaWBpt8bSQCWNx8wVujWFnaRVgnP9DW4/jSvSEREREREREXxL9UH93bUP4t+jRLzZERERERERERERERERERERERfpGiIiLmtJ83HUB//ACD/AOSF0qIiIiIiIiIiIiIiIiIiIiIiIiIiIo1wq2UFtqKu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l+qD+7tqH8W/Rol5siIiIiIiIiIiIiIiIiIiIiIv0jREREREREREREREREREREXj2q9Zars/alPYfrgtVvthoJLi2eajLjG1p+IfX5PXn8imWPtPrrHRVMmuNskMlVDFbq230chjqmSxh7DjnBOfnBHgurunaHZLVV1FO9tZUPo2CSr9Hp3SCmaRkd5j4px4KtD2h2K46ipLJSuq5KysphWRfuZ+wxY+PuxgDw95wtdP2v6ZpoDNNHdGRirNBuNBJjv/AOt9Oqzzdq2mILTVXB8tWI6KdlNUx+iv7yF7vihzMZGfBbOw61tOorpU22kFVFV0sbZZIqmndEdrs4Iz16Lku1TVGqNOai0tS2Ouo4YL3Wst7mz0xkLHucBvzuGRhw4x4deeLKnUer4O22g0oLpQGgnoxWPd6GQ7Dchzfj+JBOfDK9QRERERERERERERERERERERERERERERERfEv1Qf3dtQ/i36NEvNkRERERERERERERERERERERF+kaIiIiIiIiIiIiIiIiIiIi8N1tps6t7bG/CWmrnU2Y291uNS2EbWSud6sjTnoM9fyLf9qVjrKbRGlrRZ6GtuBttwpH5hYHObFCMFx9vRa9lFqHTJ1tBT2uvqJ75MaygqYIWSB25v728OPqkZxz4KlqtN+03rPTuprlb6yugNldQ1ApYGl9PKXhwBYCPVwMZChaxsl6q9E0TGWe5Ceu1Mbu6KnaDLTwbycuIOA/BBA8/ctFcbDqGj0zqjTx0zdquasubKpl0bh76iMOaWh3Odwbnnz4XoPZfT11tr6i2/BNeyhjjdL6fcYtk8j3vLu76nIAUTthhuFbqXRjqCx3KvFpusNwnlp4g5gia4bmjnl3HRY6uSvn+qBtd8j09dhQR0BpJJzCNoc7JHj0GeSvXEREREREREREREREREREREREREREREREXxL9UH93bUP4t+jRLzZERERERERERERERERERERERfpGiIiIiLBW11JbaOSrrqqGkpohl80zwxjR5kngLQjtH0QemsbD/rGH9pbK7alslhpIaq63ajoYJyBFJPM1geevBJ5WM6s0626Q203y3CunAdFT+ks3vBGRgZycjotusEFdS1U08NPUwzSU7tkzGPDjG7GcOA6H3rOiZz0Ua4XKhtNE+suNXBR00fLpZnhjR8pUazais2oYHTWe6UlwjYcONP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oka8DuXNJMhcSMnAwC7k+Ojs9t1XTN0FRS6JvAGm5JGVcpEe15cTjZ6/rNweTx8qppjS+pqHVFsmp7dez6NPVTS0Nwpf3HCHteN0MxOQXZA2jnnlZ9Faa1JZdQ2CsbbdRejW+nqHVdvr4myRUwdERtppM5O5xADeuPjHgrHpvSeprZYdK3Gp0/cf6BXSaeqoQxpkdHJyHsbn1iOmPao1VpfUFPUW+4z6Xuk0NVqP4WNJFTiQ08A2jDgDgOOM4XY6RuE+n+0XtDvV1st0tlprhBPBPPTFrHd01zHAY6ucXjaBnct52fQXfSWnrFaamxVUsl1lnqquVjhsoS9xeGvz44IHvBXoqIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiL4l+qD+7tqH8W/Rol5siIiIiIiIiIiIiIiIiIiIiIv0jVro2PexzmNc5hy0kZLTjHHlwVcre7YJTIGN3kYLsc48sq5ERERERERERERUewSRuY7OHDBwcflWk01o6xaQjqI7HRupGVL+8laZ5JA534XruPPt8VvEREREREREIB6jKIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIi+Jfqg/u7ah/Fv0aJebIiIiIiIiIiIiIiIiIiIiIiL9I0RERERERERERERERERERERERERERERERERERERERERERERERERERERERERfEv1Qf3dtQ/i36NEvNkRERERERERERERERERERERF+kaIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIviX6oP7u2ofxb9GiXmyIiIiIiIiIiIiIiIiIiIiIi/SNEREREREREREREREREREREREREREREREREREREREREREREREREREREREREXxL9UH93bUP4t+jRLzZERERERERERERERERERERERfpGiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiL4l+qD+7tqH8W/Rol5siIiIiIiIiIiIiIiIiIiIiIv0jRERERERERERERERERERERERERERERERERERERERERERERERERERERERERF8S/VB/d21D+Lfo0S82REREREREREREREREREREREX6RoiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIi+Jfqg/u7ah/Fv0aJebIiIiIiIiIiIiIiIiIiIiIiL9I0RERFAst4gvlu9Mp2SMj7x8WJAAcscWnoT4hT0Ra+gvEFxudzoYmSNktsrIZS4DDi6NrwW89MOHXC2CIhOBlQLLd4L7aYbhTskZFNnDZAA4YOPAnyU9QKK8QV10uFBGyRslA5jZHOAw4uGRjlT159rPtBuelNe6cszaCknoL3VR0vel7hKxznAE4xjHrBegoiIhzg46rz/Reu7xfO0HUGmbrSUMRtLWvZLSl/rh2MZ3ewr0BEXIP1rM3tbZo70NndOoDWekbzuyHAYx8q69EREUa41TqK11VUxgkdBE+QNJwHEAnGfBaDs51bNrfQ9Hfp6VlLJUF4MbHFwG1xHj7l1Cx1EphpZZQNxYwux54C5ns21fNrrQ9LfailZSSTPe0xscXAbXEeK6pFzmvbtdrFo6tulnFIailYZSKkOLS0dQMeKv0HqCfVWg7RfKqJkU9dAJXsZ8UHJ6fMuf0Rre833tC1Vpy6wUTG2Xuu7kpg4bw/J53HyAXoCIiwVxqRQTGidE2p2HuzKCWB3hkDnC4vsn1rc9b2C6VN2hpoqmguMlD+587XBrWHPPtcV3a1UF/hqNV1dibDIJqWnZUOkONpDiQAPHwWk09rWovXaNqXTUlFFFDZmxFkzXkuk3jPIx/P2rsERUdu2HbjdjjPTK4DQmtL3fNb6k0/eIqIG0OZskpg4Bwd5hxXoCItTcNQQ2/Utosz4ZHy3UTGN7cbWd00OOfflbZEREREREREREREXxL9UH93bUP4t+jRLzZERERERERERERERERERERERf/9k=" alt="Original Figure II from the paper: efficient organizational form as a function of discount rate r and spread in spot market values Delta P">
+    <div class="source">Source image: Figure II · journal p. 64. The specialization shown is unproductive multitasking \(q_2=p_1=0\) with \(p=q=1\).</div>
+  </div>
+  <div class="three">
+    <div class="card"><div class="label">R1</div><h4>Move right: larger \(\Delta P\)</h4><p>More volatile alternative-use prices eventually destroy outsourcing and push efficient governance toward integration.</p></div>
+    <div class="card"><div class="label">R2</div><h4>Boundary of two relational forms</h4><p>The two forms can produce equal surplus with different bonus slopes and different action mixes.</p></div>
+    <div class="card"><div class="label">R3</div><h4>Move up: larger \(r\)</h4><p>As future surplus is discounted more heavily, first-best relational contracts fail, then second-best relational contracts fail, and spot governance can dominate.</p></div>
+  </div>
+  <div class="source">Source: §IV.B and Figure II · pp. 63–64.</div>
+</section>
+
+<section class="level1" id="results">
+  <h2>5 · Five Comparative Results</h2>
+  <p class="prose lede">The five results show what becomes possible once ownership is allowed to change the self-enforcement set rather than only static marginal incentives.</p>
+</section>
+
+<section class="level2 result" id="result-1">
+  <div class="result-head"><div class="num">1</div><div><h3>Vertical integration is an efficient response to widely varying supply prices</h3><div class="badges"><span class="badge author">Author's Result</span></div></div></div>
+  <div class="prose">
+    <p>Holding \(q_1,q_2,p_1,p_2,\Delta Q,r\) fixed, there is a threshold \(\Delta P^*\) such that sufficiently large \(\Delta P\) makes downstream ownership efficient. Under relational outsourcing, \(P\) directly enters the current reneging benchmark because the owner can threaten alternative use. Under relational employment, the downstream owner already owns the good, so \(P\) drops out of the reneging temptation.</p>
+    <p>The economic mechanism is ex post, not risk sharing. All parties are risk neutral. A high market price tempts upstream to break the relational deal; a low market price tempts downstream. Wide price variation therefore makes a promised interfirm relational price difficult to sustain.</p>
+  </div>
+  <div class="diagram-wrap"><div class="flow">
+    <div class="node"><strong>Larger \(\Delta P\)</strong><br>wider outside-price swings</div><div class="arrow">→</div>
+    <div class="node"><strong>RO temptation rises</strong><br>\(\Delta P\) enters (16′)</div><div class="arrow">→</div>
+    <div class="node"><strong>RO incentive power falls / infeasible</strong></div><div class="arrow">→</div>
+    <div class="node"><strong>Integration</strong><br>removes \(P\) from current reneging payoff</div>
+  </div></div>
+  <div class="callout"><div class="callout-title">Connection to Carlton's puzzle</div>The result offers an explanation for why risk-neutral firms may integrate for “certainty of supply”: not because uncertainty itself is costly, but because volatile outside prices undermine the relational contract.</div>
+  <div class="source">Source: Result 1 · pp. 64–65; proof in Appendix 2, Lemmas 1–3 · pp. 76–77; footnotes 15–16.</div>
+</section>
+
+<section class="level2 result" id="result-2">
+  <div class="result-head"><div class="num">2</div><div><h3>High-powered incentives create bigger reneging temptations under integration</h3><div class="badges"><span class="badge author">Author's Result</span></div></div></div>
+  <div class="prose">
+    <p>If the efficient relational-employment contract is below first best on both actions, then any feasible efficient relational-outsourcing contract uses stronger action incentives; otherwise relational outsourcing is infeasible. Intuitively, an employee has little recourse if the firm refuses a promised performance payment, whereas an independent supplier can fall back on bargaining over the good.</p>
+    <p>With strong desired incentives, \(\Delta b>\frac12\Delta Q\) and \(\Delta\beta>\frac12\Delta P\), the outsourcing temptation in (16′) is smaller than the employment temptation in (10′). Hence a larger promised performance payment can be credible between firms than inside an otherwise equivalent firm.</p>
+  </div>
+  <div class="callout green"><div class="callout-title">Potentially testable prediction</div>Measured performance-contingent payments should be lower for employees than for comparable independent contractors in environments where both forms coexist. This translates Williamson's “higher-powered market incentives” into a prediction about measurable payment levels.</div>
+  <details><summary>Counterintuitive R2 mechanism: why reward an unproductive task?</summary><div class="prose">
+    <p>In the unproductive-multitasking example, the relational-employment optimum on the R2 boundary has \(\Delta\beta^{RE}=0\). Relational outsourcing instead may set \(\Delta\beta^{RO}>0\), inducing some socially wasteful effort on \(a_2\). Why? Starting from zero \(a_2\), the direct surplus loss is second order, while moving the relational payment closer to the spot-bargaining schedule reduces reneging temptation at first order. That slack allows a larger \(\Delta b\), stronger productive \(a_1\), and a higher feasible total surplus.</p>
+  </div></details>
+  <div class="source">Source: Result 2 · pp. 65–67; proof p. 77; Figure II boundary R2.</div>
+</section>
+
+<section class="level2 result" id="result-3">
+  <div class="result-head"><div class="num">3</div><div><h3>The optimal integration decision can depend on the discount rate</h3><div class="badges"><span class="badge author">Author's Result</span></div></div></div>
+  <div class="prose">
+    <p>At low \(r\), future relational surplus is valuable enough that both ownership regimes can support first-best incentives. But first-best generates different current reneging temptations under the two regimes, so as \(r\) rises one form can lose first-best feasibility earlier than the other. At still higher \(r\), relational contracts can disappear and a spot form becomes efficient.</p>
+    <p>This comparative static is intrinsically repeated-game. A purely static asset-ownership model has no discount rate governing the value of future cooperation.</p>
+  </div>
+  <div class="source">Source: Result 3 · p. 67; equations (19)–(20); proof pp. 77–78; Figure II arrow R3.</div>
+</section>
+
+<section class="level2 result" id="result-4">
+  <div class="result-head"><div class="num">4</div><div><h3>Holding marginal incentives fixed, payoff levels can change optimal integration</h3><div class="badges"><span class="badge author">Author's Result</span></div></div></div>
+  <div class="prose">
+    <p>Hold \(q_i\Delta Q+p_i\Delta P\) fixed for \(i=1,2\). This holds constant the marginal incentives governing spot outsourcing and therefore holds fixed the static comparison of spot outsourcing and spot employment. Now change \(\Delta P\) or \(\Delta Q\), adjusting \(p_i\) or \(q_i\) to preserve those margins.</p>
+    <p>The spot actions do not change, but the <em>levels</em> of outside payoffs entering reneging temptations do. Consequently the feasible relational-contract set changes and the efficient ownership structure can reverse. This is a sharp departure from canonical Grossman–Hart-style static logic where, under their benchmark bargaining structure, payoff levels have no separate role once marginal incentives are fixed.</p>
+  </div>
+  <div class="callout amber"><div class="callout-title">Qualification</div>The authors explicitly note that not every static ownership theory makes payoff levels irrelevant; changing the bargaining game, as in De Meza–Lockwood, can alter that property.</div>
+  <div class="source">Source: Result 4 · pp. 67–68; proof p. 78; footnote 17.</div>
+</section>
+
+<section class="level2 result" id="result-5">
+  <div class="result-head"><div class="num">5</div><div><h3>A mediocre spot market may prevent the existence of any firm</h3><div class="badges"><span class="badge author">Author's Result</span></div></div></div>
+  <div class="prose">
+    <p>Suppose spot outsourcing is better than spot employment, \(S^{SO}>S^{SE}\), but a relational-employment arrangement could in principle create still more surplus. The spot market remains the fallback after any internal relational breakdown. If that fallback is attractive enough relative to the relational gain, the future loss from reneging is too small to support the payments needed for improvement.</p>
+    <p>The striking logic is that the market need not beat the firm in a direct efficiency contest. The <em>availability</em> of the market can make the firm infeasible by weakening the punishment for breaking the internal relational contract.</p>
+  </div>
+  <div class="diagram-wrap"><div class="flow">
+    <div class="node"><strong>Spot market moderately good</strong><br>\(S^{SO}>S^{SE}\)</div><div class="arrow">→</div>
+    <div class="node"><strong>Fallback after internal reneging</strong><br>switch to \(SO\)</div><div class="arrow">→</div>
+    <div class="node"><strong>Small relational capital</strong><br>\(S^{RE}-S^{SO}\)</div><div class="arrow">→</div>
+    <div class="node"><strong>Constraint (10′) fails</strong></div><div class="arrow">→</div>
+    <div class="node"><strong>No sustainable firm improvement</strong></div>
+  </div></div>
+  <div class="prose"><p>The text sketches a continuity argument near the bonus schedule that reproduces spot outsourcing: slightly improving the current surplus leaves a substantial reneging temptation but only a tiny continuation-surplus advantage. Appendix 2 proves that sufficiently large improvements cannot rescue feasibility at high enough \(r\).</p></div>
+  <div class="source">Source: Result 5 · pp. 68–69; proof and Lemma 4 · pp. 78–79; footnotes 18–19.</div>
+</section>
+
+<section class="level1" id="appendices">
+  <h2>6 · Appendices and Proof Logic</h2>
+  <p class="prose">The paper's appendices are not merely mechanical. Appendix 1 exposes the geometry of the reneging constraints; Appendix 2 shows exactly why the five comparative results follow and adds a symmetric sixth result.</p>
+</section>
+
+<section class="level2" id="appendix-one">
+  <h3>6.1 Appendix 1 — deriving (10′) and (16′)</h3>
+  <details open><summary>Relational Employment: four sign cases collapse to \(|\Delta b|+|\Delta\beta|\)</summary><div>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Case</th><th>Signs</th><th>Max–min bonus range</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>\(\Delta b>0,\ \Delta\beta>0\)</td><td>\(\Delta b+\Delta\beta\)</td></tr>
+        <tr><td>2</td><td>\(\Delta b>0,\ \Delta\beta<0\)</td><td>\(\Delta b-\Delta\beta\)</td></tr>
+        <tr><td>3</td><td>\(\Delta b<0,\ \Delta\beta>0\)</td><td>\(-\Delta b+\Delta\beta\)</td></tr>
+        <tr><td>4</td><td>\(\Delta b<0,\ \Delta\beta<0\)</td><td>\(-\Delta b-\Delta\beta\)</td></tr>
+      </tbody>
+    </table></div>
+    <p>All four are \(|\Delta b|+|\Delta\beta|\), yielding (10′).</p>
+  </div></details>
+
+  <details><summary>Relational Outsourcing: four sign cases around the spot-price slopes</summary><div>
+    <p>Define \(Z=b_L+\beta_L-\frac12(Q_L+P_L)\). Then each state-specific deviation from the spot price can be written as \(Z\) plus combinations of \(\Delta b-\frac12\Delta Q\) and \(\Delta\beta-\frac12\Delta P\). The four sign cases therefore collapse to</p>
+    <div class="equation-wrap">\[
+      \left|\Delta b-\frac12\Delta Q\right|+\left|\Delta\beta-\frac12\Delta P\right|,
+    \]</div>
+    <p>which yields (16′). This derivation makes transparent that the outsourcing “zero temptation” point is the spot-bargaining incentive vector, not zero.</p>
+  </div></details>
+  <div class="source">Source: Appendix 1 · pp. 74–75.</div>
+</section>
+
+<section class="level2" id="appendix-two">
+  <h3>6.2 Appendix 2 — proof dependency map</h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Object</th><th>Formal content</th><th>Role in the proof architecture</th></tr></thead>
+    <tbody>
+      <tr><td>Lemma 1</td><td>For sufficiently large \(\Delta P\), \(S^{SE}>S^{SO}\).</td><td>Large outside-price spread eventually makes spot outsourcing inefficient.</td></tr>
+      <tr><td>Lemma 2</td><td>Too strong an alternative-use incentive \(\Delta\beta\) makes relational outsourcing worse than spot employment.</td><td>Bounds the useful relational-outsource incentive region.</td></tr>
+      <tr><td>Lemma 3</td><td>For sufficiently large \(\Delta P\), relational outsourcing violates (16′).</td><td>Combined with Lemma 1 proves Result 1: downstream ownership eventually dominates.</td></tr>
+      <tr><td>Result 2 proof</td><td>Compare (10′) and (16′) at the same weak incentive vector.</td><td>If RE is constrained below first best, RO either has slack to strengthen incentives or is infeasible.</td></tr>
+      <tr><td>Result 3 proof</td><td>Use (19)–(20) plus a region where spot outsourcing beats spot employment.</td><td>Constructs a parameter path where rising \(r\) changes the efficient ownership regime.</td></tr>
+      <tr><td>Result 4 proof</td><td>Rescale \(p_i\) while changing \(\Delta P\) to hold \(q_i\Delta Q+p_i\Delta P\) fixed.</td><td>Keeps static marginal incentives fixed while changing relational feasibility.</td></tr>
+      <tr><td>Lemma 4</td><td>At sufficiently high \(r\), the only possible RE contract is the trivial \(\Delta b=\Delta\beta=0\) replication of spot employment.</td><td>With \(S^{SO}>S^{SE}\), that trivial contract is not viable as an improvement; proves Result 5.</td></tr>
+      <tr><td>Lemma 5</td><td>At sufficiently high \(r\), the only possible RO contract is \(\Delta b=\frac12\Delta Q,\ \Delta\beta=\frac12\Delta P\), replicating spot outsourcing.</td><td>Supports the symmetric Result 6.</td></tr>
+      <tr><td>Lemmas 6–7</td><td>Excessive incentive strength on \(P\) or \(Q\) makes RO inferior to spot outsourcing.</td><td>Provide bounds needed to establish Lemma 5 globally.</td></tr>
+      <tr><td>Result 6</td><td>If \(S^{SE}>S^{SO}\), then for sufficiently high \(r\) no nontrivial relational outsourcing is feasible.</td><td>Symmetric extension: mediocre spot employment can prevent the existence of outsourcing.</td></tr>
+    </tbody>
+  </table></div>
+
+  <details><summary>Lemma 4's key inequality (A1)</summary><div>
+    <p>Under the relevant signs, the RE constraint can be rewritten so the left side includes the direct temptation term \(2r(\Delta b+\Delta\beta)\) plus squared deviations of induced actions from first-best actions. For sufficiently high \(r\), moving either bonus slope away from zero raises that left side, so only the trivial spot-employment replication can remain feasible.</p>
+  </div></details>
+  <details><summary>Lemma 5's key inequality (A2)</summary><div>
+    <p>The RO constraint is centered at the spot-bargaining slopes. At sufficiently high \(r\), any move away from \((\frac12\Delta Q,\frac12\Delta P)\) raises the temptation term too much. Lemmas 6 and 7 bound potentially extreme bonus slopes, allowing the derivative argument to hold globally.</p>
+  </div></details>
+  <div class="source">Source: Appendix 2 · pp. 76–81.</div>
+</section>
+
+<section class="level1" id="discussion">
+  <h2>7 · Discussion and Applications</h2>
+  <p class="prose lede">Section V broadens the paper from a two-party model to an organizational principle: formal structure and informal relationships interact, so formal design should be chosen partly for the relational contracts it makes possible.</p>
+</section>
+
+<section class="level2" id="formal-informal">
+  <h3>7.1 Formal versus informal organizational structure</h3>
+  <div class="prose">
+    <p>Organizational sociology has long distinguished formal job descriptions, reporting relationships, and legal contracts from informal norms, mutual understandings, and social networks. The paper identifies <strong>asset ownership</strong> as a formal element and <strong>relational contracting</strong> as an informal element.</p>
+    <p>The economic value added is not merely to say that formal and informal structures coexist. It is to model their interaction and therefore make the formal structure an optimization variable: choose ownership to facilitate the most productive informal agreement.</p>
+  </div>
+  <div class="callout green"><div class="callout-title">Broader principle</div>Choose formal organizational structures while accounting for how they alter informal self-enforcement. The authors explicitly suggest extending this principle beyond ownership and beyond relational contracts.</div>
+  <div class="source">Source: §V.A · pp. 70–71; footnote 20.</div>
+</section>
+
+<section class="level2" id="other-forms">
+  <h3>7.2 Joint ventures, alliances, networks, and business groups</h3>
+  <div class="prose">
+    <p>The four Figure-I forms do not exhaust organizational variety. The authors point to joint ventures, strategic alliances, networks, business groups, clans, and virtual organizations, and argue that economists have often emphasized only formal ownership aspects of these structures.</p>
+    <p>The conjecture is that their distinctive ownership patterns may be partly valuable because they support distinctive relational contracts. A joint venture could be modeled as two parties at one production stage creating and jointly controlling an asset at another stage. A business group could involve multiple parties and stages linked by both cross-ownership and relational contracts, perhaps coordinated through a central party.</p>
+    <p>Thus 50–50 joint-venture ownership or minority cross-holdings need not be treated as imperfect compromises on a one-dimensional market–hierarchy continuum; they can be formal structures selected to sustain particular informal relations.</p>
+  </div>
+  <div class="source">Source: §V.B · pp. 71–72; footnote 21.</div>
+</section>
+
+<section class="level2" id="internal-processes">
+  <h3>7.3 Internal organizational processes: transfer pricing and corporate governance</h3>
+  <div class="tabs">
+    <div class="tab-buttons"><button class="active">Transfer pricing</button><button>Corporate governance</button><button>Other processes</button></div>
+    <div class="tab-panel active"><p>Early transfer-pricing theory often tried to recreate market prices inside the firm. Eccles's field evidence instead found that transfer prices often serve performance measurement and incentive roles while allocation rights remain centralized. This fits the model: under relational employment, internal transfers do not allocate ownership of the good—the firm already owns it. They reward actions that make the good more valuable downstream.</p></div>
+    <div class="tab-panel"><p>Executive compensation is not fully mechanical. Boards retain discretion over timing and size of payouts and combine objective with subjective performance measures. The paper interprets the board as helping design and implement a relational contract between management and shareholders, using judgment to separate management action from luck and to correct distortions in accounting measures.</p></div>
+    <div class="tab-panel"><p>The authors also point to capital budgeting and compensation more generally. Subjective judgment and reputation can be central even when the surrounding process looks formally contractual. Formal design—functional versus divisional organization, individual versus team jobs, and so on—may facilitate or impede these informal arrangements.</p></div>
+  </div>
+  <div class="source">Source: §V.C · pp. 72–73; footnote 22.</div>
+</section>
+
+<section class="level2" id="management">
+  <h3>7.4 Management and the nature of the firm</h3>
+  <div class="prose">
+    <p>The paper closes with a role for managers that is largely absent from many theories of the firm. Managers design the relevant relational contract, communicate expectations, assess noncontractible outcomes, decide whether promises should be honored, and sometimes change the relational contract itself.</p>
+    <p>Changing a relational contract is especially difficult: management must terminate one understanding without destroying the credibility required to start another, and the new policy may look like reneging on the old one.</p>
+    <p>The authors do <em>not</em> claim that management occurs only inside firms. Ongoing supply relationships also require management. Nor do they claim that every firm needs a manager: a simple Grossman–Hart-style firm could concentrate all noncontractible rights in one owner. Their claim is that as noncontractible rights become numerous and complex, their exercise must be coordinated through relational contracts, creating an essential managerial function.</p>
+  </div>
+  <div class="source">Source: §V.D · pp. 73–74.</div>
+</section>
+
+<section class="level1" id="literature-map">
+  <h2>8 · Literature Knowledge Map</h2>
+  <div class="badges"><span class="badge synth">Analytical Synthesis</span></div>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Branch</th><th>Core friction</th><th>Mechanism</th><th>What this paper borrows / changes</th><th>Key references in paper</th></tr></thead>
+    <tbody>
+      <tr><td>Property Rights Theory</td><td>Noncontractible actions and residual control rights</td><td>Ownership changes ex post bargaining and ex ante marginal investment incentives</td><td>Keeps ownership as integration, but adds repeated informal payments whose feasibility itself depends on ownership</td><td>Grossman–Hart 1986; Hart–Moore 1990; Hart 1995</td></tr>
+      <tr><td>Relational contracts within firms</td><td>Subjective / nonverifiable performance</td><td>Future relationship enforces internal bonuses</td><td>Adds explicit ownership and a comparison to external contracting</td><td>Simon 1951; Bull 1987</td></tr>
+      <tr><td>Relational contracts between firms</td><td>Incomplete explicit contracts and opportunistic reneging</td><td>Future rents sustain informal supply terms</td><td>Adds the integrated counterpart and shows integration creates a different temptation rather than eliminating temptation</td><td>Klein–Leffler 1981; Telser 1981; Klein 1996/2000</td></tr>
+      <tr><td>Transaction Cost Economics</td><td>Adaptation, opportunism, governance choice</td><td>Choose governance that economizes on transaction costs</td><td>Formalizes a specific repeated-game channel and selective-intervention limit</td><td>Williamson 1975/1985/1996; Coase 1937</td></tr>
+      <tr><td>Multitask agency</td><td>Multiple actions affect multiple signals / values</td><td>Incentive slopes distort task allocation</td><td>Moves from formal incentive contracts to self-enforcing relational bonuses</td><td>Holmström–Milgrom 1991; Holmström 1999</td></tr>
+      <tr><td>Organizational sociology / networks</td><td>Formal structure differs from actual working relations</td><td>Norms, embedded ties, informal networks</td><td>Provides an economic optimization logic for the interaction between formal ownership and informal relations</td><td>Granovetter 1985; Powell 1990; Blau–Scott 1962</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>Landmark reading path</h3>
+  <div class="callout"><div class="callout-title">Learning-oriented synthesis</div>
+    A compact path is: Coase (1937) → Grossman & Hart (1986) → Klein & Leffler (1981) / Bull (1987) → Williamson (1985) → Holmström & Milgrom (1991) → Baker, Gibbons & Murphy (2002). This order makes the paper's synthesis legible: firm boundary, ownership, relational enforcement, multitasking, then ownership × relational enforcement.
+  </div>
+</section>
+
+<section class="level1" id="critical-reading">
+  <h2>9 · Critical Reading</h2>
+  <div class="columns">
+    <div>
+      <h3>Key assumptions</h3>
+      <ul>
+        <li>Two parties and one asset, infinitely repeated stationary interaction.</li>
+        <li>Risk neutrality and common interest rate \(r\).</li>
+        <li>Upstream actions are privately observed; \(Q,P\) are observed by both but nonverifiable.</li>
+        <li>\(P_L&lt;P_H&lt;Q_L&lt;Q_H\), so downstream use is always ex post efficient.</li>
+        <li>Asset ownership conveys ownership of the produced good.</li>
+        <li>Spot outsourcing uses equal-power Nash bargaining.</li>
+        <li>After reneging, relational contracting ends forever and ownership can be renegotiated to the efficient spot form.</li>
+        <li>Section IV uses linear production, quadratic cost, and additive \(Q/P\) bonus components.</li>
+      </ul>
+    </div>
+    <div>
+      <h3>What actually drives the results?</h3>
+      <ul>
+        <li><strong>Main proposition:</strong> current reneging payoffs differ by ownership.</li>
+        <li><strong>Result 1:</strong> \(\Delta P\) enters outsourcing temptation but not employment temptation.</li>
+        <li><strong>Result 2:</strong> nonintegrated supplier retains spot bargaining recourse.</li>
+        <li><strong>Result 3:</strong> continuation surplus is scaled by \(1/r\).</li>
+        <li><strong>Result 4:</strong> self-enforcement depends on payoff levels, not only marginal action incentives.</li>
+        <li><strong>Result 5:</strong> punishment value is endogenous—the best spot form remains available after relational breakdown.</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>Authors' own qualifications and boundaries</h3>
+  <div class="prose">
+    <p>The paper repeatedly marks the boundary of its claims. Formal contracts are deliberately suppressed, even though contractible and noncontractible elements can interact. Results 1–5 are derived in a special linear–quadratic environment and are described as exploratory. The baseline punishment structure is a two-party trigger strategy; broader reputational markets are not modeled. Appendix results depend on the chosen functional form and bonus restriction even though the main proposition is much more general.</p>
+  </div>
+
+  <h3>Analytical limitations</h3>
+  <div class="badges"><span class="badge synth">Analytical Synthesis</span></div>
+  <div class="three">
+    <div class="card"><h4>Punishment architecture</h4><p>Permanent reversion to efficient spot governance is analytically clean but strong. With partial forgiveness, third-party reputations, or new partners, continuation threats and therefore integration incentives could differ.</p></div>
+    <div class="card"><h4>Ownership is binary</h4><p>Many real forms use shared ownership, minority stakes, option rights, or contingent control. The discussion anticipates these forms but the model does not solve them.</p></div>
+    <div class="card"><h4>Formal contracting is held in the background</h4><p>If formal contracts alter the outside option, information, or feasible bonus schedule, formal and relational instruments may be complements or substitutes.</p></div>
+    <div class="card"><h4>Exogenous relationship</h4><p>Partner search, matching, switching costs, relationship formation, and endogenous termination are absent. These could jointly determine relational capital and firm boundaries.</p></div>
+    <div class="card"><h4>Exogenous bargaining protocol</h4><p>Equal Nash bargaining pins down the spot price. Different bargaining power can shift the “zero temptation” point under outsourcing.</p></div>
+    <div class="card"><h4>Empirical mapping</h4><p>The payment-level prediction is suggestive, but observed employee–contractor comparisons face sorting, task heterogeneity, measurement, and endogenous organizational form.</p></div>
+  </div>
+
+  <h3>Alternative mechanisms that can generate related patterns</h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Observed pattern</th><th>Relational-contract mechanism here</th><th>Alternative explanation</th><th>Discriminating evidence</th></tr></thead>
+    <tbody>
+      <tr><td>Integration rises with volatile input prices</td><td>Volatility raises ex post reneging temptation under outsourcing</td><td>Risk management, price rigidity, information acquisition, hold-up under static contracting</td><td>Evidence that volatility affects informal contract breakdown / renegotiation and that effect depends on fallback ownership rights</td></tr>
+      <tr><td>Contractors receive more performance-contingent pay</td><td>Outside bargaining recourse makes strong informal bonuses more credible</td><td>Selection into tasks, tax / legal differences, monitoring technology</td><td>Narrow environments where task and worker characteristics are comparable but ownership / employment status differs</td></tr>
+      <tr><td>Governance changes with relationship horizon</td><td>Future surplus determines self-enforcement</td><td>Investment horizon or financing constraints</td><td>Shocks to expected continuity that leave technological margins unchanged</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3 id="external-validity">External Validity</h3>
+  <div class="badges"><span class="badge synth">Analytical Synthesis</span></div>
+  <div class="prose">
+    <p>The mechanism maps most directly to bilateral, repeated relationships in which important performance outcomes are mutually observed but difficult for courts to verify, and in which ownership materially changes the parties' fallback rights over the traded good. The paper itself does not establish that every observed firm boundary is governed by this channel.</p>
+    <p>Applications to joint ventures, alliances, business groups, transfer pricing, and corporate governance are explicitly presented as extensions or interpretations rather than solved versions of the baseline model. Likewise, Results 1–5 use the linear–quadratic specialization, so their qualitative reach should be separated from the more general main proposition.</p>
+  </div>
+
+  <h3 id="open-questions">Open Questions</h3>
+  <div class="prose">
+    <ul>
+      <li>How should <strong>formal organizational structures beyond ownership</strong> be chosen when they alter informal self-enforcement?</li>
+      <li>How do joint ownership, minority stakes, cross-ownership, alliances, and business groups change reneging temptations and relational capital?</li>
+      <li>How can managers credibly <strong>change</strong> a relational contract without making the new arrangement look like reneging on the old one?</li>
+      <li>How do formal contracts interact with the noncontractible dimensions \(Q,P\) that the baseline deliberately isolates?</li>
+    </ul>
+  </div>
+  <div class="source">Source: §V.A–D · pp. 70–74; footnotes 20–22. Questions are organized from the authors' discussion; where phrased more generally, they are learning-oriented synthesis.</div>
+</section>
+
+<section class="level2" id="extensions">
+  <h3>9.1 Research Implications / Extensions</h3>
+  <div class="badges"><span class="badge ext">Research Extension</span></div>
+  <div class="three">
+    <div class="card"><h4>Endogenous governance transitions</h4><p>Let ownership change over time as relational capital, outside prices, or partner quality evolve. The paper gives a natural state variable—credibility / continuation surplus—but does not model dynamic ownership adjustment.</p></div>
+    <div class="card"><h4>Shared and partial ownership</h4><p>Replace the binary allocation with joint ventures, minority equity, or option rights, and ask how partial recourse reshapes the reneging set.</p></div>
+    <div class="card"><h4>Search and matching</h4><p>Allow parties to meet alternative partners. A richer outside market changes both bargaining payoffs and the punishment from relational breakdown.</p></div>
+    <div class="card"><h4>Formal × relational contract design</h4><p>Endogenize which dimensions become formally verifiable and how formal clauses change the credible informal bonus schedule.</p></div>
+    <div class="card"><h4>Network relational capital</h4><p>In business groups or production networks, reneging against one party may damage reputation with others, making organizational boundaries a network problem.</p></div>
+    <div class="card"><h4>Empirical tests of fallback dependence</h4><p>Use shocks to outside-option values or supply-price dispersion and test whether relationship breakdown, bonus sensitivity, or integration responds in the direction predicted by the model.</p></div>
+  </div>
+</section>
+
+<section class="level1" id="source-coverage">
+  <h2>10 · Source and Coverage Map</h2>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Original paper location</th><th>Substantive content retained here</th><th>Notebook location</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr><td>Abstract + §I, pp. 39–43</td><td>Definition, motivation, integration-as-relational instrument, corollary, five results, four discussion themes</td><td>Overview; §§1, 3.5, 5, 7</td><td>Covered</td></tr>
+      <tr><td>§II, pp. 43–48</td><td>Agents, ownership, Q/P technology, first best, contractibility, multitask examples, Figure I, literature positioning</td><td>§§1.2, 2</td><td>Covered</td></tr>
+      <tr><td>§III.A–B, pp. 48–50</td><td>Spot outsourcing / employment, Nash price, action distortion, specificity distinction</td><td>§§3.1–3.2</td><td>Covered</td></tr>
+      <tr><td>§III.C, pp. 50–53</td><td>RE contract, trigger strategy, fallback ownership, equations (4)–(10)</td><td>§3.3</td><td>Covered</td></tr>
+      <tr><td>§III.D, pp. 53–58</td><td>RO contract, equations (11)–(16), proposition, corollary, literature comparison</td><td>§§3.4–3.5</td><td>Covered</td></tr>
+      <tr><td>§IV.A, pp. 61–63</td><td>LQ assumptions, eqs. (17)–(20), bonus restriction</td><td>§§4.1–4.2</td><td>Covered</td></tr>
+      <tr><td>§IV.B, pp. 63–69</td><td>Figure II and Results 1–5 with interpretations / testability</td><td>§§4.3, 5</td><td>Covered</td></tr>
+      <tr><td>§V.A–D, pp. 69–74</td><td>Sociology, other forms, transfer pricing, corporate governance, management</td><td>§7</td><td>Covered</td></tr>
+      <tr><td>Appendix 1, pp. 74–75</td><td>Four-case derivations of (10′), (16′)</td><td>§6.1</td><td>Covered</td></tr>
+      <tr><td>Appendix 2, pp. 76–81</td><td>Proof logic, Lemmas 1–7, Result 6 symmetry</td><td>§6.2</td><td>Covered</td></tr>
+      <tr><td>References, pp. 81–84</td><td>Substantively used branches and landmark references</td><td>§§1.2, 8</td><td>Covered selectively per substantive role</td></tr>
+    </tbody>
+  </table></div>
+
+  <details><summary>Substantive footnotes and qualifications retained</summary><div>
+    <ul>
+      <li><strong>fn. 1:</strong> Barnard, Simon, Selznick, Gouldner, and Blau are cited as early observers of informal agreements inside organizations.</li>
+        <li><strong>fn. 2:</strong> Lawler, Eccles, Dalton, and Bower support the paper's examples involving compensation, transfer pricing, internal auditing, and capital budgeting.</li>
+        <li><strong>fn. 3:</strong> Macaulay and the Japanese-supply literature (beginning with Dore in the authors' discussion) document “non-contractual” / relational interfirm dealings.</li>
+        <li><strong>fn. 4:</strong> the network/alliance/joint-venture/business-group/virtual-firm examples are tied to the corresponding organizational literature.</li>
+        <li><strong>fn. 5:</strong> “relational” is preferred to labels such as <em>implicit</em> because implicit need not mean vague; the term follows the legal literature, especially Macneil.</li>
+        <li><strong>fn. 6:</strong> asset can be legal title; specific-performance contracting reinterpretation.</li>
+      <li><strong>fn. 7:</strong> formal contracts are suppressed; interactions with noncontractible elements are therefore omitted.</li>
+      <li><strong>fn. 8:</strong> relational nonintegration is not simply a midpoint on a market–hierarchy continuum.</li>
+      <li><strong>fn. 9:</strong> Garvey and Halonen also combine ownership and repetition, but differ in environment, post-reneging ownership, and results.</li>
+      <li><strong>fn. 10:</strong> asset specificity in levels is distinct from marginal action incentives.</li>
+      <li><strong>fn. 11:</strong> self-enforcement derivation extends to arbitrary finite \(Q,P\) realizations under efficient-trade support; connection to bang-bang relational contracts.</li>
+      <li><strong>fn. 12:</strong> Kreps culture cannot simultaneously represent internal and external relations in an ownership-free repeated game.</li>
+      <li><strong>fn. 13:</strong> reverse mimicry also fails: nonintegration cannot mimic spot employment.</li>
+      <li><strong>fn. 14:</strong> additive bonus restriction plus rank condition creates one-to-one mapping between bonus slopes and actions.</li>
+      <li><strong>fn. 15–16:</strong> \(\Delta P\) is interpreted as market-price variability; authors distinguish their mechanism from Arrow's information explanation and note related industry arguments.</li>
+      <li><strong>fn. 17:</strong> payoff-level irrelevance is not universal across static ownership models.</li>
+      <li><strong>fn. 18:</strong> Appendix adds the symmetric Result 6.</li>
+      <li><strong>fn. 19:</strong> compared with prior relational-contract work, spot fallback is endogenous here and surplus is necessary but not sufficient.</li>
+      <li><strong>fn. 20–22:</strong> broader formal–informal design principle; nonstandard forms; subjectivity in capital allocation and compensation.</li>
+    </ul>
+  </div></details>
+</section>
+
+<section class="level1" id="understanding-check">
+  <h2>11 · Understanding Check</h2>
+  <p class="prose">Answers are hidden by default. Rate each item; ratings are stored locally in this browser.</p>
+
+  <div class="quiz" id="quiz-q1"><div class="badges"><span class="badge">CORE</span></div><div class="quiz-q">1. Why can the same relational bonus schedule be feasible under one ownership structure but infeasible under the other?</div>
+    <div class="quiz-actions"><button class="small-btn" data-reveal="hint1">Show Hint</button><button class="small-btn" data-reveal="ans1">Show Answer</button></div>
+    <div class="reveal" id="hint1"><strong>Hint:</strong> Hold the bonus schedule—and therefore actions—fixed. Compare the one-period payoff after reneging.</div>
+    <div class="reveal" id="ans1"><strong>Suggested answer:</strong> Ownership changes the party's legal claim to the good and therefore the fallback transfer in the current period. Under employment the range of promised bonuses is the temptation; under outsourcing the relevant range is bonuses net of the spot bargaining price. Since future relational surplus is the same for the same action plan, different current temptations imply different self-enforcement.<br><strong>Common mistake:</strong> Saying integration makes \(Q,P\) verifiable. It does not.<br><strong>Why this matters:</strong> This is the main proposition.<br><a href="#main-proposition">Review: §3.5</a></div>
+    <div class="rating"><button class="rate-btn" data-rate="got">✅ Got it</button><button class="rate-btn" data-rate="unsure">🤔 Not sure</button><button class="rate-btn" data-rate="review">❌ Need to review</button></div>
+  </div>
+
+  <div class="quiz" id="quiz-q2"><div class="badges"><span class="badge">FORMAL MODEL</span></div><div class="quiz-q">2. What do the left and right sides of equation (10) represent economically?</div>
+    <div class="quiz-actions"><button class="small-btn" data-reveal="hint2">Show Hint</button><button class="small-btn" data-reveal="ans2">Show Answer</button></div>
+    <div class="reveal" id="hint2"><strong>Hint:</strong> Think “current gain” versus “future loss.”</div>
+    <div class="reveal" id="ans2"><strong>Suggested answer:</strong> The left side, \(\max b-\min b\), is the maximum total one-shot temptation to break the internal relational payment scheme. The right side is the present value of relational surplus above the best spot fallback, scaled by \(1/r\). The contract is self-enforcing only if future relational capital covers the worst current temptation.<br><strong>Common mistake:</strong> Treating the right side as total firm surplus rather than surplus <em>relative to the fallback</em>.<br><strong>Why this matters:</strong> The fallback differential drives Results 3–5.<br><a href="#relational-employment">Review: §3.3</a></div>
+    <div class="rating"><button class="rate-btn" data-rate="got">✅ Got it</button><button class="rate-btn" data-rate="unsure">🤔 Not sure</button><button class="rate-btn" data-rate="review">❌ Need to review</button></div>
+  </div>
+
+  <div class="quiz" id="quiz-q3"><div class="badges"><span class="badge">MECHANISM</span></div><div class="quiz-q">3. Why does a large \(\Delta P\) favor integration in Result 1 even though both parties are risk neutral?</div>
+    <div class="quiz-actions"><button class="small-btn" data-reveal="hint3">Show Hint</button><button class="small-btn" data-reveal="ans3">Show Answer</button></div>
+    <div class="reveal" id="hint3"><strong>Hint:</strong> The effect occurs after the price realization, not through ex ante utility from risk.</div>
+    <div class="reveal" id="ans3"><strong>Suggested answer:</strong> A large spread in alternative-use values creates extreme spot bargaining prices. Under outsourcing, high \(P\) tempts upstream to defect and low \(P\) can tempt downstream. The spread enters (16′), tightening self-enforcement. Under employment, downstream already owns the good, so \(P\) does not enter the current reneging payoff. Integration therefore insulates the relational contract from outside-price swings.<br><strong>Common mistake:</strong> Calling this an insurance motive.<br><strong>Why this matters:</strong> It distinguishes the paper's mechanism from uncertainty / risk-sharing stories.<br><a href="#result-1">Review: Result 1</a></div>
+    <div class="rating"><button class="rate-btn" data-rate="got">✅ Got it</button><button class="rate-btn" data-rate="unsure">🤔 Not sure</button><button class="rate-btn" data-rate="review">❌ Need to review</button></div>
+  </div>
+
+  <div class="quiz" id="quiz-q4"><div class="badges"><span class="badge">MECHANISM</span></div><div class="quiz-q">4. Why can relational outsourcing sustain stronger performance incentives than relational employment?</div>
+    <div class="quiz-actions"><button class="small-btn" data-reveal="hint4">Show Hint</button><button class="small-btn" data-reveal="ans4">Show Answer</button></div>
+    <div class="reveal" id="hint4"><strong>Hint:</strong> If a bonus is not paid, what can an independent supplier still obtain?</div>
+    <div class="reveal" id="ans4"><strong>Suggested answer:</strong> The independent supplier owns the good and can still bargain for its spot value. Thus the downstream buyer saves only the relational payment <em>above</em> the spot price by reneging, not the full bonus. An employee lacks that property-right recourse, making a large promised internal bonus more tempting for the firm to withhold.<br><strong>Common mistake:</strong> Saying outsourcing always gives stronger incentives because markets are competitive; the formal channel here is reneging recourse.<br><strong>Why this matters:</strong> It generates a measurable payment-level prediction.<br><a href="#result-2">Review: Result 2</a></div>
+    <div class="rating"><button class="rate-btn" data-rate="got">✅ Got it</button><button class="rate-btn" data-rate="unsure">🤔 Not sure</button><button class="rate-btn" data-rate="review">❌ Need to review</button></div>
+  </div>
+
+  <div class="quiz" id="quiz-q5"><div class="badges"><span class="badge">FORMAL MODEL</span></div><div class="quiz-q">5. Why does first best require \(\Delta b=\Delta Q\) and \(\Delta\beta=0\) in the linear–quadratic specialization?</div>
+    <div class="quiz-actions"><button class="small-btn" data-reveal="hint5">Show Hint</button><button class="small-btn" data-reveal="ans5">Show Answer</button></div>
+    <div class="reveal" id="hint5"><strong>Hint:</strong> Compare \(a_i^{FB}=q_i\Delta Q\) with \(a_i^R=q_i\Delta b+p_i\Delta\beta\).</div>
+    <div class="reveal" id="ans5"><strong>Suggested answer:</strong> Social surplus rewards only changes in downstream value \(Q\); \(P\) affects bargaining but not efficient use. Matching \(a_i^R\) to \(a_i^{FB}\) for both actions and using the rank condition implies exactly the downstream-value slope \(\Delta Q\) and zero slope on \(P\).<br><strong>Common mistake:</strong> Giving a positive first-best incentive on \(P\) because \(P\) is observable.<br><strong>Why this matters:</strong> Equations (19)–(20) compare how hard each ownership structure finds it to sustain this same first-best vector.<br><a href="#simplified-constraints">Review: §4.2</a></div>
+    <div class="rating"><button class="rate-btn" data-rate="got">✅ Got it</button><button class="rate-btn" data-rate="unsure">🤔 Not sure</button><button class="rate-btn" data-rate="review">❌ Need to review</button></div>
+  </div>
+
+  <div class="quiz" id="quiz-q6"><div class="badges"><span class="badge">COMPARATIVE STATICS</span></div><div class="quiz-q">6. Why can payoff levels matter for integration even when static marginal incentives are held constant?</div>
+    <div class="quiz-actions"><button class="small-btn" data-reveal="hint6">Show Hint</button><button class="small-btn" data-reveal="ans6">Show Answer</button></div>
+    <div class="reveal" id="hint6"><strong>Hint:</strong> Separate action choice under spot bargaining from the temptation to deviate from a relational promise.</div>
+    <div class="reveal" id="ans6"><strong>Suggested answer:</strong> Holding \(q_i\Delta Q+p_i\Delta P\) fixed keeps the spot action margins unchanged, but changing \(\Delta P\) changes the state-contingent spot price and therefore the range of deviations from the relational payment schedule under outsourcing. Relational feasibility depends on these payoff levels, so ownership can change even when the static action incentives do not.<br><strong>Common mistake:</strong> Assuming all repeated-game incentives are functions only of derivatives.<br><strong>Why this matters:</strong> It is one of the paper's clearest departures from static property-rights logic.<br><a href="#result-4">Review: Result 4</a></div>
+    <div class="rating"><button class="rate-btn" data-rate="got">✅ Got it</button><button class="rate-btn" data-rate="unsure">🤔 Not sure</button><button class="rate-btn" data-rate="review">❌ Need to review</button></div>
+  </div>
+
+  <div class="quiz" id="quiz-q7"><div class="badges"><span class="badge">CRITIQUE</span></div><div class="quiz-q">7. How can a spot market prevent a more efficient firm from existing?</div>
+    <div class="quiz-actions"><button class="small-btn" data-reveal="hint7">Show Hint</button><button class="small-btn" data-reveal="ans7">Show Answer</button></div>
+    <div class="reveal" id="hint7"><strong>Hint:</strong> The spot market is not only a rival governance form; it is also the post-reneging outside option.</div>
+    <div class="reveal" id="ans7"><strong>Suggested answer:</strong> If spot outsourcing is the best fallback, reneging inside a firm sacrifices only \(S^{RE}-S^{SO}\), not the whole relational surplus. A sufficiently attractive spot fallback therefore reduces relational capital enough that the payments needed to make the firm outperform the market cannot be credibly promised. The market blocks the firm by weakening punishment, not necessarily by directly generating more surplus.<br><strong>Common mistake:</strong> Saying Result 5 merely compares \(S^{SO}\) and \(S^{RE}\). It is a feasibility result.<br><strong>Why this matters:</strong> It changes the Coase–Williamson “horse race” from a direct comparison to an endogenous-feasible-set problem.<br><a href="#result-5">Review: Result 5</a></div>
+    <div class="rating"><button class="rate-btn" data-rate="got">✅ Got it</button><button class="rate-btn" data-rate="unsure">🤔 Not sure</button><button class="rate-btn" data-rate="review">❌ Need to review</button></div>
+  </div>
+
+  <div class="quiz" id="quiz-q8"><div class="badges"><span class="badge">LITERATURE</span></div><div class="quiz-q">8. What does this paper add relative to a standard Grossman–Hart ownership model?</div>
+    <div class="quiz-actions"><button class="small-btn" data-reveal="hint8">Show Hint</button><button class="small-btn" data-reveal="ans8">Show Answer</button></div>
+    <div class="reveal" id="hint8"><strong>Hint:</strong> In Grossman–Hart, ownership changes bargaining incentives. What new object becomes ownership-dependent here?</div>
+    <div class="reveal" id="ans8"><strong>Suggested answer:</strong> The paper retains the idea that ownership determines rights over assets and therefore bargaining positions, but adds relational payments based on nonverifiable outcomes. Ownership now changes the <em>feasible set of informal contracts</em> by changing reneging payoffs. This yields repeated-game comparative statics involving the discount rate, payoff levels, and endogenous fallback governance that do not arise in the benchmark static model.<br><strong>Common mistake:</strong> Saying the paper rejects property rights. It extends them with relational contracting.<br><strong>Why this matters:</strong> This is the paper's literature contribution in one answer.<br><a href="#literature-map">Review: §8</a></div>
+    <div class="rating"><button class="rate-btn" data-rate="got">✅ Got it</button><button class="rate-btn" data-rate="unsure">🤔 Not sure</button><button class="rate-btn" data-rate="review">❌ Need to review</button></div>
+  </div>
+</section>
+
+<section class="level1" id="mastery">
+  <h2>12 · Can You Explain the Paper Without Looking?</h2>
+  <ol class="prose">
+    <li>Give a 90-second explanation from contracting friction → ownership → reneging temptation → feasible relational contract → firm boundary.</li>
+    <li>Reconstruct equations (10) and (16) conceptually without notation. What changes on the left side, and what remains common on the right side?</li>
+    <li>Explain why Result 4 cannot be replicated by simply saying “ownership changes marginal incentives.”</li>
+    <li>Use Figure II to narrate what happens as the relationship becomes less valuable (higher \(r\)) and as outside prices become more volatile (higher \(\Delta P\)).</li>
+    <li>In a seminar, identify one assumption whose relaxation could reverse or materially alter a result, and explain the channel rather than merely naming the assumption.</li>
+  </ol>
+</section>
+
+<section class="level1" id="remember">
+  <h2>13 · What Should I Remember?</h2>
+  <ol class="remember">
+    <li><strong>Relational contracts</strong> use mutually observed but nonverifiable information and are enforced by future surplus.</li>
+    <li>Ownership does not change what a fixed relational bonus <em>asks</em> upstream to do; it changes how tempting it is to break that promise.</li>
+    <li>Under employment, temptation is the range of promised bonuses. Under outsourcing, temptation is the range of promised bonuses <em>net of spot bargaining prices</em>.</li>
+    <li>The best punishment is not “zero.” After relational breakdown, parties can use the better spot governance form. Thus relational capital is surplus above an endogenous fallback.</li>
+    <li>This makes integration an <strong>instrument in the service of the relationship</strong>: choose ownership partly to support the better informal contract.</li>
+    <li>A firm cannot simply “bring the market inside” because the spot-market payment schedule is not self-enforcing after ownership changes.</li>
+    <li>High \(\Delta P\) can favor integration; strong performance incentives can favor outsourcing; patience and payoff levels can change ownership even when static margins do not.</li>
+    <li>A sufficiently attractive fallback market can make an otherwise more efficient firm impossible to sustain.</li>
+    <li>The broader organizational lesson is formal × informal complementarity: ownership, joint stakes, boards, transfer-pricing systems, and other formal devices should be evaluated by the relational contracts they facilitate.</li>
+  </ol>
+  <div class="callout green"><div class="callout-title">Most important equation pair</div>\((10)\) versus \((16)\): same continuation-surplus logic, different current reneging temptation because ownership changes the spot fallback in the current transaction.</div>
+  <div class="callout"><div class="callout-title">Biggest contribution</div>A formal theory that distinguishes relational contracting inside and outside firms and makes the firm boundary partly a choice of which informal agreements can be credibly sustained.</div>
+  <div class="callout amber"><div class="callout-title">Biggest limitation</div>The core proposition is broad, but the five comparative results rely on a deliberately stylized two-party punishment environment and a linear–quadratic specialization with restricted bonuses.</div>
+  <div class="callout red"><div class="callout-title">Biggest open question</div>How do multiple partners, search, shared ownership, formal contracting, and endogenous changes in relational capital jointly determine governance transitions over time?</div>
+</section>
+
+<section class="level1" id="glossary">
+  <h2>14 · Interactive Glossary</h2>
+  <dl class="glossary">
+    <dt>Relational Contract</dt><dd>An informal, self-enforcing agreement whose credibility comes from future relationship value rather than third-party enforcement.</dd>
+    <dt>Relational Capital</dt><dd>The continuation surplus lost after reneging: relational surplus above the best post-breakdown spot fallback.</dd>
+    <dt>Reneging Temptation</dt><dd>The maximum current-period gain from deviating from a promised relational payment.</dd>
+    <dt>Spot Outsourcing</dt><dd>Upstream owns the asset and there is no relational contract; the good is traded through ex post bargaining.</dd>
+    <dt>Spot Employment</dt><dd>Downstream owns the asset and there is no relational contract; in the stripped-down model upstream supplies zero costly noncontractible action.</dd>
+    <dt>Relational Outsourcing</dt><dd>Upstream ownership plus a self-enforcing relationship contingent on observed \(Q,P\).</dd>
+    <dt>Relational Employment</dt><dd>Downstream ownership plus a self-enforcing internal bonus relation.</dd>
+    <dt>Alternative-use value \(P\)</dt><dd>The value of the good outside the downstream relationship; under outsourcing it directly affects the spot bargaining price and reneging benchmark.</dd>
+    <dt>Selective Intervention</dt><dd>The hypothetical ability of a firm to preserve market incentives while intervening only when useful. The corollary shows why this cannot generally be implemented through relational employment.</dd>
+    <dt>High-powered Incentives</dt><dd>Strong marginal action incentives. Here their credibility depends on whether ownership provides recourse if a promised payment is withheld.</dd>
+  </dl>
+</section>
+
+<div class="footer-note">
+  This notebook is a learning-oriented reconstruction of Baker, Gibbons & Murphy (2002), preserving the paper's equations, argumentative structure, qualifications, Section V applications, and substantive appendices. Labels marked <strong>Analytical Synthesis</strong> or <strong>Research Extension</strong> are not claims attributed to the authors.
+</div>
+</article></main>
+</div>
+
+<script>
+const qs=(s,r=document)=>r.querySelector(s), qsa=(s,r=document)=>[...r.querySelectorAll(s)];
+const safeGet=(k)=>{try{return localStorage.getItem(k)}catch(e){return null}};
+const safeSet=(k,v)=>{try{localStorage.setItem(k,v)}catch(e){}};
+const root=document.documentElement;
+const themeKey='paperTheme';
+function setTheme(t){root.dataset.theme=t;safeSet(themeKey,t);const b=qs('#themeBtn');if(b)b.textContent=t==='dark'?'☀':'◐';}
+setTheme(safeGet(themeKey)||((window.matchMedia&&window.matchMedia('(prefers-color-scheme:dark)').matches)?'dark':'light'));
+const themeBtn=qs('#themeBtn'); if(themeBtn) themeBtn.onclick=()=>setTheme(root.dataset.theme==='dark'?'light':'dark');
+const aside=qs('aside'), menuBtn=qs('#menuBtn'); if(menuBtn&&aside) menuBtn.onclick=()=>aside.classList.toggle('open');
+qsa('nav a').forEach(a=>a.onclick=()=>aside&&aside.classList.remove('open'));
+window.addEventListener('scroll',()=>{
+  const doc=document.documentElement, max=doc.scrollHeight-doc.clientHeight, bar=qs('#progress');
+  if(bar) bar.style.width=(max?100*doc.scrollTop/max:0)+'%';
+});
+const navLinks=qsa('nav a'), targets=navLinks.map(a=>qs(a.getAttribute('href'))).filter(Boolean);
+if('IntersectionObserver' in window){
+  const observer=new IntersectionObserver(entries=>{
+    const vis=entries.filter(e=>e.isIntersecting).sort((a,b)=>a.boundingClientRect.top-b.boundingClientRect.top);
+    if(!vis.length)return;
+    const id=vis[0].target.id;
+    navLinks.forEach(a=>a.classList.remove('active','parent-active'));
+    const current=navLinks.find(a=>a.getAttribute('href')==='#'+id);
+    if(current){
+      current.classList.add('active');
+      const idx=navLinks.indexOf(current);
+      if(current.dataset.level!=='1'){
+        for(let i=idx-1;i>=0;i--){if(navLinks[i].dataset.level==='1'){navLinks[i].classList.add('parent-active');break;}}
+      }
+    }
+  },{rootMargin:'-72px 0px -72% 0px',threshold:[0,1]});
+  targets.forEach(t=>observer.observe(t));
+}
+qsa('[data-reveal]').forEach(btn=>btn.onclick=()=>{
+  const target=qs('#'+btn.dataset.reveal); if(target) target.classList.toggle('show');
+});
+qsa('.rate-btn').forEach(btn=>{
+  const quiz=btn.closest('.quiz'); if(!quiz)return;
+  const key='rating:'+location.pathname+':'+quiz.id;
+  const saved=safeGet(key); if(saved===btn.dataset.rate)btn.classList.add('selected');
+  btn.onclick=()=>{qsa('.rate-btn',btn.parentElement).forEach(b=>b.classList.remove('selected'));btn.classList.add('selected');safeSet(key,btn.dataset.rate)}
+});
+qsa('.tabs').forEach(t=>{
+  const btns=qsa('.tab-buttons button',t), panels=qsa('.tab-panel',t);
+  btns.forEach((b,i)=>b.onclick=()=>{btns.forEach(x=>x.classList.remove('active'));panels.forEach(x=>x.classList.remove('active'));b.classList.add('active');if(panels[i])panels[i].classList.add('active')});
+});
+</script>
+</body>
+</html>
